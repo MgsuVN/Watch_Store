@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4 card p-4 shadow-sm">
+            <h2 class="text-center mb-4">Đăng Nhập</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-warning w-100 fw-bold py-2">VÀO CỬA HÀNG</button>
+            </form>
+            <p class="mt-3 text-center">Bạn mới đến? <a href="{% url 'account_signup' %}">Đăng ký ngay</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
