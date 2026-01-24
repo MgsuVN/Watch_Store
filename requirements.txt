@@ -1,0 +1,8 @@
+django
+plotly
+martor 
+gunicorn
+whitenoise
+PyJWT
+cryptography
+django-allauth

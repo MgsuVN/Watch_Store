@@ -1,0 +1,7 @@
+<h1>Tạo tài khoản mới</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Đăng ký</button>
+</form>
+<p>Đã có tài khoản? <a href="{% url 'account_login' %}">Quay lại Đăng nhập</a></p>
