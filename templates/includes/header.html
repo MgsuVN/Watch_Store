@@ -1,307 +1,297 @@
 <style>
-    /* Top Bar */
-    .top-bar { 
-        background: linear-gradient(135deg, #d0021c 0%, #ff4757 100%);
-        color: white; 
-        font-size: 13px; 
-        padding: 8px 0;
+/* ================== TOP BAR ================== */
+.top-bar {
+    background-color: #d70018;
+    font-size: 13px;
+    padding: 8px 0;
+    color: #ffffff;
+}
+.top-bar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: 0.3s;
+    opacity: 0.9;
+}
+.top-bar a:hover { 
+    opacity: 1;
+}
+
+/* ================== NAVBAR ================== */
+.navbar {
+    padding: 10px 0;
+    background: #fff;
+    z-index: 1050; /* FIX bị che */
+}
+.nav-link {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333 !important;
+}
+.nav-link:hover { color: #f39200 !important; }
+
+/* ================== SEARCH ================== */
+.search-box-container .form-control {
+    border-radius: 20px;
+    padding-right: 40px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+.btn-search-inner {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+}
+
+/* ================== USER INFO ================== */
+.user-info-wrapper {
+    max-width: 150px;
+    line-height: 1.2;
+}
+.user-name-text {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f39200;
+    padding: 2px;
+    background: #fff;
+}
+.user-avatar-placeholder {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #f39200;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* ================== DROPDOWN ================== */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    border-radius: 14px;
+    padding: 10px;
+    z-index: 9999;
+}
+.dropdown-item {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.dropdown-item:hover {
+    background-color: #fff4e5;
+    color: #f39200;
+}
+
+/* ================== CART ================== */
+.cart-link {
+    font-size: 22px;
+    color: #333;
+}
+.cart-badge {
+    font-size: 10px;
+    top: -5px;
+    right: -8px;
+    padding: 4px 6px;
+}
+
+/* ================================================= */
+/* 🔥 FIX TRIỆT ĐỂ DROPDOWN PROFILE TRÊN MOBILE 🔥 */
+/* ================================================= */
+@media (max-width: 991px) {
+
+    /* 1. Cho phép dropdown tràn ra ngoài navbar */
+    .navbar-collapse {
+        overflow: visible !important;
     }
-    
-    .top-bar a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        transition: opacity 0.3s;
+
+    /* 2. Ép dropdown nổi như modal */
+    .dropdown-menu {
+        position: fixed !important;
+        top: 72px !important; /* ngay dưới navbar */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: calc(100% - 20px);
+        max-width: 360px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        border-radius: 18px;
     }
-    
-    .top-bar a:hover {
-        opacity: 0.8;
-    }
-    
-    /* Navbar */
-    .navbar-brand {
-        font-size: 24px;
-        font-weight: 700;
-    }
-    
-    .nav-link { 
-        font-weight: 600; 
-        color: #333 !important;
-        position: relative;
-        transition: color 0.3s;
-    }
-    
-    .nav-link:hover { 
-        color: #f39200 !important; 
-    }
-    
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 50%;
-        background-color: #f39200;
-        transition: all 0.3s;
-        transform: translateX(-50%);
-    }
-    
-    .nav-link:hover::after {
-        width: 80%;
-    }
-    
-    /* Search Box */
-    .search-box {
-        position: relative;
-    }
-    
-    .search-box input {
-        padding-right: 40px;
-    }
-    
-    .search-box .btn-search {
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        transform: translateY(-50%);
-        border: none;
-        background: transparent;
-        color: #666;
-        cursor: pointer;
-    }
-    
-    .search-box .btn-search:hover {
-        color: #f39200;
-    }
-    
-    /* Avatar Styles */
-    .user-avatar {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #f39200;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    
-    .user-avatar:hover {
-        transform: scale(1.1);
-        box-shadow: 0 2px 8px rgba(243, 146, 0, 0.4);
-    }
-    
-    .user-avatar-placeholder {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 16px;
-        cursor: pointer;
-        border: 2px solid #f39200;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    
-    .user-avatar-placeholder:hover {
-        transform: scale(1.1);
-        box-shadow: 0 2px 8px rgba(243, 146, 0, 0.4);
-    }
-    
-    .dropdown-toggle::after {
+
+    /* 3. Ẩn text username bên cạnh avatar trên mobile */
+    .user-info-wrapper {
         display: none;
     }
-    
-    .dropdown-menu {
-        min-width: 220px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border: none;
-        margin-top: 10px;
-        animation: slideDown 0.2s ease;
+}
+/* Fix avatar / image bị mất chậm khi đóng navbar mobile */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        transition: none !important;
     }
-    
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+
+    .navbar-collapse.collapsing {
+        height: auto !important;
     }
-    
-    .dropdown-item {
-        padding: 10px 20px;
-        transition: all 0.3s;
-    }
-    
-    .dropdown-item:hover {
-        background-color: #f8f9fa;
-        padding-left: 25px;
-    }
-    
-    .dropdown-item i {
-        width: 20px;
-        text-align: center;
-    }
-    
-    .cart-badge {
-        position: absolute;
-        top: -5px;
-        right: -10px;
-        font-size: 10px;
-    }
+}
+
 </style>
 
-<!-- Top Bar -->
-<div class="top-bar">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-8 text-center text-md-start">
-                <i class="fa-solid fa-bolt me-2"></i>
-                <strong>Flash Sale giảm tới 48%</strong> - Miễn phí vận chuyển đơn từ 500k
+
+<header class="header-wrapper">
+    <div class="top-bar d-none d-md-block">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <i class="fa-solid fa-bolt text-warning me-1"></i>
+                    <strong class="text-white">Flash Sale giảm tới 48%</strong>
+                    <span class="text-white">| Miễn phí vận chuyển đơn từ 500k</span>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="tel:0123456789"><i class="fa-solid fa-phone me-1"></i>0123.456.789</a>
+                    <a href="#"><i class="fa-solid fa-truck me-1"></i>Tra cứu</a>
+                </div>
             </div>
-            <div class="col-md-4 text-center text-md-end d-none d-md-block">
-                <a href="tel:0123456789"><i class="fa-solid fa-phone me-1"></i>0123.456.789</a>
-                <a href="#"><i class="fa-solid fa-truck me-1"></i>Tra cứu đơn hàng</a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}" style="text-decoration: none;">
+        <strong style="color: #f39200; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">WATCHSTORE</strong>
+        <strong style="color: #000; font-size: 24px; font-weight: 800;">.VN</strong>
+    </a>
+            
+            <div class="d-flex align-items-center d-lg-none">
+                <a href="#" class="text-dark me-3 position-relative">
+                    <i class="fa-solid fa-cart-shopping fs-4"></i>
+                    <span class="position-absolute badge rounded-pill bg-danger cart-badge">0</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link px-3" href="{% url 'home' %}">TRANG CHỦ</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-danger" href="#"><i class="fa-solid fa-fire me-1"></i>HOT 2026</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#">ĐỒNG HỒ</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#">PHỤ KIỆN</a></li>
+                </ul>
+                
+                <form class="d-none d-lg-flex me-3 search-box-container position-relative align-items-center" action="#" method="get">
+                    <input class="form-control" type="search" placeholder="Tìm sản phẩm..." style="width: 200px;">
+                    <button type="submit" class="btn-search-inner">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <div class="d-flex align-items-center">
+                    {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="text-end me-2 d-none d-sm-block user-info-wrapper">
+                                    <small class="d-block" style="font-size: 12px; font-weight: 800; color: #f39200; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1;">
+                                         Xin chào,
+                                    </small>
+                                    <span class="user-name-text">{{ user.username }}</span>
+                                </div>
+
+                                {% if user.profile.avatar %}
+                                    <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="user-avatar">
+                                {% else %}
+                                    <div class="user-avatar-placeholder">
+                                        {{ user.username|first }}
+                                    </div>
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
+                                <li>
+                                    <div class="dropdown-header d-flex align-items-center p-3">
+                                        <div class="me-2">
+                                            {% if user.profile.avatar %}
+                                                <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="40" height="40" style="object-fit: cover;">
+                                            {% else %}
+                                                <div class="user-avatar-placeholder" style="width:40px; height:40px;">{{ user.username|first }}</div>
+                                            {% endif %}
+                                        </div>
+                                        <div style="overflow: hidden;">
+                                            <div class="fw-bold text-dark text-truncate" style="max-width: 130px;">{{ user.username }}</div>
+                                            <div class="small text-muted text-truncate" style="max-width: 130px;">{{ user.email }}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-solid fa-user-gear me-2"></i>Hồ sơ của tôi</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-box-open me-2"></i>Đơn hàng đã mua</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-heart me-2"></i>Sản phẩm yêu thích</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Đăng xuất
+                                </a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'account_login' %}" class="btn btn-sm btn-outline-dark rounded-pill px-3">Đăng nhập</a>
+                        </div>
+                    {% endif %}
+
+                    <a href="#" class="cart-link ms-3 d-none d-lg-block position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute badge rounded-pill bg-danger cart-badge">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold" id="logoutModalLabel">
+                    Xác nhận đăng xuất
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-center">
+                <i class="fa-solid fa-circle-question text-warning fs-1 mb-3"></i>
+                <p class="mb-0">
+                    Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?
+                </p>
+            </div>
+
+            <div class="modal-footer border-0 justify-content-center gap-2">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                    Hủy
+                </button>
+
+                <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger rounded-pill px-4">
+                        Đăng xuất
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Main Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <strong style="color: #f39200;">WATCHSTORE</strong>.VN
-        </a>
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">
-                        <i class="fa-solid fa-house me-1"></i>TRANG CHỦ
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-solid fa-fire me-1"></i>XU HƯỚNG 2026
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-danger" href="#">
-                        <i class="fa-solid fa-clock me-1"></i>ĐỒNG HỒ
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-solid fa-gem me-1"></i>PHỤ KIỆN
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-solid fa-percent me-1"></i>KHUYẾN MÃI
-                    </a>
-                </li>
-            </ul>
-            
-            <form class="d-flex me-3 search-box" action="#" method="get">
-                <input class="form-control rounded-pill" type="search" name="q" placeholder="Tìm kiếm đồng hồ...">
-                <button type="submit" class="btn-search">
-                    <i class="fa-solid fa-search"></i>
-                </button>
-            </form>
-
-            <div class="d-flex align-items-center">
-                {% if user.is_authenticated %}
-                    <!-- User Menu Dropdown -->
-                    <div class="dropdown me-3">
-                        <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button" 
-                           id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="me-2 text-dark fw-semibold d-none d-md-inline">
-                                Chào, {{ user.username }}
-                            </span>
-                            {% if user.profile.avatar %}
-                                <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="user-avatar">
-                            {% else %}
-                                <div class="user-avatar-placeholder">
-                                    {{ user.username|first|upper }}
-                                </div>
-                            {% endif %}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li>
-                                <div class="dropdown-header">
-                                    <strong>{{ user.username }}</strong>
-                                    <div class="small text-muted">{{ user.email }}</div>
-                                </div>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'profile' %}">
-                                    <i class="fa-solid fa-user me-2"></i>Hồ sơ cá nhân
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa-solid fa-box me-2"></i>Đơn hàng
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa-solid fa-heart me-2"></i>Yêu thích
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa-solid fa-gear me-2"></i>Cài đặt
-                                </a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item text-danger" href="{% url 'account_logout' %}">
-                                    <i class="fa-solid fa-right-from-bracket me-2"></i>Đăng xuất
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                {% else %}
-                    <!-- Guest Menu Dropdown -->
-                    <div class="dropdown me-3">
-                        <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" 
-                                id="guestDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user me-1"></i>Tài khoản
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{% url 'account_login' %}">
-                                    <i class="fa-solid fa-right-to-bracket me-2"></i>Đăng nhập
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'account_signup' %}">
-                                    <i class="fa-solid fa-user-plus me-2"></i>Đăng ký
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endif %}
-                
-                <!-- Cart -->
-                <a href="#" class="text-dark position-relative" title="Giỏ hàng">
-                    <i class="fa-solid fa-cart-shopping fs-4"></i>
-                    <span class="position-absolute badge rounded-pill bg-danger cart-badge">0</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>

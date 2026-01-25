@@ -1,80 +1,127 @@
 {% extends 'base.html' %}
-
-{% block content %}
 {% load widget_tweaks %}
 
+{% block content %}
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7 col-sm-9">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
-                    <h3 class="mb-0"><i class="fa-solid fa-user-pen me-2"></i>Chỉnh sửa thông tin cá nhân</h3>
+                    <h3 class="mb-0">
+                        <i class="fa-solid fa-user-pen me-2"></i>
+                        Chỉnh sửa thông tin cá nhân
+                    </h3>
                 </div>
+
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" id="profile-form">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 
-                        <!-- Avatar -->
+                        <!-- AVATAR -->
                         <div class="text-center mb-4">
-                            <label class="form-label fw-bold d-block mb-2">Ảnh đại diện</label>
-                            <div style="position: relative; display: inline-block;">
+                            <label class="form-label fw-bold d-block mb-2">
+                                Ảnh đại diện
+                            </label>
+
+                            <div style="position: relative; display: inline-block; width:150px; height:150px;">
                                 {% if profile.avatar %}
-                                    <img id="avatar-preview" src="{{ profile.avatar.url }}" alt="Avatar" 
-                                         class="rounded-circle shadow" 
-                                         style="width:150px; height:150px; object-fit:cover; border:3px solid #007bff;">
+                                    <img
+                                        id="avatar-preview"
+                                        src="{{ profile.avatar.url }}"
+                                        alt="Avatar"
+                                        class="rounded-circle shadow"
+                                        style="width:150px; height:150px; object-fit:cover; border:3px solid #007bff;"
+                                    >
                                 {% else %}
-                                    <div id="avatar-preview" class="rounded-circle bg-secondary d-flex justify-content-center align-items-center shadow"
-                                         style="width:150px; height:150px; color:white; font-size:50px; cursor:pointer;">
-                                        {{ profile.user.username|first|upper }}
+                                    <div
+                                        id="avatar-preview"
+                                        class="rounded-circle shadow d-flex align-items-center justify-content-center text-secondary fw-bold"
+                                        style="
+                                            width:150px;
+                                            height:150px;
+                                            border:3px dashed #007bff;
+                                            background:#f8f9fa;
+                                            font-size:14px;
+                                        ">
+                                        Ảnh đại diện
                                     </div>
                                 {% endif %}
-                                
-                                <input type="file" id="id_avatar" name="avatar" class="d-none" accept="image/*">
-                                
-                                <span style="position:absolute; bottom:5px; right:5px; background:#007bff; color:white; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"
-                                      onclick="document.getElementById('id_avatar').click();" 
-                                      title="Chọn ảnh mới">
+
+                                <input
+                                    type="file"
+                                    id="id_avatar"
+                                    name="avatar"
+                                    class="d-none"
+                                    accept="image/*"
+                                >
+
+                                <span
+                                    onclick="document.getElementById('id_avatar').click();"
+                                    title="Chọn ảnh mới"
+                                    style="
+                                        position:absolute;
+                                        bottom:5px;
+                                        right:5px;
+                                        background:#007bff;
+                                        color:white;
+                                        border-radius:50%;
+                                        width:40px;
+                                        height:40px;
+                                        display:flex;
+                                        align-items:center;
+                                        justify-content:center;
+                                        cursor:pointer;
+                                        box-shadow:0 2px 5px rgba(0,0,0,0.3);
+                                    "
+                                >
                                     <i class="fa-solid fa-camera"></i>
                                 </span>
                             </div>
+
                             <div class="form-text mt-2">
-                                <i class="fa-solid fa-circle-info me-1"></i>Ảnh JPG, PNG, GIF (tối đa 5MB)
+                                JPG, PNG, GIF – tối đa 5MB
                             </div>
                         </div>
 
-                        <!-- Username & Email -->
+                        <!-- USERNAME -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Username</label>
-                            <input type="text" class="form-control" value="{{ profile.user.username }}" readonly>
+                            <input type="text" class="form-control" value="{{ request.user.username }}" readonly>
                         </div>
 
+                        <!-- EMAIL -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Email</label>
-                            <input type="email" class="form-control" value="{{ profile.user.email }}" readonly>
+                            <input type="email" class="form-control" value="{{ request.user.email }}" readonly>
                         </div>
 
-                        <!-- Các field khác -->
+                        <!-- PHONE -->
                         <div class="mb-3">
-                            <label for="id_phone" class="form-label fw-bold">Số điện thoại</label>
+                            <label class="form-label fw-bold">Số điện thoại</label>
                             {{ form.phone|add_class:"form-control" }}
                         </div>
 
+                        <!-- ADDRESS (ĐÃ THU NHỎ) -->
                         <div class="mb-3">
-                            <label for="id_address" class="form-label fw-bold">Địa chỉ</label>
-                            {{ form.address|add_class:"form-control" }}
-                        </div>
+    <label class="form-label fw-bold">Giới thiệu</label>
+    {{ form.bio|add_class:"form-control"|attr:"rows:3"|attr:"style:height:90px;resize:vertical;" }}
+</div>
 
-                        <div class="mb-3">
-                            <label for="id_bio" class="form-label fw-bold">Giới thiệu bản thân</label>
-                            {{ form.bio|add_class:"form-control" }}
-                        </div>
+
+                        <!-- BIO (ĐÃ THU NHỎ) -->
+                      <div class="mb-3">
+    <label class="form-label fw-bold">Địa chỉ</label>
+    {{ form.address|add_class:"form-control"|attr:"rows:2"|attr:"style:height:70px;resize:vertical;" }}
+</div>
+
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-success flex-grow-1 fw-bold">
-                                <i class="fa-solid fa-floppy-disk me-2"></i>Lưu thay đổi
+                                <i class="fa-solid fa-floppy-disk me-2"></i>
+                                Lưu thay đổi
                             </button>
                             <a href="{% url 'profile' %}" class="btn btn-outline-secondary">
-                                <i class="fa-solid fa-times me-2"></i>Hủy
+                                Hủy
                             </a>
                         </div>
                     </form>
@@ -84,68 +131,68 @@
     </div>
 </div>
 
+<!-- STYLE -->
 <style>
+/* Hover avatar */
 #avatar-preview {
-    transition: transform 0.3s, border-color 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-
 #avatar-preview:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(13,110,253,.25);
+}
+
+/* Thu nhỏ textarea */
+.address-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.bio-textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 </style>
 
+<!-- SCRIPT PREVIEW -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const avatarInput = document.getElementById('id_avatar');
-    const avatarPreview = document.getElementById('avatar-preview');
-    
-    // Lưu URL ảnh gốc
-    const originalImageSrc = avatarPreview.tagName === 'IMG' ? avatarPreview.src : null;
-    const originalContent = avatarPreview.innerHTML;
 
-    avatarInput.addEventListener('change', function() {
+    avatarInput.addEventListener('change', function () {
         const file = this.files[0];
-        
-        if (file) {
-            // Kiểm tra định dạng file
-            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
-            if (!validTypes.includes(file.type)) {
-                alert('Vui lòng chọn file ảnh (JPG, PNG, GIF)');
-                avatarInput.value = '';
-                return;
-            }
-            
-            // Kiểm tra kích thước file
-            if (file.size > 5 * 1024 * 1024) {
-                alert('File ảnh quá lớn. Chọn file nhỏ hơn 5MB');
-                avatarInput.value = '';
-                return;
-            }
+        if (!file) return;
 
-            // Hiển thị preview ảnh mới
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                if(avatarPreview.tagName === 'IMG') {
-                    // Nếu đã có ảnh, chỉ cần thay đổi src
-                    avatarPreview.src = e.target.result;
-                } else {
-                    // Nếu chưa có ảnh, tạo thẻ img mới
-                    const newImg = document.createElement('img');
-                    newImg.id = 'avatar-preview';
-                    newImg.src = e.target.result;
-                    newImg.alt = 'Avatar';
-                    newImg.className = 'rounded-circle shadow';
-                    newImg.style.cssText = 'width:150px; height:150px; object-fit:cover; border:3px solid #007bff;';
-                    avatarPreview.parentNode.replaceChild(newImg, avatarPreview);
-                }
-            }
-            reader.readAsDataURL(file);
-        } else {
-            // Nếu người dùng hủy chọn file, khôi phục ảnh cũ
-            if (originalImageSrc && avatarPreview.tagName === 'IMG') {
-                avatarPreview.src = originalImageSrc;
-            }
+        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+        if (!validTypes.includes(file.type)) {
+            alert('Chỉ chấp nhận ảnh JPG, PNG, GIF');
+            this.value = '';
+            return;
         }
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert('Ảnh tối đa 5MB');
+            this.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const preview = document.getElementById('avatar-preview');
+
+            if (preview.tagName === 'IMG') {
+                preview.src = e.target.result;
+            } else {
+                const img = document.createElement('img');
+                img.id = 'avatar-preview';
+                img.src = e.target.result;
+                img.className = 'rounded-circle shadow';
+                img.style.cssText =
+                    'width:150px;height:150px;object-fit:cover;border:3px solid #007bff;';
+                preview.replaceWith(img);
+            }
+        };
+        reader.readAsDataURL(file);
     });
 });
 </script>
