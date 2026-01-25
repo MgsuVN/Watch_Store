@@ -1,3 +1,8 @@
 from django.shortcuts import render
-def home(request): # Đổi từ get_home thành home
-    return render(request, 'home.html')
+from app1.models import Watch   # 👈 sửa ở đây
+
+def home(request):
+    products = Watch.objects.all()
+    return render(request, 'home.html', {
+        'products': products
+    })

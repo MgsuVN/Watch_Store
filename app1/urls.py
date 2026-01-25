@@ -1,7 +1,6 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
+
 urlpatterns = [
-    path('',views.index),
-    path('khanh/',views.index1),
+    path('add/', views.add_watch, name='add_watch'),
 ]
