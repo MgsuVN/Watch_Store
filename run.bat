@@ -16,6 +16,8 @@ python -m pip install --upgrade pip
 
 echo Installing required packages...
 pip install -r requirements.txt
+python -m pip install Pillow
+
 
 echo Applying migrations...
 python manage.py migrate
