@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Trang cá nhân</h3>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        {% if profile.avatar %}
+                            <img src="{{ profile.avatar.url }}" alt="Avatar" class="rounded-circle me-3" style="width:120px; height:120px; object-fit:cover; border:2px solid #007bff;">
+                        {% else %}
+                            <div class="rounded-circle bg-secondary me-3 d-flex justify-content-center align-items-center" style="width:120px; height:120px; color:white; font-size:40px;">
+                                {{ profile.user.username|first|upper }}
+                            </div>
+                        {% endif %}
+                        <div>
+                            <h4 class="mb-1">{{ profile.user.username }}</h4>
+                            <p class="mb-0 text-muted">{{ profile.user.email }}</p>
+                        </div>
+                    </div>
+
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item"><strong>Phone:</strong> {{ profile.phone|default:"Chưa cập nhật" }}</li>
+                        <li class="list-group-item"><strong>Address:</strong> {{ profile.address|default:"Chưa cập nhật" }}</li>
+                        <li class="list-group-item"><strong>Bio:</strong> {{ profile.bio|default:"Chưa cập nhật" }}</li>
+                    </ul>
+
+                    <a href="{% url 'profile_edit' %}" class="btn btn-primary w-100">
+                        <i class="fa-solid fa-pen-to-square me-2"></i> Chỉnh sửa thông tin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

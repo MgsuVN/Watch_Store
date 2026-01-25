@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth.socialaccount.providers.google',
     'django.contrib.humanize', 
+    'widget_tweaks',
     'home',
     'app1',
 ]
