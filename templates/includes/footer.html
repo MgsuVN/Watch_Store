@@ -1,0 +1,187 @@
+<style>
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #ecf0f1;
+        padding: 50px 0 20px;
+        margin-top: 50px;
+    }
+    
+    .footer h5 {
+        color: #f39200;
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .footer h5::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 3px;
+        background: #f39200;
+    }
+    
+    .footer-links {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        color: #bdc3c7;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+    
+    .footer-links a:hover {
+        color: #f39200;
+        padding-left: 5px;
+    }
+    
+    .footer-social a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        margin-right: 10px;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    
+    .footer-social a:hover {
+        background: #f39200;
+        transform: translateY(-3px);
+    }
+    
+    .payment-methods img {
+        height: 30px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        background: white;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    
+    .payment-methods img:hover {
+        opacity: 1;
+    }
+    
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 30px;
+        padding-top: 20px;
+        text-align: center;
+        color: #95a5a6;
+    }
+    
+    .footer-contact-info {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .footer-contact-info p {
+        margin-bottom: 10px;
+        line-height: 1.8;
+    }
+    
+    .footer-contact-info i {
+        color: #f39200;
+        margin-right: 10px;
+        width: 20px;
+    }
+    
+    .footer-contact-info a {
+        color: #f39200;
+        text-decoration: none;
+    }
+    
+    .footer-contact-info a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Về chúng tôi -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5>VỀ WATCHSTORE.VN</h5>
+                <p style="color: #bdc3c7; line-height: 1.8;">
+                    Chuyên cung cấp đồng hồ chính hãng cao cấp từ các thương hiệu nổi tiếng thế giới. 
+                    Uy tín - Chất lượng - Bảo hành trọn đời.
+                </p>
+                <div class="footer-social mt-3">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Liên kết nhanh -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h5>LIÊN KẾT</h5>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Giới thiệu</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Sản phẩm</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Tin tức</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Liên hệ</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Tuyển dụng</a></li>
+                </ul>
+            </div>
+
+            <!-- Chính sách -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5>CHÍNH SÁCH</h5>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Chính sách bảo hành</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Chính sách đổi trả</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Chính sách vận chuyển</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Chính sách thanh toán</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-right me-2"></i>Bảo mật thông tin</a></li>
+                </ul>
+            </div>
+
+            <!-- Liên hệ -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5>LIÊN HỆ</h5>
+                <div class="footer-contact-info">
+                    <p><i class="fa-solid fa-location-dot"></i>123 Đường ABC, Phường XYZ, TP.Thái Nguyên</p>
+                    <p><i class="fa-solid fa-phone"></i>Hotline: <a href="tel:0123456789">0123.456.789</a></p>
+                    <p><i class="fa-solid fa-envelope"></i>Email: ictu@watchstore.vn</p>
+                    <p><i class="fa-solid fa-clock"></i>Giờ làm việc: 8:00 - 21:00 (Hàng ngày)</p>
+                </div>
+                
+                <h6 class="mt-3" style="color: #f39200;">Phương thức thanh toán</h6>
+                <div class="payment-methods">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="Momo">
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p class="mb-0">© 2026 WATCHSTORE.VN - Đồng hồ chính hãng cao cấp. All rights reserved.</p>
+            <p class="mb-0 small mt-1">Designed with <i class="fa-solid fa-heart text-danger"></i> by ICTU Team</p>
+        </div>
+    </div>
+</footer>
