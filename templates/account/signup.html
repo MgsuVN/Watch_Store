@@ -1,7 +1,121 @@
-<h1>Tạo tài khoản mới</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Đăng ký</button>
-</form>
-<p>Đã có tài khoản? <a href="{% url 'account_login' %}">Quay lại Đăng nhập</a></p>
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-4">
+
+                <h2 class="text-center fw-bold mb-4">Đăng Ký</h2>
+
+                <!-- GLOBAL ERRORS -->
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Tên đăng nhập
+                        </label>
+                        <input
+                            type="text"
+                            name="username"
+                            value="{{ form.username.value|default:'' }}"
+                            class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                            placeholder="Nhập tên đăng nhập"
+                            required>
+
+                        {% if form.username.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.username.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ form.email.value|default:'' }}"
+                            class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                            placeholder="example@email.com"
+                            required>
+
+                        {% if form.email.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.email.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password 1 -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Mật khẩu
+                        </label>
+                        <input
+                            type="password"
+                            name="password1"
+                            class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
+                            placeholder="••••••••"
+                            required>
+
+                        {% if form.password1.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.password1.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password 2 -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Nhập lại mật khẩu
+                        </label>
+                        <input
+                            type="password"
+                            name="password2"
+                            class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
+                            placeholder="••••••••"
+                            required>
+
+                        {% if form.password2.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.password2.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit"
+                            class="btn btn-warning w-100 fw-bold py-2">
+                        TẠO TÀI KHOẢN
+                    </button>
+                </form>
+
+                <!-- Login -->
+                <p class="text-center mt-3 mb-0">
+                    Đã có tài khoản?
+                    <a href="{% url 'account_login' %}" class="fw-semibold text-decoration-none">
+                        Đăng nhập
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
