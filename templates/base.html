@@ -3,184 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WATCHSTORE.VN - Đồng Hồ Chính Hãng</title>
+    <title>{% block title %}WATCHSTORE.VN - Đồng Hồ Chính Hãng{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        .top-bar { background-color: #d0021c; color: white; font-size: 14px; padding: 5px 0; }
-        .navbar-brand img { height: 45px; }
-        .nav-link { font-weight: 600; color: #333 !important; }
-        .nav-link:hover { color: #f39200 !important; }
-        .main-content { min-height: 600px; }
-        
-        /* Avatar Styles */
-        .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #f39200;
-            cursor: pointer;
-            transition: transform 0.2s;
+        .main-content { 
+            min-height: 600px; 
         }
         
-        .user-avatar:hover {
-            transform: scale(1.1);
-        }
-        
-        .user-avatar-placeholder {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            border: 2px solid #f39200;
-            transition: transform 0.2s;
-        }
-        
-        .user-avatar-placeholder:hover {
-            transform: scale(1.1);
-        }
-        
-        .dropdown-toggle::after {
-            display: none;
-        }
-        
-        .dropdown-menu {
-            min-width: 200px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .dropdown-item i {
-            width: 20px;
-            text-align: center;
-        }
+        {% block extra_css %}{% endblock %}
     </style>
 </head>
 <body>
-    <div class="top-bar text-center">
-        Flash Sale giảm tới 48% - Xem ngay
-    </div>
+    <!-- Include Header -->
+    {% include 'includes/header.html' %}
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <strong style="color: #f39200;">WATCHSTORE</strong>.VN
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">XU HƯỚNG 2026</a></li>
-                    <li class="nav-item"><a class="nav-link text-danger" href="#">ĐỒNG HỒ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">PHỤ KIỆN</a></li>
-                </ul>
-                
-                <form class="d-flex me-3">
-                    <input class="form-control rounded-pill" type="search" placeholder="Tìm kiếm...">
-                </form>
-
-                <div class="d-flex align-items-center">
-                    {% if user.is_authenticated %}
-                        <!-- User Menu Dropdown -->
-                        <div class="dropdown me-3">
-                            <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button" 
-                               id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="me-2 text-dark fw-semibold d-none d-md-inline">
-                                    Chào, {{ user.username }}
-                                </span>
-                                {% if user.profile.avatar %}
-                                    <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="user-avatar">
-                                {% else %}
-                                    <div class="user-avatar-placeholder">
-                                        {{ user.username|first|upper }}
-                                    </div>
-                                {% endif %}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li>
-                                    <div class="dropdown-header">
-                                        <strong>{{ user.username }}</strong>
-                                        <div class="small text-muted">{{ user.email }}</div>
-                                    </div>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item" href="{% url 'profile' %}">
-                                        <i class="fa-solid fa-user me-2"></i>Hồ sơ cá nhân
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa-solid fa-box me-2"></i>Đơn hàng
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa-solid fa-heart me-2"></i>Yêu thích
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa-solid fa-gear me-2"></i>Cài đặt
-                                    </a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item text-danger" href="{% url 'account_logout' %}">
-                                        <i class="fa-solid fa-right-from-bracket me-2"></i>Đăng xuất
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    {% else %}
-                        <!-- Guest Menu Dropdown -->
-                        <div class="dropdown me-3">
-                            <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" 
-                                    id="guestDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-user me-1"></i>Tài khoản
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="{% url 'account_login' %}">
-                                        <i class="fa-solid fa-right-to-bracket me-2"></i>Đăng nhập
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{% url 'account_signup' %}">
-                                        <i class="fa-solid fa-user-plus me-2"></i>Đăng ký
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    {% endif %}
-                    
-                    <!-- Cart -->
-                    <a href="#" class="text-dark position-relative">
-                        <i class="fa-solid fa-cart-shopping fs-4"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
-                              style="font-size: 10px;">0</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
+    <!-- Main Content -->
     <div class="main-content">
         {% block content %}
         {% endblock %}
     </div>
 
+    <!-- Include Footer -->
+    {% include 'includes/footer.html' %}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

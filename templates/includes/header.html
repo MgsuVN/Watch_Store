@@ -1,0 +1,307 @@
+<style>
+    /* Top Bar */
+    .top-bar { 
+        background: linear-gradient(135deg, #d0021c 0%, #ff4757 100%);
+        color: white; 
+        font-size: 13px; 
+        padding: 8px 0;
+    }
+    
+    .top-bar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        transition: opacity 0.3s;
+    }
+    
+    .top-bar a:hover {
+        opacity: 0.8;
+    }
+    
+    /* Navbar */
+    .navbar-brand {
+        font-size: 24px;
+        font-weight: 700;
+    }
+    
+    .nav-link { 
+        font-weight: 600; 
+        color: #333 !important;
+        position: relative;
+        transition: color 0.3s;
+    }
+    
+    .nav-link:hover { 
+        color: #f39200 !important; 
+    }
+    
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: #f39200;
+        transition: all 0.3s;
+        transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::after {
+        width: 80%;
+    }
+    
+    /* Search Box */
+    .search-box {
+        position: relative;
+    }
+    
+    .search-box input {
+        padding-right: 40px;
+    }
+    
+    .search-box .btn-search {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        color: #666;
+        cursor: pointer;
+    }
+    
+    .search-box .btn-search:hover {
+        color: #f39200;
+    }
+    
+    /* Avatar Styles */
+    .user-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #f39200;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .user-avatar:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(243, 146, 0, 0.4);
+    }
+    
+    .user-avatar-placeholder {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        border: 2px solid #f39200;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .user-avatar-placeholder:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(243, 146, 0, 0.4);
+    }
+    
+    .dropdown-toggle::after {
+        display: none;
+    }
+    
+    .dropdown-menu {
+        min-width: 220px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border: none;
+        margin-top: 10px;
+        animation: slideDown 0.2s ease;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .dropdown-item {
+        padding: 10px 20px;
+        transition: all 0.3s;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #f8f9fa;
+        padding-left: 25px;
+    }
+    
+    .dropdown-item i {
+        width: 20px;
+        text-align: center;
+    }
+    
+    .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -10px;
+        font-size: 10px;
+    }
+</style>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8 text-center text-md-start">
+                <i class="fa-solid fa-bolt me-2"></i>
+                <strong>Flash Sale giảm tới 48%</strong> - Miễn phí vận chuyển đơn từ 500k
+            </div>
+            <div class="col-md-4 text-center text-md-end d-none d-md-block">
+                <a href="tel:0123456789"><i class="fa-solid fa-phone me-1"></i>0123.456.789</a>
+                <a href="#"><i class="fa-solid fa-truck me-1"></i>Tra cứu đơn hàng</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <strong style="color: #f39200;">WATCHSTORE</strong>.VN
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">
+                        <i class="fa-solid fa-house me-1"></i>TRANG CHỦ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-fire me-1"></i>XU HƯỚNG 2026
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="#">
+                        <i class="fa-solid fa-clock me-1"></i>ĐỒNG HỒ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-gem me-1"></i>PHỤ KIỆN
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-percent me-1"></i>KHUYẾN MÃI
+                    </a>
+                </li>
+            </ul>
+            
+            <form class="d-flex me-3 search-box" action="#" method="get">
+                <input class="form-control rounded-pill" type="search" name="q" placeholder="Tìm kiếm đồng hồ...">
+                <button type="submit" class="btn-search">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+            </form>
+
+            <div class="d-flex align-items-center">
+                {% if user.is_authenticated %}
+                    <!-- User Menu Dropdown -->
+                    <div class="dropdown me-3">
+                        <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button" 
+                           id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="me-2 text-dark fw-semibold d-none d-md-inline">
+                                Chào, {{ user.username }}
+                            </span>
+                            {% if user.profile.avatar %}
+                                <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="user-avatar">
+                            {% else %}
+                                <div class="user-avatar-placeholder">
+                                    {{ user.username|first|upper }}
+                                </div>
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <div class="dropdown-header">
+                                    <strong>{{ user.username }}</strong>
+                                    <div class="small text-muted">{{ user.email }}</div>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'profile' %}">
+                                    <i class="fa-solid fa-user me-2"></i>Hồ sơ cá nhân
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-box me-2"></i>Đơn hàng
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-heart me-2"></i>Yêu thích
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-gear me-2"></i>Cài đặt
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="{% url 'account_logout' %}">
+                                    <i class="fa-solid fa-right-from-bracket me-2"></i>Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <!-- Guest Menu Dropdown -->
+                    <div class="dropdown me-3">
+                        <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" 
+                                id="guestDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user me-1"></i>Tài khoản
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'account_login' %}">
+                                    <i class="fa-solid fa-right-to-bracket me-2"></i>Đăng nhập
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'account_signup' %}">
+                                    <i class="fa-solid fa-user-plus me-2"></i>Đăng ký
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+                
+                <!-- Cart -->
+                <a href="#" class="text-dark position-relative" title="Giỏ hàng">
+                    <i class="fa-solid fa-cart-shopping fs-4"></i>
+                    <span class="position-absolute badge rounded-pill bg-danger cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
