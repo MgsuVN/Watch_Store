@@ -3,7 +3,16 @@
 {% load custom_filters %}
 {% load humanize %}
 {% block content %}
-
+<style>
+    /* CSS cho Banner trên điện thoại */
+    @media (max-width: 767.98px) {
+        #mainBanner .carousel-item img {
+            height: 250px !important; /* Hạ chiều cao xuống để vừa màn hình điện thoại */
+            object-fit: cover; /* Giữ ảnh không bị méo */
+            object-position: center; /* Luôn lấy phần giữa của ảnh */
+        }
+    }
+</style>
 <div id="mainBanner" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
     
     <div class="carousel-indicators">
@@ -71,18 +80,24 @@
                      style="width: 150px; height: 150px; object-fit: contain;">
 
                 <div class="card-body">
-                    <h6 class="card-title fw-bold">
-                        {{ product.name }}
-                    </h6>
+    <h6 class="card-title fw-bold" style="font-size: 14px; min-height: 40px;">
+        {{ product.name }}
+    </h6>
 
-                    <p class="text-danger fw-bold">
-                        {{ product.price|vnd }} vnđ
-                    </p>
+    {% if product.description %}
+    <p class="text-muted mb-1" style="font-size: 12px; font-style: italic; min-height: 18px;">
+        {{ product.description|truncatewords:10 }} </p>
+    {% else %}
+    <p class="mb-1" style="min-height: 18px;"></p> {% endif %}
 
-                    <a href="#" class="btn btn-outline-dark btn-sm w-100">
-                        Chi tiết
-                    </a>
-                </div>
+    <p class="text-danger fw-bold mb-3" style="font-size: 16px;">
+        {{ product.price|vnd }} vnđ
+    </p>
+
+    <a href="#" class="btn btn-outline-dark btn-sm w-100 rounded-pill">
+        Chi tiết
+    </a>
+</div>
             </div>
         </div>
         {% empty %}

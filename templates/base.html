@@ -11,7 +11,36 @@
         .main-content { 
             min-height: 600px; 
         }
+
+    /* Căn chỉnh lại cụm User và Menu trên Mobile */
+    @media (max-width: 991.98px) {
+        .dropdown-menu-end {
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important; /* Căn giữa Menu so với màn hình */
+            width: 90%; /* Để menu không quá hẹp trên điện thoại */
+            margin-top: 10px;
+        }
         
+        /* Chỉnh lại icon và chữ trong menu cho to hơn, dễ bấm bằng tay */
+        .dropdown-item {
+            padding: 12px 20px !important;
+            font-size: 15px;
+        }
+    }
+        /* Ép các icon trong dropdown có cùng độ rộng để chữ thẳng hàng */
+.dropdown-item i {
+    width: 1.5rem;   /* Cố định độ rộng icon */
+    text-align: center; /* Căn giữa icon trong khoảng rộng đó */
+    display: inline-block;
+}
+
+/* Tinh chỉnh khoảng cách dòng cho đẹp */
+.dropdown-item {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
         {% block extra_css %}{% endblock %}
     </style>
 </head>
