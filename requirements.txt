@@ -7,3 +7,4 @@ PyJWT
 cryptography
 django-allauth
 django-widget-tweaks
+Pillow
