@@ -93,6 +93,16 @@
     <p class="text-danger fw-bold mb-3" style="font-size: 16px;">
         {{ product.price|vnd }} vnđ
     </p>
+    <h6 class="card-title fw-bold" style="font-size: 14px; min-height: 40px;">
+    {{ product.name }}
+</h6>
+
+{% if product.brand %}
+<p class="text-secondary mb-1" style="font-size: 13px;">
+    Thương hiệu: <strong>{{ product.brand }}</strong>
+</p>
+{% endif %}
+
 
     <a href="#" class="btn btn-outline-dark btn-sm w-100 rounded-pill">
         Chi tiết
