@@ -3,16 +3,23 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+class Brand(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.IntegerField()
+    description = models.TextField(blank=True)
     image = models.ImageField(upload_to='products/')
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    brand = models.ForeignKey(
+        Brand,
+        on_delete=models.CASCADE,
+        related_name='products'
+    )
 
-    def __str__(self):
-        return self.name
 
 
 class Profile(models.Model):
