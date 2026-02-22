@@ -4,15 +4,164 @@
 {% load humanize %}
 {% block content %}
 <style>
-    /* CSS cho Banner trên điện thoại */
-    @media (max-width: 767.98px) {
-        #mainBanner .carousel-item img {
-            height: 250px !important; /* Hạ chiều cao xuống để vừa màn hình điện thoại */
-            object-fit: cover; /* Giữ ảnh không bị méo */
-            object-position: center; /* Luôn lấy phần giữa của ảnh */
-        }
+/* CSS Banner mobile */
+@media (max-width: 767.98px) {
+    #mainBanner .carousel-item img {
+        height: 250px !important;
+        object-fit: cover;
+        object-position: center;
     }
+}
+.product-card {
+    transition: 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* SALE */
+/* SALE nằm bên phải */
+.sale-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;   /* đổi từ left -> right */
+    background: #e60023;
+    color: white;
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    z-index: 5;
+}
+
+/* TIM nằm bên trái */
+.wishlist {
+    position: absolute;
+    top: 10px;
+    left: 10px;   /* đảm bảo bên trái */
+    font-size: 22px;   /* làm to hơn */
+    cursor: pointer;
+    color: #bbb;
+    transition: 0.2s ease;
+    z-index: 5;
+}
+
+.wishlist:hover {
+    color: red;
+    transform: scale(1.15);
+}
+/* Brand style */
+/* ===== BRAND WRAPPER ===== */
+.brand-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 60px;   /* 👈 thêm dòng này */
+}
+/* GRID */
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+}
+
+/* ===== VIÊN THUỐC ===== */
+.brand-box {
+    height: 80px;
+    border-radius: 999px;   /* 👈 viên thuốc */
+    border: 3px solid #000; /* 👈 viền đen đậm */
+    background: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    transition: all 0.35s ease;
+}
+
+/* Ảnh logo */
+.brand-box img {
+    max-height: 32px;
+    max-width: 140px;
+    object-fit: contain;
+}
+
+.brand-box.active {
+    border: 3px solid #111;             /* viền đậm hơn */
+    background: #f8f8f8;                /* nền xám rất nhẹ */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    transform: translateY(-3px);
+}
+
+/* Hover mượt hơn */
+.brand-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== TẤT CẢ ===== */
+.all-brand {
+    font-size: 20px;      /* 👈 to hơn */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: black;
+}
+
+/* ===== ARROW ===== */
+/* Arrow */
+.brand-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.8px solid #ccc;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: 0.2s ease;
+}
+
+.brand-arrow:hover {
+    background: #f2c200;
+    border-color: #f2c200;
+}
+
+/* 👇 căn chuẩn tuyệt đối */
+.brand-arrow.left {
+    left: 0;
+}
+
+.brand-arrow.right {
+    right: 0;
+}
+/* Hết hàng */
+.sold-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #e60023;
+    border-radius: 10px;
+}
+
+/* Làm mờ sản phẩm */
+.product-card:has(.sold-overlay) {
+    opacity: 0.6;
+}
 </style>
+
 <div id="mainBanner" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
     
     <div class="carousel-indicators">
@@ -66,55 +215,109 @@
     });
   });
 </script>
+<h2 class="text-center mt-5 mb-2 fw-bold">
+    THƯƠNG HIỆU ĐỒNG HỒ NỔI BẬT
+</h2>
+
+<p class="text-center text-muted mb-4">
+    Watchstore.vn Cam kết chính hãng 100%, bồi thường 20 lần nếu phát hiện hàng giả
+</p>
+
+<div class="brand-wrapper">
+
+    <button class="brand-arrow left" id="prevBtn">&#10094;</button>
+
+    <div class="brand-grid-container">
+        <div class="brand-grid" id="brandGrid">
+
+            <a hx-get="/?brand="
+               hx-target="#product-container"
+               hx-swap="innerHTML"
+               hx-push-url="/?brand="
+               class="brand-box all-brand {% if not brand_slug %}active{% endif %}"
+               id="brand-all">
+               Tất cả
+            </a>
+
+            {% for brand in brands %}
+            <a href="{% url 'brand_detail' brand.slug %}"
+               data-slug="{{ brand.slug }}"
+               class="brand-box brand-btn {% if brand_slug == brand.slug %}active{% endif %}">
+                {% if brand.image %}
+                    <img src="{{ brand.image.url }}" alt="{{ brand.name }}">
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button class="brand-arrow right" id="nextBtn">&#10095;</button>
+
+</div>
 <div>
 <div class="container">
-    <h3 class="text-center mb-4 fw-bold mt-5">DANH SÁCH SẢN PHẨM</h3>
-    <div class="row g-4">
+    <h3 class="text-center mb-4 fw-bold mt-5">
+        DANH SÁCH SẢN PHẨM
+    </h3>
 
-        {% for product in products %}
-        <div class="col-md-3">
-            <div class="card h-100 border-0 shadow-sm text-center p-2">
-                
-                <img src="{{ product.image.url }}" 
-                     class="card-img-top mx-auto mt-3"
-                     style="width: 150px; height: 150px; object-fit: contain;">
-
-                <div class="card-body">
-    <h6 class="card-title fw-bold" style="font-size: 14px; min-height: 40px;">
-        {{ product.name }}
-    </h6>
-
-    {% if product.description %}
-    <p class="text-muted mb-1" style="font-size: 12px; font-style: italic; min-height: 18px;">
-        {{ product.description|truncatewords:10 }} </p>
-    {% else %}
-    <p class="mb-1" style="min-height: 18px;"></p> {% endif %}
-
-    <p class="text-danger fw-bold mb-3" style="font-size: 16px;">
-        {{ product.price|vnd }} vnđ
-    </p>
-    <h6 class="card-title fw-bold" style="font-size: 14px; min-height: 40px;">
-    {{ product.name }}
-</h6>
-
-{% if product.brand %}
-<p class="text-secondary mb-1" style="font-size: 13px;">
-    Thương hiệu: <strong>{{ product.brand }}</strong>
-</p>
-{% endif %}
-
-
-    <a href="#" class="btn btn-outline-dark btn-sm w-100 rounded-pill">
-        Chi tiết
-    </a>
-</div>
-            </div>
-        </div>
-        {% empty %}
-        <p class="text-center">Chưa có sản phẩm nào</p>
-        {% endfor %}
-
+    <div id="product-container">
+        {% include "includes/product_list.html" %}
     </div>
-</div>
 
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const grid = document.getElementById("brandGrid");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+
+    const itemsPerPage = 12; // 6 cột x 2 hàng
+    let currentPage = 1;
+
+    const items = Array.from(grid.children);
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+
+    function renderPage(page) {
+
+        grid.innerHTML = "";
+
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        items.slice(start, end).forEach(item => {
+            grid.appendChild(item);
+        });
+
+        prevBtn.style.display = page === 1 ? "none" : "flex";
+        nextBtn.style.display = page === totalPages ? "none" : "flex";
+    }
+
+    nextBtn.addEventListener("click", function () {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderPage(currentPage);
+        }
+    });
+
+    prevBtn.addEventListener("click", function () {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPage(currentPage);
+        }
+    });
+
+    renderPage(currentPage);
+});
+</script>
+
+<script>
+// Xử lý active state cho brand buttons
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.brand-box');
+    if (!btn) return;
+    document.querySelectorAll('.brand-box').forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+});
+</script>
 {% endblock %}

@@ -1,0 +1,399 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+
+<style>
+.brand-detail-page {
+    background: #f7f7f7;
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+/* BREADCRUMB */
+.breadcrumb-bar {
+    background: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+.breadcrumb-bar a { color: #e60023; text-decoration: none; }
+.breadcrumb-bar a:hover { text-decoration: underline; }
+
+/* SẢN PHẨM ĐÃ XEM */
+.recently-viewed {
+    background: #fff;
+    padding: 14px 0 10px;
+    border-bottom: 1px solid #eee;
+}
+.rv-clear { font-size: 13px; color: #888; cursor: pointer; text-decoration: none; }
+.rv-clear:hover { color: #e60023; }
+.rv-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+.rv-scroll::-webkit-scrollbar { display: none; }
+.rv-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 8px 12px;
+    min-width: 200px;
+    max-width: 240px;
+    position: relative;
+    transition: box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+.rv-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.rv-item img { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
+.rv-item-name {
+    font-size: 12px; font-weight: 600; line-height: 1.3; color: #222;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.rv-item-price { font-size: 13px; font-weight: 700; color: #e60023; margin-top: 2px; }
+.rv-remove {
+    position: absolute; top: 4px; right: 6px;
+    font-size: 16px; color: #aaa; cursor: pointer;
+    background: none; border: none; line-height: 1;
+}
+.rv-remove:hover { color: #e60023; }
+
+/* BRAND HEADER */
+.brand-header {
+    background: #fff;
+    padding: 18px 0 12px;
+    border-bottom: 1px solid #eee;
+}
+.brand-header h1 { font-size: 22px; font-weight: 800; margin: 0 0 4px; }
+.authentic-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #e8f8ec; color: #1a9e3f;
+    font-size: 13px; font-weight: 600;
+    padding: 3px 10px; border-radius: 20px;
+}
+
+/* FILTER BAR */
+.filter-bar {
+    background: #fff;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.filter-toggle-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1.5px solid #ccc; background: #fff;
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 14px; font-weight: 500; cursor: pointer; transition: 0.2s;
+}
+.filter-toggle-btn:hover { border-color: #222; background: #f5f5f5; }
+.sort-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    border: 1.5px solid #ddd; background: #fff;
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none; color: #333;
+    transition: 0.2s; white-space: nowrap;
+}
+.sort-chip:hover { border-color: #222; background: #f5f5f5; color: #111; }
+.sort-chip.active { background: #111; color: #fff; border-color: #111; }
+
+/* FILTER PANEL */
+.filter-panel {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.filter-panel.open { max-height: 300px; padding: 20px 0; }
+
+/* PRODUCT CARD */
+.product-card { transition: 0.25s ease; border-radius: 12px !important; }
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.13) !important;
+}
+.sale-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: #e60023; color: white;
+    padding: 4px 9px; font-size: 12px;
+    border-radius: 6px; font-weight: 700; z-index: 5;
+}
+.wishlist {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 22px; color: #ccc; cursor: pointer; z-index: 5; transition: 0.2s;
+}
+.wishlist:hover { color: #e60023; transform: scale(1.15); }
+.sold-overlay {
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.82);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: #e60023;
+    border-radius: 12px; z-index: 4;
+}
+
+/* PAGINATION */
+.pagination-bar .btn { border-radius: 8px; font-weight: 600; }
+</style>
+
+<div class="brand-detail-page">
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-bar">
+        <div class="container">
+            <a href="/" style="font-size:16px;">Trang chủ</a>
+            <span class="mx-2 text-muted" style="font-size:16px;">/</span>
+            <span class="fw-bold" style="font-size:16px;">Đồng hồ {{ brand.name }}</span>
+        </div>
+    </div>
+
+    <!-- SẢN PHẨM ĐÃ XEM -->
+    <div class="recently-viewed" id="rv-section" style="display:none;">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="fw-bold" style="font-size:14px;">Sản phẩm đã xem</span>
+                <a class="rv-clear" onclick="clearHistory()">Xóa lịch sử</a>
+            </div>
+            <div class="rv-scroll" id="rv-list"></div>
+        </div>
+    </div>
+
+    <!-- BRAND HEADER -->
+    <div class="brand-header">
+        <div class="container d-flex align-items-center gap-3 flex-wrap">
+            <h1>Đồng hồ {{ brand.name }}</h1>
+            <span class="authentic-badge">100% chính hãng</span>
+        </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+        <div class="container">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <button class="filter-toggle-btn" onclick="toggleFilter()">⊟ Bộ lọc</button>
+
+                <a href="?sort=&min={{ request.GET.min }}&max={{ request.GET.max }}"
+                   class="sort-chip {% if not request.GET.sort %}active{% endif %}">◎ Nổi bật</a>
+
+                <a href="?sort=bestseller&min={{ request.GET.min }}&max={{ request.GET.max }}"
+                   class="sort-chip {% if request.GET.sort == 'bestseller' %}active{% endif %}">🏆 Bán Chạy</a>
+
+                <a href="?sort=sale&min={{ request.GET.min }}&max={{ request.GET.max }}"
+                   class="sort-chip {% if request.GET.sort == 'sale' %}active{% endif %}">% SALE LỚN</a>
+
+                <a href="?sort=price_desc&min={{ request.GET.min }}&max={{ request.GET.max }}"
+                   class="sort-chip {% if request.GET.sort == 'price_desc' %}active{% endif %}">⇅ Giá giảm dần</a>
+
+                <a href="?sort=price_asc&min={{ request.GET.min }}&max={{ request.GET.max }}"
+                   class="sort-chip {% if request.GET.sort == 'price_asc' %}active{% endif %}">⇅ Giá tăng dần</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTER PANEL -->
+    <div class="filter-panel" id="filterPanel">
+        <div class="container">
+            <form method="get" class="d-flex align-items-end gap-3 flex-wrap" id="filterForm">
+                <input type="hidden" name="sort" value="{{ request.GET.sort }}">
+                <input type="hidden" name="min" id="minHidden" value="{{ request.GET.min }}">
+                <input type="hidden" name="max" id="maxHidden" value="{{ request.GET.max }}">
+                <div>
+    <label class="fw-bold mb-1 d-block" style="font-size:13px;">Giá từ (₫)</label>
+    <input type="text" id="minDisplay" class="form-control" style="width:180px;" 
+           placeholder="0" inputmode="numeric" autocomplete="off">
+</div>
+<div>
+    <label class="fw-bold mb-1 d-block" style="font-size:13px;">Đến (₫)</label>
+    <input type="text" id="maxDisplay" class="form-control" style="width:180px;" 
+           placeholder="Không giới hạn" inputmode="numeric" autocomplete="off">
+</div>
+                <button type="submit" class="btn btn-dark rounded-pill px-4">Áp dụng</button>
+                <a href="?sort={{ request.GET.sort }}" class="btn btn-outline-secondary rounded-pill px-4">Xóa lọc</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- PRODUCT LIST -->
+    <div class="container mt-4">
+        <div class="row g-4">
+            {% for product in page_obj %}
+            <div class="col-6 col-md-3">
+                <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column"
+                     onclick="saveToHistory('{{ product.id }}', '{{ product.name|escapejs }}', '{{ product.image.url }}', '{{ product.sale_price|default:product.price|vnd }} vnđ')">
+
+                    {% if product.discount_percent > 0 %}
+                    <span class="sale-badge">-{{ product.discount_percent }}%</span>
+                    {% endif %}
+
+                    {% if product.is_sold_out %}
+                    <div class="sold-overlay">TẠM HẾT HÀNG</div>
+                    {% endif %}
+
+                    <span class="wishlist">♥</span>
+
+                    <img src="{{ product.image.url }}"
+                         class="img-fluid mb-3"
+                         style="height:200px;object-fit:contain;">
+
+                    <h6 class="fw-bold text-center" style="font-size:13px;">{{ product.name }}</h6>
+
+                    {% if product.brand %}
+                    <p class="text-muted text-center small mb-1">{{ product.brand }}</p>
+                    {% endif %}
+
+                    {% if product.discount_percent > 0 %}
+                        <p class="text-muted text-decoration-line-through text-center mb-1" style="font-size:13px;">
+                            {{ product.price|vnd }} vnđ
+                        </p>
+                        <p class="text-danger fw-bold text-center mb-2">
+                            {{ product.sale_price|vnd }} vnđ
+                        </p>
+                    {% else %}
+                        <p class="text-danger fw-bold text-center mb-2">
+                            {{ product.price|vnd }} vnđ
+                        </p>
+                    {% endif %}
+
+                    {% if product.is_sold_out %}
+                        <button class="btn btn-secondary w-100 rounded-pill mt-auto btn-sm" disabled>Hết hàng</button>
+                    {% else %}
+                        <a href="#" class="btn btn-outline-dark w-100 rounded-pill mt-auto btn-sm">Chi tiết</a>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5 text-muted">Không có sản phẩm nào</div>
+            {% endfor %}
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="mt-5 text-center pagination-bar">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}&min={{ request.GET.min }}&max={{ request.GET.max }}&sort={{ request.GET.sort }}"
+                   class="btn btn-outline-dark btn-sm mx-1">‹</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                <a href="?page={{ num }}&min={{ request.GET.min }}&max={{ request.GET.max }}&sort={{ request.GET.sort }}"
+                   class="btn btn-sm mx-1 {% if page_obj.number == num %}btn-dark{% else %}btn-outline-dark{% endif %}">
+                   {{ num }}
+                </a>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&min={{ request.GET.min }}&max={{ request.GET.max }}&sort={{ request.GET.sort }}"
+                   class="btn btn-outline-dark btn-sm mx-1">›</a>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ===== BỘ LỌC TOGGLE =====
+function toggleFilter() {
+    const panel = document.getElementById('filterPanel');
+    panel.classList.toggle('open');
+    // Khởi tạo lại input mỗi lần mở để chắc chắn listener được gắn
+    if (panel.classList.contains('open')) {
+        setupPriceInput('minDisplay', 'minHidden');
+        setupPriceInput('maxDisplay', 'maxHidden');
+    }
+}
+
+// ===== FORMAT GIÁ CÓ DẤU CHẤM =====
+function setupPriceInput(displayId, hiddenId) {
+    const display = document.getElementById(displayId);
+    const hidden = document.getElementById(hiddenId);
+    if (!display || !hidden) return;
+
+    // Ngăn chặn việc gán lại listener nhiều lần nếu hàm bị gọi lại
+    if (display.dataset.initialized === 'true') return;
+    display.dataset.initialized = 'true';
+
+    // Format giá trị ban đầu từ server (nếu có)
+    if (display.value) {
+        let cleanValue = display.value.replace(/\D/g, '');
+        display.value = cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        hidden.value = cleanValue;
+    }
+
+    display.addEventListener('input', function(e) {
+        // 1. Lấy chỉ các chữ số
+        let value = this.value.replace(/\D/g, '');
+        
+        // 2. Cập nhật vào input ẩn để gửi lên server
+        hidden.value = value;
+
+        // 3. Nếu rỗng thì xóa trắng display
+        if (!value) {
+            this.value = '';
+            return;
+        }
+
+        // 4. Định dạng lại dấu chấm cho display
+        // Sử dụng Intl.NumberFormat để đảm bảo tính chuẩn xác hơn regex đơn giản
+        this.value = parseInt(value).toLocaleString('vi-VN').replace(/,/g, '.');
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    setupPriceInput('minDisplay', 'minHidden');
+    setupPriceInput('maxDisplay', 'maxHidden');
+});
+
+// ===== SẢN PHẨM ĐÃ XEM (localStorage) =====
+function saveToHistory(id, name, image, price) {
+    let history = JSON.parse(localStorage.getItem('rv_history') || '[]');
+    history = history.filter(p => p.id !== id);
+    history.unshift({ id, name, image, price });
+    if (history.length > 10) history = history.slice(0, 10);
+    localStorage.setItem('rv_history', JSON.stringify(history));
+}
+
+function renderHistory() {
+    let history = JSON.parse(localStorage.getItem('rv_history') || '[]');
+    const section = document.getElementById('rv-section');
+    const list = document.getElementById('rv-list');
+    if (history.length === 0) { section.style.display = 'none'; return; }
+    section.style.display = 'block';
+    list.innerHTML = history.map(p => `
+        <div class="rv-item">
+            <img src="${p.image}" alt="">
+            <div>
+                <div class="rv-item-name">${p.name}</div>
+                <div class="rv-item-price">${p.price}</div>
+            </div>
+            <button class="rv-remove" onclick="removeHistory('${p.id}', event)">×</button>
+        </div>
+    `).join('');
+}
+
+function removeHistory(id, e) {
+    e.stopPropagation();
+    let history = JSON.parse(localStorage.getItem('rv_history') || '[]');
+    history = history.filter(p => p.id !== id);
+    localStorage.setItem('rv_history', JSON.stringify(history));
+    renderHistory();
+}
+
+function clearHistory() {
+    localStorage.removeItem('rv_history');
+    renderHistory();
+}
+
+document.addEventListener('DOMContentLoaded', renderHistory);
+</script>
+
+{% endblock %}

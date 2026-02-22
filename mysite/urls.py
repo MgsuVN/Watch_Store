@@ -1,6 +1,6 @@
-from django.contrib import admin
+from django.contrib import admin 
 from django.urls import path, include
-from home import views 
+from app1 import views   # <-- sửa ở đây
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -9,7 +9,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('app1/', include('app1.urls')),
     path('profile/', include('home.urls')),
-    path('', views.home, name='home'),
+    path('', views.home, name='home'),   # chạy app1.views.home
 ]
 
 if settings.DEBUG:
