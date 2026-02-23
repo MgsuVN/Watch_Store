@@ -1,27 +1,36 @@
 @echo off
 echo =====================================
-echo DJANGO PROJECT
+echo        WATCH STORE - AUTO SETUP
 echo =====================================
+echo.
 
-if not exist venv (
-    echo Creating virtual environment...
-    python -m venv venv
-)
+:: 1. Activate virtual environment 
+call venv\Scripts\activate
 
-echo Activating virtual environment...
-call venv\Scripts\activate.bat
-
+:: 2. Upgrade pip (tránh lỗi cài thư viện)
 echo Upgrading pip...
 python -m pip install --upgrade pip
 
-echo Installing required packages...
+:: 3. Cài thư viện
+echo Installing requirements...
 pip install -r requirements.txt
 
-
-echo Applying migrations...
+:: 4. Chạy migrate
+echo Running migrations...
 python manage.py migrate
 
+:: 5. Load data nếu có file data.json (KHÔNG flush - tránh mất dữ liệu)
+if exist data.json (
+    echo Loading data...
+    python manage.py loaddata data.json
+)
+
+:: 6. Chạy server
+echo.
 echo =====================================
-echo RUNNING SERVER
+echo        SERVER IS RUNNING
 echo =====================================
+echo.
 python manage.py runserver
+
+pause

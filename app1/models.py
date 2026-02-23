@@ -47,7 +47,7 @@ class Watch(models.Model):
     diameter = models.CharField(max_length=50, blank=True, verbose_name='Size mặt')
     thickness = models.CharField(max_length=50, blank=True, verbose_name='Độ dày')
     dial_color = models.CharField(max_length=100, blank=True, verbose_name='Màu mặt')
-    power_reserve = models.CharField(max_length=100, blank=True, verbose_name='Khoảng trữ cót')
+    series = models.CharField(max_length=100, blank=True, verbose_name='Series')
     case_diameter = models.CharField(max_length=100, blank=True, verbose_name='Đường kính mặt')
     case_color = models.CharField(max_length=100, blank=True, verbose_name='Màu vỏ')
     dial_shape = models.CharField(max_length=100, blank=True, verbose_name='Hình dáng mặt')

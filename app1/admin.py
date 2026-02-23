@@ -54,7 +54,7 @@ class WatchAdmin(admin.ModelAdmin):
                 ('movement', 'glass_material'),
                 ('strap_material', 'diameter'),
                 ('thickness', 'dial_color'),
-                ('power_reserve', 'case_diameter'),
+                ('series', 'case_diameter'),
                 ('case_color', 'dial_shape'),
                 ('design_style', 'warranty'),
                 'features',
