@@ -11,6 +11,123 @@
 },
 {
   "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2026-02-23T14:12:08.398Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "6",
+    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2026-02-23T14:09:02.166Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "5",
+    "object_repr": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 43mm Nam BL1784-252KBB-S2-M\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 43mm Nam BL1784-252KBB-S2-M\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2026-02-23T14:04:16.927Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "4",
+    "object_repr": "Đồng Hồ Orient 36.6 mm Nữ RA-AG0729S30B",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is sold out\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2026-02-23T14:02:09.623Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "4",
+    "object_repr": "Đồng Hồ Orient 36.6 mm Nữ RA-AG0729S30B",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 36.6 mm N\\u1eef RA-AG0729S30B\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 36.6 mm N\\u1eef RA-AG0729S30B\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2026-02-23T13:56:11.443Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "2",
+    "object_repr": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Ch\\u1ea5t li\\u1ec7u k\\u00ednh\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-02-23T13:55:59.048Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "3",
+    "object_repr": "Đồng Hồ Orient 40.8mm Nam RA-AR0009L30B",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 40.8mm Nam RA-AR0009L30B\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 40.8mm Nam RA-AR0009L30B\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-02-23T13:48:21.753Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "2",
+    "object_repr": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Casio 38.5mm Nam MTP-1302DS-1AVDF\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Casio 38.5mm Nam MTP-1302DS-1AVDF\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-02-23T13:41:52.005Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "1",
+    "object_repr": "Đồng Hồ Casio MTP-1374L-1A",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Series\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-02-23T13:29:15.621Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "1",
+    "object_repr": "Đồng Hồ Casio MTP-1374L-1A",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #2 - \\u0110\\u1ed3ng H\\u1ed3 Casio MTP-1374L-1A\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #1 - \\u0110\\u1ed3ng H\\u1ed3 Casio MTP-1374L-1A\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
   "pk": 14,
   "fields": {
     "action_time": "2026-02-23T12:47:10.620Z",
@@ -970,7 +1087,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$1200000$9nAXAkStRpcjdftaZ77EDL$tmUtc37c53oBwq3vq28ZobTRPt1FAU0md0M/FLHiYUs=",
-    "last_login": "2026-02-23T12:15:27.223Z",
+    "last_login": "2026-02-23T13:14:12.244Z",
     "is_superuser": true,
     "username": "admin1",
     "first_name": "",
@@ -1153,10 +1270,10 @@
 },
 {
   "model": "sessions.session",
-  "pk": "j9dzq5ile6j4zc30wimqnl2i71o9mt9h",
+  "pk": "eucxbn75uw84bgn2wgnkftillvwmn4p9",
   "fields": {
-    "session_data": ".eJxVjDEOwyAQBP9CHSFjsDlSpvcb0HFwwUmEJWNXUf4eLLlImi12ZvctPO5b9ntNq5-juIpeXH67gPRM5QDxgeW-SFrKts5BHoo8aZXTEtPrdrp_BxlrbmuingaILnAgYE6QVGc0sianDdpgLY-qETAaHACrTjsXlB2ZB91SfL4LiDg0:1vuUqV:-6TmkKN1qxYfQEU5jyYGNQEs2WbN4_5s6gPAdCwDju0",
-    "expire_date": "2026-03-09T12:15:27.230Z"
+    "session_data": ".eJxVjDEOwyAQBP9CHSFjsDlSpvcb0HFwwUmEJWNXUf4eLLlImi12ZvctPO5b9ntNq5-juIpeXH67gPRM5QDxgeW-SFrKts5BHoo8aZXTEtPrdrp_BxlrbmuingaILnAgYE6QVGc0sianDdpgLY-qETAaHACrTjsXlB2ZB91SfL4LiDg0:1vuVlM:bhXEoupN_7zYrFlT_oBXqFTRkYyDyMRT6D7HBQP-oKs",
+    "expire_date": "2026-03-09T13:14:12.252Z"
   }
 },
 {
@@ -1298,6 +1415,300 @@
   }
 },
 {
+  "model": "app1.watch",
+  "pk": 1,
+  "fields": {
+    "name": "Đồng Hồ Casio MTP-1374L-1A",
+    "slug": "djng-h-casio-mtp-1374l-1a",
+    "brand": 1,
+    "price": 1816000,
+    "discount_percent": 12,
+    "image": "products/1-khung-sp-1-1818542633-1853976209-1712563883-400x400.webp",
+    "description": "",
+    "is_sold_out": false,
+    "gender": "Nam",
+    "water_resistance": "5atm",
+    "movement": "Pin/Quartz",
+    "glass_material": "Kính Khoáng",
+    "strap_material": "Dây Da",
+    "diameter": "43.5mm",
+    "thickness": "10.4mm",
+    "dial_color": "Màu đen",
+    "series": "Casio MTP 1374",
+    "case_diameter": "42 - 45 mm",
+    "case_color": "Màu bạc",
+    "dial_shape": "Mặt tròn",
+    "design_style": "Sang trọng",
+    "features": "",
+    "warranty": "24 tháng",
+    "sold_count": 5,
+    "created_at": "2026-02-23T13:29:15.614Z"
+  }
+},
+{
+  "model": "app1.watch",
+  "pk": 2,
+  "fields": {
+    "name": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "slug": "djng-h-casio-385mm-nam-mtp-1302ds-1avdf",
+    "brand": 1,
+    "price": 2000000,
+    "discount_percent": 10,
+    "image": "products/d4be313cf3087a562319-400x480.webp",
+    "description": "",
+    "is_sold_out": false,
+    "gender": "Unisex",
+    "water_resistance": "5atm",
+    "movement": "Pin/Quartz",
+    "glass_material": "Kính Khoáng",
+    "strap_material": "Kim Loại",
+    "diameter": "38.5mm",
+    "thickness": "9.4mm",
+    "dial_color": "Khảm đá",
+    "series": "Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "case_diameter": "37 - 40 mm",
+    "case_color": "Bạc",
+    "dial_shape": "Mặt tròn",
+    "design_style": "Sang trọng",
+    "features": "",
+    "warranty": "24 tháng",
+    "sold_count": 6,
+    "created_at": "2026-02-23T13:48:21.746Z"
+  }
+},
+{
+  "model": "app1.watch",
+  "pk": 3,
+  "fields": {
+    "name": "Đồng Hồ Orient 40.8mm Nam RA-AR0009L30B",
+    "slug": "djng-h-orient-408mm-nam-ra-ar0009l30b",
+    "brand": 2,
+    "price": 11345000,
+    "discount_percent": 5,
+    "image": "products/ra-ar0009s10b-1-808613871-449720732-1712670708-400x400.jpg",
+    "description": "",
+    "is_sold_out": false,
+    "gender": "Nam",
+    "water_resistance": "5atm",
+    "movement": "Pin/Quartz",
+    "glass_material": "Kính Sapphire",
+    "strap_material": "Kim Loại",
+    "diameter": "40.8mm",
+    "thickness": "9.4mm",
+    "dial_color": "Màu xanh",
+    "series": "Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "case_diameter": "40 - 42 mm",
+    "case_color": "Màu trắng",
+    "dial_shape": "Mặt tròn",
+    "design_style": "Hở tim lộ đáy",
+    "features": "Dạ quang, Giờ, phút, Small Second",
+    "warranty": "24 tháng",
+    "sold_count": 10,
+    "created_at": "2026-02-23T13:55:59.041Z"
+  }
+},
+{
+  "model": "app1.watch",
+  "pk": 4,
+  "fields": {
+    "name": "Đồng Hồ Orient 36.6 mm Nữ RA-AG0729S30B",
+    "slug": "djng-h-orient-366-mm-n-ra-ag0729s30b",
+    "brand": 2,
+    "price": 15000000,
+    "discount_percent": 14,
+    "image": "products/khong-ten-2024-11-18t165004-151_1731923498-400x400.webp",
+    "description": "",
+    "is_sold_out": true,
+    "gender": "Nữ",
+    "water_resistance": "5atm",
+    "movement": "Pin/Quartz",
+    "glass_material": "Kính Khoáng",
+    "strap_material": "Dây Da",
+    "diameter": "36.6 mm",
+    "thickness": "12.2mm",
+    "dial_color": "Màu trắng",
+    "series": "Orient 36.6 mm Nữ RA-AG0729S30B",
+    "case_diameter": "33 - 37 mm",
+    "case_color": "Màu vàng",
+    "dial_shape": "Mặt tròn",
+    "design_style": "Hở tim lộ đáy",
+    "features": "Giờ, phút, giây",
+    "warranty": "tháng",
+    "sold_count": 23,
+    "created_at": "2026-02-23T14:02:09.617Z"
+  }
+},
+{
+  "model": "app1.watch",
+  "pk": 5,
+  "fields": {
+    "name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "slug": "djng-h-bentley-43mm-nam-bl1784-252kbb-s2-m",
+    "brand": 3,
+    "price": 8590000,
+    "discount_percent": 5,
+    "image": "products/bl1784-252kbb-s2-m-1-1654936078634-1712583642-768x768.webp",
+    "description": "",
+    "is_sold_out": false,
+    "gender": "Nam",
+    "water_resistance": "5atm",
+    "movement": "Pin/Quartz",
+    "glass_material": "Kính Sapphire",
+    "strap_material": "Dây Da",
+    "diameter": "43mm",
+    "thickness": "13.5mm",
+    "dial_color": "Màu trắng",
+    "series": "Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "case_diameter": "42 - 45 mm",
+    "case_color": "Màu vàng",
+    "dial_shape": "Mặt tròn",
+    "design_style": "Hở tim lộ đáy",
+    "features": "Dạ quang, Giờ, phút, giây, Lịch 24 giờ",
+    "warranty": "24 tháng",
+    "sold_count": 76,
+    "created_at": "2026-02-23T14:09:02.158Z"
+  }
+},
+{
+  "model": "app1.watch",
+  "pk": 6,
+  "fields": {
+    "name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "slug": "djng-h-bentley-41mm-nam-bl1831-15mwnn",
+    "brand": 3,
+    "price": 7000000,
+    "discount_percent": 12,
+    "image": "products/bl1831-15mwnn-1-1662695350822-1712583822-400x400.webp",
+    "description": "",
+    "is_sold_out": false,
+    "gender": "Nam",
+    "water_resistance": "5atm",
+    "movement": "Pin/Quartz",
+    "glass_material": "Kính Sapphire",
+    "strap_material": "Dây Da",
+    "diameter": "41mm",
+    "thickness": "12mm",
+    "dial_color": "Màu trắng",
+    "series": "Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "case_diameter": "40 - 42 mm",
+    "case_color": "Màu bạc",
+    "dial_shape": "Mặt tròn",
+    "design_style": "Hở tim lộ đáy",
+    "features": "Dạ quang, Giờ, phút, giây",
+    "warranty": "24 tháng",
+    "sold_count": 8,
+    "created_at": "2026-02-23T14:12:08.391Z"
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 3,
+  "fields": {
+    "watch": 2,
+    "image": "products/gallery/mtp-1302ds-1avdf-2-1-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 4,
+  "fields": {
+    "watch": 2,
+    "image": "products/gallery/mtp-1302ds-1avdf-4-1-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 5,
+  "fields": {
+    "watch": 3,
+    "image": "products/gallery/ra-ar0009s10b-2-1712670708-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 6,
+  "fields": {
+    "watch": 3,
+    "image": "products/gallery/ra-ar0009s10b-10-1712670712-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 7,
+  "fields": {
+    "watch": 4,
+    "image": "products/gallery/ra-ag0729s30b-1_1733221095-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 8,
+  "fields": {
+    "watch": 4,
+    "image": "products/gallery/ra-ag0729s30b-3_1733221094-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 9,
+  "fields": {
+    "watch": 5,
+    "image": "products/gallery/bl1784-252kbb-s2-m-4-1654936083878-1712583643-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 10,
+  "fields": {
+    "watch": 5,
+    "image": "products/gallery/bl1784-252kbb-s2-m-8-1654936122822-1712583645-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 11,
+  "fields": {
+    "watch": 6,
+    "image": "products/gallery/bl1831-15mwnn-3-1662695355396-1712583823-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 12,
+  "fields": {
+    "watch": 6,
+    "image": "products/gallery/bl1831-15mwnn-5-1662695363293-1712583823-768x768.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 2,
+  "fields": {
+    "watch": 1,
+    "image": "products/gallery/casio-mtp-1374l-1avdf-4-1712563883-768x768.webp",
+    "order": 1
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 1,
+  "fields": {
+    "watch": 1,
+    "image": "products/gallery/casio-mtp-1374l-1avdf-2-1712563882-768x768.webp",
+    "order": 2
+  }
+},
+{
   "model": "app1.cart",
   "pk": 1,
   "fields": {
@@ -1306,10 +1717,30 @@
   }
 },
 {
+  "model": "app1.cartitem",
+  "pk": 1,
+  "fields": {
+    "cart": 1,
+    "watch": 1,
+    "quantity": 1
+  }
+},
+{
   "model": "app1.profile",
   "pk": 2,
   "fields": {
     "user": 2,
+    "avatar": "",
+    "phone": "",
+    "address": "",
+    "bio": ""
+  }
+},
+{
+  "model": "app1.profile",
+  "pk": 3,
+  "fields": {
+    "user": 1,
     "avatar": "",
     "phone": "",
     "address": "",
