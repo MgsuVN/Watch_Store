@@ -1,0 +1,344 @@
+{% load custom_filters %}
+{# ================================================================ #}
+{# INCLUDE VÀO CUỐI base.html, ngay trước </body>:                   #}
+{#   {% include 'includes/chatbot_widget.html' %}                     #}
+{# ================================================================ #}
+
+<style>
+/* ── CHATBOT WIDGET ─────────────────────────────────────── */
+#chat-fab {
+    position: fixed; bottom: 28px; right: 28px; z-index: 1000;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, #e60023, #ff6b6b);
+    border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(230,0,35,0.4);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: #fff; font-size: 22px;
+}
+#chat-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(230,0,35,0.5); }
+#chat-fab .chat-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: #ff9800; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    animation: pulse-badge 2s infinite;
+}
+@keyframes pulse-badge { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+
+#chat-box {
+    position: fixed; bottom: 96px; right: 28px; z-index: 1000;
+    width: 360px; max-height: 540px;
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.85) translateY(20px);
+    opacity: 0; pointer-events: none;
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), opacity 0.2s;
+    transform-origin: bottom right;
+}
+#chat-box.open {
+    transform: scale(1) translateY(0);
+    opacity: 1; pointer-events: all;
+}
+
+/* Header */
+#chat-header {
+    background: linear-gradient(135deg, #e60023, #ff4444);
+    color: #fff; padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px;
+}
+.chat-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+}
+.chat-header-info { flex: 1; }
+.chat-header-name { font-weight: 700; font-size: 14px; }
+.chat-header-status { font-size: 11px; opacity: 0.85; display: flex; align-items: center; gap: 4px; }
+.chat-header-status::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: #4cff91; display: inline-block;
+}
+#chat-close {
+    background: none; border: none; color: #fff;
+    font-size: 20px; cursor: pointer; opacity: 0.8; line-height: 1;
+    padding: 0 4px;
+}
+#chat-close:hover { opacity: 1; }
+
+/* Quick suggestions */
+#chat-suggestions {
+    display: flex; gap: 6px; padding: 10px 12px 4px;
+    overflow-x: auto; scrollbar-width: none; flex-shrink: 0;
+}
+#chat-suggestions::-webkit-scrollbar { display: none; }
+.chat-suggestion {
+    white-space: nowrap; font-size: 12px; padding: 5px 11px;
+    border: 1px solid #e0e0e0; border-radius: 20px;
+    background: #fff; cursor: pointer; color: #333;
+    transition: 0.15s; flex-shrink: 0;
+}
+.chat-suggestion:hover { background: #e60023; color: #fff; border-color: #e60023; }
+
+/* Messages */
+#chat-messages {
+    flex: 1; overflow-y: auto; padding: 8px 12px 4px;
+    display: flex; flex-direction: column; gap: 8px;
+    scrollbar-width: thin; scrollbar-color: #eee transparent;
+}
+.chat-msg { display: flex; gap: 8px; max-width: 90%; }
+.chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.chat-msg.bot  { align-self: flex-start; }
+.msg-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #f5e0e0; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; align-self: flex-end;
+}
+.msg-bubble {
+    padding: 9px 13px; border-radius: 16px;
+    font-size: 13px; line-height: 1.5; max-width: 100%;
+    word-break: break-word;
+}
+.chat-msg.user .msg-bubble {
+    background: #e60023; color: #fff;
+    border-bottom-right-radius: 4px;
+}
+.chat-msg.bot .msg-bubble {
+    background: #f5f5f5; color: #222;
+    border-bottom-left-radius: 4px;
+}
+.typing-dots { display: flex; gap: 4px; padding: 4px 0; }
+.typing-dots span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #aaa; animation: typing 1.2s infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+
+/* Input */
+#chat-input-row {
+    padding: 10px 12px; border-top: 1px solid #f0f0f0;
+    display: flex; gap: 8px; align-items: center; flex-shrink: 0;
+}
+#chat-input {
+    flex: 1; border: 1px solid #e0e0e0; border-radius: 22px;
+    padding: 9px 14px; font-size: 13px; outline: none;
+    transition: 0.2s; resize: none;
+}
+#chat-input:focus { border-color: #e60023; }
+#chat-send {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #e60023; border: none; cursor: pointer;
+    color: #fff; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.15s; flex-shrink: 0;
+}
+#chat-send:hover { background: #c0001e; }
+#chat-send:disabled { background: #ccc; cursor: default; }
+
+/* Product suggestion cards */
+.chat-products {
+    display: flex; flex-direction: column; gap: 6px;
+    margin-top: 8px;
+}
+.chat-product-card {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff; border: 1px solid #eee; border-radius: 10px;
+    padding: 7px 10px; text-decoration: none; color: #222;
+    transition: 0.15s; font-size: 12px;
+}
+.chat-product-card:hover { border-color: #e60023; background: #fff5f5; }
+.chat-product-card img {
+    width: 40px; height: 40px; object-fit: cover;
+    border-radius: 6px; flex-shrink: 0; background: #f5f5f5;
+}
+.chat-product-info { flex: 1; min-width: 0; }
+.chat-product-name {
+    font-weight: 600; font-size: 12px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.chat-product-price { color: #e60023; font-weight: 700; font-size: 12px; margin-top: 2px; }
+.chat-product-btn {
+    font-size: 11px; padding: 4px 8px; border-radius: 6px;
+    background: #e60023; color: #fff; white-space: nowrap; flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    #chat-box { width: calc(100vw - 24px); right: 12px; bottom: 82px; }
+    #chat-fab { right: 16px; bottom: 16px; }
+}
+</style>
+
+<!-- FAB Button -->
+<button id="chat-fab" onclick="toggleChat()" title="Tư vấn sản phẩm">
+    <span id="chat-fab-icon">💬</span>
+    <span class="chat-badge" id="chat-badge">1</span>
+</button>
+
+<!-- Chat Box -->
+<div id="chat-box">
+    <div id="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div class="chat-header-info">
+            <div class="chat-header-name">Trợ lý WATCHSTORE</div>
+            <div class="chat-header-status">Đang hoạt động</div>
+        </div>
+        <button id="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+
+    <div id="chat-suggestions">
+        <button class="chat-suggestion" onclick="sendSuggestion(this)">Đồng hồ Rolex có gì?</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)">Sản phẩm đang giảm giá</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)">Đồng hồ dưới 5 triệu</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)">Hàng còn không?</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)">Tư vấn cho tôi</button>
+    </div>
+
+    <div id="chat-messages">
+        <div class="chat-msg bot">
+            <div class="msg-avatar">🤖</div>
+            <div class="msg-bubble">
+                Xin chào! Tôi là trợ lý tư vấn của <strong>WATCHSTORE.VN</strong> 👋<br>
+                Tôi có thể giúp bạn tìm đồng hồ phù hợp, kiểm tra giá, tình trạng hàng và nhiều hơn nữa. Bạn cần tư vấn gì?
+            </div>
+        </div>
+    </div>
+
+    <div id="chat-input-row">
+        <input id="chat-input" type="text" placeholder="Nhập câu hỏi của bạn..." maxlength="300"
+               onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendMessage();}">
+        <button id="chat-send" onclick="sendMessage()">➤</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    const CHAT_URL = '/chatbot/';
+    let chatHistory = [];
+    let isOpen = false;
+    let isTyping = false;
+
+    window.toggleChat = function() {
+        isOpen = !isOpen;
+        document.getElementById('chat-box').classList.toggle('open', isOpen);
+        document.getElementById('chat-fab-icon').textContent = isOpen ? '✕' : '💬';
+        document.getElementById('chat-badge').style.display = 'none';
+        if (isOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
+    };
+
+    window.sendSuggestion = function(btn) {
+        document.getElementById('chat-input').value = btn.textContent;
+        sendMessage();
+    };
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            for (let cookie of document.cookie.split(';')) {
+                cookie = cookie.trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    window.sendMessage = function() {
+        const input = document.getElementById('chat-input');
+        const text  = input.value.trim();
+        if (!text || isTyping) return;
+        input.value = '';
+
+        appendMessage('user', text);
+        chatHistory.push({ role: 'user', content: text });
+
+        // Ẩn suggestions sau tin nhắn đầu
+        document.getElementById('chat-suggestions').style.display = 'none';
+
+        showTyping();
+
+        fetch(CHAT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+            body: JSON.stringify({ messages: chatHistory }),
+        })
+        .then(r => r.json())
+        .then(data => {
+            hideTyping();
+            const reply = data.reply || 'Xin lỗi, tôi không thể trả lời lúc này.';
+            const products = data.suggested_products || [];
+            appendMessage('bot', reply, products);
+            chatHistory.push({ role: 'assistant', content: reply });
+        })
+        .catch(() => {
+            hideTyping();
+            appendMessage('bot', 'Có lỗi kết nối. Vui lòng liên hệ hotline: 093 189 2222');
+        });
+    };
+
+    function appendMessage(role, text, products = []) {
+        const msgs = document.getElementById('chat-messages');
+        const div  = document.createElement('div');
+        div.className = `chat-msg ${role}`;
+
+        // Convert markdown-ish formatting
+        const formatted = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+
+        // Build product cards HTML
+        let productHTML = '';
+        if (products && products.length > 0) {
+            const cards = products.map(p => `
+                <a href="${p.url}" target="_blank" class="chat-product-card">
+                    <img src="${p.image}" onerror="this.style.display='none'" alt="${p.name}">
+                    <div class="chat-product-info">
+                        <div class="chat-product-name">${p.name}</div>
+                        <div class="chat-product-price">${p.price}</div>
+                    </div>
+                    <span class="chat-product-btn">Xem →</span>
+                </a>`).join('');
+            productHTML = `<div class="chat-products">${cards}</div>`;
+        }
+
+        div.innerHTML = role === 'bot'
+            ? `<div class="msg-avatar">🤖</div><div class="msg-bubble">${formatted}${productHTML}</div>`
+            : `<div class="msg-bubble">${formatted}</div>`;
+
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    let typingEl = null;
+    function showTyping() {
+        isTyping = true;
+        document.getElementById('chat-send').disabled = true;
+        const msgs = document.getElementById('chat-messages');
+        typingEl = document.createElement('div');
+        typingEl.className = 'chat-msg bot';
+        typingEl.id = 'typing-indicator';
+        typingEl.innerHTML = `<div class="msg-avatar">🤖</div>
+            <div class="msg-bubble"><div class="typing-dots">
+                <span></span><span></span><span></span>
+            </div></div>`;
+        msgs.appendChild(typingEl);
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function hideTyping() {
+        isTyping = false;
+        document.getElementById('chat-send').disabled = false;
+        if (typingEl) { typingEl.remove(); typingEl = null; }
+    }
+})();
+</script>

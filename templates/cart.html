@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+<div class="container mt-4 mb-5">
+    <h5 class="fw-bold mb-4"><i class="fa-solid fa-cart-shopping text-danger me-2"></i>Giỏ hàng của bạn</h5>
+
+    {% if cart.items.all %}
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm" style="border-radius:16px;">
+                <div class="card-body p-0">
+                    {% for item in cart.items.all %}
+                    <div class="d-flex align-items-center gap-3 p-3 border-bottom">
+                        <img src="{{ item.watch.image.url }}" style="width:80px;height:80px;object-fit:contain;border-radius:10px;border:1px solid #eee;">
+                        <div class="flex-grow-1">
+                            <a href="{% url 'watch_detail' item.watch.slug %}" class="text-dark text-decoration-none fw-bold" style="font-size:14px;">{{ item.watch.name }}</a>
+                            {% if item.watch.brand %}
+                            <div class="text-muted" style="font-size:12px;">{{ item.watch.brand.name }}</div>
+                            {% endif %}
+                            <div class="text-danger fw-bold mt-1">{{ item.watch.sale_price|vnd }} vnđ</div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-light text-dark border px-3 py-2" style="font-size:14px;">{{ item.quantity }}</span>
+                        </div>
+                        <div class="fw-bold text-danger" style="min-width:100px;text-align:right;">
+                            {{ item.subtotal|vnd }} vnđ
+                        </div>
+                        <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle" style="width:32px;height:32px;padding:0;">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm p-4" style="border-radius:16px;">
+                <h6 class="fw-bold mb-3">Tóm tắt đơn hàng</h6>
+                <div class="d-flex justify-content-between mb-2" style="font-size:14px;">
+                    <span class="text-muted">Tạm tính ({{ cart.item_count }} sản phẩm)</span>
+                    <span class="fw-bold">{{ cart.total|vnd }} vnđ</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3" style="font-size:14px;">
+                    <span class="text-muted">Phí vận chuyển</span>
+                    <span class="text-success fw-bold">Miễn phí</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between mb-4">
+                    <span class="fw-bold">Tổng cộng</span>
+                    <span class="fw-bold text-danger" style="font-size:20px;">{{ cart.total|vnd }} vnđ</span>
+                </div>
+                <a href="{% url 'checkout' %}" class="btn btn-danger rounded-pill w-100 fw-bold py-2">
+                    <i class="fa-solid fa-credit-card me-2"></i>Thanh toán
+                </a>
+                <a href="{% url 'home' %}" class="btn btn-outline-secondary rounded-pill w-100 mt-2 fw-bold py-2">
+                    <i class="fa-solid fa-arrow-left me-2"></i>Tiếp tục mua sắm
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fa-solid fa-cart-shopping fa-3x text-muted mb-3"></i>
+        <p class="text-muted mb-4">Giỏ hàng của bạn đang trống.</p>
+        <a href="{% url 'home' %}" class="btn btn-danger rounded-pill px-5 fw-bold">
+            <i class="fa-solid fa-store me-2"></i>Mua sắm ngay
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -13,15 +13,13 @@
     transition: 0.3s;
     opacity: 0.9;
 }
-.top-bar a:hover { 
-    opacity: 1;
-}
+.top-bar a:hover { opacity: 1; }
 
 /* ================== NAVBAR ================== */
 .navbar {
     padding: 10px 0;
     background: #fff;
-    z-index: 1050; /* FIX bị che */
+    z-index: 1050;
 }
 .nav-link {
     font-weight: 600;
@@ -32,20 +30,61 @@
 
 /* ================== SEARCH ================== */
 .search-box-container .form-control {
-    border-radius: 20px;
-    padding-right: 40px;
+    border-radius: 20px 0 0 20px;
     font-size: 14px;
     border: 1px solid #ddd;
+    border-right: none;
+    padding: 7px 16px;
+    width: 220px;
+    transition: 0.2s;
 }
-.btn-search-inner {
+.search-box-container .form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #f39200;
+    width: 260px;
+}
+.search-box-container .btn-search {
+    border-radius: 0 20px 20px 0;
+    background: #f39200;
+    border: 1px solid #f39200;
+    color: #fff;
+    padding: 7px 14px;
+    transition: 0.2s;
+}
+.search-box-container .btn-search:hover { background: #d97e00; }
+
+/* ================== SEARCH RESULTS ================== */
+.search-results-dropdown {
     position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #888;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 380px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+    z-index: 9999;
+    display: none;
+    max-height: 360px;
+    overflow-y: auto;
 }
+.search-results-dropdown.show { display: block; }
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: #222;
+    border-bottom: 1px solid #f5f5f5;
+    transition: 0.15s;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: #fff8ee; color: #f39200; }
+.search-result-item img { width: 44px; height: 44px; object-fit: cover; border-radius: 8px; border: 1px solid #eee; }
+.search-result-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.search-result-price { font-size: 12px; color: #e60023; font-weight: 700; }
+.search-no-result { padding: 16px; text-align: center; color: #aaa; font-size: 13px; }
 
 /* ================== USER INFO ================== */
 .user-info-wrapper {
@@ -93,11 +132,11 @@
     padding: 10px 16px;
     border-radius: 10px;
     font-size: 14px;
+    display: flex;
+    align-items: center;
 }
-.dropdown-item:hover {
-    background-color: #fff4e5;
-    color: #f39200;
-}
+.dropdown-item i { width: 1.5rem; text-align: center; display: inline-block; }
+.dropdown-item:hover { background-color: #fff4e5; color: #f39200; }
 
 /* ================== CART ================== */
 .cart-link {
@@ -111,20 +150,12 @@
     padding: 4px 6px;
 }
 
-/* ================================================= */
-/* 🔥 FIX TRIỆT ĐỂ DROPDOWN PROFILE TRÊN MOBILE 🔥 */
-/* ================================================= */
+/* ================== MOBILE ================== */
 @media (max-width: 991px) {
-
-    /* 1. Cho phép dropdown tràn ra ngoài navbar */
-    .navbar-collapse {
-        overflow: visible !important;
-    }
-
-    /* 2. Ép dropdown nổi như modal */
+    .navbar-collapse { overflow: visible !important; }
     .dropdown-menu {
         position: fixed !important;
-        top: 72px !important; /* ngay dưới navbar */
+        top: 72px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         width: calc(100% - 20px);
@@ -133,25 +164,12 @@
         overflow-y: auto;
         border-radius: 18px;
     }
-
-    /* 3. Ẩn text username bên cạnh avatar trên mobile */
-    .user-info-wrapper {
-        display: none;
-    }
+    .user-info-wrapper { display: none; }
+    .navbar-collapse { transition: none !important; }
+    .navbar-collapse.collapsing { height: auto !important; }
+    .search-results-dropdown { width: 100%; }
 }
-/* Fix avatar / image bị mất chậm khi đóng navbar mobile */
-@media (max-width: 991px) {
-    .navbar-collapse {
-        transition: none !important;
-    }
-
-    .navbar-collapse.collapsing {
-        height: auto !important;
-    }
-}
-
 </style>
-
 
 <header class="header-wrapper">
     <div class="top-bar d-none d-md-block">
@@ -173,14 +191,20 @@
     <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}" style="text-decoration: none;">
-        <strong style="color: #f39200; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">WATCHSTORE</strong>
-        <strong style="color: #000; font-size: 24px; font-weight: 800;">.VN</strong>
-    </a>
-            
+                <strong style="color: #f39200; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">WATCHSTORE</strong>
+                <strong style="color: #000; font-size: 24px; font-weight: 800;">.VN</strong>
+            </a>
+
             <div class="d-flex align-items-center d-lg-none">
-                <a href="#" class="text-dark me-3 position-relative">
+                <a href="{% url 'cart' %}" class="text-dark me-3 position-relative">
                     <i class="fa-solid fa-cart-shopping fs-4"></i>
+                    {% if user.is_authenticated %}
+                    <span class="position-absolute badge rounded-pill bg-danger cart-badge" id="cartBadgeMobile">
+                        {{ user.cart.item_count|default:0 }}
+                    </span>
+                    {% else %}
                     <span class="position-absolute badge rounded-pill bg-danger cart-badge">0</span>
+                    {% endif %}
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -194,41 +218,45 @@
                     <li class="nav-item"><a class="nav-link px-3" href="#">ĐỒNG HỒ</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="#">PHỤ KIỆN</a></li>
                 </ul>
-                
-                <form class="d-none d-lg-flex me-3 search-box-container position-relative align-items-center" action="#" method="get">
-                    <input class="form-control" type="search" placeholder="Tìm sản phẩm..." style="width: 200px;">
-                    <button type="submit" class="btn-search-inner">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
+
+                <!-- ===== SEARCH BOX ===== -->
+                <div class="d-none d-lg-flex me-3 search-box-container position-relative align-items-center">
+                    <form action="{% url 'search' %}" method="get" class="d-flex" id="searchForm">
+                        <input class="form-control" type="search" name="q" id="searchInput"
+                               placeholder="Tìm sản phẩm..." autocomplete="off"
+                               value="{{ request.GET.q }}">
+                        <button type="submit" class="btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                    <div class="search-results-dropdown" id="searchDropdown"></div>
+                </div>
 
                 <div class="d-flex align-items-center">
                     {% if user.is_authenticated %}
                         <div class="dropdown">
-                            <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#"
+                               role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="text-end me-2 d-none d-sm-block user-info-wrapper">
                                     <small class="d-block" style="font-size: 12px; font-weight: 800; color: #f39200; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1;">
-                                         Xin chào,
+                                        Xin chào,
                                     </small>
                                     <span class="user-name-text">{{ user.username }}</span>
                                 </div>
-
-                                {% if user.profile.avatar %}
-                                    <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="user-avatar">
+                                {% if user.app1_profile.avatar %}
+                                    <img src="{{ user.app1_profile.avatar.url }}" alt="Avatar" class="user-avatar">
                                 {% else %}
-                                    <div class="user-avatar-placeholder">
-                                        {{ user.username|first }}
-                                    </div>
+                                    <div class="user-avatar-placeholder">{{ user.username|first }}</div>
                                 {% endif %}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
                                 <li>
                                     <div class="dropdown-header d-flex align-items-center p-3">
                                         <div class="me-2">
-                                            {% if user.profile.avatar %}
-                                                <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="40" height="40" style="object-fit: cover;">
+                                            {% if user.app1_profile.avatar %}
+                                                <img src="{{ user.app1_profile.avatar.url }}" class="rounded-circle" width="40" height="40" style="object-fit: cover;">
                                             {% else %}
-                                                <div class="user-avatar-placeholder" style="width:40px; height:40px;">{{ user.username|first }}</div>
+                                                <div class="user-avatar-placeholder" style="width:40px;height:40px;">{{ user.username|first }}</div>
                                             {% endif %}
                                         </div>
                                         <div style="overflow: hidden;">
@@ -239,11 +267,18 @@
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-solid fa-user-gear me-2"></i>Hồ sơ của tôi</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-box-open me-2"></i>Đơn hàng đã mua</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-heart me-2"></i>Sản phẩm yêu thích</a></li>
+                                <li><a class="dropdown-item" href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping me-2"></i>Giỏ hàng
+                                    {% if user.cart.item_count %}
+                                    <span class="badge bg-danger ms-auto">{{ user.cart.item_count }}</span>
+                                    {% endif %}
+                                </a></li>
+                                <li><a class="dropdown-item" href="{% url 'orders' %}"><i class="fa-solid fa-box-open me-2"></i>Đơn hàng đã mua</a></li>
+                                <li><a class="dropdown-item" href="{% url 'wishlist' %}"><i class="fa-solid fa-heart me-2"></i>Sản phẩm yêu thích
+                                    {% if wishlist_count %}<span class="badge bg-danger ms-auto">{{ wishlist_count }}</span>{% endif %}
+                                </a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Đăng xuất
+                                    <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Đăng xuất
                                 </a></li>
                             </ul>
                         </div>
@@ -253,45 +288,83 @@
                         </div>
                     {% endif %}
 
-                    <a href="#" class="cart-link ms-3 d-none d-lg-block position-relative">
+                    <a href="{% url 'cart' %}" class="cart-link ms-3 d-none d-lg-block position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
+                        {% if user.is_authenticated %}
+                        <span class="position-absolute badge rounded-pill bg-danger cart-badge" id="cartBadgeDesktop">
+                            {{ user.cart.item_count|default:0 }}
+                        </span>
+                        {% else %}
                         <span class="position-absolute badge rounded-pill bg-danger cart-badge">0</span>
+                        {% endif %}
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 </header>
-<!-- Logout Confirmation Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+
+<!-- Logout Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 rounded-4 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title fw-bold" id="logoutModalLabel">
-                    Xác nhận đăng xuất
-                </h5>
+                <h5 class="modal-title fw-bold">Xác nhận đăng xuất</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
             <div class="modal-body text-center">
                 <i class="fa-solid fa-circle-question text-warning fs-1 mb-3"></i>
-                <p class="mb-0">
-                    Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?
-                </p>
+                <p class="mb-0">Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
             </div>
-
             <div class="modal-footer border-0 justify-content-center gap-2">
-                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
-                    Hủy
-                </button>
-
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy</button>
                 <form method="post" action="{% url 'account_logout' %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger rounded-pill px-4">
-                        Đăng xuất
-                    </button>
+                    <button type="submit" class="btn btn-danger rounded-pill px-4">Đăng xuất</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Search Autocomplete Script -->
+<script>
+(function() {
+    const input = document.getElementById('searchInput');
+    const dropdown = document.getElementById('searchDropdown');
+    if (!input) return;
+
+    let timer;
+    input.addEventListener('input', function() {
+        clearTimeout(timer);
+        const q = this.value.trim();
+        if (q.length < 2) { dropdown.classList.remove('show'); return; }
+        timer = setTimeout(() => {
+            fetch(`/search/ajax/?q=${encodeURIComponent(q)}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (!data.results.length) {
+                        dropdown.innerHTML = '<div class="search-no-result"><i class="fa-solid fa-magnifying-glass me-2"></i>Không tìm thấy sản phẩm</div>';
+                    } else {
+                        dropdown.innerHTML = data.results.map(p =>
+                            `<a class="search-result-item" href="${p.url}">
+                                <img src="${p.image}" alt="${p.name}">
+                                <div>
+                                    <div class="search-result-name">${p.name}</div>
+                                    <div class="search-result-price">${p.price}</div>
+                                </div>
+                            </a>`
+                        ).join('');
+                    }
+                    dropdown.classList.add('show');
+                });
+        }, 300);
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+})();
+</script>

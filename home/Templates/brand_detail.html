@@ -229,7 +229,8 @@
             {% for product in page_obj %}
             <div class="col-6 col-md-3">
                 <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column"
-                     onclick="saveToHistory('{{ product.id }}', '{{ product.name|escapejs }}', '{{ product.image.url }}', '{{ product.sale_price|default:product.price|vnd }} vnđ')">
+                     onclick="saveToHistory('{{ product.id }}', '{{ product.name|escapejs }}', '{{ product.image.url }}', '{{ product.sale_price|default:product.price|vnd }} vnđ', '{% url 'watch_detail' product.slug %}'); window.location.href='{% url 'watch_detail' product.slug %}';"
+                     style="cursor:pointer;">
 
                     {% if product.discount_percent > 0 %}
                     <span class="sale-badge">-{{ product.discount_percent }}%</span>
@@ -267,7 +268,7 @@
                     {% if product.is_sold_out %}
                         <button class="btn btn-secondary w-100 rounded-pill mt-auto btn-sm" disabled>Hết hàng</button>
                     {% else %}
-                        <a href="#" class="btn btn-outline-dark w-100 rounded-pill mt-auto btn-sm">Chi tiết</a>
+                        <a href="{% url 'watch_detail' product.slug %}" class="btn btn-outline-dark w-100 rounded-pill mt-auto btn-sm" onclick="event.stopPropagation()">Chi tiết</a>
                     {% endif %}
 
                 </div>
@@ -354,10 +355,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== SẢN PHẨM ĐÃ XEM (localStorage) =====
-function saveToHistory(id, name, image, price) {
+function saveToHistory(id, name, image, price, url) {
     let history = JSON.parse(localStorage.getItem('rv_history') || '[]');
     history = history.filter(p => p.id !== id);
-    history.unshift({ id, name, image, price });
+    history.unshift({ id, name, image, price, url });
     if (history.length > 10) history = history.slice(0, 10);
     localStorage.setItem('rv_history', JSON.stringify(history));
 }
@@ -369,14 +370,14 @@ function renderHistory() {
     if (history.length === 0) { section.style.display = 'none'; return; }
     section.style.display = 'block';
     list.innerHTML = history.map(p => `
-        <div class="rv-item">
+        <a class="rv-item" href="${p.url || '#'}">
             <img src="${p.image}" alt="">
             <div>
                 <div class="rv-item-name">${p.name}</div>
                 <div class="rv-item-price">${p.price}</div>
             </div>
             <button class="rv-remove" onclick="removeHistory('${p.id}', event)">×</button>
-        </div>
+        </a>
     `).join('');
 }
 

@@ -45,6 +45,7 @@
     </style>
 </head>
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+{% include 'includes/chatbot_widget.html' %}
 <body>
     <!-- Include Header -->
     {% include 'includes/header.html' %}
@@ -62,5 +63,6 @@
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     
     {% block extra_js %}{% endblock %}
+    
 </body>
 </html>

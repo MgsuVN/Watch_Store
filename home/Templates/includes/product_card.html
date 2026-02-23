@@ -1,0 +1,48 @@
+{% load custom_filters %}
+{# 
+    PRODUCT CARD - DÙNG CHUNG CHO TẤT CẢ TRANG
+    Cách dùng: {% include 'includes/product_card.html' with product=p %}
+    Biến cần truyền: product (Watch object)
+#}
+<div class="col-6 col-md-3">
+    <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column"
+         onclick="saveToHistory('{{ product.id }}', '{{ product.name|escapejs }}', '{{ product.image.url }}', '{{ product.sale_price|vnd }} vnđ', '{% url 'watch_detail' product.slug %}'); window.location.href='{% url 'watch_detail' product.slug %}';"
+         style="cursor:pointer;">
+
+        {% if product.discount_percent > 0 %}
+        <span class="sale-badge">-{{ product.discount_percent }}%</span>
+        {% endif %}
+
+        {% if product.is_sold_out %}
+        <div class="sold-overlay">TẠM HẾT HÀNG</div>
+        {% endif %}
+
+        <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlistCard({{ product.id }}, this)"
+            style="position:absolute;top:10px;left:10px;background:none;border:none;font-size:22px;z-index:5;cursor:pointer;transition:0.2s;color:#ccc;">
+            ♥
+        </button>
+
+        <img src="{{ product.image.url }}" class="img-fluid mb-3" style="height:200px;object-fit:contain;">
+
+        <h6 class="fw-bold text-center" style="font-size:13px;">{{ product.name }}</h6>
+
+        {% if product.brand %}
+        <p class="text-muted text-center small mb-1">{{ product.brand.name }}</p>
+        {% endif %}
+
+        {% if product.discount_percent > 0 %}
+            <p class="text-muted text-decoration-line-through text-center mb-1" style="font-size:13px;">{{ product.price|vnd }} vnđ</p>
+            <p class="text-danger fw-bold text-center mb-2">{{ product.sale_price|vnd }} vnđ</p>
+        {% else %}
+            <p class="text-danger fw-bold text-center mb-2">{{ product.price|vnd }} vnđ</p>
+        {% endif %}
+
+        {% if product.is_sold_out %}
+            <button class="btn btn-secondary w-100 rounded-pill mt-auto btn-sm" disabled>Hết hàng</button>
+        {% else %}
+            <a href="{% url 'watch_detail' product.slug %}" class="btn btn-outline-dark w-100 rounded-pill mt-auto btn-sm"
+               onclick="event.stopPropagation()">Chi tiết</a>
+        {% endif %}
+
+    </div>
+</div>

@@ -228,10 +228,13 @@
                             <button class="btn-cart mb-3" disabled>🛒 Hết hàng</button>
                         {% else %}
                             {% if user.is_authenticated %}
-                                <form method="post" action="{% url 'add_to_cart' watch.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn-cart mb-3">🛒 Thêm vào giỏ hàng</button>
-                                </form>
+                                <button class="btn-cart mb-3" id="addToCartBtn"
+                                    data-url="{% url 'add_to_cart' watch.id %}"
+                                    data-img="{{ watch.image.url }}"
+                                    onclick="addToCartAjax(this)">
+                                    🛒 Thêm vào giỏ hàng
+                                </button>
+                                <div id="cartToast" style="display:none;margin-bottom:10px;padding:10px 16px;border-radius:10px;font-size:14px;font-weight:600;"></div>
                             {% else %}
                                 <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn-cart mb-3" style="text-decoration:none;">
                                     🛒 Đăng nhập để mua hàng
@@ -418,5 +421,93 @@
 
     </div>
 </div>
+
+<style>
+/* ===== HIỆU ỨNG BAY VÀO GIỎ ===== */
+.fly-img {
+    position: fixed;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 99999;
+    pointer-events: none;
+    transition: all 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 3px solid #e60023;
+    box-shadow: 0 4px 16px rgba(230,0,35,0.3);
+}
+#cartToast.success { background: #e8f8ec; color: #1a9e3f; border: 1px solid #b8e8c4; }
+#cartToast.warning { background: #fff8e1; color: #e65100; border: 1px solid #ffe0b2; }
+</style>
+
+<script>
+const CSRF_TOKEN = '{{ csrf_token }}';
+
+function addToCartAjax(btn) {
+    const url = btn.dataset.url;
+    const imgSrc = btn.dataset.img;
+    const toast = document.getElementById('cartToast');
+
+    // Lấy vị trí ảnh sản phẩm để bay từ đó
+    const mainImg = document.getElementById('galleryMainImg') || document.querySelector('.gallery-main img');
+    const cartIcon = document.querySelector('#cartBadgeDesktop') || document.querySelector('.cart-link');
+
+    // Tạo ảnh bay
+    if (mainImg && cartIcon) {
+        const imgRect = mainImg.getBoundingClientRect();
+        const cartRect = cartIcon.getBoundingClientRect();
+
+        const flyEl = document.createElement('img');
+        flyEl.src = imgSrc;
+        flyEl.className = 'fly-img';
+        flyEl.style.left = (imgRect.left + imgRect.width/2 - 30) + 'px';
+        flyEl.style.top = (imgRect.top + window.scrollY + imgRect.height/2 - 30) + 'px';
+        document.body.appendChild(flyEl);
+
+        setTimeout(() => {
+            flyEl.style.left = (cartRect.left + cartRect.width/2 - 15) + 'px';
+            flyEl.style.top = (cartRect.top + window.scrollY + cartRect.height/2 - 15) + 'px';
+            flyEl.style.width = '20px';
+            flyEl.style.height = '20px';
+            flyEl.style.opacity = '0.3';
+        }, 50);
+
+        setTimeout(() => flyEl.remove(), 950);
+    }
+
+    // Gọi AJAX
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Đang thêm...';
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': CSRF_TOKEN,
+            'x-requested-with': 'XMLHttpRequest',
+        },
+    })
+    .then(r => r.json())
+    .then(data => {
+        // Cập nhật badge giỏ hàng
+        document.querySelectorAll('#cartBadgeDesktop, #cartBadgeMobile').forEach(el => {
+            if (el) el.textContent = data.cart_count;
+        });
+
+        // Hiện toast
+        toast.textContent = (data.status === 'added' ? '✅ ' : '⚠️ ') + data.message;
+        toast.className = data.status === 'added' ? 'success' : 'warning';
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 3000);
+
+        // Reset button
+        btn.disabled = false;
+        btn.innerHTML = data.status === 'added' ? '✅ Đã thêm vào giỏ' : '🛒 Thêm vào giỏ hàng';
+        setTimeout(() => { btn.innerHTML = '🛒 Thêm vào giỏ hàng'; }, 2500);
+    })
+    .catch(() => {
+        btn.disabled = false;
+        btn.innerHTML = '🛒 Thêm vào giỏ hàng';
+    });
+}
+</script>
 
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4 mb-5">
+    <h5 class="fw-bold mb-4"><i class="fa-solid fa-box-open text-warning me-2"></i>Đơn hàng đã mua</h5>
+    <div class="text-center py-5">
+        <i class="fa-solid fa-box-open fa-3x text-muted mb-3"></i>
+        <p class="text-muted">Bạn chưa có đơn hàng nào.</p>
+        <a href="{% url 'home' %}" class="btn btn-outline-dark rounded-pill px-4">Mua sắm ngay</a>
+    </div>
+</div>
+{% endblock %}

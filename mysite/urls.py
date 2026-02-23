@@ -1,15 +1,13 @@
-from django.contrib import admin 
+from django.contrib import admin
 from django.urls import path, include
-from app1 import views   # <-- sửa ở đây
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('app1/', include('app1.urls')),
     path('profile/', include('home.urls')),
-    path('', views.home, name='home'),   # chạy app1.views.home
+    path('', include('app1.urls')),  # app1 không có prefix -> /cart/, /search/, /watch/...
 ]
 
 if settings.DEBUG:

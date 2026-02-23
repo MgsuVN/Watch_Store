@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+<div class="container mt-4 mb-5">
+    <h5 class="fw-bold mb-1">
+        Kết quả tìm kiếm: "<span class="text-danger">{{ q }}</span>"
+    </h5>
+    <p class="text-muted mb-4" style="font-size:14px;">Tìm thấy {{ total }} sản phẩm</p>
+
+    {% if page_obj %}
+    <div class="row g-4">
+        {% for p in page_obj %}
+        <div class="col-6 col-md-3">
+            <a href="{% url 'watch_detail' p.slug %}" class="text-decoration-none text-dark">
+                <div class="card border-0 shadow-sm p-3 position-relative h-100" style="border-radius:12px;transition:0.25s;">
+                    {% if p.discount_percent > 0 %}
+                    <span class="position-absolute badge bg-danger" style="top:10px;right:10px;font-size:12px;">-{{ p.discount_percent }}%</span>
+                    {% endif %}
+                    <button class="wishlist" onclick="event.stopPropagation(); toggleWishlistCard({{ p.id }}, this)"
+                        style="position:absolute;top:10px;left:10px;background:none;border:none;font-size:22px;color:#ccc;cursor:pointer;z-index:5;">♥</button>
+                    <img src="{{ p.image.url }}" class="img-fluid mb-3" style="height:180px;object-fit:contain;">
+                    <h6 class="fw-bold text-center" style="font-size:13px;">{{ p.name }}</h6>
+                    {% if p.discount_percent > 0 %}
+                        <p class="text-muted text-decoration-line-through text-center mb-1" style="font-size:12px;">{{ p.price|vnd }} vnđ</p>
+                        <p class="text-danger fw-bold text-center mb-0">{{ p.sale_price|vnd }} vnđ</p>
+                    {% else %}
+                        <p class="text-danger fw-bold text-center mb-0">{{ p.price|vnd }} vnđ</p>
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fa-solid fa-magnifying-glass fa-3x text-muted mb-3"></i>
+        <p class="text-muted">Không tìm thấy sản phẩm nào phù hợp.</p>
+        <a href="{% url 'home' %}" class="btn btn-outline-dark rounded-pill px-4">Về trang chủ</a>
+    </div>
+    {% endif %}
+</div>
+<script>
+function toggleWishlistCard(watchId, btn) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist_ids') || '[]');
+    if (wishlist.includes(watchId)) {
+        wishlist = wishlist.filter(id => id !== watchId);
+        btn.style.color = '#bbb';
+    } else {
+        wishlist.push(watchId);
+        btn.style.color = '#e60023';
+    }
+    localStorage.setItem('wishlist_ids', JSON.stringify(wishlist));
+}
+function saveToHistory(id, name, image, price, url) {
+    let history = JSON.parse(localStorage.getItem('rv_history') || '[]');
+    history = history.filter(p => p.id !== id);
+    history.unshift({ id, name, image, price, url });
+    if (history.length > 10) history = history.slice(0, 10);
+    localStorage.setItem('rv_history', JSON.stringify(history));
+}
+</script>
+{% endblock %}
