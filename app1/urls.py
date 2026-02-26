@@ -14,13 +14,14 @@ urlpatterns = [
     path('cart/', views.cart_view, name='cart'),
     path('cart/add/<int:watch_id>/', views.add_to_cart, name='add_to_cart'),
     path('cart/remove/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
-    path('cart/update/<int:item_id>/', views.update_cart_item, name='update_cart_item'),  # ← THÊM
+    path('cart/update/<int:item_id>/', views.update_cart_item, name='update_cart_item'),
 
     # Thanh toán
-    path('checkout/', views.checkout_view, name='checkout'),  # ← THÊM
+    path('checkout/', views.checkout_view, name='checkout'),
 
     # Đơn hàng
     path('orders/', views.orders_view, name='orders'),
+    path('orders/success/<int:order_id>/', views.order_success_view, name='order_success'),
 
     # Yêu thích
     path('wishlist/', views.wishlist_view, name='wishlist'),
@@ -28,4 +29,9 @@ urlpatterns = [
 
     # Chat bot
     path('chatbot/', views.chatbot_view, name='chatbot'),
+
+    # ===== THÔNG BÁO =====
+    path('notifications/', views.notification_list, name='notification_list'),
+    path('notifications/read/', views.notification_mark_read, name='notification_mark_all'),
+    path('notifications/read/<int:notif_id>/', views.notification_mark_read, name='notification_mark_read'),
 ]

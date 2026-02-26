@@ -169,8 +169,75 @@
 }
 
 @media (max-width: 480px) {
-    #chat-box { width: calc(100vw - 24px); right: 12px; bottom: 82px; }
-    #chat-fab { right: 16px; bottom: 16px; }
+    /* FAB nằm thấp hơn, tránh đè footer */
+    #chat-fab {
+        right: 16px;
+        bottom: 16px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    /* Chat box chiếm vừa đủ màn hình, không che hết nội dung */
+    #chat-box {
+        width: calc(100vw - 20px);
+        right: 10px;
+        left: 10px;
+        bottom: 76px;
+        /* Giới hạn chiều cao: tối đa 70% viewport, không tràn màn hình */
+        max-height: calc(100vh - 140px);
+        border-radius: 14px;
+    }
+
+    /* Suggestions cuộn ngang gọn hơn */
+    #chat-suggestions {
+        padding: 8px 10px 2px;
+        gap: 5px;
+    }
+    .chat-suggestion {
+        font-size: 11px;
+        padding: 4px 9px;
+    }
+
+    /* Messages vùng nhỏ lại nhưng vẫn cuộn được */
+    #chat-messages {
+        padding: 6px 10px 4px;
+        gap: 6px;
+    }
+    .msg-bubble {
+        font-size: 13px;
+        padding: 8px 11px;
+    }
+
+    /* Input row gọn hơn */
+    #chat-input-row {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+    #chat-input {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    #chat-send {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    /* Header gọn hơn */
+    #chat-header {
+        padding: 11px 14px;
+    }
+    .chat-header-name { font-size: 13px; }
+    .chat-avatar { width: 32px; height: 32px; font-size: 16px; }
+}
+
+/* Màn hình rất nhỏ (< 360px) */
+@media (max-width: 360px) {
+    #chat-box {
+        max-height: calc(100vh - 120px);
+    }
+    .msg-bubble { font-size: 12px; }
 }
 </style>
 

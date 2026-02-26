@@ -4,29 +4,49 @@
 {% load humanize %}
 {% block content %}
 <style>
-/* CSS Banner mobile */
-@media (max-width: 767.98px) {
+/* ===== BANNER ===== */
+#mainBanner .carousel-item img {
+    height: 450px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
     #mainBanner .carousel-item img {
-        height: 250px !important;
-        object-fit: cover;
-        object-position: center;
+        height: 320px !important;
+        object-position: center center;
     }
 }
+
+/* Mobile: thu nhỏ toàn bộ ảnh, thấy hết nội dung, không crop */
+@media (max-width: 767.98px) {
+    #mainBanner .carousel-item {
+        background: #111; /* Nền đen cho vùng trống 2 bên nếu có */
+    }
+    #mainBanner .carousel-item img {
+        height: auto !important;   /* Chiều cao tự theo tỉ lệ ảnh */
+        width: 100% !important;
+        object-fit: contain;       /* Thấy toàn bộ ảnh, không crop */
+        object-position: center;
+        max-height: 280px;         /* Giới hạn không quá cao trên mobile */
+    }
+}
+
+/* ===== PRODUCT CARD ===== */
 .product-card {
     transition: 0.3s ease;
 }
-
 .product-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-/* SALE */
-/* SALE nằm bên phải */
+/* SALE badge */
 .sale-badge {
     position: absolute;
     top: 10px;
-    right: 10px;   /* đổi từ left -> right */
+    right: 10px;
     background: #e60023;
     color: white;
     font-size: 13px;
@@ -36,81 +56,104 @@
     z-index: 5;
 }
 
-/* TIM nằm bên trái */
+/* Wishlist */
 .wishlist {
     position: absolute;
     top: 10px;
-    left: 10px;   /* đảm bảo bên trái */
-    font-size: 22px;   /* làm to hơn */
+    left: 10px;
+    font-size: 22px;
     cursor: pointer;
     color: #bbb;
     transition: 0.2s ease;
     z-index: 5;
 }
-
 .wishlist:hover {
     color: red;
     transform: scale(1.15);
 }
-/* Brand style */
-/* ===== BRAND WRAPPER ===== */
+
+/* ===== BRAND SECTION ===== */
 .brand-wrapper {
     position: relative;
     max-width: 1200px;
     margin: 40px auto;
-    padding: 0 60px;   /* 👈 thêm dòng này */
+    padding: 0 60px;
 }
-/* GRID */
+
+/* Grid thương hiệu */
 .brand-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 25px;
 }
 
-/* ===== VIÊN THUỐC ===== */
+/* Tablet: 4 cột */
+@media (max-width: 991.98px) {
+    .brand-wrapper {
+        padding: 0 50px;
+    }
+    .brand-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+}
+
+/* Mobile: 3 cột */
+@media (max-width: 575.98px) {
+    .brand-wrapper {
+        padding: 0 44px;
+        margin: 24px auto;
+    }
+    .brand-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .brand-box {
+        height: 60px !important;
+    }
+    .brand-box img {
+        max-height: 24px !important;
+        max-width: 90px !important;
+    }
+    .all-brand {
+        font-size: 14px !important;
+    }
+}
+
+/* Viên thuốc brand */
 .brand-box {
     height: 80px;
-    border-radius: 999px;   /* 👈 viên thuốc */
-    border: 3px solid #000; /* 👈 viền đen đậm */
+    border-radius: 999px;
+    border: 3px solid #000;
     background: #fff;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     text-decoration: none;
     transition: all 0.35s ease;
 }
-
-/* Ảnh logo */
 .brand-box img {
     max-height: 32px;
     max-width: 140px;
     object-fit: contain;
 }
-
 .brand-box.active {
-    border: 3px solid #111;             /* viền đậm hơn */
-    background: #f8f8f8;                /* nền xám rất nhẹ */
+    border: 3px solid #111;
+    background: #f8f8f8;
     box-shadow: 0 8px 20px rgba(0,0,0,0.18);
     transform: translateY(-3px);
 }
-
-/* Hover mượt hơn */
 .brand-box:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
-
-/* ===== TẤT CẢ ===== */
 .all-brand {
-    font-size: 20px;      /* 👈 to hơn */
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.5px;
     color: black;
 }
 
-/* ===== ARROW ===== */
 /* Arrow */
 .brand-arrow {
     position: absolute;
@@ -128,21 +171,23 @@
     z-index: 20;
     transition: 0.2s ease;
 }
-
 .brand-arrow:hover {
     background: #f2c200;
     border-color: #f2c200;
 }
+.brand-arrow.left { left: 0; }
+.brand-arrow.right { right: 0; }
 
-/* 👇 căn chuẩn tuyệt đối */
-.brand-arrow.left {
-    left: 0;
+/* Arrow nhỏ lại trên mobile */
+@media (max-width: 575.98px) {
+    .brand-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
 }
 
-.brand-arrow.right {
-    right: 0;
-}
-/* Hết hàng */
+/* Sold out */
 .sold-overlay {
     position: absolute;
     inset: 0;
@@ -155,35 +200,42 @@
     color: #e60023;
     border-radius: 10px;
 }
-
-/* Làm mờ sản phẩm */
 .product-card:has(.sold-overlay) {
     opacity: 0.6;
 }
+
+/* ===== SECTION TIÊU ĐỀ ===== */
+@media (max-width: 575.98px) {
+    .brand-section-title {
+        font-size: 1.2rem !important;
+    }
+    .brand-section-sub {
+        font-size: 13px;
+    }
+    .product-section-title {
+        font-size: 1.2rem !important;
+    }
+}
 </style>
 
+<!-- BANNER -->
 <div id="mainBanner" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
-    
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="1"></button>
         <button type="button" data-bs-target="#mainBanner" data-bs-slide-to="2"></button>
     </div>
-
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{% static 'images/anh7.webp' %}" class="d-block w-100" style="height: 450px; object-fit: cover;" alt="Banner 1">
+            <img src="{% static 'images/anh7.webp' %}" class="d-block w-100" alt="Banner 1">
         </div>
-
         <div class="carousel-item">
-            <img src="{% static 'images/anh6.webp' %}" class="d-block w-100" style="height: 450px; object-fit: cover;" alt="Banner 2">
+            <img src="{% static 'images/anh6.webp' %}" class="d-block w-100" alt="Banner 2">
         </div>
-
         <div class="carousel-item">
-            <img src="{% static 'images/anh5.webp' %}" class="d-block w-100" style="height: 450px; object-fit: cover;" alt="Banner 3">
+            <img src="{% static 'images/anh5.webp' %}" class="d-block w-100" alt="Banner 3">
         </div>
     </div>
-
     <button class="carousel-control-prev" type="button" data-bs-target="#mainBanner" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -193,43 +245,43 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<div class="container-fluid py-5 bg-dark text-white text-center">
-    <h2 class="fw-bold">
+
+<!-- TYPING HEADLINE -->
+<div class="container-fluid py-4 py-md-5 bg-dark text-white text-center">
+    <h2 class="fw-bold fs-4 fs-md-2">
         WATCHSTORE.VN - 
         <span id="typing" class="text-warning"></span>
+    </h2>
 </div>
 
 <script>
-  // Hàm này đảm bảo trang web load xong hết thư viện mới bắt đầu gõ chữ
   document.addEventListener('DOMContentLoaded', function() {
     var typed = new Typed('#typing', {
       strings: [
           'ĐỒNG HỒ CHÍNH HÃNG',
-          'SỐ LƯỢNG ĐỒNG HỒ LỚN NHẤT', 
+          'SỐ LƯỢNG ĐỒNG HỒ LỚN NHẤT',
           'UY TÍN HÀNG ĐẦU VIỆT NAM'
       ],
       typeSpeed: 60,
       backSpeed: 40,
       loop: true,
-      cursorChar: '|', // Thêm cái dấu gạch cho giống đang gõ thật
+      cursorChar: '|',
     });
   });
 </script>
-<h2 class="text-center mt-5 mb-2 fw-bold">
+
+<!-- THƯƠNG HIỆU -->
+<h2 class="text-center mt-4 mt-md-5 mb-2 fw-bold brand-section-title">
     THƯƠNG HIỆU ĐỒNG HỒ NỔI BẬT
 </h2>
-
-<p class="text-center text-muted mb-4">
+<p class="text-center text-muted mb-4 brand-section-sub px-3">
     Watchstore.vn Cam kết chính hãng 100%, bồi thường 20 lần nếu phát hiện hàng giả
 </p>
 
 <div class="brand-wrapper">
-
     <button class="brand-arrow left" id="prevBtn">&#10094;</button>
-
     <div class="brand-grid-container">
         <div class="brand-grid" id="brandGrid">
-
             <a hx-get="/?brand="
                hx-target="#product-container"
                hx-swap="innerHTML"
@@ -238,7 +290,6 @@
                id="brand-all">
                Tất cả
             </a>
-
             {% for brand in brands %}
             <a href="{% url 'brand_detail' brand.slug %}"
                data-slug="{{ brand.slug }}"
@@ -250,61 +301,65 @@
             {% endfor %}
         </div>
     </div>
-
     <button class="brand-arrow right" id="nextBtn">&#10095;</button>
-
 </div>
-<div>
+
+<!-- DANH SÁCH SẢN PHẨM -->
 <div class="container">
-    <h3 class="text-center mb-4 fw-bold mt-5">
+    <h3 class="text-center mb-4 fw-bold mt-4 mt-md-5 product-section-title">
         DANH SÁCH SẢN PHẨM
     </h3>
-
     <div id="product-container">
         {% include "includes/product_list.html" %}
     </div>
-
 </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
     const grid = document.getElementById("brandGrid");
     const nextBtn = document.getElementById("nextBtn");
     const prevBtn = document.getElementById("prevBtn");
 
-    const itemsPerPage = 12; // 6 cột x 2 hàng
-    let currentPage = 1;
+    // Tự động tính số cột theo màn hình
+    function getItemsPerPage() {
+        const w = window.innerWidth;
+        if (w < 576) return 9;   // 3 cột x 3 hàng
+        if (w < 992) return 8;   // 4 cột x 2 hàng
+        return 12;                // 6 cột x 2 hàng
+    }
 
+    let currentPage = 1;
     const items = Array.from(grid.children);
-    const totalPages = Math.ceil(items.length / itemsPerPage);
 
     function renderPage(page) {
+        const itemsPerPage = getItemsPerPage();
+        const totalPages = Math.ceil(items.length / itemsPerPage);
 
         grid.innerHTML = "";
-
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
-
-        items.slice(start, end).forEach(item => {
-            grid.appendChild(item);
-        });
+        items.slice(start, end).forEach(item => grid.appendChild(item));
 
         prevBtn.style.display = page === 1 ? "none" : "flex";
         nextBtn.style.display = page === totalPages ? "none" : "flex";
     }
 
     nextBtn.addEventListener("click", function () {
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderPage(currentPage);
-        }
+        const totalPages = Math.ceil(items.length / getItemsPerPage());
+        if (currentPage < totalPages) { currentPage++; renderPage(currentPage); }
+    });
+    prevBtn.addEventListener("click", function () {
+        if (currentPage > 1) { currentPage--; renderPage(currentPage); }
     });
 
-    prevBtn.addEventListener("click", function () {
-        if (currentPage > 1) {
-            currentPage--;
+    // Re-render khi resize
+    let resizeTimer;
+    window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            currentPage = 1;
             renderPage(currentPage);
-        }
+        }, 200);
     });
 
     renderPage(currentPage);

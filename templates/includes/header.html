@@ -150,24 +150,218 @@
     padding: 4px 6px;
 }
 
-/* ================== MOBILE ================== */
+/* ================== NOTIFICATION BELL ================== */
+.notif-wrapper {
+    position: relative;
+}
+.notif-bell {
+    position: relative;
+    font-size: 22px;
+    color: #333;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.2s, transform 0.2s;
+    display: flex; align-items: center; justify-content: center;
+}
+.notif-bell:hover { color: #f39200; }
+.notif-bell:hover i { animation: bell-shake 0.4s ease; }
+@keyframes bell-shake {
+    0%,100% { transform: rotate(0); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+}
+.notif-badge {
+    position: absolute;
+    top: -5px; right: -8px;
+    background: #e60023;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 5px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1;
+    animation: badge-pulse 2s infinite;
+}
+@keyframes badge-pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+/* Dropdown thông báo */
+.notif-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: -10px;
+    width: 320px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    z-index: 9999;
+    display: none;
+    overflow: hidden;
+    transform: translateY(6px);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.notif-dropdown.show {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+.notif-dropdown-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.notif-dropdown-header strong { font-size: 14px; color: #222; }
+.notif-mark-all {
+    font-size: 12px; color: #f39200; cursor: pointer;
+    background: none; border: none; padding: 0; font-weight: 600;
+}
+.notif-mark-all:hover { text-decoration: underline; }
+.notif-list { max-height: 300px; overflow-y: auto; scrollbar-width: thin; }
+.notif-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f9f9f9;
+    transition: background 0.15s; cursor: pointer;
+}
+.notif-item:last-child { border-bottom: none; }
+.notif-item:hover { background: #fff8ee; }
+.notif-item.unread { background: #fffbf2; }
+.notif-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+}
+.notif-icon.order { background: #e8f8ec; }
+.notif-icon.sale  { background: #fff0e0; }
+.notif-icon.info  { background: #e8f0ff; }
+.notif-content { flex: 1; min-width: 0; }
+.notif-title { font-size: 13px; font-weight: 600; color: #222; line-height: 1.4; }
+.notif-time  { font-size: 11px; color: #aaa; margin-top: 2px; }
+.notif-unread-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #f39200; flex-shrink: 0; margin-top: 6px;
+}
+.notif-empty { padding: 30px 16px; text-align: center; color: #bbb; font-size: 13px; }
+.notif-footer {
+    padding: 10px 16px; text-align: center;
+    border-top: 1px solid #f0f0f0;
+}
+.notif-footer a { font-size: 13px; color: #f39200; text-decoration: none; font-weight: 600; }
+.notif-footer a:hover { text-decoration: underline; }
+/* Mobile dropdown: fixed để không bị tràn màn hình */
 @media (max-width: 991px) {
-    .navbar-collapse { overflow: visible !important; }
-    .dropdown-menu {
+    .notif-dropdown {
         position: fixed !important;
-        top: 72px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: calc(100% - 20px);
-        max-width: 360px;
-        max-height: calc(100vh - 100px);
-        overflow-y: auto;
-        border-radius: 18px;
+        top: 65px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        transform: none !important;
+    }
+    .notif-dropdown.show {
+        transform: none !important;
+    }
+}
+
+/* ================== MOBILE SEARCH ================== */
+/* Thanh search mobile hiện trong collapse */
+.mobile-search-wrapper {
+    padding: 10px 0 5px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 8px;
+}
+.mobile-search-wrapper .form-control {
+    border-radius: 20px 0 0 20px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-right: none;
+    padding: 8px 16px;
+    flex: 1;
+}
+.mobile-search-wrapper .form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #f39200;
+}
+.mobile-search-wrapper .btn-search {
+    border-radius: 0 20px 20px 0;
+    background: #f39200;
+    border: 1px solid #f39200;
+    color: #fff;
+    padding: 8px 14px;
+}
+.mobile-search-results {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+    z-index: 9999;
+    display: none;
+    max-height: 280px;
+    overflow-y: auto;
+    margin-top: 6px;
+}
+.mobile-search-results.show { display: block; }
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 991px) {
+    /* Navbar collapse */
+    .navbar-collapse {
+        background: #fff;
+        border-top: 1px solid #f0f0f0;
+        padding: 10px 0 16px;
+        margin-top: 8px;
+    }
+
+    /* Nav links dễ bấm hơn trên mobile */
+    .navbar-nav .nav-link {
+        padding: 10px 16px !important;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+    .navbar-nav .nav-link:hover {
+        background-color: #fff8ee;
+    }
+
+    /* Dropdown trong collapse */
+    .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        box-shadow: none !important;
+        border: 1px solid #f0f0f0 !important;
+        border-radius: 10px !important;
+        margin: 6px 0 !important;
+    }
+    .dropdown-item {
+        padding: 12px 20px !important;
+        font-size: 15px;
     }
     .user-info-wrapper { display: none; }
-    .navbar-collapse { transition: none !important; }
-    .navbar-collapse.collapsing { height: auto !important; }
     .search-results-dropdown { width: 100%; }
+
+    /* Ẩn logo trên mobile khi quá nhỏ không bị che */
+    .navbar-brand strong { font-size: 20px !important; }
+}
+
+@media (max-width: 575px) {
+    /* Top bar nhỏ hơn trên điện thoại nhỏ */
+    .top-bar { font-size: 11px; padding: 6px 0; }
+    .top-bar a { margin-left: 8px; }
+
+    /* Brand logo nhỏ lại chút */
+    .navbar-brand strong { font-size: 18px !important; }
 }
 </style>
 
@@ -195,7 +389,16 @@
                 <strong style="color: #000; font-size: 24px; font-weight: 800;">.VN</strong>
             </a>
 
+            <!-- Mobile: chuông + cart + toggler -->
             <div class="d-flex align-items-center d-lg-none">
+                <!-- Chuông mobile -->
+                <div class="notif-wrapper me-3 position-relative" id="notifWrapperMobile">
+                    <button class="notif-bell" onclick="toggleNotif('Mobile')" title="Thông báo">
+                        <i class="fa-solid fa-bell fs-5"></i>
+                        <span class="notif-badge" id="notifBadgeMobile">3</span>
+                    </button>
+                    <div class="notif-dropdown" id="notifDropdownMobile"></div>
+                </div>
                 <a href="{% url 'cart' %}" class="text-dark me-3 position-relative">
                     <i class="fa-solid fa-cart-shopping fs-4"></i>
                     {% if user.is_authenticated %}
@@ -206,7 +409,7 @@
                     <span class="position-absolute badge rounded-pill bg-danger cart-badge">0</span>
                     {% endif %}
                 </a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
@@ -219,7 +422,7 @@
                     <li class="nav-item"><a class="nav-link px-3" href="#">PHỤ KIỆN</a></li>
                 </ul>
 
-                <!-- ===== SEARCH BOX ===== -->
+                <!-- Search Desktop -->
                 <div class="d-none d-lg-flex me-3 search-box-container position-relative align-items-center">
                     <form action="{% url 'search' %}" method="get" class="d-flex" id="searchForm">
                         <input class="form-control" type="search" name="q" id="searchInput"
@@ -232,9 +435,22 @@
                     <div class="search-results-dropdown" id="searchDropdown"></div>
                 </div>
 
-                <div class="d-flex align-items-center">
+                <!-- Search Mobile (trong collapse) -->
+                <div class="d-lg-none mobile-search-wrapper px-2">
+                    <form action="{% url 'search' %}" method="get" class="d-flex" id="mobileSearchForm">
+                        <input class="form-control" type="search" name="q" id="mobileSearchInput"
+                               placeholder="Tìm sản phẩm..." autocomplete="off"
+                               value="{{ request.GET.q }}">
+                        <button type="submit" class="btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                    <div class="mobile-search-results" id="mobileSearchDropdown"></div>
+                </div>
+
+                <div class="d-flex align-items-center mt-2 mt-lg-0 px-2 px-lg-0">
                     {% if user.is_authenticated %}
-                        <div class="dropdown">
+                        <div class="dropdown w-100 w-lg-auto">
                             <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#"
                                role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="text-end me-2 d-none d-sm-block user-info-wrapper">
@@ -248,6 +464,7 @@
                                 {% else %}
                                     <div class="user-avatar-placeholder">{{ user.username|first }}</div>
                                 {% endif %}
+                                <span class="ms-2 d-lg-none fw-semibold text-dark">{{ user.username }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
                                 <li>
@@ -283,11 +500,21 @@
                             </ul>
                         </div>
                     {% else %}
-                        <div class="d-flex gap-2">
-                            <a href="{% url 'account_login' %}" class="btn btn-sm btn-outline-dark rounded-pill px-3">Đăng nhập</a>
+                        <div class="d-flex gap-2 w-100 w-lg-auto">
+                            <a href="{% url 'account_login' %}" class="btn btn-sm btn-outline-dark rounded-pill px-3 w-100 w-lg-auto">Đăng nhập</a>
                         </div>
                     {% endif %}
 
+                    <!-- Chuông Desktop -->
+                    <div class="notif-wrapper ms-3 d-none d-lg-flex position-relative" id="notifWrapperDesktop">
+                        <button class="notif-bell" onclick="toggleNotif('Desktop')" title="Thông báo">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="notif-badge" id="notifBadgeDesktop">3</span>
+                        </button>
+                        <div class="notif-dropdown" id="notifDropdownDesktop"></div>
+                    </div>
+
+                    <!-- Cart Desktop -->
                     <a href="{% url 'cart' %}" class="cart-link ms-3 d-none d-lg-block position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
                         {% if user.is_authenticated %}
@@ -330,41 +557,193 @@
 <!-- Search Autocomplete Script -->
 <script>
 (function() {
-    const input = document.getElementById('searchInput');
-    const dropdown = document.getElementById('searchDropdown');
-    if (!input) return;
+    // Hàm tạo autocomplete dùng chung cho desktop và mobile
+    function initSearch(inputId, dropdownId) {
+        const input = document.getElementById(inputId);
+        const dropdown = document.getElementById(dropdownId);
+        if (!input || !dropdown) return;
 
-    let timer;
-    input.addEventListener('input', function() {
-        clearTimeout(timer);
-        const q = this.value.trim();
-        if (q.length < 2) { dropdown.classList.remove('show'); return; }
-        timer = setTimeout(() => {
-            fetch(`/search/ajax/?q=${encodeURIComponent(q)}`)
-                .then(r => r.json())
-                .then(data => {
-                    if (!data.results.length) {
-                        dropdown.innerHTML = '<div class="search-no-result"><i class="fa-solid fa-magnifying-glass me-2"></i>Không tìm thấy sản phẩm</div>';
-                    } else {
-                        dropdown.innerHTML = data.results.map(p =>
-                            `<a class="search-result-item" href="${p.url}">
-                                <img src="${p.image}" alt="${p.name}">
-                                <div>
-                                    <div class="search-result-name">${p.name}</div>
-                                    <div class="search-result-price">${p.price}</div>
-                                </div>
-                            </a>`
-                        ).join('');
-                    }
-                    dropdown.classList.add('show');
-                });
-        }, 300);
+        let timer;
+        input.addEventListener('input', function() {
+            clearTimeout(timer);
+            const q = this.value.trim();
+            if (q.length < 2) { dropdown.classList.remove('show'); return; }
+            timer = setTimeout(() => {
+                fetch(`/search/ajax/?q=${encodeURIComponent(q)}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (!data.results.length) {
+                            dropdown.innerHTML = '<div class="search-no-result"><i class="fa-solid fa-magnifying-glass me-2"></i>Không tìm thấy sản phẩm</div>';
+                        } else {
+                            dropdown.innerHTML = data.results.map(p =>
+                                `<a class="search-result-item" href="${p.url}">
+                                    <img src="${p.image}" alt="${p.name}">
+                                    <div>
+                                        <div class="search-result-name">${p.name}</div>
+                                        <div class="search-result-price">${p.price}</div>
+                                    </div>
+                                </a>`
+                            ).join('');
+                        }
+                        dropdown.classList.add('show');
+                    });
+            }, 300);
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+    }
+
+    initSearch('searchInput', 'searchDropdown');
+    initSearch('mobileSearchInput', 'mobileSearchDropdown');
+})();
+</script>
+
+<!-- ===== NOTIFICATION BELL SCRIPT ===== -->
+<script>
+(function() {
+    const API_URL      = '/notifications/';
+    const MARK_ALL_URL = '/notifications/read/';
+    const MARK_URL     = '/notifications/read/';  // + id + /
+
+    function getCookie(name) {
+        for (let c of document.cookie.split(';')) {
+            c = c.trim();
+            if (c.startsWith(name + '=')) return decodeURIComponent(c.slice(name.length + 1));
+        }
+        return null;
+    }
+
+    // Fetch thông báo từ API Django
+    async function fetchNotifications() {
+        try {
+            const res  = await fetch(API_URL);
+            const data = await res.json();
+            renderDropdowns(data.notifications || []);
+            updateBadges(data.unread_count || 0);
+        } catch (e) {
+            console.log('Notification fetch error:', e);
+        }
+    }
+
+    function renderDropdowns(notifications) {
+        const html = buildDropdownHTML(notifications);
+        ['Desktop', 'Mobile'].forEach(suffix => {
+            const el = document.getElementById('notifDropdown' + suffix);
+            if (el) el.innerHTML = html;
+        });
+    }
+
+    function buildDropdownHTML(notifications) {
+        let items = '';
+        if (!notifications.length) {
+            items = '<div class="notif-empty">🔔 Chưa có thông báo nào</div>';
+        } else {
+            items = notifications.map(n => `
+                <div class="notif-item ${n.is_read ? '' : 'unread'}"
+                     onclick="markRead(${n.id}, this)"
+                     ${n.order_id ? `data-url="/orders/"` : ''}>
+                    <div class="notif-icon ${n.icon_class}">${n.icon}</div>
+                    <div class="notif-content">
+                        <div class="notif-title">${n.title}</div>
+                        <div class="notif-time">${n.time}</div>
+                    </div>
+                    ${!n.is_read ? '<div class="notif-unread-dot"></div>' : ''}
+                </div>`).join('');
+        }
+
+        return `
+            <div class="notif-dropdown-header">
+                <strong>Thông báo</strong>
+                <button class="notif-mark-all" onclick="markAllRead(event)">Đánh dấu đã đọc</button>
+            </div>
+            <div class="notif-list">${items}</div>
+            <div class="notif-footer"><a href="/orders/">Xem đơn hàng của tôi</a></div>`;
+    }
+
+    function updateBadges(count) {
+        ['Desktop', 'Mobile'].forEach(suffix => {
+            const badge = document.getElementById('notifBadge' + suffix);
+            if (!badge) return;
+            if (count > 0) {
+                badge.textContent = count > 99 ? '99+' : count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        });
+    }
+
+    window.toggleNotif = function(suffix) {
+        const dropdown = document.getElementById('notifDropdown' + suffix);
+        const other    = suffix === 'Desktop' ? 'Mobile' : 'Desktop';
+        const otherEl  = document.getElementById('notifDropdown' + other);
+        if (otherEl) otherEl.classList.remove('show');
+        dropdown.classList.toggle('show');
+    };
+
+    window.markRead = function(id, el) {
+        if (!el.classList.contains('unread')) {
+            // Nếu đã đọc mà có link thì navigate
+            const url = el.dataset.url;
+            if (url) window.location.href = url;
+            return;
+        }
+        fetch(MARK_URL + id + '/', {
+            method: 'POST',
+            headers: { 'X-CSRFToken': getCookie('csrftoken') }
+        }).then(r => r.json()).then(data => {
+            el.classList.remove('unread');
+            const dot = el.querySelector('.notif-unread-dot');
+            if (dot) dot.remove();
+            updateBadges(data.unread_count);
+            // Navigate nếu là thông báo đơn hàng
+            const url = el.dataset.url;
+            if (url) window.location.href = url;
+        });
+    };
+
+    window.markAllRead = function(e) {
+        e.stopPropagation();
+        fetch(MARK_ALL_URL, {
+            method: 'POST',
+            headers: { 'X-CSRFToken': getCookie('csrftoken') }
+        }).then(r => r.json()).then(data => {
+            document.querySelectorAll('.notif-item.unread').forEach(el => {
+                el.classList.remove('unread');
+                const dot = el.querySelector('.notif-unread-dot');
+                if (dot) dot.remove();
+            });
+            updateBadges(0);
+        });
+    };
+
+    // Đóng dropdown khi click ra ngoài
+    document.addEventListener('click', function(e) {
+        ['Desktop', 'Mobile'].forEach(suffix => {
+            const wrapper  = document.getElementById('notifWrapper' + suffix);
+            const dropdown = document.getElementById('notifDropdown' + suffix);
+            if (wrapper && dropdown && !wrapper.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
     });
 
-    document.addEventListener('click', function(e) {
-        if (!input.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('show');
-        }
+    // Khởi tạo + polling mỗi 60 giây
+    document.addEventListener('DOMContentLoaded', function() {
+        {% if user.is_authenticated %}
+        fetchNotifications();
+        setInterval(fetchNotifications, 60000);
+        {% else %}
+        // Ẩn badge nếu chưa đăng nhập
+        ['Desktop', 'Mobile'].forEach(suffix => {
+            const badge = document.getElementById('notifBadge' + suffix);
+            if (badge) badge.style.display = 'none';
+        });
+        {% endif %}
     });
 })();
 </script>

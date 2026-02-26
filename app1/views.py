@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Watch, Brand, Cart, CartItem, WatchImage
+from .models import Watch, Brand, Cart, CartItem, WatchImage, Order, OrderItem, Notification, create_notification
 from .forms import WatchForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -218,9 +218,35 @@ def checkout_view(request):
             if not profile.address: profile.address = address
             profile.save()
 
-        messages.success(request, f'Đặt hàng thành công! Cảm ơn {full_name} đã mua hàng tại WATCHSTORE.VN!')
+        # Tạo đơn hàng
+        order = Order.objects.create(
+            user=request.user,
+            full_name=full_name,
+            phone=phone,
+            address=address,
+            city=city,
+            note=note,
+            payment=payment,
+            total=cart.total,
+        )
+
+        # Tạo các order item từ giỏ hàng
+        for item in cart.items.all():
+            OrderItem.objects.create(
+                order=order,
+                watch=item.watch,
+                watch_name=item.watch.name,
+                price=item.watch.sale_price,
+                quantity=item.quantity,
+                subtotal=item.subtotal,
+            )
+
+        # Xóa giỏ hàng sau khi đặt hàng
         cart.items.all().delete()
-        return redirect('orders')
+
+        messages.success(request, f'Đặt hàng thành công! Cảm ơn {full_name} đã mua hàng tại WATCHSTORE.VN! Mã đơn: #{order.id}')
+        return redirect('order_success', order_id=order.id)
+        
 
     return render(request, 'checkout.html', {
         'cart': cart,
@@ -486,3 +512,62 @@ QUY TẮC:
                     break
 
     return JsonResponse({'reply': reply, 'suggested_products': suggested})
+@login_required
+def order_success_view(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'order_success.html', {'order': order})
+
+# ================================================================
+# NOTIFICATION VIEWS
+# ================================================================
+
+@login_required
+def notification_list(request):
+    """API: trả về danh sách thông báo dạng JSON cho header"""
+    notifs = Notification.objects.filter(user=request.user)[:20]
+    data = [{
+        'id':         n.id,
+        'type':       n.notif_type,
+        'icon':       n.icon,
+        'icon_class': n.icon_class,
+        'title':      n.title,
+        'message':    n.message,
+        'is_read':    n.is_read,
+        'time':       _time_ago(n.created_at),
+        'order_id':   n.order_id,
+    } for n in notifs]
+
+    unread_count = Notification.objects.filter(user=request.user, is_read=False).count()
+    return JsonResponse({'notifications': data, 'unread_count': unread_count})
+
+
+@login_required
+def notification_mark_read(request, notif_id=None):
+    """Đánh dấu 1 hoặc tất cả thông báo đã đọc"""
+    if request.method == 'POST':
+        if notif_id:
+            Notification.objects.filter(id=notif_id, user=request.user).update(is_read=True)
+        else:
+            # Đánh dấu tất cả
+            Notification.objects.filter(user=request.user, is_read=False).update(is_read=True)
+        unread_count = Notification.objects.filter(user=request.user, is_read=False).count()
+        return JsonResponse({'ok': True, 'unread_count': unread_count})
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+def _time_ago(dt):
+    """Chuyển datetime thành chuỗi '2 phút trước'"""
+    from django.utils import timezone
+    now = timezone.now()
+    diff = now - dt
+    seconds = int(diff.total_seconds())
+    if seconds < 60:
+        return 'Vừa xong'
+    elif seconds < 3600:
+        return f'{seconds // 60} phút trước'
+    elif seconds < 86400:
+        return f'{seconds // 3600} giờ trước'
+    elif seconds < 604800:
+        return f'{seconds // 86400} ngày trước'
+    else:
+        return dt.strftime('%d/%m/%Y')

@@ -8,61 +8,79 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        .main-content { 
-            min-height: 600px; 
+        /* ===== BASE RESET ===== */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            overflow-x: hidden; /* Tránh scroll ngang trên mobile */
         }
 
-    /* Căn chỉnh lại cụm User và Menu trên Mobile */
-    @media (max-width: 991.98px) {
-        .dropdown-menu-end {
-            left: 50% !important;
-            right: auto !important;
-            transform: translateX(-50%) !important; /* Căn giữa Menu so với màn hình */
-            width: 90%; /* Để menu không quá hẹp trên điện thoại */
-            margin-top: 10px;
+        .main-content {
+            min-height: 600px;
         }
-        
-        /* Chỉnh lại icon và chữ trong menu cho to hơn, dễ bấm bằng tay */
+
+        /* ===== DROPDOWN RESPONSIVE (dùng chung) ===== */
+        /* Desktop: dropdown thả xuống bình thường */
+        @media (min-width: 992px) {
+            .dropdown-menu-end {
+                right: 0;
+                left: auto;
+            }
+        }
+
+        /* Tablet & Mobile: dropdown căn giữa, dễ bấm */
+        @media (max-width: 991.98px) {
+            /* Dropdown item dễ bấm hơn */
+            .dropdown-item {
+                padding: 12px 20px !important;
+                font-size: 15px;
+            }
+        }
+
+        /* Icon trong dropdown thẳng hàng */
+        .dropdown-item i {
+            width: 1.5rem;
+            text-align: center;
+            display: inline-block;
+        }
         .dropdown-item {
-            padding: 12px 20px !important;
-            font-size: 15px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
         }
-    }
-        /* Ép các icon trong dropdown có cùng độ rộng để chữ thẳng hàng */
-.dropdown-item i {
-    width: 1.5rem;   /* Cố định độ rộng icon */
-    text-align: center; /* Căn giữa icon trong khoảng rộng đó */
-    display: inline-block;
-}
 
-/* Tinh chỉnh khoảng cách dòng cho đẹp */
-.dropdown-item {
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-}
+        /* ===== UTILITY: Tránh ảnh tràn khung ===== */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== CONTAINER padding nhỏ hơn trên mobile ===== */
+        @media (max-width: 575.98px) {
+            .container, .container-fluid {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+
         {% block extra_css %}{% endblock %}
     </style>
 </head>
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 {% include 'includes/chatbot_widget.html' %}
 <body>
-    <!-- Include Header -->
     {% include 'includes/header.html' %}
 
-    <!-- Main Content -->
     <div class="main-content">
         {% block content %}
         {% endblock %}
     </div>
 
-    <!-- Include Footer -->
     {% include 'includes/footer.html' %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    
+
     {% block extra_js %}{% endblock %}
-    
 </body>
 </html>

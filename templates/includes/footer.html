@@ -6,7 +6,6 @@
         padding: 50px 0 20px;
         margin-top: 50px;
     }
-    
     .footer h5 {
         color: #f39200;
         font-weight: 700;
@@ -14,7 +13,6 @@
         position: relative;
         padding-bottom: 10px;
     }
-    
     .footer h5::after {
         content: '';
         position: absolute;
@@ -24,28 +22,23 @@
         height: 3px;
         background: #f39200;
     }
-    
     .footer-links {
         list-style: none;
         padding: 0;
     }
-    
     .footer-links li {
         margin-bottom: 10px;
     }
-    
     .footer-links a {
         color: #bdc3c7;
         text-decoration: none;
         transition: all 0.3s;
         display: inline-block;
     }
-    
     .footer-links a:hover {
         color: #f39200;
         padding-left: 5px;
     }
-    
     .footer-social a {
         display: inline-block;
         width: 40px;
@@ -59,12 +52,10 @@
         transition: all 0.3s;
         text-decoration: none;
     }
-    
     .footer-social a:hover {
         background: #f39200;
         transform: translateY(-3px);
     }
-    
     .payment-methods img {
         height: 30px;
         margin-right: 10px;
@@ -75,11 +66,7 @@
         padding: 5px;
         border-radius: 5px;
     }
-    
-    .payment-methods img:hover {
-        opacity: 1;
-    }
-    
+    .payment-methods img:hover { opacity: 1; }
     .footer-bottom {
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         margin-top: 30px;
@@ -87,36 +74,84 @@
         text-align: center;
         color: #95a5a6;
     }
-    
     .footer-contact-info {
         background: rgba(0, 0, 0, 0.2);
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
     }
-    
     .footer-contact-info p {
         margin-bottom: 10px;
         line-height: 1.8;
     }
-    
     .footer-contact-info i {
         color: #f39200;
         margin-right: 10px;
         width: 20px;
     }
-    
     .footer-contact-info a {
         color: #f39200;
         text-decoration: none;
     }
-    
-    .footer-contact-info a:hover {
-        text-decoration: underline;
+    .footer-contact-info a:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE ===== */
+    /* Tablet: 2 cột rõ ràng hơn */
+    @media (max-width: 991.98px) {
+        .footer {
+            padding: 40px 0 16px;
+        }
+        .footer .col-md-6 {
+            margin-bottom: 28px;
+        }
+    }
+
+    /* Mobile: tinh chỉnh khoảng cách & font */
+    @media (max-width: 575.98px) {
+        .footer {
+            padding: 32px 0 12px;
+            margin-top: 32px;
+        }
+        .footer h5 {
+            font-size: 15px;
+            margin-bottom: 14px;
+        }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { font-size: 14px; }
+
+        /* Social icon nhỏ hơn chút */
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            font-size: 14px;
+            margin-right: 6px;
+        }
+
+        /* Ảnh payment nhỏ hơn */
+        .payment-methods img {
+            height: 24px;
+        }
+
+        /* Contact info font nhỏ hơn */
+        .footer-contact-info {
+            padding: 12px;
+        }
+        .footer-contact-info p {
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .footer-bottom {
+            font-size: 13px;
+            padding-top: 16px;
+        }
+
+        /* Căn giữa h5::after underline trên mobile nếu muốn */
+        /* .footer h5::after { left: 50%; transform: translateX(-50%); } */
     }
 </style>
 
-<!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -168,7 +203,6 @@
                     <p><i class="fa-solid fa-envelope"></i>Email: ictu@watchstore.vn</p>
                     <p><i class="fa-solid fa-clock"></i>Giờ làm việc: 8:00 - 21:00 (Hàng ngày)</p>
                 </div>
-                
                 <h6 class="mt-3" style="color: #f39200;">Phương thức thanh toán</h6>
                 <div class="payment-methods">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard">
