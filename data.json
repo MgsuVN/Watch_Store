@@ -10,6 +10,133 @@
   }
 },
 {
+  "model": "account.emailaddress",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "email": "duongkhanh023tm@gmail.com",
+    "verified": false,
+    "primary": true
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2026-02-26T11:49:16.042Z",
+    "user": 2,
+    "content_type": 22,
+    "object_id": "8",
+    "object_repr": "Đơn #8 - qưe",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2026-02-26T11:48:58.759Z",
+    "user": 2,
+    "content_type": 22,
+    "object_id": "10",
+    "object_repr": "Đơn #10 - khánh",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2026-02-26T11:48:04.021Z",
+    "user": 2,
+    "content_type": 24,
+    "object_id": "1",
+    "object_repr": "[khanh123] Bạn có thông báo mới",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Notif type\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2026-02-26T11:44:36.366Z",
+    "user": 2,
+    "content_type": 24,
+    "object_id": "1",
+    "object_repr": "[khanh123] Bạn có thông báo mới",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Notif type\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2026-02-26T11:33:51.265Z",
+    "user": 2,
+    "content_type": 24,
+    "object_id": "1",
+    "object_repr": "[khanh123] Bạn có thông báo mới",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Message\", \"Is read\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2026-02-26T11:32:18.299Z",
+    "user": 2,
+    "content_type": 24,
+    "object_id": "1",
+    "object_repr": "[khanh123] Bạn có thông báo mới",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2026-02-26T11:32:01.860Z",
+    "user": 2,
+    "content_type": 24,
+    "object_id": "1",
+    "object_repr": "[admin] Bạn có thông báo mới",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2026-02-26T09:15:34.489Z",
+    "user": 2,
+    "content_type": 22,
+    "object_id": "3",
+    "object_repr": "Đơn #3 - âf",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2026-02-26T09:03:55.951Z",
+    "user": 2,
+    "content_type": 22,
+    "object_id": "4",
+    "object_repr": "Đơn #4 - sbsb",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
   "model": "admin.logentry",
   "pk": 23,
   "fields": {
@@ -522,6 +649,114 @@
     "name": "Can view cart item",
     "content_type": 18,
     "codename": "view_cartitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can add Thông báo",
+    "content_type": 24,
+    "codename": "add_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can change Thông báo",
+    "content_type": 24,
+    "codename": "change_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can delete Thông báo",
+    "content_type": 24,
+    "codename": "delete_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can view Thông báo",
+    "content_type": 24,
+    "codename": "view_notification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add Đơn hàng",
+    "content_type": 22,
+    "codename": "add_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can change Đơn hàng",
+    "content_type": 22,
+    "codename": "change_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete Đơn hàng",
+    "content_type": 22,
+    "codename": "delete_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view Đơn hàng",
+    "content_type": 22,
+    "codename": "view_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add Chi tiết đơn hàng",
+    "content_type": 23,
+    "codename": "add_orderitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change Chi tiết đơn hàng",
+    "content_type": 23,
+    "codename": "change_orderitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete Chi tiết đơn hàng",
+    "content_type": 23,
+    "codename": "delete_orderitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view Chi tiết đơn hàng",
+    "content_type": 23,
+    "codename": "view_orderitem"
   }
 },
 {
@@ -1087,7 +1322,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$1200000$9nAXAkStRpcjdftaZ77EDL$tmUtc37c53oBwq3vq28ZobTRPt1FAU0md0M/FLHiYUs=",
-    "last_login": "2026-02-23T13:14:12.244Z",
+    "last_login": "2026-02-26T11:33:09.290Z",
     "is_superuser": true,
     "username": "admin1",
     "first_name": "",
@@ -1096,6 +1331,24 @@
     "is_staff": true,
     "is_active": true,
     "date_joined": "2026-02-23T12:14:37.352Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$7zrfrrATtSJh6Psf6iBiyC$VBVGGagE48IJwzeeQPTsjhuOMDrAxcSXSkRZyALRdns=",
+    "last_login": "2026-02-26T11:34:22.728Z",
+    "is_superuser": false,
+    "username": "khanh123",
+    "first_name": "",
+    "last_name": "",
+    "email": "duongkhanh023tm@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-26T10:31:59.437Z",
     "groups": [],
     "user_permissions": []
   }
@@ -1269,11 +1522,43 @@
   }
 },
 {
-  "model": "sessions.session",
-  "pk": "eucxbn75uw84bgn2wgnkftillvwmn4p9",
+  "model": "contenttypes.contenttype",
+  "pk": 22,
   "fields": {
-    "session_data": ".eJxVjDEOwyAQBP9CHSFjsDlSpvcb0HFwwUmEJWNXUf4eLLlImi12ZvctPO5b9ntNq5-juIpeXH67gPRM5QDxgeW-SFrKts5BHoo8aZXTEtPrdrp_BxlrbmuingaILnAgYE6QVGc0sianDdpgLY-qETAaHACrTjsXlB2ZB91SfL4LiDg0:1vuVlM:bhXEoupN_7zYrFlT_oBXqFTRkYyDyMRT6D7HBQP-oKs",
-    "expire_date": "2026-03-09T13:14:12.252Z"
+    "app_label": "app1",
+    "model": "order"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 23,
+  "fields": {
+    "app_label": "app1",
+    "model": "orderitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 24,
+  "fields": {
+    "app_label": "app1",
+    "model": "notification"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1u4hfx8lz8zlqs383x7dzlrtkeuear49",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAQBP9CHSFjsDlSpvcb0HFwwUmEJWNXUf4eLLlImi12ZvctPO5b9ntNq5-juIpeXH67gPRM5QDxgeW-SFrKts5BHoo8aZXTEtPrdrp_BxlrbmuingaILnAgYE6QVGc0sianDdpgLY-qETAaHACrTjsXlB2ZB91SfL4LiDg0:1vvZcD:sOyPS0dEOzud8Rotb5Y7simIoh8EgbvYPrk0UqHvAA0",
+    "expire_date": "2026-03-12T11:33:09.299Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rvpl9qlu6hj3iz2p9fhfkk9oyjmfzdca",
+  "fields": {
+    "session_data": ".eJxVkM9qwzAMh99F5xAc25HtHHfvE4wRFP-Zs652iR22Ufrui7deehAI_T59IN2ArM17qjPtNfpUV0t1zWm--BqzKzC93uC_hwmuVMpX3hx0QBWmQSk-sBGR94qNDI3oYC9-S3TxB32OlOLABdzfOvjzzy2d16YS8DRbyJ59aoH7oPSee5tT3dalb0j_SEt_ys5_vjzYJ0GkEo_tYI2y2lgcw-C90WEwXIqjHKHiMkgMWigUxjnNOWpkkhYpgx0V40jUpMWX0l7gv6_r9nOcyZlBxu6_OflhSA:1vvZdO:0QirUJ7uEIce0jISUTHIZw0-f7GjRBIbnqRqyu287hI",
+    "expire_date": "2026-03-12T11:34:22.735Z"
   }
 },
 {
@@ -1300,6 +1585,17 @@
   "pk": 2,
   "fields": {
     "user": 2,
+    "avatar": "",
+    "phone": "",
+    "address": "",
+    "bio": ""
+  }
+},
+{
+  "model": "home.profile",
+  "pk": 3,
+  "fields": {
+    "user": 3,
     "avatar": "",
     "phone": "",
     "address": "",
@@ -1717,11 +2013,19 @@
   }
 },
 {
+  "model": "app1.cart",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "created_at": "2026-02-26T10:32:05.005Z"
+  }
+},
+{
   "model": "app1.cartitem",
-  "pk": 1,
+  "pk": 12,
   "fields": {
     "cart": 1,
-    "watch": 1,
+    "watch": 2,
     "quantity": 1
   }
 },
@@ -1731,8 +2035,8 @@
   "fields": {
     "user": 2,
     "avatar": "",
-    "phone": "",
-    "address": "",
+    "phone": "0366913800",
+    "address": "ểw",
     "bio": ""
   }
 },
@@ -1745,6 +2049,370 @@
     "phone": "",
     "address": "",
     "bio": ""
+  }
+},
+{
+  "model": "app1.profile",
+  "pk": 4,
+  "fields": {
+    "user": 3,
+    "avatar": "",
+    "phone": "0366913800",
+    "address": "ểw",
+    "bio": ""
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 10,
+  "fields": {
+    "user": 3,
+    "full_name": "khánh",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "fafaf",
+    "note": "âfaf",
+    "payment": "cod",
+    "status": "confirmed",
+    "total": "8160500",
+    "created_at": "2026-02-26T11:39:27.771Z",
+    "updated_at": "2026-02-26T11:48:58.754Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 9,
+  "fields": {
+    "user": 2,
+    "full_name": "âf",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "âf",
+    "note": "âf",
+    "payment": "cod",
+    "status": "pending",
+    "total": "6160000",
+    "created_at": "2026-02-26T10:49:58.258Z",
+    "updated_at": "2026-02-26T10:49:58.258Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 8,
+  "fields": {
+    "user": 3,
+    "full_name": "qưe",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "ádsda",
+    "note": "",
+    "payment": "cod",
+    "status": "shipping",
+    "total": "8160500",
+    "created_at": "2026-02-26T10:32:32.000Z",
+    "updated_at": "2026-02-26T11:49:16.039Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 7,
+  "fields": {
+    "user": 2,
+    "full_name": "da",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "ầ",
+    "note": "",
+    "payment": "cod",
+    "status": "pending",
+    "total": "1800000",
+    "created_at": "2026-02-26T09:41:28.603Z",
+    "updated_at": "2026-02-26T09:41:28.603Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 6,
+  "fields": {
+    "user": 2,
+    "full_name": "Dương Khánh",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "faf",
+    "note": "",
+    "payment": "cod",
+    "status": "pending",
+    "total": "8160500",
+    "created_at": "2026-02-26T09:20:43.036Z",
+    "updated_at": "2026-02-26T09:20:43.036Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 5,
+  "fields": {
+    "user": 2,
+    "full_name": "rqrq",
+    "phone": "0366913800",
+    "address": "ểwqr",
+    "city": "rqr",
+    "note": "qrqr",
+    "payment": "cod",
+    "status": "pending",
+    "total": "9758580",
+    "created_at": "2026-02-26T09:13:21.967Z",
+    "updated_at": "2026-02-26T09:13:21.967Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 4,
+  "fields": {
+    "user": 2,
+    "full_name": "sbsb",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "sbsb",
+    "note": "bs",
+    "payment": "cod",
+    "status": "confirmed",
+    "total": "8160500",
+    "created_at": "2026-02-26T08:54:43.650Z",
+    "updated_at": "2026-02-26T09:03:55.947Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 3,
+  "fields": {
+    "user": 2,
+    "full_name": "âf",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "âf",
+    "note": "fafa",
+    "payment": "cod",
+    "status": "delivered",
+    "total": "6160000",
+    "created_at": "2026-02-26T08:42:37.336Z",
+    "updated_at": "2026-02-26T09:15:34.487Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "full_name": "eqe",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "qe",
+    "note": "qewq",
+    "payment": "cod",
+    "status": "pending",
+    "total": "8160500",
+    "created_at": "2026-02-26T08:33:25.139Z",
+    "updated_at": "2026-02-26T08:33:25.139Z"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "full_name": "ffaf",
+    "phone": "0366913800",
+    "address": "ểw",
+    "city": "fafa",
+    "note": "faf",
+    "payment": "cod",
+    "status": "pending",
+    "total": "11356660",
+    "created_at": "2026-02-26T08:32:47.050Z",
+    "updated_at": "2026-02-26T08:32:47.050Z"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "watch": 1,
+    "watch_name": "Đồng Hồ Casio MTP-1374L-1A",
+    "price": "1598080",
+    "quantity": 2,
+    "subtotal": "3196160"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 1,
+    "watch": 5,
+    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "price": "8160500",
+    "quantity": 1,
+    "subtotal": "8160500"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 2,
+    "watch": 5,
+    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "price": "8160500",
+    "quantity": 1,
+    "subtotal": "8160500"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 3,
+    "watch": 6,
+    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "price": "6160000",
+    "quantity": 1,
+    "subtotal": "6160000"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 4,
+    "watch": 5,
+    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "price": "8160500",
+    "quantity": 1,
+    "subtotal": "8160500"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 5,
+    "watch": 5,
+    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "price": "8160500",
+    "quantity": 1,
+    "subtotal": "8160500"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 5,
+    "watch": 1,
+    "watch_name": "Đồng Hồ Casio MTP-1374L-1A",
+    "price": "1598080",
+    "quantity": 1,
+    "subtotal": "1598080"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 6,
+    "watch": 5,
+    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "price": "8160500",
+    "quantity": 1,
+    "subtotal": "8160500"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 7,
+    "watch": 2,
+    "watch_name": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "price": "1800000",
+    "quantity": 1,
+    "subtotal": "1800000"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 8,
+    "watch": 5,
+    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "price": "8160500",
+    "quantity": 1,
+    "subtotal": "8160500"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 9,
+    "watch": 6,
+    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "price": "6160000",
+    "quantity": 1,
+    "subtotal": "6160000"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 10,
+    "watch": 5,
+    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "price": "8160500",
+    "quantity": 1,
+    "subtotal": "8160500"
+  }
+},
+{
+  "model": "app1.notification",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "notif_type": "order_shipping",
+    "title": "🚚 Đơn hàng #8 đang được vận chuyển",
+    "message": "Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.",
+    "order": 8,
+    "is_read": true,
+    "created_at": "2026-02-26T11:49:16.041Z"
+  }
+},
+{
+  "model": "app1.notification",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "notif_type": "order_confirmed",
+    "title": "✅ Đơn hàng #10 đã được xác nhận",
+    "message": "Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.",
+    "order": 10,
+    "is_read": true,
+    "created_at": "2026-02-26T11:48:58.757Z"
+  }
+},
+{
+  "model": "app1.notification",
+  "pk": 1,
+  "fields": {
+    "user": 3,
+    "notif_type": "general",
+    "title": "Bạn có thông báo mới",
+    "message": "Đơn hàng của bạn đã được xác nhận",
+    "order": 9,
+    "is_read": true,
+    "created_at": "2026-02-26T11:32:01.858Z"
   }
 }
 ]

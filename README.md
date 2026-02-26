@@ -9,16 +9,19 @@ Hệ thống cho phép:
 - Xem chi tiết sản phẩm và thông số kỹ thuật
 - Tính giá sau khi giảm
 - Đánh giá sản phẩm bằng sao
-- Quản lý sản phẩm qua trang Admin
+- Thêm vào giỏ hàng, thanh toán đặt hàng
+- Chatbot tư vấn sản phẩm bằng AI
+- Quản lý sản phẩm và đơn hàng qua trang Admin
 
 ---
 
 ## 🛠 Công nghệ sử dụng
 
 - Python 3.x
-- Django 6.x
+- Django 5.x
 - SQLite3
-- HTML, CSS, Bootstrap
+- HTML, CSS, JavaScript
+- Google Gemini API (chatbot AI)
 
 ---
 
@@ -66,6 +69,7 @@ pip install -r requirements.txt
 
 **Bước 4: Migrate database**
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
@@ -74,7 +78,19 @@ python manage.py migrate
 python manage.py loaddata data.json
 ```
 
-**Bước 6: Chạy server**
+**Bước 6: Cấu hình API keys (tuỳ chọn)**
+
+Mở file `mysite/settings.py`, thêm vào cuối:
+
+```python
+# Chatbot AI (Google Gemini - miễn phí)
+# Lấy key tại: https://aistudio.google.com/apikey
+GEMINI_API_KEY = 'AIzaSy...'
+```
+
+> Không cấu hình vẫn chạy bình thường, chỉ chatbot sẽ không hoạt động.
+
+**Bước 7: Chạy server**
 ```bash
 python manage.py runserver
 ```
@@ -98,11 +114,13 @@ Truy cập: http://127.0.0.1:8000/admin
 
 ---
 
-## 💾 Lưu ý quan trọng - Backup dữ liệu
+## 💾 Backup & Deploy — Export dữ liệu lên GitHub
 
-Sau khi thêm/sửa sản phẩm, **luôn export và push lên GitHub**:
+Sau khi thêm/sửa sản phẩm hoặc có thay đổi code, chạy lệnh sau để backup và push:
 
 ```bash
+python manage.py makemigrations
+python manage.py migrate
 python -c "
 import os, django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
@@ -117,8 +135,8 @@ with open('data.json', 'w', encoding='utf-8') as f:
     f.write(data)
 print('Done!')
 "
-git add data.json media/
-git commit -m "Update data.json"
+git add .
+git commit -m "Update data and code"
 git push
 ```
 
@@ -128,14 +146,18 @@ git push
 
 ```
 Watch_Store/
-├── app1/        - Ứng dụng quản lý sản phẩm (Watch, Brand, Cart)
-├── home/        - Trang chủ
-├── mysite/      - Cấu hình project Django
-├── templates/   - Giao diện HTML
-├── static/      - CSS, JS, hình ảnh tĩnh
-├── media/       - Ảnh sản phẩm upload
-├── data.json    - Dữ liệu mẫu
-├── run.bat      - Script chạy tự động (Windows)
+├── app1/            - App chính (Watch, Brand, Cart, Order, Chatbot...)
+├── mysite/          - Cấu hình project Django (settings, urls)
+├── templates/       - Giao diện HTML
+│   ├── base.html
+│   ├── checkout.html
+│   ├── order_success.html
+│   └── includes/
+│       └── chatbot_widget.html
+├── static/          - CSS, JS, hình ảnh tĩnh
+├── media/           - Ảnh sản phẩm upload
+├── data.json        - Dữ liệu mẫu (sản phẩm, đơn hàng...)
+├── run.bat          - Script chạy tự động (Windows)
 └── requirements.txt
 ```
 

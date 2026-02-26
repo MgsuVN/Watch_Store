@@ -15,8 +15,9 @@ python -m pip install --upgrade pip
 echo Installing requirements...
 pip install -r requirements.txt
 
-:: 4. Chạy migrate
+:: 4. Chạy makemigrations + migrate
 echo Running migrations...
+python manage.py makemigrations
 python manage.py migrate
 
 :: 5. Load data nếu có file data.json (KHÔNG flush - tránh mất dữ liệu)
