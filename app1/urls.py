@@ -21,6 +21,7 @@ urlpatterns = [
 
     # Đơn hàng
     path('orders/', views.orders_view, name='orders'),
+    path('orders/<int:order_id>/', views.order_detail_view, name='order_detail'),
     path('orders/success/<int:order_id>/', views.order_success_view, name='order_success'),
 
     # Yêu thích
@@ -30,7 +31,7 @@ urlpatterns = [
     # Chat bot
     path('chatbot/', views.chatbot_view, name='chatbot'),
 
-    # ===== THÔNG BÁO =====
+    # Thông báo
     path('notifications/', views.notification_list, name='notification_list'),
     path('notifications/read/', views.notification_mark_read, name='notification_mark_all'),
     path('notifications/read/<int:notif_id>/', views.notification_mark_read, name='notification_mark_read'),

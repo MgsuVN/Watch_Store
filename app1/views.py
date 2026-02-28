@@ -270,8 +270,24 @@ def update_cart_item(request, item_id):
 
 # ===== ĐƠN HÀNG =====
 @login_required
+@login_required
 def orders_view(request):
-    return render(request, 'orders.html', {})
+    orders = Order.objects.filter(user=request.user).prefetch_related('items').order_by('-created_at')
+    # Lấy đơn hàng mới nhất để hiển thị tracking
+    latest_order = orders.first()
+    return render(request, 'orders.html', {
+        'orders': orders,
+        'latest_order': latest_order,
+    })
+
+
+@login_required
+def order_detail_view(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'orders.html', {
+        'orders': Order.objects.filter(user=request.user).order_by('-created_at'),
+        'latest_order': order,
+    })
 
 
 # ===== YÊU THÍCH =====

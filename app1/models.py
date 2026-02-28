@@ -1,3 +1,23 @@
+# ================================================================
+# models.py — TẦNG MODEL (M trong MTV)
+# ================================================================
+# Kiến trúc dự án theo MTV (tương đương MVC):
+#   Model    → models.py        (file này) — Định nghĩa dữ liệu & DB
+#   Template → templates/*.html            — Giao diện hiển thị
+#   View     → views.py                    — Xử lý logic & điều hướng
+#
+# Các model trong file này:
+#   Brand        — Thương hiệu đồng hồ
+#   Watch        — Sản phẩm đồng hồ
+#   WatchImage   — Ảnh phụ của sản phẩm
+#   Cart         — Giỏ hàng (1 user = 1 giỏ)
+#   CartItem     — Từng sản phẩm trong giỏ
+#   Profile      — Thông tin mở rộng của user
+#   Order        — Đơn hàng
+#   OrderItem    — Từng sản phẩm trong đơn hàng
+#   Notification — Thông báo cho user
+# ================================================================
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -5,12 +25,15 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 from django.conf import settings
 
+
+# ── Thương hiệu đồng hồ ──────────────────────────────────────
 class Brand(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
     image = models.ImageField(upload_to='brands/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
+        # Tự động tạo slug từ tên nếu chưa có
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
@@ -19,6 +42,7 @@ class Brand(models.Model):
         return self.name
 
 
+# ── Sản phẩm đồng hồ ─────────────────────────────────────────
 class Watch(models.Model):
     # ===== THÔNG TIN CƠ BẢN =====
     name = models.CharField(max_length=255)
@@ -60,12 +84,14 @@ class Watch(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def save(self, *args, **kwargs):
+        # Tự động tạo slug từ tên nếu chưa có
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     @property
     def sale_price(self):
+        """Tính giá sau khi giảm. Nếu không giảm thì trả về giá gốc."""
         if self.discount_percent > 0:
             return int(self.price * (1 - self.discount_percent / 100))
         return self.price
@@ -74,7 +100,7 @@ class Watch(models.Model):
         return self.name
 
 
-# ===== ẢNH PHỤ SẢN PHẨM =====
+# ── Ảnh phụ của sản phẩm (gallery) ──────────────────────────
 class WatchImage(models.Model):
     watch = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='extra_images')
     image = models.ImageField(upload_to='products/gallery/')
@@ -89,7 +115,7 @@ class WatchImage(models.Model):
         return f"Ảnh #{self.order} - {self.watch.name}"
 
 
-# ===== GIỎ HÀNG =====
+# ── Giỏ hàng (mỗi user có 1 giỏ duy nhất) ───────────────────
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -99,13 +125,16 @@ class Cart(models.Model):
 
     @property
     def total(self):
+        """Tổng tiền tất cả sản phẩm trong giỏ."""
         return sum(item.subtotal for item in self.items.all())
 
     @property
     def item_count(self):
+        """Số lượng loại sản phẩm trong giỏ."""
         return self.items.count()
 
 
+# ── Từng sản phẩm trong giỏ hàng ─────────────────────────────
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     watch = models.ForeignKey(Watch, on_delete=models.CASCADE)
@@ -113,13 +142,15 @@ class CartItem(models.Model):
 
     @property
     def subtotal(self):
+        """Thành tiền = giá sale × số lượng."""
         return self.watch.sale_price * self.quantity
 
     def __str__(self):
         return f"{self.quantity}x {self.watch.name}"
 
 
-# ===== PROFILE =====
+# ── Thông tin mở rộng của user ────────────────────────────────
+# Tự động tạo khi User mới được tạo (qua signal post_save)
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='app1_profile')
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
@@ -133,10 +164,14 @@ class Profile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
+    """Signal: tự động tạo Profile khi User mới được tạo."""
     if created:
         Profile.objects.create(user=instance)
     else:
         Profile.objects.get_or_create(user=instance)
+
+
+# ── Đơn hàng ─────────────────────────────────────────────────
 class Order(models.Model):
     PAYMENT_CHOICES = [
         ('cod',         'Thanh toán khi nhận hàng'),
@@ -173,10 +208,13 @@ class Order(models.Model):
         return f'Đơn #{self.id} - {self.full_name}'
 
 
+# ── Từng sản phẩm trong đơn hàng ─────────────────────────────
+# Lưu lại tên & giá tại thời điểm đặt, tránh mất dữ liệu khi
+# sản phẩm bị xóa hoặc thay đổi giá sau này
 class OrderItem(models.Model):
     order      = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
     watch      = models.ForeignKey('Watch', on_delete=models.SET_NULL, null=True, blank=True)
-    watch_name = models.CharField(max_length=300)
+    watch_name = models.CharField(max_length=300)   # tên tại thời điểm đặt
     price      = models.DecimalField(max_digits=12, decimal_places=0, default=0)
     quantity   = models.PositiveIntegerField(default=1)
     subtotal   = models.DecimalField(max_digits=12, decimal_places=0, default=0)
@@ -187,10 +225,9 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.watch_name} x{self.quantity}'
-# ================================================================
-# THÊM ĐOẠN NÀY VÀO CUỐI models.py (sau class OrderItem)
-# ================================================================
 
+
+# ── Thông báo cho user ────────────────────────────────────────
 class Notification(models.Model):
     NOTIF_TYPES = [
         ('order_placed',    '📦 Đặt hàng thành công'),
@@ -220,6 +257,7 @@ class Notification(models.Model):
 
     @property
     def icon(self):
+        """Trả về emoji icon theo loại thông báo."""
         icons = {
             'order_placed':    '📦',
             'order_confirmed': '✅',
@@ -233,6 +271,7 @@ class Notification(models.Model):
 
     @property
     def icon_class(self):
+        """Trả về CSS class theo loại thông báo."""
         classes = {
             'order_placed':    'order',
             'order_confirmed': 'order',
@@ -245,11 +284,9 @@ class Notification(models.Model):
         return classes.get(self.notif_type, 'info')
 
 
-# ================================================================
-# HÀM TIỆN ÍCH — dùng trong views.py để tạo thông báo nhanh
-# ================================================================
+# ── Hàm tiện ích ──────────────────────────────────────────────
 def create_notification(user, notif_type, title, message='', order=None):
-    """Tạo thông báo cho user"""
+    """Tạo thông báo cho user. Gọi từ views.py sau các sự kiện quan trọng."""
     return Notification.objects.create(
         user=user,
         notif_type=notif_type,
