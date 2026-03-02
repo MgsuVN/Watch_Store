@@ -1,9 +1,22 @@
 from django.contrib import admin
+from django.urls import path
+from django.template.response import TemplateResponse
+
 from django.utils.html import format_html
+from django.utils import timezone
+from django.db.models import Sum, Q
+from django.contrib.auth.models import User
+
+import json
+import datetime
+
 from .models import Brand, Watch, WatchImage, Cart, CartItem, Profile
 from .models import Order, OrderItem, Notification, create_notification
 
-# ===== BRAND =====
+
+# ================================================================
+# BRAND
+# ================================================================
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'brand_image')
@@ -16,7 +29,9 @@ class BrandAdmin(admin.ModelAdmin):
     brand_image.short_description = 'Ảnh'
 
 
-# ===== ẢNH PHỤ (inline) =====
+# ================================================================
+# WATCH
+# ================================================================
 class WatchImageInline(admin.TabularInline):
     model = WatchImage
     extra = 3
@@ -30,7 +45,6 @@ class WatchImageInline(admin.TabularInline):
     preview.short_description = 'Xem trước'
 
 
-# ===== WATCH =====
 @admin.register(Watch)
 class WatchAdmin(admin.ModelAdmin):
     list_display = ('watch_image', 'name', 'brand', 'price', 'discount_percent', 'is_sold_out', 'sold_count')
@@ -72,7 +86,9 @@ class WatchAdmin(admin.ModelAdmin):
     watch_image.short_description = 'Ảnh'
 
 
-# ===== CART =====
+# ================================================================
+# CART
+# ================================================================
 class CartItemInline(admin.TabularInline):
     model = CartItem
     extra = 0
@@ -97,19 +113,25 @@ class CartAdmin(admin.ModelAdmin):
     total_display.short_description = 'Tổng tiền'
 
 
-# ===== PROFILE =====
+# ================================================================
+# PROFILE
+# ================================================================
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone')
+
+
+# ================================================================
+# ORDER
+# ================================================================
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display  = ['id', 'full_name', 'phone', 'total', 'status_badge', 'created_at', 'send_notif_btn']
-    list_filter   = ['status', 'payment', 'created_at']
-    search_fields = ['full_name', 'phone', 'id']
+    list_display   = ['id', 'full_name', 'phone', 'total', 'status_badge', 'created_at', 'send_notif_btn']
+    list_filter    = ['status', 'payment', 'created_at']
+    search_fields  = ['full_name', 'phone', 'id']
     readonly_fields = ['created_at', 'updated_at']
-    list_editable = []
+    list_editable  = []
 
-    # Khi admin lưu order, tự động gửi thông báo nếu status thay đổi
     def save_model(self, request, obj, form, change):
         if change and 'status' in form.changed_data:
             old_status = Order.objects.get(pk=obj.pk).status
@@ -120,39 +142,31 @@ class OrderAdmin(admin.ModelAdmin):
 
     def _send_status_notification(self, order):
         messages_map = {
-            'confirmed':  ('order_confirmed', f'✅ Đơn hàng #{order.id} đã được xác nhận',
-                           'Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.'),
-            'shipping':   ('order_shipping',  f'🚚 Đơn hàng #{order.id} đang được vận chuyển',
-                           'Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.'),
-            'delivered':  ('order_delivered', f'🎉 Đơn hàng #{order.id} đã được giao thành công',
-                           'Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.'),
-            'cancelled':  ('order_cancelled', f'❌ Đơn hàng #{order.id} đã bị hủy',
-                           'Đơn hàng của bạn đã bị hủy. Liên hệ hotline nếu cần hỗ trợ.'),
+            'confirmed': ('order_confirmed', f'✅ Đơn hàng #{order.id} đã được xác nhận',
+                          'Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.'),
+            'shipping':  ('order_shipping',  f'🚚 Đơn hàng #{order.id} đang được vận chuyển',
+                          'Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.'),
+            'delivered': ('order_delivered', f'🎉 Đơn hàng #{order.id} đã được giao thành công',
+                          'Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.'),
+            'cancelled': ('order_cancelled', f'❌ Đơn hàng #{order.id} đã bị hủy',
+                          'Đơn hàng của bạn đã bị hủy. Liên hệ hotline nếu cần hỗ trợ.'),
         }
         if order.status in messages_map:
             notif_type, title, message = messages_map[order.status]
-            # Tránh tạo trùng thông báo
             if not Notification.objects.filter(order=order, notif_type=notif_type).exists():
                 create_notification(
-                    user=order.user,
-                    notif_type=notif_type,
-                    title=title,
-                    message=message,
-                    order=order,
+                    user=order.user, notif_type=notif_type,
+                    title=title, message=message, order=order,
                 )
 
     def status_badge(self, obj):
         colors = {
-            'pending':   '#f39200',
-            'confirmed': '#1a9e3f',
-            'shipping':  '#007bff',
-            'delivered': '#28a745',
-            'cancelled': '#e60023',
+            'pending': '#f39200', 'confirmed': '#1a9e3f',
+            'shipping': '#007bff', 'delivered': '#28a745', 'cancelled': '#e60023',
         }
-        color = colors.get(obj.status, '#666')
         return format_html(
             '<span style="background:{};color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;">{}</span>',
-            color, obj.get_status_display()
+            colors.get(obj.status, '#666'), obj.get_status_display()
         )
     status_badge.short_description = 'Trạng thái'
 
@@ -164,12 +178,15 @@ class OrderAdmin(admin.ModelAdmin):
     send_notif_btn.short_description = 'Thông báo'
 
 
+# ================================================================
+# NOTIFICATION
+# ================================================================
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display  = ['user', 'title', 'notif_type', 'is_read', 'created_at']
-    list_filter   = ['notif_type', 'is_read', 'created_at']
-    search_fields = ['user__username', 'title']
-    list_editable = ['is_read']
+    list_display   = ['user', 'title', 'notif_type', 'is_read', 'created_at']
+    list_filter    = ['notif_type', 'is_read', 'created_at']
+    search_fields  = ['user__username', 'title']
+    list_editable  = ['is_read']
     readonly_fields = ['created_at']
     actions = ['mark_as_read', 'send_promo_to_all']
 
@@ -179,16 +196,177 @@ class NotificationAdmin(admin.ModelAdmin):
     mark_as_read.short_description = 'Đánh dấu đã đọc'
 
     def send_promo_to_all(self, request, queryset):
-        from django.contrib.auth.models import User
         users = User.objects.filter(is_active=True)
         count = 0
         for user in users:
             create_notification(
-                user=user,
-                notif_type='promotion',
+                user=user, notif_type='promotion',
                 title='🔥 Flash Sale đặc biệt hôm nay — Giảm tới 48%!',
                 message='Hàng ngàn đồng hồ chính hãng đang được giảm giá sâu. Mua ngay!',
             )
             count += 1
         self.message_user(request, f'Đã gửi thông báo khuyến mãi tới {count} người dùng.')
     send_promo_to_all.short_description = '📢 Gửi khuyến mãi tới tất cả users'
+
+
+# ================================================================
+# DASHBOARD THỐNG KÊ — override trang chủ Jazzmin Admin
+# ================================================================
+def get_dashboard_stats(request):
+    """Tính toán số liệu thống kê cho dashboard."""
+    now   = timezone.now()
+    today = now.date()
+
+    # Bộ lọc thời gian
+    period    = request.GET.get('period', 'month')
+    date_from = request.GET.get('date_from', '')
+    date_to   = request.GET.get('date_to', '')
+
+    if date_from and date_to:
+        try:
+            df = datetime.date.fromisoformat(date_from)
+            dt = datetime.date.fromisoformat(date_to)
+            qs_filter    = Q(created_at__date__gte=df, created_at__date__lte=dt)
+            period_label = f"{df.strftime('%d/%m/%Y')} – {dt.strftime('%d/%m/%Y')}"
+            period = 'custom'
+        except ValueError:
+            qs_filter    = Q()
+            period_label = 'Tất cả'
+    elif period == 'today':
+        qs_filter    = Q(created_at__date=today)
+        period_label = 'Hôm nay'
+    elif period == 'week':
+        qs_filter    = Q(created_at__date__gte=today - datetime.timedelta(days=7))
+        period_label = '7 ngày qua'
+    elif period == 'year':
+        qs_filter    = Q(created_at__year=now.year)
+        period_label = f'Năm {now.year}'
+    elif period == 'all':
+        qs_filter    = Q()
+        period_label = 'Tất cả thời gian'
+    else:  # month (mặc định)
+        qs_filter    = Q(created_at__year=now.year, created_at__month=now.month)
+        period_label = f'Tháng {now.month}/{now.year}'
+
+    orders_qs = Order.objects.filter(qs_filter).exclude(status='cancelled')
+
+    def fmt_vnd(v):
+        v = int(v or 0)
+        if v >= 1_000_000_000: return f"{v/1_000_000_000:.1f} tỷ đ"
+        if v >= 1_000_000:     return f"{v/1_000_000:.1f}M đ"
+        return f"{v:,} đ"
+
+    revenue = orders_qs.aggregate(t=Sum('total'))['t'] or 0
+
+    status_map = {
+        'pending':   'Chờ xác nhận',
+        'confirmed': 'Đã xác nhận',
+        'shipping':  'Đang giao',
+        'delivered': 'Đã giao',
+        'cancelled': 'Đã hủy',
+    }
+
+    # Biểu đồ 30 ngày
+    daily_labels, daily_data = [], []
+    for i in range(29, -1, -1):
+        d   = today - datetime.timedelta(days=i)
+        rev = Order.objects.filter(created_at__date=d).exclude(status='cancelled') \
+                           .aggregate(t=Sum('total'))['t'] or 0
+        daily_labels.append(d.strftime('%d/%m'))
+        daily_data.append(int(rev))
+
+    # Biểu đồ 12 tháng
+    monthly_labels, monthly_data = [], []
+    for i in range(11, -1, -1):
+        m, y = now.month - i, now.year
+        while m <= 0:
+            m += 12
+            y -= 1
+        rev = Order.objects.filter(created_at__year=y, created_at__month=m) \
+                           .exclude(status='cancelled').aggregate(t=Sum('total'))['t'] or 0
+        monthly_labels.append(f'T{m}/{y}')
+        monthly_data.append(int(rev))
+
+    # Biểu đồ thương hiệu
+    brand_stats = (
+        OrderItem.objects
+        .filter(order__in=Order.objects.exclude(status='cancelled'))
+        .values('watch__brand__name')
+        .annotate(rev=Sum('subtotal'))
+        .order_by('-rev')[:8]
+    )
+
+    # Top sản phẩm bán chạy
+    top_raw = (
+        OrderItem.objects.filter(order__in=orders_qs)
+        .values('watch_name')
+        .annotate(total_qty=Sum('quantity'), revenue=Sum('subtotal'))
+        .order_by('-total_qty')[:8]
+    )
+
+    # Đơn hàng mới nhất
+    recent_raw = Order.objects.order_by('-created_at')[:8]
+
+    return {
+        'revenue_display':  fmt_vnd(revenue),
+        'total_orders':     Order.objects.filter(qs_filter).count(),
+        'completed_orders': Order.objects.filter(qs_filter, status='delivered').count(),
+        'pending_orders':   Order.objects.filter(qs_filter, status='pending').count(),
+        'total_products':   Watch.objects.count(),
+        'sold_out_count':   Watch.objects.filter(is_sold_out=True).count(),
+        'total_users':      User.objects.filter(is_staff=False).count(),
+        'new_users_month':  User.objects.filter(
+            date_joined__year=now.year,
+            date_joined__month=now.month,
+            is_staff=False,
+        ).count(),
+        'period':        period,
+        'period_label':  period_label,
+        'date_from':     date_from,
+        'date_to':       date_to,
+        'daily_labels':  json.dumps(daily_labels),
+        'daily_data':    json.dumps(daily_data),
+        'monthly_labels': json.dumps(monthly_labels),
+        'monthly_data':  json.dumps(monthly_data),
+        'brand_labels':  json.dumps([b['watch__brand__name'] or 'Khác' for b in brand_stats]),
+        'brand_data':    json.dumps([int(b['rev'] or 0) for b in brand_stats]),
+        'status_labels': json.dumps(list(status_map.values())),
+        'status_data':   json.dumps([Order.objects.filter(status=k).count() for k in status_map]),
+        'top_products':  [
+            {
+                'watch_name':      t['watch_name'],
+                'total_qty':       t['total_qty'],
+                'revenue_display': fmt_vnd(t['revenue'] or 0),
+            }
+            for t in top_raw
+        ],
+        'recent_orders': [
+            {
+                'id':                 o.id,
+                'full_name':          o.full_name,
+                'total_display':      fmt_vnd(o.total),
+                'status':             o.status,
+                'get_status_display': o.get_status_display(),
+            }
+            for o in recent_raw
+        ],
+    }
+def revenue_view(request):
+    context = dict(
+        admin.site.each_context(request),
+        **get_dashboard_stats(request)
+    )
+    return TemplateResponse(request, "admin/revenue.html", context)
+
+
+def get_admin_urls(urls):
+    def get_urls():
+        my_urls = [
+            path('doanh-thu/', admin.site.admin_view(revenue_view), name="doanh_thu"),
+        ]
+        return my_urls + urls
+    return get_urls
+
+
+admin.site.get_urls = get_admin_urls(admin.site.get_urls())
+

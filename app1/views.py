@@ -1,3 +1,5 @@
+import profile
+
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Watch, Brand, Cart, CartItem, WatchImage, Order, OrderItem, Notification, create_notification
 from .forms import WatchForm
@@ -212,10 +214,11 @@ def checkout_view(request):
             return redirect('checkout')
 
         # Lưu vào profile nếu chưa có
+        # Luôn cập nhật phone và address từ form vào profile
         profile = getattr(request.user, 'app1_profile', None)
         if profile:
-            if not profile.phone: profile.phone = phone
-            if not profile.address: profile.address = address
+            profile.phone = phone
+            profile.address = address
             profile.save()
 
         # Tạo đơn hàng
@@ -382,7 +385,7 @@ QUY TẮC:
 - Nếu hỏi giá: dùng giá sale (giá bán thực tế)
 - Nếu không tìm thấy sản phẩm: gợi ý sản phẩm tương tự
 - Khi đề cập sản phẩm cụ thể, hãy viết ĐÚNG tên sản phẩm như trong danh sách
-- Hotline: 093 189 2222"""
+"""
 
     api_key = getattr(settings, 'GEMINI_API_KEY', '')
     if not api_key:

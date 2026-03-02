@@ -306,7 +306,7 @@
                 <div>
                     <div class="form-label-sm">Số điện thoại *</div>
                     <input class="form-control-co" name="phone" id="f_phone" placeholder="Nhập số điện thoại"
-                           value="{{ request.user.app1_profile.phone|default:'' }}">
+                           value="{{ request.user.profile.phone|default:'' }}">
                     <div class="field-error" id="err_phone">Mục Số điện thoại là mục bắt buộc.</div>
                 </div>
                 <div style="grid-column:1/-1;">
@@ -315,15 +315,15 @@
                            value="{{ request.user.email }}">
                 </div>
                 <div style="grid-column:1/-1;">
-                    <div class="form-label-sm">Địa chỉ (số nhà, tên đường, phường/xã...) *</div>
+                    <div class="form-label-sm">Địa chỉ (Phường/Xã...)/Thị trấn / Thành phố *</div>
                     <input class="form-control-co" name="address" id="f_address" placeholder="Nhập số nhà, tên đường, phường/xã"
-                           value="{{ request.user.app1_profile.address|default:'' }}">
-                    <div class="field-error" id="err_address">Mục Địa chỉ (số nhà, tên đường, phường/xã...) là mục bắt buộc.</div>
+                           value="{{ request.user.profile.address|default:'' }}">
+                    <div class="field-error" id="err_address">Mục Địa chỉ (số nhà, tên đường, phường/xã...)/Thị trấn / Thành phố là mục bắt buộc.</div>
                 </div>
                 <div style="grid-column:1/-1;">
-                    <div class="form-label-sm">Thị trấn / Thành phố *</div>
+                    <div class="form-label-sm">Địa chỉ số nhà cụ thể *</div>
                     <input class="form-control-co" name="city" id="f_city" placeholder="">
-                    <div class="field-error" id="err_city">Mục Thị trấn / Thành phố là mục bắt buộc.</div>
+                    
                 </div>
                 <div style="grid-column:1/-1;">
                     <div class="form-label-sm">Ghi chú đơn hàng (tùy chọn)</div>

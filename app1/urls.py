@@ -35,4 +35,6 @@ urlpatterns = [
     path('notifications/', views.notification_list, name='notification_list'),
     path('notifications/read/', views.notification_mark_read, name='notification_mark_all'),
     path('notifications/read/<int:notif_id>/', views.notification_mark_read, name='notification_mark_read'),
+
+    # Admin
 ]

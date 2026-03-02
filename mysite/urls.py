@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('profile/', include('home.urls')),
-    path('', include('app1.urls')),  # app1 không có prefix -> /cart/, /search/, /watch/...
+    path('', include('app1.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,484 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n static %}
+
+{% block content_title %}<h1>{% trans 'Dashboard' %}</h1>{% endblock %}
+
+{% block content %}
+<style>
+/* ===============================
+   WATCHSTORE ADMIN DASHBOARD
+   Responsive Professional Version
+=================================*/
+
+/* RESET FIX CHO ADMIN */
+#content { padding: 20px 25px !important; }
+.card { border-radius: 14px !important; }
+
+/* ===== STAT CARDS ===== */
+.ws-stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.ws-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  border-left: 5px solid #ccc;
+  transition: all .2s ease;
+}
+.ws-card:hover { transform: translateY(-3px); }
+
+.ws-card .lbl  {
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.ws-card .val  {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 6px 0;
+}
+
+.ws-card .sub  {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.ws-card.green  { border-color: #22c55e; }
+.ws-card.green .val { color: #16a34a; }
+
+.ws-card.blue   { border-color: #3b82f6; }
+.ws-card.blue .val { color: #2563eb; }
+
+.ws-card.orange { border-color: #f59e0b; }
+.ws-card.orange .val { color: #d97706; }
+
+.ws-card.purple { border-color: #8b5cf6; }
+.ws-card.purple .val { color: #7c3aed; }
+
+/* ===== FILTER ===== */
+.ws-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.05);
+}
+
+.ws-filter a {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  background: #f1f1f1;
+  color: #555;
+  transition: .2s;
+}
+
+.ws-filter a.active,
+.ws-filter a:hover {
+  background: #f59e0b;
+  color: #fff;
+}
+
+.ws-filter input[type=date] {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.ws-filter button {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== CHARTS ===== */
+.ws-charts-2,
+.ws-charts-2b {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ws-charts-2 {
+  grid-template-columns: 2fr 1fr;
+}
+
+.ws-charts-2b {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ws-chart-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+.ws-chart-box canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* ===== TABLES ===== */
+.ws-tables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.ws-table-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  overflow-x: auto;
+}
+
+.ws-table-box table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.ws-table-box th {
+  background: #f8f8f8;
+  padding: 10px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.ws-table-box td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.ws-table-box tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== BADGE ===== */
+.ws-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet */
+@media(max-width: 992px) {
+  .ws-charts-2 { grid-template-columns: 1fr; }
+  .ws-charts-2b { grid-template-columns: 1fr; }
+  .ws-tables { grid-template-columns: 1fr; }
+}
+
+/* Mobile */
+@media(max-width: 600px) {
+  #content { padding: 15px !important; }
+
+  .ws-card { padding: 16px; }
+
+  .ws-card .val { font-size: 22px; }
+
+  .ws-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ws-filter form {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ws-filter input[type=date] {
+    width: 48%;
+  }
+
+  .ws-filter button {
+    width: 100%;
+  }
+}
+</style>
+
+<!-- BỘ LỌC -->
+<div class="ws-filter">
+  <strong>Lọc:</strong>
+  <a href="?period=today"  {% if period == 'today'  %}class="active"{% endif %}>Hôm nay</a>
+  <a href="?period=week"   {% if period == 'week'   %}class="active"{% endif %}>7 ngày</a>
+  <a href="?period=month"  {% if period == 'month' or not period %}class="active"{% endif %}>Tháng này</a>
+  <a href="?period=year"   {% if period == 'year'   %}class="active"{% endif %}>Năm nay</a>
+  <a href="?period=all"    {% if period == 'all'    %}class="active"{% endif %}>Tất cả</a>
+  <span style="color:#ddd;">|</span>
+  <form method="get" style="display:flex;gap:6px;align-items:center;margin:0;">
+    <input type="date" name="date_from" value="{{ date_from }}">
+    <span style="font-size:11px;color:#aaa;">đến</span>
+    <input type="date" name="date_to"   value="{{ date_to }}">
+    <button type="submit">Lọc</button>
+  </form>
+</div>
+
+<!-- 4 STAT CARDS -->
+<div class="ws-stat-cards">
+  <div class="ws-card green">
+    <div class="lbl">💰 Doanh thu</div>
+    <div class="val">{{ revenue_display }}</div>
+    <div class="sub">{{ period_label }}</div>
+  </div>
+  <div class="ws-card blue">
+    <div class="lbl">📦 Đơn hàng</div>
+    <div class="val">{{ total_orders }}</div>
+    <div class="sub">{{ completed_orders }} đã giao &bull; {{ pending_orders }} chờ xử lý</div>
+  </div>
+  <div class="ws-card orange">
+    <div class="lbl">🛍️ Sản phẩm</div>
+    <div class="val">{{ total_products }}</div>
+    <div class="sub">{{ sold_out_count }} hết hàng</div>
+  </div>
+  <div class="ws-card purple">
+    <div class="lbl">👥 Khách hàng</div>
+    <div class="val">{{ total_users }}</div>
+    <div class="sub">{{ new_users_month }} mới tháng này</div>
+  </div>
+</div>
+
+<!-- BIỂU ĐỒ HÀNG 1 -->
+<div class="ws-charts-2">
+  <div class="ws-chart-box">
+    <h4>📈 Doanh thu 30 ngày gần nhất</h4>
+    <canvas id="wsChartDaily" height="90"></canvas>
+  </div>
+  <div class="ws-chart-box">
+    <h4>🥧 Tỉ lệ trạng thái đơn hàng</h4>
+    <canvas id="wsChartStatus" height="90"></canvas>
+  </div>
+</div>
+
+<!-- BIỂU ĐỒ HÀNG 2 -->
+<div class="ws-charts-2b">
+  <div class="ws-chart-box">
+    <h4>📊 Doanh thu theo tháng (12 tháng)</h4>
+    <canvas id="wsChartMonthly" height="90"></canvas>
+  </div>
+  <div class="ws-chart-box">
+    <h4>🏷️ Doanh thu theo thương hiệu</h4>
+    <canvas id="wsChartBrand" height="90"></canvas>
+  </div>
+</div>
+
+<!-- BẢNG -->
+<div class="ws-tables">
+  <div class="ws-table-box">
+    <h4>🔥 Top sản phẩm bán chạy</h4>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Sản phẩm</th><th>Đã bán</th><th>Doanh thu</th></tr>
+      </thead>
+      <tbody>
+        {% for item in top_products %}
+        <tr>
+          <td><strong>{{ forloop.counter }}</strong></td>
+          <td>{{ item.watch_name }}</td>
+          <td><strong>{{ item.total_qty }}</strong></td>
+          <td style="color:#16a34a;font-weight:700;">{{ item.revenue_display }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" style="text-align:center;color:#bbb;padding:20px;">Chưa có dữ liệu</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ws-table-box">
+    <h4>🕐 Đơn hàng mới nhất</h4>
+    <table>
+      <thead>
+        <tr><th>Mã</th><th>Khách hàng</th><th>Tổng tiền</th><th>Trạng thái</th></tr>
+      </thead>
+      <tbody>
+        {% for order in recent_orders %}
+        <tr>
+          <td>
+            <a href="/admin/app1/order/{{ order.id }}/change/"
+               style="color:#3b82f6;font-weight:700;">#{{ order.id }}</a>
+          </td>
+          <td>{{ order.full_name }}</td>
+          <td style="font-weight:700;color:#16a34a;">{{ order.total_display }}</td>
+          <td><span class="ws-badge {{ order.status }}">{{ order.get_status_display }}</span></td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" style="text-align:center;color:#bbb;padding:20px;">Chưa có đơn hàng</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- NỘI DUNG GỐC CỦA JAZZMIN (app list, recent actions) -->
+{% load jazzmin %}
+{% get_jazzmin_settings request as jazzmin_settings %}
+
+<div class="row">
+  {% for app in app_list %}
+  <div class="col-sm-6 col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{ app.name }}</h3>
+      </div>
+      <div class="card-body p-0">
+        <ul class="list-group list-group-flush">
+          {% for model in app.models %}
+          <li class="list-group-item">
+            <strong>{{ model.name }}</strong>
+            <div class="float-right">
+              {% if model.add_url %}
+              <a href="{{ model.add_url }}" class="btn btn-success btn-sm">{% trans 'Thêm vào' %}</a>
+              {% endif %}
+              {% if model.admin_url %}
+              <a href="{{ model.admin_url }}" class="btn btn-info btn-sm">{% trans 'Thay đổi' %}</a>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- Recent Actions -->
+  {% if recent_actions_list %}
+  <div class="col-sm-6 col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{% trans 'Hoạt động gần đây' %}</h3>
+      </div>
+      <div class="card-body p-0">
+        <ul class="list-group list-group-flush">
+          {% for action in recent_actions_list %}
+          <li class="list-group-item" style="font-size:12px;">
+            {% if action.is_addition %}<span class="badge badge-success">+</span>{% endif %}
+            {% if action.is_change  %}<span class="badge badge-info">✎</span>{% endif %}
+            {% if action.is_deletion%}<span class="badge badge-danger">✕</span>{% endif %}
+            {% if action.get_admin_url %}
+              <a href="{{ action.get_admin_url }}">{{ action.object_repr }}</a>
+            {% else %}
+              {{ action.object_repr }}
+            {% endif %}
+            <br><small class="text-muted">{{ action.content_type }} — {{ action.action_time|timesince }} trước</small>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<!-- CHART.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const palette = ['#3b82f6','#22c55e','#f59e0b','#ef4444','#8b5cf6','#06b6d4','#f97316','#ec4899'];
+
+// Biểu đồ doanh thu ngày
+new Chart(document.getElementById('wsChartDaily'), {
+  type: 'line',
+  data: {
+    labels: {{ daily_labels|safe }},
+    datasets: [{
+      data: {{ daily_data|safe }},
+      borderColor: '#3b82f6',
+      backgroundColor: 'rgba(59,130,246,.08)',
+      fill: true, tension: 0.4, pointRadius: 2,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { ticks: { callback: v => (v/1e6).toFixed(1)+'M', font:{size:10} },
+                   grid: { color:'#f0f0f0' } },
+              x: { ticks: { font:{size:9} } } }
+  }
+});
+
+// Biểu đồ trạng thái
+new Chart(document.getElementById('wsChartStatus'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ status_labels|safe }},
+    datasets: [{
+      data: {{ status_data|safe }},
+      backgroundColor: ['#f59e0b','#22c55e','#3b82f6','#16a34a','#ef4444'],
+      borderWidth: 2,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position:'bottom', labels:{ font:{size:10}, boxWidth:12 } } }
+  }
+});
+
+// Biểu đồ doanh thu tháng
+new Chart(document.getElementById('wsChartMonthly'), {
+  type: 'bar',
+  data: {
+    labels: {{ monthly_labels|safe }},
+    datasets: [{
+      data: {{ monthly_data|safe }},
+      backgroundColor: '#3b82f6',
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { ticks: { callback: v => (v/1e6).toFixed(0)+'M', font:{size:10} } },
+              x: { ticks: { font:{size:9} } } }
+  }
+});
+
+// Biểu đồ thương hiệu
+new Chart(document.getElementById('wsChartBrand'), {
+  type: 'bar',
+  data: {
+    labels: {{ brand_labels|safe }},
+    datasets: [{
+      data: {{ brand_data|safe }},
+      backgroundColor: palette,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { ticks: { callback: v => (v/1e6).toFixed(0)+'M', font:{size:10} } },
+              y: { ticks: { font:{size:10} } } }
+  }
+});
+</script>
+{% endblock %}
