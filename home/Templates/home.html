@@ -22,14 +22,14 @@
 /* Mobile: thu nhỏ toàn bộ ảnh, thấy hết nội dung, không crop */
 @media (max-width: 767.98px) {
     #mainBanner .carousel-item {
-        background: #111; /* Nền đen cho vùng trống 2 bên nếu có */
+        background: #111;
     }
     #mainBanner .carousel-item img {
-        height: auto !important;   /* Chiều cao tự theo tỉ lệ ảnh */
+        height: auto !important;
         width: 100% !important;
-        object-fit: contain;       /* Thấy toàn bộ ảnh, không crop */
+        object-fit: contain;
         object-position: center;
-        max-height: 280px;         /* Giới hạn không quá cao trên mobile */
+        max-height: 280px;
     }
 }
 
@@ -216,6 +216,106 @@
         font-size: 1.2rem !important;
     }
 }
+
+/* ================================================================
+   CHỈ THÊM: Background & màu sắc hài hoà — không đổi layout/font
+================================================================ */
+
+/* Nền tổng thể — trắng ấm rất nhẹ */
+body { background: #f9f8f6; }
+
+/* Brand section: nền nhạt hơn, không gradient đậm */
+.brand-section-wrap {
+    background: #f9f8f6;
+    padding: 8px 0 28px;
+}
+
+/* Product section: cùng tone, liền mạch */
+.product-section-wrap {
+    background: #f9f8f6;
+    padding: 0 0 48px;
+    border-top: 1px solid rgba(0,0,0,.05);
+}
+
+/* Typing headline — đường kẻ vàng mỏng */
+.typing-gold-border {
+    border-bottom: 2px solid rgba(242,194,0,.55);
+    border-top: 2px solid rgba(242,194,0,.55);
+}
+
+/* Brand box active — viền xám đen nhẹ, không vàng chói */
+.brand-box.active {
+    border-color: #555 !important;
+    background: #f8f8f8 !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,.14) !important;
+}
+.brand-box:hover {
+    border-color: #888 !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,.13) !important;
+}
+.brand-box.active .all-brand { color: #222 !important; }
+
+/* Căn giữa tiêu đề THƯƠNG HIỆU */
+.brand-section-title {
+    position: relative;
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.brand-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 48px; height: 3px;
+    background: #d4a800;
+    border-radius: 2px;
+    opacity: .7;
+}
+
+/* Căn giữa tiêu đề DANH SÁCH SẢN PHẨM */
+.product-section-title {
+    position: relative;
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.product-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 48px; height: 3px;
+    background: #d4a800;
+    border-radius: 2px;
+    opacity: .7;
+}
+
+/* Product card — nền trắng, border nhẹ */
+.product-card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #eae6e0;
+    overflow: hidden;
+}
+.product-card:hover {
+    box-shadow: 0 14px 32px rgba(0,0,0,.10) !important;
+    border-color: #d4c8a8;
+}
+
+/* Carousel indicators vàng nhẹ */
+#mainBanner .carousel-indicators button {
+    background-color: rgba(255,255,255,.45) !important;
+    border: none !important;
+    height: 4px !important;
+    width: 24px !important;
+    border-radius: 2px !important;
+    transition: width .3s ease, background .3s ease !important;
+}
+#mainBanner .carousel-indicators button.active {
+    background-color: #f2c200 !important;
+    width: 40px !important;
+}
 </style>
 
 <!-- BANNER -->
@@ -247,7 +347,7 @@
 </div>
 
 <!-- TYPING HEADLINE -->
-<div class="container-fluid py-4 py-md-5 bg-dark text-white text-center">
+<div class="container-fluid py-4 py-md-5 bg-dark text-white text-center typing-gold-border">
     <h2 class="fw-bold fs-4 fs-md-2">
         WATCHSTORE.VN - 
         <span id="typing" class="text-warning"></span>
@@ -271,46 +371,50 @@
 </script>
 
 <!-- THƯƠNG HIỆU -->
-<h2 class="text-center mt-4 mt-md-5 mb-2 fw-bold brand-section-title">
-    THƯƠNG HIỆU ĐỒNG HỒ NỔI BẬT
-</h2>
-<p class="text-center text-muted mb-4 brand-section-sub px-3">
-    Watchstore.vn Cam kết chính hãng 100%, bồi thường 20 lần nếu phát hiện hàng giả
-</p>
+<div class="brand-section-wrap">
+    <h2 class="text-center mt-4 mt-md-5 mb-2 fw-bold brand-section-title" style="width:100%">
+        THƯƠNG HIỆU ĐỒNG HỒ NỔI BẬT
+    </h2>
+    <p class="text-center text-muted mb-4 brand-section-sub px-3">
+        Watchstore.vn Cam kết chính hãng 100%, bồi thường 20 lần nếu phát hiện hàng giả
+    </p>
 
-<div class="brand-wrapper">
-    <button class="brand-arrow left" id="prevBtn">&#10094;</button>
-    <div class="brand-grid-container">
-        <div class="brand-grid" id="brandGrid">
-            <a hx-get="/?brand="
-               hx-target="#product-container"
-               hx-swap="innerHTML"
-               hx-push-url="/?brand="
-               class="brand-box all-brand {% if not brand_slug %}active{% endif %}"
-               id="brand-all">
-               Tất cả
-            </a>
-            {% for brand in brands %}
-            <a href="{% url 'brand_detail' brand.slug %}"
-               data-slug="{{ brand.slug }}"
-               class="brand-box brand-btn {% if brand_slug == brand.slug %}active{% endif %}">
-                {% if brand.image %}
-                    <img src="{{ brand.image.url }}" alt="{{ brand.name }}">
-                {% endif %}
-            </a>
-            {% endfor %}
+    <div class="brand-wrapper">
+        <button class="brand-arrow left" id="prevBtn">&#10094;</button>
+        <div class="brand-grid-container">
+            <div class="brand-grid" id="brandGrid">
+                <a hx-get="/?brand="
+                   hx-target="#product-container"
+                   hx-swap="innerHTML"
+                   hx-push-url="/?brand="
+                   class="brand-box all-brand {% if not brand_slug %}active{% endif %}"
+                   id="brand-all">
+                   Tất cả
+                </a>
+                {% for brand in brands %}
+                <a href="{% url 'brand_detail' brand.slug %}"
+                   data-slug="{{ brand.slug }}"
+                   class="brand-box brand-btn {% if brand_slug == brand.slug %}active{% endif %}">
+                    {% if brand.image %}
+                        <img src="{{ brand.image.url }}" alt="{{ brand.name }}">
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
         </div>
+        <button class="brand-arrow right" id="nextBtn">&#10095;</button>
     </div>
-    <button class="brand-arrow right" id="nextBtn">&#10095;</button>
 </div>
 
 <!-- DANH SÁCH SẢN PHẨM -->
-<div class="container">
-    <h3 class="text-center mb-4 fw-bold mt-4 mt-md-5 product-section-title">
-        DANH SÁCH SẢN PHẨM
-    </h3>
-    <div id="product-container">
-        {% include "includes/product_list.html" %}
+<div class="product-section-wrap">
+    <div class="container">
+        <h3 class="text-center mb-4 fw-bold mt-4 mt-md-5 product-section-title" style="width:100%">
+            DANH SÁCH SẢN PHẨM
+        </h3>
+        <div id="product-container">
+            {% include "includes/product_list.html" %}
+        </div>
     </div>
 </div>
 
@@ -320,12 +424,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextBtn = document.getElementById("nextBtn");
     const prevBtn = document.getElementById("prevBtn");
 
-    // Tự động tính số cột theo màn hình
     function getItemsPerPage() {
         const w = window.innerWidth;
-        if (w < 576) return 9;   // 3 cột x 3 hàng
-        if (w < 992) return 8;   // 4 cột x 2 hàng
-        return 12;                // 6 cột x 2 hàng
+        if (w < 576) return 9;
+        if (w < 992) return 8;
+        return 12;
     }
 
     let currentPage = 1;
@@ -352,7 +455,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentPage > 1) { currentPage--; renderPage(currentPage); }
     });
 
-    // Re-render khi resize
     let resizeTimer;
     window.addEventListener("resize", function () {
         clearTimeout(resizeTimer);
@@ -367,7 +469,6 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-// Xử lý active state cho brand buttons
 document.addEventListener('click', function(e) {
     const btn = e.target.closest('.brand-box');
     if (!btn) return;

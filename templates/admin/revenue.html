@@ -5,222 +5,175 @@
 
 {% block content %}
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
 /* ===============================
    WATCHSTORE ADMIN DASHBOARD
-   Responsive Professional Version
 =================================*/
+* { box-sizing: border-box; }
+#content { padding: 20px 25px !important; font-family: 'Be Vietnam Pro', sans-serif; }
 
-/* RESET FIX CHO ADMIN */
-#content { padding: 20px 25px !important; }
-.card { border-radius: 14px !important; }
-
-/* ===== STAT CARDS ===== */
-.ws-stat-cards {
+/* ===== STAT CARDS GRID - 3 rows x 4 cols matching image ===== */
+.ws-stat-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-bottom: 25px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-.ws-card {
+.ws-stat-card {
   background: #fff;
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
-  border-left: 5px solid #ccc;
-  transition: all .2s ease;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform .2s, box-shadow .2s;
 }
-.ws-card:hover { transform: translateY(-3px); }
+.ws-stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.1); }
 
-.ws-card .lbl  {
-  font-size: 12px;
-  color: #888;
-  font-weight: 600;
-  text-transform: uppercase;
+.ws-stat-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
 }
+.icon-purple { background: #ede9fe; }
+.icon-blue   { background: #dbeafe; }
+.icon-orange { background: #fef3c7; }
+.icon-red    { background: #fee2e2; }
 
-.ws-card .val  {
-  font-size: 26px;
-  font-weight: 800;
-  margin: 6px 0;
+.ws-stat-info { flex: 1; min-width: 0; }
+.ws-stat-label {
+  font-size: 11px; color: #94a3b8;
+  font-weight: 600; text-transform: uppercase;
+  letter-spacing: .4px; margin-bottom: 3px;
 }
-
-.ws-card .sub  {
-  font-size: 12px;
-  color: #aaa;
+.ws-stat-value {
+  font-size: 20px; font-weight: 800; color: #1e293b;
+  line-height: 1.2; white-space: nowrap;
 }
-
-.ws-card.green  { border-color: #22c55e; }
-.ws-card.green .val { color: #16a34a; }
-
-.ws-card.blue   { border-color: #3b82f6; }
-.ws-card.blue .val { color: #2563eb; }
-
-.ws-card.orange { border-color: #f59e0b; }
-.ws-card.orange .val { color: #d97706; }
-
-.ws-card.purple { border-color: #8b5cf6; }
-.ws-card.purple .val { color: #7c3aed; }
+.ws-stat-badge {
+  display: inline-block; margin-top: 4px;
+  padding: 2px 8px; border-radius: 20px;
+  font-size: 10px; font-weight: 700;
+}
+.badge-blue   { background: #dbeafe; color: #2563eb; }
+.badge-orange { background: #fef3c7; color: #d97706; }
+.badge-green  { background: #dcfce7; color: #16a34a; }
+.badge-red    { background: #fee2e2; color: #dc2626; }
 
 /* ===== FILTER ===== */
 .ws-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 20px;
-  background: #fff;
-  padding: 14px 16px;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.05);
+  display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; margin-bottom: 20px;
+  background: #fff; padding: 12px 16px;
+  border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
-
+.ws-filter strong { font-size: 12px; color: #64748b; }
 .ws-filter a {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-decoration: none;
-  background: #f1f1f1;
-  color: #555;
-  transition: .2s;
+  padding: 5px 14px; border-radius: 20px; font-size: 12px;
+  font-weight: 600; text-decoration: none;
+  background: #f1f5f9; color: #64748b; transition: .2s;
 }
-
-.ws-filter a.active,
-.ws-filter a:hover {
-  background: #f59e0b;
-  color: #fff;
-}
-
+.ws-filter a.active, .ws-filter a:hover { background: #f59e0b; color: #fff; }
 .ws-filter input[type=date] {
-  padding: 6px 8px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 12px;
+  padding: 5px 8px; border: 1px solid #e2e8f0;
+  border-radius: 8px; font-size: 12px; font-family: inherit;
+}
+.ws-filter button {
+  padding: 5px 14px; border-radius: 20px; border: none;
+  background: #3b82f6; color: #fff; font-size: 12px;
+  font-weight: 600; cursor: pointer; font-family: inherit;
 }
 
-.ws-filter button {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: none;
-  background: #3b82f6;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
+/* ===== STATUS SUMMARY TABLE ===== */
+.ws-status-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ws-status-table thead th {
+  font-size: 10px; text-transform: uppercase; font-weight: 700;
+  color: #94a3b8; padding: 8px 10px; text-align: left;
+  border-bottom: 1px solid #f1f5f9;
 }
+.ws-status-table tbody tr { border-bottom: 1px solid #f8fafc; transition: background .15s; }
+.ws-status-table tbody tr:last-child { border-bottom: none; }
+.ws-status-table tbody tr:hover { background: #f8fafc; }
+.ws-status-table td { padding: 10px; vertical-align: middle; }
+
+.ws-status-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  display: inline-block; margin-right: 8px; flex-shrink: 0;
+}
+.ws-status-name { display: flex; align-items: center; font-weight: 600; color: #334155; }
+
+.ws-progress-bar {
+  height: 6px; border-radius: 99px; background: #f1f5f9;
+  overflow: hidden; width: 100%; min-width: 60px;
+}
+.ws-progress-fill { height: 100%; border-radius: 99px; transition: width .6s ease; }
+
+.ws-status-pct { font-size: 11px; color: #94a3b8; font-weight: 600; white-space: nowrap; }
+.ws-status-count { font-weight: 800; color: #1e293b; font-size: 15px; }
 
 /* ===== CHARTS ===== */
-.ws-charts-2,
-.ws-charts-2b {
-  display: grid;
-  gap: 16px;
-  margin-bottom: 20px;
+.ws-charts-row {
+  display: grid; gap: 16px; margin-bottom: 16px;
 }
-
-.ws-charts-2 {
-  grid-template-columns: 2fr 1fr;
-}
-
-.ws-charts-2b {
-  grid-template-columns: 1fr 1fr;
-}
+.ws-charts-row.cols-2-1 { grid-template-columns: 2fr 1fr; }
+.ws-charts-row.cols-1-1 { grid-template-columns: 1fr 1fr; }
 
 .ws-chart-box {
-  background: #fff;
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  background: #fff; border-radius: 14px;
+  padding: 18px 20px; box-shadow: 0 2px 10px rgba(0,0,0,.06);
 }
-
-.ws-chart-box canvas {
-  width: 100% !important;
-  height: auto !important;
+.ws-chart-box h4 {
+  margin: 0 0 14px; font-size: 13px;
+  font-weight: 700; color: #334155;
 }
+.ws-chart-box canvas { width: 100% !important; }
 
 /* ===== TABLES ===== */
 .ws-tables {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 30px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; margin-bottom: 30px;
 }
-
 .ws-table-box {
-  background: #fff;
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  background: #fff; border-radius: 14px;
+  padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,.06);
   overflow-x: auto;
 }
-
-.ws-table-box table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
+.ws-table-box h4 {
+  margin: 0 0 14px; font-size: 13px;
+  font-weight: 700; color: #334155;
 }
-
+.ws-table-box table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .ws-table-box th {
-  background: #f8f8f8;
-  padding: 10px;
-  text-align: left;
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #777;
+  background: #f8fafc; padding: 9px 10px;
+  text-align: left; font-weight: 700;
+  font-size: 11px; text-transform: uppercase;
+  color: #94a3b8; border-bottom: 1px solid #e2e8f0;
 }
+.ws-table-box td { padding: 10px; border-bottom: 1px solid #f1f5f9; }
+.ws-table-box tr:last-child td { border-bottom: none; }
 
-.ws-table-box td {
-  padding: 10px;
-  border-bottom: 1px solid #f1f1f1;
-}
-
-.ws-table-box tr:last-child td {
-  border-bottom: none;
-}
-
-/* ===== BADGE ===== */
 .ws-badge {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 600;
 }
 
-/* ===== RESPONSIVE BREAKPOINTS ===== */
-
-/* Tablet */
+/* ===== RESPONSIVE ===== */
+@media(max-width: 1100px) {
+  .ws-stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media(max-width: 992px) {
-  .ws-charts-2 { grid-template-columns: 1fr; }
-  .ws-charts-2b { grid-template-columns: 1fr; }
+  .ws-charts-row.cols-2-1,
+  .ws-charts-row.cols-1-1 { grid-template-columns: 1fr; }
   .ws-tables { grid-template-columns: 1fr; }
 }
-
-/* Mobile */
 @media(max-width: 600px) {
-  #content { padding: 15px !important; }
-
-  .ws-card { padding: 16px; }
-
-  .ws-card .val { font-size: 22px; }
-
-  .ws-filter {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .ws-filter form {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .ws-filter input[type=date] {
-    width: 48%;
-  }
-
-  .ws-filter button {
-    width: 100%;
-  }
+  #content { padding: 12px !important; }
+  .ws-stat-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ws-stat-value { font-size: 16px; }
 }
 </style>
 
@@ -232,7 +185,7 @@
   <a href="?period=month"  {% if period == 'month' or not period %}class="active"{% endif %}>Tháng này</a>
   <a href="?period=year"   {% if period == 'year'   %}class="active"{% endif %}>Năm nay</a>
   <a href="?period=all"    {% if period == 'all'    %}class="active"{% endif %}>Tất cả</a>
-  <span style="color:#ddd;">|</span>
+  <span style="color:#e2e8f0;">|</span>
   <form method="get" style="display:flex;gap:6px;align-items:center;margin:0;">
     <input type="date" name="date_from" value="{{ date_from }}">
     <span style="font-size:11px;color:#aaa;">đến</span>
@@ -241,51 +194,148 @@
   </form>
 </div>
 
-<!-- 4 STAT CARDS -->
-<div class="ws-stat-cards">
-  <div class="ws-card green">
-    <div class="lbl">💰 Doanh thu</div>
-    <div class="val">{{ revenue_display }}</div>
-    <div class="sub">{{ period_label }}</div>
+<!-- STAT CARDS: 3 rows × 4 cols (matching design image) -->
+<div class="ws-stat-grid">
+
+  <!-- Row 1: Toàn thời gian -->
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-purple">👥</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Thành viên đăng ký</div>
+      <div class="ws-stat-value">{{ total_users }}</div>
+      <span class="ws-stat-badge badge-blue">Toàn thời gian</span>
+    </div>
   </div>
-  <div class="ws-card blue">
-    <div class="lbl">📦 Đơn hàng</div>
-    <div class="val">{{ total_orders }}</div>
-    <div class="sub">{{ completed_orders }} đã giao &bull; {{ pending_orders }} chờ xử lý</div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-blue">🛒</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Đơn hàng đã bán</div>
+      <div class="ws-stat-value">{{ total_orders }}</div>
+      <span class="ws-stat-badge badge-blue">Toàn thời gian</span>
+    </div>
   </div>
-  <div class="ws-card orange">
-    <div class="lbl">🛍️ Sản phẩm</div>
-    <div class="val">{{ total_products }}</div>
-    <div class="sub">{{ sold_out_count }} hết hàng</div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-orange">💰</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Doanh thu đơn hàng</div>
+      <div class="ws-stat-value">{{ revenue_display }}</div>
+      <span class="ws-stat-badge badge-orange">Toàn thời gian</span>
+    </div>
   </div>
-  <div class="ws-card purple">
-    <div class="lbl">👥 Khách hàng</div>
-    <div class="val">{{ total_users }}</div>
-    <div class="sub">{{ new_users_month }} mới tháng này</div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-red">📈</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Lợi nhuận đơn hàng</div>
+      <div class="ws-stat-value">{{ revenue_display }}</div>
+      <span class="ws-stat-badge badge-red">Toàn thời gian</span>
+    </div>
+  </div>
+
+  <!-- Row 2: Tháng này -->
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-purple">👥</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Thành viên đăng ký</div>
+      <div class="ws-stat-value">{{ new_users_month }}</div>
+      <span class="ws-stat-badge badge-orange">Tháng này</span>
+    </div>
+  </div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-blue">🛒</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Đơn hàng đã bán</div>
+      <div class="ws-stat-value">{{ completed_orders }}</div>
+      <span class="ws-stat-badge badge-orange">Tháng này</span>
+    </div>
+  </div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-orange">💰</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Doanh thu đơn hàng</div>
+      <div class="ws-stat-value">{{ revenue_display }}</div>
+      <span class="ws-stat-badge badge-orange">Tháng này</span>
+    </div>
+  </div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-red">📈</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Lợi nhuận đơn hàng</div>
+      <div class="ws-stat-value">{{ revenue_display }}</div>
+      <span class="ws-stat-badge badge-red">Tháng này</span>
+    </div>
+  </div>
+
+  <!-- Row 3: Hôm nay -->
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-purple">👥</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Thành viên đăng ký</div>
+      <div class="ws-stat-value">—</div>
+      <span class="ws-stat-badge badge-green">Hôm nay</span>
+    </div>
+  </div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-blue">🛒</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Đơn hàng đã bán</div>
+      <div class="ws-stat-value">{{ pending_orders }}</div>
+      <span class="ws-stat-badge badge-green">Hôm nay</span>
+    </div>
+  </div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-orange">💰</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Doanh thu đơn hàng</div>
+      <div class="ws-stat-value">—</div>
+      <span class="ws-stat-badge badge-green">Hôm nay</span>
+    </div>
+  </div>
+  <div class="ws-stat-card">
+    <div class="ws-stat-icon icon-red">📈</div>
+    <div class="ws-stat-info">
+      <div class="ws-stat-label">Lợi nhuận đơn hàng</div>
+      <div class="ws-stat-value">—</div>
+      <span class="ws-stat-badge badge-green">Hôm nay</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- BIỂU ĐỒ HÀNG 1: Doanh thu 30 ngày (cột) + Trạng thái đơn hàng (bảng tóm tắt) -->
+<div class="ws-charts-row cols-2-1">
+  <div class="ws-chart-box">
+    <h4>📊 Doanh thu 30 ngày gần nhất</h4>
+    <canvas id="wsChartDaily" height="80"></canvas>
+  </div>
+  <div class="ws-chart-box">
+    <h4>📋 Trạng thái đơn hàng</h4>
+    <table class="ws-status-table">
+      <thead>
+        <tr>
+          <th>Trạng thái</th>
+          <th style="text-align:center;">Số đơn</th>
+          <th>Tỉ lệ</th>
+          <th style="text-align:right;">%</th>
+        </tr>
+      </thead>
+      <tbody id="wsStatusTableBody"></tbody>
+    </table>
+    <div style="margin-top:14px;padding-top:10px;border-top:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:12px;color:#94a3b8;font-weight:600;">TỔNG ĐƠN HÀNG</span>
+      <span id="wsStatusTotal" style="font-size:20px;font-weight:800;color:#1e293b;"></span>
+    </div>
   </div>
 </div>
 
-<!-- BIỂU ĐỒ HÀNG 1 -->
-<div class="ws-charts-2">
+<!-- BIỂU ĐỒ HÀNG 2: Doanh thu theo tháng (cột nhóm) + Doanh thu theo thương hiệu (cột ngang) -->
+<div class="ws-charts-row cols-1-1">
   <div class="ws-chart-box">
-    <h4>📈 Doanh thu 30 ngày gần nhất</h4>
-    <canvas id="wsChartDaily" height="90"></canvas>
-  </div>
-  <div class="ws-chart-box">
-    <h4>🥧 Tỉ lệ trạng thái đơn hàng</h4>
-    <canvas id="wsChartStatus" height="90"></canvas>
-  </div>
-</div>
-
-<!-- BIỂU ĐỒ HÀNG 2 -->
-<div class="ws-charts-2b">
-  <div class="ws-chart-box">
-    <h4>📊 Doanh thu theo tháng (12 tháng)</h4>
-    <canvas id="wsChartMonthly" height="90"></canvas>
+    <h4>📈 Doanh thu theo tháng (12 tháng)</h4>
+    <canvas id="wsChartMonthly" height="110"></canvas>
   </div>
   <div class="ws-chart-box">
     <h4>🏷️ Doanh thu theo thương hiệu</h4>
-    <canvas id="wsChartBrand" height="90"></canvas>
+    <canvas id="wsChartBrand" height="110"></canvas>
   </div>
 </div>
 
@@ -311,7 +361,6 @@
       </tbody>
     </table>
   </div>
-
   <div class="ws-table-box">
     <h4>🕐 Đơn hàng mới nhất</h4>
     <table>
@@ -337,8 +386,7 @@
   </div>
 </div>
 
-
-<!-- NỘI DUNG GỐC CỦA JAZZMIN (app list, recent actions) -->
+<!-- NỘI DUNG GỐC CỦA JAZZMIN -->
 {% load jazzmin %}
 {% get_jazzmin_settings request as jazzmin_settings %}
 
@@ -370,7 +418,6 @@
   </div>
   {% endfor %}
 
-  <!-- Recent Actions -->
   {% if recent_actions_list %}
   <div class="col-sm-6 col-md-4">
     <div class="card">
@@ -404,80 +451,221 @@
 <script>
 const palette = ['#3b82f6','#22c55e','#f59e0b','#ef4444','#8b5cf6','#06b6d4','#f97316','#ec4899'];
 
-// Biểu đồ doanh thu ngày
-new Chart(document.getElementById('wsChartDaily'), {
-  type: 'line',
-  data: {
-    labels: {{ daily_labels|safe }},
-    datasets: [{
-      data: {{ daily_data|safe }},
-      borderColor: '#3b82f6',
-      backgroundColor: 'rgba(59,130,246,.08)',
-      fill: true, tension: 0.4, pointRadius: 2,
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false } },
-    scales: { y: { ticks: { callback: v => (v/1e6).toFixed(1)+'M', font:{size:10} },
-                   grid: { color:'#f0f0f0' } },
-              x: { ticks: { font:{size:9} } } }
-  }
-});
+// Shared tooltip & font defaults
+Chart.defaults.font.family = "'Be Vietnam Pro', sans-serif";
+Chart.defaults.font.size = 11;
 
-// Biểu đồ trạng thái
-new Chart(document.getElementById('wsChartStatus'), {
-  type: 'doughnut',
-  data: {
-    labels: {{ status_labels|safe }},
-    datasets: [{
-      data: {{ status_data|safe }},
-      backgroundColor: ['#f59e0b','#22c55e','#3b82f6','#16a34a','#ef4444'],
-      borderWidth: 2,
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { position:'bottom', labels:{ font:{size:10}, boxWidth:12 } } }
-  }
-});
+const fmtMoney = v => {
+  if (v >= 1e9) return (v/1e9).toFixed(1) + ' tỷ';
+  if (v >= 1e6) return (v/1e6).toFixed(1) + 'M';
+  if (v >= 1e3) return (v/1e3).toFixed(0) + 'K';
+  return v;
+};
 
-// Biểu đồ doanh thu tháng
-new Chart(document.getElementById('wsChartMonthly'), {
-  type: 'bar',
-  data: {
-    labels: {{ monthly_labels|safe }},
-    datasets: [{
-      data: {{ monthly_data|safe }},
-      backgroundColor: '#3b82f6',
-      borderRadius: 4,
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false } },
-    scales: { y: { ticks: { callback: v => (v/1e6).toFixed(0)+'M', font:{size:10} } },
-              x: { ticks: { font:{size:9} } } }
-  }
-});
+// 1. Biểu đồ cột: Doanh thu 30 ngày — tự động căn trục Y
+(function() {
+  const dailyData   = {{ daily_data|safe }};
+  const dailyLabels = {{ daily_labels|safe }};
 
-// Biểu đồ thương hiệu
+  // Tính max thực tế, làm tròn lên mức đẹp + padding 15%
+  function niceMax(v) {
+    if (!v || v === 0) return 1000000;
+    const exp  = Math.pow(10, Math.floor(Math.log10(v)));
+    return Math.ceil(v / exp) * exp * 1.15;
+  }
+  const maxVal = Math.max(...dailyData, 0);
+  const yMax   = niceMax(maxVal);
+  const barThickness = dailyLabels.length > 20 ? 9 : 14;
+
+  new Chart(document.getElementById('wsChartDaily'), {
+    type: 'bar',
+    data: {
+      labels: dailyLabels,
+      datasets: [{
+        label: 'Doanh thu',
+        data: dailyData,
+        backgroundColor: (ctx) => {
+          const chart = ctx.chart;
+          const {ctx: c, chartArea} = chart;
+          if (!chartArea) return '#3b82f6';
+          const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+          g.addColorStop(0, 'rgba(59,130,246,0.95)');
+          g.addColorStop(1, 'rgba(59,130,246,0.45)');
+          return g;
+        },
+        borderRadius: 4,
+        borderSkipped: false,
+        hoverBackgroundColor: '#1d4ed8',
+        barThickness: barThickness,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1e293b',
+          padding: 10,
+          titleFont: { size: 11 },
+          bodyFont: { size: 12, weight: '700' },
+          callbacks: {
+            title: items => items[0].label,
+            label: ctx => '  ' + fmtMoney(ctx.parsed.y) + 'đ',
+          }
+        }
+      },
+      scales: {
+        y: {
+          max: yMax,
+          beginAtZero: true,
+          ticks: {
+            callback: v => fmtMoney(v),
+            font: { size: 10 },
+            maxTicksLimit: 5,
+          },
+          grid: { color: '#f1f5f9' },
+        },
+        x: {
+          ticks: {
+            font: { size: 9 },
+            maxRotation: 45,
+            autoSkip: true,
+            maxTicksLimit: 16,
+          },
+          grid: { display: false },
+        }
+      }
+    }
+  });
+})();
+
+// 2. Bảng tóm tắt trạng thái đơn hàng
+(function() {
+  const labels = {{ status_labels|safe }};
+  const data   = {{ status_data|safe }};
+  const colors = ['#f59e0b','#22c55e','#3b82f6','#16a34a','#ef4444','#8b5cf6','#06b6d4'];
+  const total  = data.reduce((a, b) => a + b, 0);
+
+  document.getElementById('wsStatusTotal').textContent = total + ' đơn';
+
+  const tbody = document.getElementById('wsStatusTableBody');
+  labels.forEach((label, i) => {
+    const count = data[i];
+    const pct   = total > 0 ? ((count / total) * 100).toFixed(1) : 0;
+    const color = colors[i % colors.length];
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <div class="ws-status-name">
+          <span class="ws-status-dot" style="background:${color};"></span>
+          ${label}
+        </div>
+      </td>
+      <td style="text-align:center;" class="ws-status-count">${count}</td>
+      <td style="width:35%;">
+        <div class="ws-progress-bar">
+          <div class="ws-progress-fill" style="width:${pct}%;background:${color};"></div>
+        </div>
+      </td>
+      <td style="text-align:right;" class="ws-status-pct">${pct}%</td>
+    `;
+    tbody.appendChild(tr);
+  });
+})();
+
+// 3. Biểu đồ cột: Doanh thu 12 tháng — tự động căn Y
+(function() {
+  const mData   = {{ monthly_data|safe }};
+  const mLabels = {{ monthly_labels|safe }};
+  function niceMax(v) {
+    if (!v || v === 0) return 1000000;
+    const exp = Math.pow(10, Math.floor(Math.log10(v)));
+    return Math.ceil(v / exp) * exp * 1.15;
+  }
+  const yMax = niceMax(Math.max(...mData, 0));
+
+  const ctxM = document.getElementById('wsChartMonthly');
+  const gM   = ctxM.getContext('2d').createLinearGradient(0, 0, 0, 220);
+  gM.addColorStop(0, 'rgba(59,130,246,0.92)');
+  gM.addColorStop(1, 'rgba(59,130,246,0.45)');
+
+  new Chart(ctxM, {
+    type: 'bar',
+    data: {
+      labels: mLabels,
+      datasets: [{
+        label: 'Doanh thu',
+        data: mData,
+        backgroundColor: gM,
+        borderRadius: 6,
+        borderSkipped: false,
+        hoverBackgroundColor: '#1d4ed8',
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1e293b',
+          padding: 10,
+          callbacks: {
+            label: ctx => '  ' + fmtMoney(ctx.parsed.y) + 'đ'
+          }
+        }
+      },
+      scales: {
+        y: {
+          max: yMax,
+          beginAtZero: true,
+          ticks: { callback: v => fmtMoney(v), font:{size:10}, maxTicksLimit: 5 },
+          grid: { color:'#f1f5f9' },
+        },
+        x: {
+          ticks: { font:{size:10} },
+          grid: { display: false },
+        }
+      }
+    }
+  });
+})();
+
+// 4. Biểu đồ cột ngang: Doanh thu theo thương hiệu
 new Chart(document.getElementById('wsChartBrand'), {
   type: 'bar',
   data: {
     labels: {{ brand_labels|safe }},
     datasets: [{
+      label: 'Doanh thu',
       data: {{ brand_data|safe }},
       backgroundColor: palette,
-      borderRadius: 4,
+      borderRadius: 5,
+      borderSkipped: false,
     }]
   },
   options: {
     indexAxis: 'y',
     responsive: true,
-    plugins: { legend: { display: false } },
-    scales: { x: { ticks: { callback: v => (v/1e6).toFixed(0)+'M', font:{size:10} } },
-              y: { ticks: { font:{size:10} } } }
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' ' + fmtMoney(ctx.parsed.x) + 'đ'
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { callback: v => fmtMoney(v), font:{size:10} },
+        grid: { color:'#f1f5f9' },
+        beginAtZero: true,
+      },
+      y: {
+        ticks: { font:{size:10} },
+        grid: { display: false },
+      }
+    }
   }
 });
 </script>

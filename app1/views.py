@@ -1,7 +1,7 @@
 import profile
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Watch, Brand, Cart, CartItem, WatchImage, Order, OrderItem, Notification, create_notification
+from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, Order, OrderItem, Notification, create_notification
 from .forms import WatchForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -74,7 +74,7 @@ def watch_detail(request, slug):
     watch = get_object_or_404(Watch, slug=slug)
     related = Watch.objects.filter(brand=watch.brand).exclude(id=watch.id)[:4]
     gallery = list(watch.extra_images.all())
-
+    desc_images = list(watch.desc_images.all())  
     cart_count = 0
     if request.user.is_authenticated:
         cart, _ = Cart.objects.get_or_create(user=request.user)
@@ -85,6 +85,7 @@ def watch_detail(request, slug):
         'related': related,
         'cart_count': cart_count,
         'gallery': gallery,
+        'desc_images': desc_images,
     })
 
 

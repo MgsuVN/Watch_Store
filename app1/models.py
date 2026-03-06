@@ -105,7 +105,29 @@ class WatchImage(models.Model):
     watch = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='extra_images')
     image = models.ImageField(upload_to='products/gallery/')
     order = models.IntegerField(default=0, verbose_name='Thứ tự')
+class WatchDescImage(models.Model):
+    """Ảnh minh hoạ trong phần mô tả chi tiết sản phẩm (quản lý từ admin)."""
 
+    LAYOUT_CHOICES = [
+        ('full',        '📷 Ảnh toàn chiều rộng'),
+        ('float_left',  '◧ Ảnh trái — chữ bên phải'),
+        ('float_right', '◨ Ảnh phải — chữ bên trái'),
+    ]
+
+    watch   = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='desc_images')
+    image   = models.ImageField(upload_to='watch_desc/', blank=True, null=True, help_text='Không bắt buộc — để trống nếu chỉ cần thêm chữ')
+    caption = models.TextField(blank=True, help_text='Đoạn chữ hiển thị bên cạnh ảnh (chỉ dùng khi chọn layout trái/phải)')
+    layout  = models.CharField(max_length=20, choices=LAYOUT_CHOICES, default='full', help_text='Kiểu hiển thị')
+    order   = models.PositiveIntegerField(default=0, help_text='Thứ tự hiển thị (số nhỏ hiện trước)')
+
+
+    class Meta:
+        ordering = ['order']
+        verbose_name        = 'Ảnh mô tả'
+        verbose_name_plural = 'Ảnh mô tả sản phẩm'
+
+    def __str__(self):
+        return f"Ảnh mô tả #{self.order} — {self.watch.name}"
     class Meta:
         ordering = ['order']
         verbose_name = 'Ảnh sản phẩm'

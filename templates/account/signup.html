@@ -1,121 +1,534 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block extra_css %}
+/* ══════════════════════════════════════
+   AUTH PAGE — WatchStore
+══════════════════════════════════════ */
+.auth-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px);
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #eef2ff 0%, #dde6ff 40%, #ede8ff 75%, #f3f0ff 100%);
+  overflow: hidden;
+}
+
+#watchCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-container {
+  position: relative;
+  z-index: 1;
+  width: 850px;
+  max-width: 100%;
+  height: 520px;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 10px 48px rgba(90,120,220,.18), 0 2px 8px rgba(0,0,0,.07);
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.auth-container h1 {
+  font-size: 36px;
+  margin: -10px 0;
+  font-weight: 700;
+  color: #1e2a4a;
+}
+
+.auth-container p {
+  font-size: 14.5px;
+  margin: 15px 0;
+  color: #555;
+}
+
+form { width: 100%; }
+
+.form-box {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-align: center;
+  padding: 40px;
+  z-index: 1;
+  transition: .6s ease-in-out 1.2s, visibility 0s 1s;
+}
+
+.auth-container.active .form-box { right: 50%; }
+.form-box.register { visibility: hidden; }
+.auth-container.active .form-box.register { visibility: visible; }
+
+/* ── Input — override Bootstrap hoàn toàn ── */
+.input-box {
+  position: relative;
+  margin: 25px 0;
+}
+
+.auth-container .input-box input {
+  width: 100% !important;
+  padding: 13px 46px 13px 20px !important;
+  background: #eef0ff !important;
+  border-radius: 8px !important;
+  border: 1.5px solid transparent !important;
+  border-bottom: 1.5px solid transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  color: #333 !important;
+  font-weight: 500 !important;
+  font-family: "Poppins", sans-serif !important;
+  transition: border-color .2s, background .2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.auth-container .input-box input:focus {
+  border: 1.5px solid #7494ec !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.auth-container .input-box input.is-invalid {
+  border: 1.5px solid #dc3545 !important;
+  background: #fff5f5 !important;
+}
+
+.auth-container .input-box input::placeholder {
+  color: #aab4cc !important;
+  font-weight: 400 !important;
+}
+
+/* Static icon */
+.input-box .ic-static {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #aab4cc;
+  pointer-events: none;
+}
+
+/* Eye toggle */
+.input-box .eye-btn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+  cursor: pointer;
+  color: #aab4cc;
+  font-size: 20px;
+  line-height: 1;
+  z-index: 5;
+  transition: color .2s;
+  display: flex;
+  align-items: center;
+}
+.input-box .eye-btn:hover { color: #7494ec; }
+.input-box .eye-btn:focus { outline: none; box-shadow: none; }
+
+.invalid-msg {
+  color: #dc3545;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 4px;
+  padding-left: 4px;
+}
+
+.alert-err {
+  background: #fff5f5;
+  border: 1px solid #fcc;
+  color: #c0392b;
+  border-radius: 8px;
+  padding: 9px 13px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.forgot-link { margin: -15px 0 15px; text-align: right; }
+.forgot-link a { font-size: 14.5px; color: #7494ec; text-decoration: none; }
+.forgot-link a:hover { text-decoration: underline; }
+
+.form-check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.form-check-row input[type=checkbox] { accent-color: #7494ec; width: 15px; height: 15px; cursor: pointer; }
+.form-check-row label { font-size: 14px; color: #555; cursor: pointer; }
+
+.auth-btn {
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(135deg, #5a7de0, #7494ec);
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(90,125,224,.38);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: .4px;
+  transition: transform .15s, box-shadow .15s;
+}
+.auth-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(90,125,224,.5); }
+.auth-btn:active { transform: translateY(0); }
+
+/* Toggle panel */
+.toggle-box { position: absolute; width: 100%; height: 100%; }
+
+.toggle-box::before {
+  content: '';
+  position: absolute;
+  left: -250%;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(135deg, #5a7de0 0%, #7494ec 50%, #9b8ff5 100%);
+  border-radius: 150px;
+  z-index: 2;
+  transition: 1.8s ease-in-out;
+}
+.auth-container.active .toggle-box::before { left: 50%; }
+
+.toggle-panel {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transition: .6s ease-in-out;
+  text-shadow: 0 1px 6px rgba(0,0,0,.12);
+}
+
+.toggle-panel.toggle-left  { left: 0; transition-delay: 1.2s; }
+.auth-container.active .toggle-panel.toggle-left { left: -50%; transition-delay: .6s; }
+.toggle-panel.toggle-right  { right: -50%; transition-delay: .6s; }
+.auth-container.active .toggle-panel.toggle-right { right: 0; transition-delay: 1.2s; }
+
+.toggle-panel p { margin-bottom: 20px; opacity: .9; }
+
+.toggle-panel .auth-btn {
+  width: 160px; height: 46px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.85);
+  box-shadow: none;
+}
+.toggle-panel .auth-btn:hover { background: rgba(255,255,255,.18); }
+
+@media screen and (max-width: 650px) {
+  .auth-container { height: calc(100vh - 80px); }
+  .form-box { bottom: 0; width: 100%; height: 70%; }
+  .auth-container.active .form-box { right: 0; bottom: 30%; }
+  .toggle-box::before { left: 0; top: -270%; width: 100%; height: 300%; border-radius: 20vw; }
+  .auth-container.active .toggle-box::before { left: 0; top: 70%; }
+  .auth-container.active .toggle-panel.toggle-left { left: 0; top: -30%; }
+  .toggle-panel { width: 100%; height: 30%; }
+  .toggle-panel.toggle-left { top: 0; }
+  .toggle-panel.toggle-right { right: 0; bottom: -30%; }
+  .auth-container.active .toggle-panel.toggle-right { bottom: 0; }
+}
+@media screen and (max-width: 400px) {
+  .form-box { padding: 20px; }
+  .toggle-panel h1 { font-size: 30px; }
+}
+{% endblock %}
+
+{% block extra_js %}
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0 p-4">
+<div class="auth-wrapper">
+  <canvas id="watchCanvas"></canvas>
 
-                <h2 class="text-center fw-bold mb-4">Đăng Ký</h2>
+  <div class="auth-container active" id="authContainer">
 
-                <!-- GLOBAL ERRORS -->
-                {% if form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {% for error in form.non_field_errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
+    <!-- ══════ LOGIN FORM ══════ -->
+    <div class="form-box login">
+      <form method="post" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        <h1>Đăng Nhập</h1>
 
-                <form method="post" action="{% url 'account_signup' %}">
-                    {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="alert-err">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
+        {% endif %}
 
-                    <!-- Username -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">
-                            Tên đăng nhập
-                        </label>
-                        <input
-                            type="text"
-                            name="username"
-                            value="{{ form.username.value|default:'' }}"
-                            class="form-control {% if form.username.errors %}is-invalid{% endif %}"
-                            placeholder="Nhập tên đăng nhập"
-                            required>
-
-                        {% if form.username.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.username.errors.0 }}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Email -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            value="{{ form.email.value|default:'' }}"
-                            class="form-control {% if form.email.errors %}is-invalid{% endif %}"
-                            placeholder="example@email.com"
-                            required>
-
-                        {% if form.email.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.email.errors.0 }}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Password 1 -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">
-                            Mật khẩu
-                        </label>
-                        <input
-                            type="password"
-                            name="password1"
-                            class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
-                            placeholder="••••••••"
-                            required>
-
-                        {% if form.password1.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.password1.errors.0 }}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Password 2 -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">
-                            Nhập lại mật khẩu
-                        </label>
-                        <input
-                            type="password"
-                            name="password2"
-                            class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
-                            placeholder="••••••••"
-                            required>
-
-                        {% if form.password2.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.password2.errors.0 }}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Submit -->
-                    <button type="submit"
-                            class="btn btn-warning w-100 fw-bold py-2">
-                        TẠO TÀI KHOẢN
-                    </button>
-                </form>
-
-                <!-- Login -->
-                <p class="text-center mt-3 mb-0">
-                    Đã có tài khoản?
-                    <a href="{% url 'account_login' %}" class="fw-semibold text-decoration-none">
-                        Đăng nhập
-                    </a>
-                </p>
-
-            </div>
+        <div class="input-box">
+          <input type="text" name="login"
+            class="{% if form.login.errors %}is-invalid{% endif %}"
+            placeholder="Tên đăng nhập hoặc Email" required>
+          <i class="bx bxs-user ic-static"></i>
+          {% if form.login.errors %}<div class="invalid-msg">{{ form.login.errors.0 }}</div>{% endif %}
         </div>
+
+        <div class="input-box">
+          <input type="password" id="loginPwd" name="password"
+            class="{% if form.password.errors %}is-invalid{% endif %}"
+            placeholder="Mật khẩu" required>
+          <button type="button" class="eye-btn" onclick="toggleEye('loginPwd',this)">
+            <i class="bx bx-hide"></i>
+          </button>
+          {% if form.password.errors %}<div class="invalid-msg">{{ form.password.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="forgot-link">
+          <a href="{% url 'account_reset_password' %}">Quên mật khẩu?</a>
+        </div>
+
+        <div class="form-check-row">
+          <input type="checkbox" name="remember" id="remember">
+          <label for="remember">Ghi nhớ đăng nhập</label>
+        </div>
+
+        <button type="submit" class="auth-btn">ĐĂNG NHẬP</button>
+      </form>
     </div>
+
+    <!-- ══════ REGISTER FORM ══════ -->
+    <div class="form-box register">
+      <form method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        <h1>Đăng Ký</h1>
+
+        {% if form.non_field_errors %}
+          <div class="alert-err">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
+        {% endif %}
+
+        <div class="input-box">
+          <input type="text" name="username"
+            value="{{ form.username.value|default:'' }}"
+            class="{% if form.username.errors %}is-invalid{% endif %}"
+            placeholder="Tên đăng nhập" required>
+          <i class="bx bxs-user ic-static"></i>
+          {% if form.username.errors %}<div class="invalid-msg">{{ form.username.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="input-box">
+          <input type="email" name="email"
+            value="{{ form.email.value|default:'' }}"
+            class="{% if form.email.errors %}is-invalid{% endif %}"
+            placeholder="Email" required>
+          <i class="bx bxs-envelope ic-static"></i>
+          {% if form.email.errors %}<div class="invalid-msg">{{ form.email.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="input-box">
+          <input type="password" id="regPwd1" name="password1"
+            class="{% if form.password1.errors %}is-invalid{% endif %}"
+            placeholder="Mật khẩu" required>
+          <button type="button" class="eye-btn" onclick="toggleEye('regPwd1',this)">
+            <i class="bx bx-hide"></i>
+          </button>
+          {% if form.password1.errors %}<div class="invalid-msg">{{ form.password1.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="input-box">
+          <input type="password" id="regPwd2" name="password2"
+            class="{% if form.password2.errors %}is-invalid{% endif %}"
+            placeholder="Nhập lại mật khẩu" required>
+          <button type="button" class="eye-btn" onclick="toggleEye('regPwd2',this)">
+            <i class="bx bx-hide"></i>
+          </button>
+          {% if form.password2.errors %}<div class="invalid-msg">{{ form.password2.errors.0 }}</div>{% endif %}
+        </div>
+
+        <button type="submit" class="auth-btn">TẠO TÀI KHOẢN</button>
+      </form>
+    </div>
+
+    <!-- ══════ TOGGLE PANELS ══════ -->
+    <div class="toggle-box">
+      <div class="toggle-panel toggle-left">
+        <h1>Xin Chào!</h1>
+        <p>Bạn chưa có tài khoản?</p>
+        <button class="auth-btn" id="registerBtn">Đăng Ký</button>
+      </div>
+      <div class="toggle-panel toggle-right">
+        <h1>Chào Trở Lại!</h1>
+        <p>Bạn đã có tài khoản?</p>
+        <button class="auth-btn" id="loginBtn">Đăng Nhập</button>
+      </div>
+    </div>
+
+  </div>
 </div>
+
+<script>
+/* ── Panel toggle ── */
+const authBox     = document.getElementById('authContainer');
+const registerBtn = document.getElementById('registerBtn');
+const loginBtn    = document.getElementById('loginBtn');
+registerBtn.addEventListener('click', () => authBox.classList.add('active'));
+loginBtn.addEventListener('click',    () => authBox.classList.remove('active'));
+
+
+/* ── Eye toggle ── */
+function toggleEye(id, btn) {
+  const inp = document.getElementById(id);
+  if (!inp) return;
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  const ic = btn.querySelector('i');
+  if (ic) ic.className = show ? 'bx bx-show' : 'bx bx-hide';
+}
+
+/* ── Chibi watch canvas ── */
+(function(){
+  const canvas = document.getElementById('watchCanvas');
+  const ctx    = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width  = canvas.parentElement.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const PAL = [
+    { body:'#c5d5ff', face:'#f0f4ff', accent:'#5a7de0', strap:'#8aaaf0' },
+    { body:'#d2c5ff', face:'#f4f0ff', accent:'#7c5ce0', strap:'#a88af0' },
+    { body:'#ffe5c5', face:'#fff9f0', accent:'#d4861a', strap:'#f0bb70' },
+    { body:'#c5f0e0', face:'#f0fff8', accent:'#1ab87c', strap:'#70d4aa' },
+    { body:'#ffc5d5', face:'#fff0f4', accent:'#e01a4a', strap:'#f07090' },
+    { body:'#c5eeff', face:'#f0faff', accent:'#1a8ae0', strap:'#70bbf0' },
+  ];
+
+  function drawWatch(x, y, r, aS, aM, aH, pal, op, tilt){
+    ctx.save();
+    ctx.globalAlpha = op;
+    ctx.translate(x, y);
+    ctx.rotate(tilt);
+
+    ctx.beginPath(); ctx.roundRect(-r*.27,-r*1.33,r*.54,r*.5,r*.1);
+    ctx.fillStyle=pal.strap; ctx.fill();
+
+    ctx.beginPath(); ctx.roundRect(-r*.27,r*.83,r*.54,r*.5,r*.1);
+    ctx.fillStyle=pal.strap; ctx.fill();
+
+    ctx.beginPath(); ctx.roundRect(-r*.53,-r*.77,r*1.06,r*1.54,r*.27);
+    ctx.fillStyle=pal.body;
+    ctx.shadowColor='rgba(60,80,160,.13)'; ctx.shadowBlur=r*.7;
+    ctx.fill(); ctx.shadowBlur=0;
+
+    ctx.beginPath(); ctx.roundRect(r*.51,-r*.1,r*.16,r*.2,r*.05);
+    ctx.fillStyle=pal.strap; ctx.fill();
+
+    ctx.beginPath(); ctx.arc(0,0,r*.43,0,Math.PI*2);
+    ctx.fillStyle=pal.face; ctx.fill();
+    ctx.strokeStyle=pal.accent; ctx.lineWidth=r*.058; ctx.stroke();
+
+    for(let i=0;i<12;i++){
+      const a=(i/12)*Math.PI*2-Math.PI/2;
+      const r0=r*(i%3===0?.31:.35), r1=r*.40;
+      ctx.beginPath();
+      ctx.moveTo(Math.cos(a)*r0,Math.sin(a)*r0);
+      ctx.lineTo(Math.cos(a)*r1,Math.sin(a)*r1);
+      ctx.strokeStyle=pal.accent;
+      ctx.lineWidth=i%3===0?r*.058:r*.028;
+      ctx.stroke();
+    }
+
+    ctx.save(); ctx.rotate(aH);
+    ctx.beginPath(); ctx.moveTo(0,r*.05); ctx.lineTo(0,-r*.22);
+    ctx.strokeStyle='#334'; ctx.lineWidth=r*.072; ctx.lineCap='round'; ctx.stroke();
+    ctx.restore();
+
+    ctx.save(); ctx.rotate(aM);
+    ctx.beginPath(); ctx.moveTo(0,r*.05); ctx.lineTo(0,-r*.33);
+    ctx.strokeStyle='#445'; ctx.lineWidth=r*.048; ctx.lineCap='round'; ctx.stroke();
+    ctx.restore();
+
+    ctx.save(); ctx.rotate(aS);
+    ctx.beginPath(); ctx.moveTo(0,r*.08); ctx.lineTo(0,-r*.37);
+    ctx.strokeStyle=pal.accent; ctx.lineWidth=r*.023; ctx.lineCap='round'; ctx.stroke();
+    ctx.restore();
+
+    ctx.beginPath(); ctx.arc(0,0,r*.057,0,Math.PI*2);
+    ctx.fillStyle=pal.accent; ctx.fill();
+
+    [-r*.12,r*.12].forEach(ex=>{
+      ctx.beginPath(); ctx.arc(ex,r*.13,r*.052,0,Math.PI*2);
+      ctx.fillStyle=pal.accent; ctx.fill();
+    });
+
+    ctx.beginPath();
+    ctx.arc(0,r*.09,r*.093,.28,Math.PI-.28);
+    ctx.strokeStyle=pal.accent; ctx.lineWidth=r*.04; ctx.lineCap='round'; ctx.stroke();
+
+    ctx.beginPath();
+    ctx.ellipse(-r*.13,-r*.21,r*.075,r*.045,-Math.PI/5,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,.55)'; ctx.fill();
+
+    ctx.restore();
+  }
+
+  const COLS=7, ROWS=4;
+  const ws=[];
+  for(let row=0;row<ROWS;row++){
+    for(let col=0;col<COLS;col++){
+      const idx=row*COLS+col;
+      ws.push({
+        x:(col+.15+Math.random()*.7)/COLS,
+        y:(row+.15+Math.random()*.7)/ROWS,
+        r:14+Math.random()*16,
+        speed:.07+Math.random()*.13,
+        dir:Math.random()*Math.PI*2,
+        spin:(Math.random()-.5)*.005,
+        tilt:Math.random()*Math.PI*2,
+        op:.16+Math.random()*.2,
+        pal:PAL[idx%PAL.length],
+        tOff:Math.random()*43200,
+      });
+    }
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const W=canvas.width,H=canvas.height;
+    ws.forEach(w=>{
+      w.x+=Math.cos(w.dir)*w.speed/W;
+      w.y+=Math.sin(w.dir)*w.speed/H;
+      w.tilt+=w.spin;
+      const mx=w.r*2/W,my=w.r*2/H;
+      if(w.x<mx||w.x>1-mx){w.dir=Math.PI-w.dir;w.x=Math.max(mx,Math.min(1-mx,w.x));}
+      if(w.y<my||w.y>1-my){w.dir=-w.dir;w.y=Math.max(my,Math.min(1-my,w.y));}
+      const now=(Date.now()/1000+w.tOff)%43200;
+      const aS=(now%60/60)*Math.PI*2-Math.PI/2;
+      const aM=(now/60%60/60)*Math.PI*2-Math.PI/2;
+      const aH=(now/3600%12/12)*Math.PI*2-Math.PI/2;
+      drawWatch(w.x*W,w.y*H,w.r,aS,aM,aH,w.pal,w.op,w.tilt);
+    });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
 {% endblock %}

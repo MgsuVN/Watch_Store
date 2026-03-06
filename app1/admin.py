@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 import json
 import datetime
 
-from .models import Brand, Watch, WatchImage, Cart, CartItem, Profile
+from .models import Brand, Watch, WatchImage, WatchDescImage, Cart, CartItem, Profile
 from .models import Order, OrderItem, Notification, create_notification
 
 
@@ -43,7 +43,20 @@ class WatchImageInline(admin.TabularInline):
             return format_html('<img src="{}" style="height:60px;border-radius:4px;">', obj.image.url)
         return '-'
     preview.short_description = 'Xem trước'
+class WatchDescImageInline(admin.TabularInline):
+    model = WatchDescImage
+    extra = 2
+    max_num = 10
+    fields = ('image', 'layout', 'caption', 'order', 'preview')
+    readonly_fields = ('preview',)
+    verbose_name        = 'Ảnh mô tả chi tiết'
+    verbose_name_plural = 'Ảnh mô tả chi tiết (tối đa 10 ảnh)'
 
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="height:80px;border-radius:4px;">', obj.image.url)
+        return '-'
+    preview.short_description = 'Xem trước'
 
 @admin.register(Watch)
 class WatchAdmin(admin.ModelAdmin):
@@ -53,7 +66,7 @@ class WatchAdmin(admin.ModelAdmin):
     search_fields = ('name', 'brand__name')
     prepopulated_fields = {'slug': ('name',)}
     list_editable = ('is_sold_out',)
-    inlines = [WatchImageInline]
+    inlines = [WatchImageInline, WatchDescImageInline]
 
     fieldsets = (
         ('Thông tin cơ bản', {

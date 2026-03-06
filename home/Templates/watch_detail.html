@@ -23,12 +23,76 @@
 .gallery-thumb img{width:100%;height:100%;object-fit:cover;}
 .gallery-thumb.active{border-color:var(--red);}
 .gallery-label{text-align:center;font-size:12px;color:#999;padding:5px 0 10px;}
-/* MÔ TẢ DƯỚI GALLERY */
-.desc-below-gallery{border-top:1px solid var(--border);padding:14px 4px 4px;}
-.desc-body-left{font-size:13px;line-height:1.8;color:#444;overflow:hidden;max-height:0;opacity:0;transition:max-height .5s ease,opacity .4s ease;}
-.desc-body-left.open{max-height:4000px;opacity:1;}
-.btn-view-desc{display:flex;align-items:center;justify-content:center;gap:6px;background:none;border:1.5px solid #ddd;color:#555;font-size:13px;font-weight:600;padding:8px 0;border-radius:30px;cursor:pointer;margin-top:10px;width:100%;transition:.2s;}
-.btn-view-desc:hover{border-color:var(--orange);color:var(--orange);background:#fff8ee;}
+/* ===== MÔ TẢ CHI TIẾT - NEW ===== */
+.desc-section { border-top: 1px solid var(--border); margin-top: 16px; padding-top: 16px; }
+.desc-section-title {
+  font-size: 15px; font-weight: 800; color: var(--text);
+  padding: 10px 14px;
+  border-left: 4px solid var(--orange);
+  background: #fff8ee;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 14px;
+}
+.desc-content {
+  font-size: 13.5px; line-height: 1.85; color: #444;
+  overflow: hidden;
+  max-height: 160px;
+  position: relative;
+  transition: max-height .5s ease;
+}
+.desc-content.expanded { max-height: 9999px; }
+/* Gradient fade ở cuối khi thu gọn */
+.desc-fade {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, #fff);
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.desc-content.expanded .desc-fade { opacity: 0; }
+
+/* Ảnh mô tả từ admin */
+.desc-images { margin-top: 14px; display: flex; flex-direction: column; gap: 18px; }
+
+/* Layout: full width */
+.desc-img-full img {
+    width: 100%; border-radius: 10px; object-fit: cover;
+}
+
+/* Layout: float trái hoặc phải */
+.desc-img-float {
+    display: flex; gap: 16px; align-items: flex-start;
+}
+.desc-img-float.float-right { flex-direction: row-reverse; }
+.desc-img-float img {
+    width: 45%; border-radius: 10px; object-fit: cover; flex-shrink: 0;
+}
+.desc-img-float .float-caption {
+    flex: 1;
+    font-size: 13.5px; line-height: 1.85; color: #444;
+    padding-top: 4px;
+}
+.float-caption-only {
+    font-size: 13.5px; line-height: 1.85; color: #444;
+}
+
+@media (max-width: 575px) {
+    .desc-img-float { flex-direction: column !important; }
+    .desc-img-float img { width: 100%; }
+}
+
+/* Nút xem/thu gọn */
+.btn-toggle-desc {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; margin-top: 10px;
+  background: none; border: 1.5px solid #ddd;
+  color: #555; font-size: 13px; font-weight: 600;
+  padding: 9px 0; border-radius: 30px;
+  cursor: pointer; transition: .2s;
+}
+.btn-toggle-desc:hover { border-color: var(--orange); color: var(--orange); background: #fff8ee; }
+.btn-toggle-desc .arrow { transition: transform .3s; display: inline-block; }
+.btn-toggle-desc.open .arrow { transform: rotate(180deg); }
 /* LIGHTBOX */
 .lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;align-items:center;justify-content:center;}
 .lightbox-overlay.active{display:flex;}
@@ -53,16 +117,68 @@
 .rating-count{font-size:13px;color:var(--muted);}
 .price-old{font-size:13px;color:#bbb;text-decoration:line-through;margin-bottom:2px;}
 .price-current{font-size:24px;font-weight:700;color:var(--red);margin-bottom:4px;}
-.price-saved{font-size:12px;color:var(--green);font-weight:600;background:#e8f8ec;padding:2px 9px;border-radius:20px;display:inline-block;margin-bottom:12px;}
+.price-saved{
+  font-size:12px;
+  font-weight:700;
+  background:linear-gradient(135deg,#e8f8ec,#d4f3da);
+  color:#0a7c2f;
+  padding:4px 12px;
+  border-radius:20px;
+  display:inline-block;
+  margin-bottom:12px;
+  animation:luxuryBlink 2s infinite;
+}
+
+@keyframes luxuryBlink{
+  0%{box-shadow:0 0 0 rgba(26,158,63,.2);transform:scale(1);}
+  50%{box-shadow:0 0 14px rgba(26,158,63,.6);transform:scale(1.05);}
+  100%{box-shadow:0 0 0 rgba(26,158,63,.2);transform:scale(1);}
+}
 .status-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 12px;border-radius:20px;}
 .status-badge.instock{background:#e8f8ec;color:var(--green);}
 .status-badge.outstock{background:#ffeaea;color:var(--red);}
-.guarantee-bar{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0;}
-.guarantee-item{display:flex;align-items:center;gap:5px;font-size:12px;color:#555;}
+.guarantee-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0;}
+.guarantee-item{display:flex;align-items:center;gap:10px;font-size:13px;color:#333;background:#f7f7f9;border-radius:11px;padding:10px 14px;font-weight:500;border:1px solid #eff0f2;transition:.2s;}
+.guarantee-item:hover{background:#f0f4ff;border-color:#c7d6f5;}
+.gi-svg{width:26px;height:26px;flex-shrink:0;}
+/* ===== LUXURY SILVER ICON ===== */
+.gi-svg{
+  width:26px;
+  height:26px;
+  color:#9e9e9e;
+  transition:all .3s ease;
+}
+
+.guarantee-item:hover .gi-svg{
+  color:#d4d4d4;
+}
+.gi-svg path,
+.gi-svg circle,
+.gi-svg rect{
+  stroke:#9e9e9e !important;
+  fill:rgba(192,192,192,.25) !important;
+}
+
+.guarantee-item:hover .gi-svg path,
+.guarantee-item:hover .gi-svg circle,
+.guarantee-item:hover .gi-svg rect{
+  stroke:#d4d4d4 !important;
+  fill:rgba(220,220,220,.35) !important;
+}
 .info-divider{border:none;border-top:1px solid #eee;margin:14px 0;}
-.btn-cart{background:#111;color:#fff;border:none;border-radius:30px;padding:13px 32px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;}
+.btn-cart{background:#111;color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;justify-content:center;flex:1;}
 .btn-cart:hover:not(:disabled){background:#333;}
 .btn-cart:disabled{background:#aaa;cursor:not-allowed;}
+.btn-buy-now{background:var(--red);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;justify-content:center;flex:1;text-decoration:none;}
+.btn-buy-now:hover{background:#c4001a;color:#fff;}
+.btn-actions{display:flex;gap:10px;width:100%;}
+/* Quantity selector */
+.qty-wrap{display:flex;align-items:center;gap:0;border:1.5px solid #e0e0e0;border-radius:12px;overflow:hidden;width:fit-content;margin-bottom:14px;}
+.qty-btn{background:#f5f5f7;border:none;width:40px;height:42px;font-size:20px;font-weight:700;cursor:pointer;color:#333;transition:.15s;display:flex;align-items:center;justify-content:center;line-height:1;}
+.qty-btn:hover{background:#e8e8ec;color:var(--red);}
+.qty-input{width:52px;height:42px;border:none;border-left:1.5px solid #e0e0e0;border-right:1.5px solid #e0e0e0;text-align:center;font-size:15px;font-weight:700;color:#1a1a1a;background:#fff;outline:none;-moz-appearance:textfield;}
+.qty-input::-webkit-outer-spin-button,.qty-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+.qty-label{font-size:13px;font-weight:600;color:#555;margin-bottom:6px;}
 /* THÔNG SỐ 4 CỘT */
 .specs-wrap-title{font-size:15px;font-weight:800;margin-bottom:10px;color:var(--text);}
 .specs-4col{width:100%;border-collapse:collapse;}
@@ -144,6 +260,7 @@
 .product-card{transition:.25s ease;border-radius:12px!important;}
 .product-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(0,0,0,.13)!important;}
 .sale-badge{position:absolute;top:10px;right:10px;background:var(--red);color:#fff;padding:4px 9px;font-size:12px;border-radius:6px;font-weight:700;z-index:5;}
+@keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(12px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
 .fly-img{position:fixed;width:60px;height:60px;border-radius:50%;object-fit:cover;z-index:99999;pointer-events:none;transition:all .85s cubic-bezier(.25,.46,.45,.94);border:3px solid var(--red);}
 #cartToast{display:none;margin-bottom:10px;padding:10px 16px;border-radius:10px;font-size:14px;font-weight:600;}
 #cartToast.success{background:#e8f8ec;color:var(--green);border:1px solid #b8e8c4;}
@@ -193,11 +310,62 @@
     {% endif %}
   </div>
 
-  {% if watch.description %}
-  <div class="desc-below-gallery">
-    <div class="desc-body-left" id="descBody">{{ watch.description|linebreaks }}</div>
-    <button type="button" class="btn-view-desc" id="btnViewDesc" onclick="toggleDesc()">
-      <span id="descIcon">▼</span><span id="descText">Xem đầy đủ bài viết</span>
+  {% if watch.description or desc_images %}
+  <div class="desc-section">
+    <div class="desc-section-title">📝 Mô tả chi tiết</div>
+
+    <div class="desc-content" id="descContent">
+      {% if watch.description %}
+        <div>{{ watch.description|linebreaks }}</div>
+      {% endif %}
+
+      {% for di in desc_images %}
+        {% if di.layout == 'full' %}
+          <div class="desc-img-full">
+            {% if di.image %}
+            <img src="{{ di.image.url }}" alt="Ảnh mô tả {{ forloop.counter }}">
+            {% endif %}
+            {% if di.caption %}
+            <div class="float-caption-only">{{ di.caption|linebreaks }}</div>
+            {% endif %}
+          </div>
+
+        {% elif di.layout == 'float_left' %}
+          {% if di.image and di.caption %}
+          <div class="desc-img-float float-left">
+            <img src="{{ di.image.url }}" alt="Ảnh mô tả {{ forloop.counter }}">
+            <div class="float-caption">{{ di.caption|linebreaks }}</div>
+          </div>
+          {% elif di.image %}
+          <div class="desc-img-full">
+            <img src="{{ di.image.url }}" alt="Ảnh mô tả {{ forloop.counter }}">
+          </div>
+          {% elif di.caption %}
+          <div class="float-caption-only">{{ di.caption|linebreaks }}</div>
+          {% endif %}
+
+        {% elif di.layout == 'float_right' %}
+          {% if di.image and di.caption %}
+          <div class="desc-img-float float-right">
+            <img src="{{ di.image.url }}" alt="Ảnh mô tả {{ forloop.counter }}">
+            <div class="float-caption">{{ di.caption|linebreaks }}</div>
+          </div>
+          {% elif di.image %}
+          <div class="desc-img-full">
+            <img src="{{ di.image.url }}" alt="Ảnh mô tả {{ forloop.counter }}">
+          </div>
+          {% elif di.caption %}
+          <div class="float-caption-only">{{ di.caption|linebreaks }}</div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="desc-fade" id="descFade"></div>
+    </div>
+
+    <button type="button" class="btn-toggle-desc" id="btnToggleDesc" onclick="toggleDesc()">
+      <span class="arrow" id="descArrow">▼</span>
+      <span id="descBtnText">Xem đầy đủ bài viết</span>
     </button>
   </div>
   {% endif %}
@@ -223,9 +391,9 @@
 
   <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
     {% if watch.is_sold_out %}
-    <span class="status-badge outstock">✕ Tạm hết hàng</span>
+    <span class="status-badge outstock">Trạng thái: Tạm hết hàng</span>
     {% else %}
-    <span class="status-badge instock">✔ Còn hàng</span>
+    <span class="status-badge instock">Trạng thái: Còn hàng</span>
     {% endif %}
     {% if watch.sold_count > 0 %}
     <span class="sold-badge">🛒 Đã bán: <strong>{{ watch.sold_count }}</strong></span>
@@ -233,22 +401,55 @@
   </div>
 
   <div class="guarantee-bar">
-    <div class="guarantee-item"><span>🛡️</span> Bảo hành {{ watch.warranty|default:"24 tháng" }}</div>
-    <div class="guarantee-item"><span>✅</span> Chính hãng 100%</div>
-    <div class="guarantee-item"><span>🔄</span> Đổi trả 30 ngày</div>
-    <div class="guarantee-item"><span>🚚</span> Miễn phí vận chuyển</div>
+    <div class="guarantee-item">
+      <svg class="gi-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.25 3.4 10.15 8 11.38C16.6 22.15 20 17.25 20 12V6l-8-4z" fill="#3b82f6" opacity=".18"/><path d="M12 2L4 6v6c0 5.25 3.4 10.15 8 11.38C16.6 22.15 20 17.25 20 12V6l-8-4z" stroke="#3b82f6" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Bảo hành {{ watch.warranty|default:"24 tháng" }}</span>
+    </div>
+    <div class="guarantee-item">
+      <svg class="gi-svg" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#22c55e" opacity=".15"/><circle cx="12" cy="12" r="9" stroke="#22c55e" stroke-width="1.6"/><path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Chính hãng 100%</span>
+    </div>
+    <div class="guarantee-item">
+      <svg class="gi-svg" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" fill="#f59e0b" opacity=".13"/><path d="M4 12a8 8 0 0 1 14.5-4.7" stroke="#f59e0b" stroke-width="1.7" stroke-linecap="round"/><path d="M20 12a8 8 0 0 1-14.5 4.7" stroke="#f59e0b" stroke-width="1.7" stroke-linecap="round"/><path d="M18.5 7l1 2.5-2.5-.5" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 17l-1-2.5 2.5.5" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Đổi trả 30 ngày</span>
+    </div>
+    <div class="guarantee-item">
+      <svg class="gi-svg" viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+  <rect x="1.5" y="7" width="13" height="8" rx="2" stroke="currentColor"/>
+  <path d="M14.5 9h3l3 3v3h-6z" stroke="currentColor"/>
+  <circle cx="6" cy="17" r="1.5" fill="currentColor"/>
+  <circle cx="18" cy="17" r="1.5" fill="currentColor"/>
+</svg>
+      <span>Miễn phí vận chuyển</span>
+    </div>
   </div>
 
   <hr class="info-divider">
 
   {% if watch.is_sold_out %}
-  <button type="button" class="btn-cart" disabled>🛒 Hết hàng</button>
+  <div class="btn-actions">
+    <button type="button" class="btn-cart" disabled style="flex:1;">🛒 Hết hàng</button>
+  </div>
   {% else %}
     {% if user.is_authenticated %}
-    <button type="button" class="btn-cart" id="addToCartBtn" data-url="{% url 'add_to_cart' watch.id %}" data-img="{{ watch.image.url }}" onclick="addToCartAjax(this)">🛒 Thêm vào giỏ hàng</button>
+    <div class="qty-label">Số lượng</div>
+    <div class="qty-wrap">
+      <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+      <input type="number" class="qty-input" id="qtyInput" value="1" min="1" max="99">
+      <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+    <div class="btn-actions">
+      <button type="button" class="btn-cart" id="addToCartBtn"
+        data-url="{% url 'add_to_cart' watch.id %}"
+        data-img="{{ watch.image.url }}"
+        onclick="addToCartAjax(this)">🛒 Thêm vào giỏ</button>
+      <button type="button" class="btn-buy-now" id="buyNowBtn" onclick="doBuyNow()">⚡ Mua ngay</button>
+    </div>
     <div id="cartToast"></div>
     {% else %}
-    <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn-cart" style="text-decoration:none;">🛒 Đăng nhập để mua hàng</a>
+    <div class="btn-actions">
+      <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn-cart" style="text-decoration:none;">🔑 Đăng nhập để mua hàng</a>
+    </div>
     {% endif %}
   {% endif %}
 
@@ -424,17 +625,30 @@ document.addEventListener('keydown',e=>{
 });
 
 /* ---- MÔ TẢ THU GỌN ---- */
-let descOpen=false;
-function toggleDesc(){
-  descOpen=!descOpen;
-  document.getElementById('descBody').classList.toggle('open',descOpen);
-  document.getElementById('descIcon').textContent=descOpen?'▲':'▼';
-  document.getElementById('descText').textContent=descOpen?'Thu gọn':'Xem đầy đủ bài viết';
+let descOpen = false;
+function toggleDesc() {
+  descOpen = !descOpen;
+  const content = document.getElementById('descContent');
+  const btn     = document.getElementById('btnToggleDesc');
+  const arrow   = document.getElementById('descArrow');
+  const txt     = document.getElementById('descBtnText');
+  const fade    = document.getElementById('descFade');
+
+  content.classList.toggle('expanded', descOpen);
+  btn.classList.toggle('open', descOpen);
+  arrow.textContent  = descOpen ? '▲' : '▼';
+  txt.textContent    = descOpen ? 'Thu gọn' : 'Xem đầy đủ bài viết';
+  if (fade) fade.style.opacity = descOpen ? '0' : '1';
+
+  // Scroll tới nút thu gọn khi mở ra
+  if (!descOpen) {
+    document.getElementById('btnToggleDesc').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
 
 /* ---- REVIEWS (localStorage) ---- */
 let reviews=[];
-try{reviews=JSON.parse(localStorage.getItem('reviews_'+WATCH_ID)||'[]');}catch(e){}
+try{const _s=localStorage.getItem('reviews_'+WATCH_ID);if(_s)reviews=JSON.parse(_s);}catch(e){reviews=[];}
 
 function renderReviews(){
   const list=document.getElementById('reviewList');
@@ -517,12 +731,44 @@ function submitRv(){
   const files=Array.from(document.getElementById('rvPhotos').files).slice(0,3);
   Promise.all(files.map(f=>new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(f);}))).then(photos=>{
     reviews.unshift({name,star,text,photos,date:new Date().toLocaleDateString('vi-VN'),likes:0});
-    localStorage.setItem('reviews_'+WATCH_ID,JSON.stringify(reviews));
+    try{localStorage.setItem('reviews_'+WATCH_ID,JSON.stringify(reviews));}catch(e){}
     renderReviews();closeRvModal();
+    // Hiển thị thông báo thành công
+    const toast = document.createElement('div');
+    toast.textContent = 'Cảm ơn bạn đã đánh giá sản phẩm!';
+    toast.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a9e3f;color:#fff;font-weight:700;font-size:14px;padding:12px 28px;border-radius:30px;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,.18);animation:fadeUp .35s ease';
+    document.body.appendChild(toast);
+    setTimeout(()=>toast.remove(),3000);
   });
 }
 
 /* ---- THÊM GIỎ HÀNG ---- */
+function changeQty(delta){
+  const inp = document.getElementById('qtyInput');
+  if(!inp) return;
+  let v = parseInt(inp.value)||1;
+  v = Math.max(1, Math.min(99, v + delta));
+  inp.value = v;
+}
+
+function doBuyNow(){
+  const qty    = parseInt(document.getElementById('qtyInput')?.value) || 1;
+  const addUrl = document.getElementById('addToCartBtn')?.dataset?.url;
+  if(!addUrl){ window.location.href="{% url 'checkout' %}"; return; }
+
+  const fd = new FormData();
+  fd.append('quantity', qty);
+
+  fetch(addUrl, {
+    method: 'POST',
+    headers: { 'X-CSRFToken': CSRF_TOKEN, 'x-requested-with': 'XMLHttpRequest' },
+    body: fd
+  })
+  .then(r => r.json())
+  .then(() => { window.location.href = "{% url 'checkout' %}"; })
+  .catch(() => { window.location.href = "{% url 'checkout' %}"; });
+}
+
 function addToCartAjax(btn){
   const url=btn.dataset.url,imgSrc=btn.dataset.img;
   const toast=document.getElementById('cartToast');
@@ -537,7 +783,10 @@ function addToCartAjax(btn){
     setTimeout(()=>f.remove(),950);
   }
   btn.disabled=true;btn.innerHTML='⏳ Đang thêm...';
-  fetch(url,{method:'POST',headers:{'X-CSRFToken':CSRF_TOKEN,'x-requested-with':'XMLHttpRequest'}})
+  const qty = parseInt(document.getElementById('qtyInput')?.value)||1;
+  const formData = new FormData();
+  formData.append('quantity', qty);
+  fetch(url,{method:'POST',headers:{'X-CSRFToken':CSRF_TOKEN,'x-requested-with':'XMLHttpRequest'},body:formData})
   .then(r=>r.json()).then(data=>{
     document.querySelectorAll('#cartBadgeDesktop,#cartBadgeMobile').forEach(el=>{if(el)el.textContent=data.cart_count;});
     toast.textContent=(data.status==='added'?'✅ ':'⚠️ ')+data.message;

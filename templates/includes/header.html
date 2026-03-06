@@ -1,3 +1,4 @@
+{% load static %}
 <style>
 /* ================== TOP BAR ================== */
 .top-bar {
@@ -17,14 +18,46 @@
 
 /* ================== NAVBAR ================== */
 .navbar {
-    padding: 10px 0;
+    padding: 4px 0;
     background: #fff;
     z-index: 1050;
+    min-height: 72px;
+    /* Bỏ sticky-top của Bootstrap — tự xử lý bằng JS */
+    position: relative;
+}
+
+/* Trạng thái sticky — trượt xuống từ trên */
+.navbar.navbar-sticky {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    animation: slideDown .35s ease forwards;
+    box-shadow: 0 4px 20px rgba(0,0,0,.10) !important;
+    background: #fff !important;
+    z-index: 1050;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* Đẩy nội dung xuống bằng đúng chiều cao header khi sticky */
+.navbar-sticky-spacer {
+    display: none;
+}
+.navbar-sticky-spacer.active {
+    display: block;
 }
 .nav-link {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     color: #333 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    display: flex;
+    align-items: center;
 }
 .nav-link:hover { color: #f39200 !important; }
 
@@ -382,11 +415,13 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+    <div class="navbar-sticky-spacer" id="navbarSpacer"></div>
+    <nav class="navbar navbar-expand-lg shadow-sm" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}" style="text-decoration: none;">
-                <strong style="color: #f39200; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">WATCHSTORE</strong>
-                <strong style="color: #000; font-size: 24px; font-weight: 800;">.VN</strong>
+            <a class="navbar-brand" href="{% url 'home' %}" style="text-decoration: none; padding: 0;">
+                <img src="{% static 'images/logo_cropped.gif' %}"
+                     alt="WatchStore.VN"
+                     style="height:70px; width:auto; mix-blend-mode:multiply;">
             </a>
 
             <!-- Mobile: chuông + cart + toggler -->
@@ -745,5 +780,38 @@
         });
         {% endif %}
     });
+})();
+</script>
+
+<!-- ===== STICKY NAVBAR SCROLL ===== -->
+<script>
+(function () {
+    const navbar  = document.getElementById('mainNavbar');
+    const spacer  = document.getElementById('navbarSpacer');
+    const topBar  = document.querySelector('.top-bar');
+
+    function getTopBarHeight() {
+        return (topBar && topBar.offsetParent !== null) ? topBar.offsetHeight : 0;
+    }
+
+    function onScroll() {
+        const scrolled = window.scrollY;
+        const trigger  = getTopBarHeight(); // ẩn sau khi qua top-bar
+
+        if (scrolled > trigger) {
+            if (!navbar.classList.contains('navbar-sticky')) {
+                // Set spacer height = navbar height để tránh nhảy layout
+                spacer.style.height = navbar.offsetHeight + 'px';
+                spacer.classList.add('active');
+                navbar.classList.add('navbar-sticky');
+            }
+        } else {
+            navbar.classList.remove('navbar-sticky');
+            spacer.classList.remove('active');
+            spacer.style.height = '0';
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
 })();
 </script>
