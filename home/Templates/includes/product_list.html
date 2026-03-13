@@ -2,7 +2,7 @@
 <div class="row g-4">
 
 {% for product in page_obj %}
-<div class="col-md-3">
+<div class="col-6 col-md-3">
     <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column"
          onclick="saveToHistory('{{ product.id }}', '{{ product.name|escapejs }}', '{{ product.image.url }}', '{{ product.sale_price|vnd }} vnđ', '{% url 'watch_detail' product.slug %}'); window.location.href='{% url 'watch_detail' product.slug %}';"
          style="cursor:pointer;">
@@ -26,25 +26,25 @@
              class="img-fluid mb-3"
              style="height:200px;object-fit:contain;">
 
-        <h6 class="fw-bold text-center">
+        <h6 style="font-family:inherit;font-size:14px;font-weight:700;line-height:1.45;color:#111;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:center;margin-bottom:4px;">
             {{ product.name }}
         </h6>
 
         {% if product.brand %}
-        <p class="text-muted text-center small mb-1">
+        <p style="font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;text-align:center;margin-bottom:4px;">
             {{ product.brand }}
         </p>
         {% endif %}
 
         {% if product.discount_percent > 0 %}
-            <p class="text-muted text-decoration-line-through text-center mb-1">
+            <p style="font-size:13px;color:#999;text-decoration:line-through;text-align:center;margin-bottom:2px;font-weight:400;">
                 {{ product.price|vnd }} vnđ
             </p>
-            <p class="text-danger fw-bold text-center mb-2">
+            <p style="font-size:14px;font-weight:700;color:#e60023;text-align:center;margin-bottom:12px;">
                 {{ product.sale_price|vnd }} vnđ
             </p>
         {% else %}
-            <p class="text-danger fw-bold text-center mb-2">
+            <p style="font-size:14px;font-weight:700;color:#e60023;text-align:center;margin-bottom:12px;">
                 {{ product.price|vnd }} vnđ
             </p>
         {% endif %}
@@ -127,6 +127,20 @@
         }
     });
 })();
+</script>
+
+<script>
+// Sau mỗi lần HTMX swap (phân trang / lọc hãng) → scroll lên đầu mục sản phẩm
+document.addEventListener('htmx:afterSwap', function(e) {
+    if (e.detail.target && e.detail.target.id === 'product-container') {
+        const section = document.getElementById('product-section');
+        if (!section) return;
+        const navbar = document.querySelector('.navbar, nav, header');
+        const offset = navbar ? navbar.offsetHeight + 12 : 64;
+        const top = section.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+});
 </script>
 
 <style>

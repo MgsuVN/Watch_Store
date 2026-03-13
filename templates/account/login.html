@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% load socialaccount %}
 {% block extra_css %}
 /* ══════════════════════════════════════
    AUTH PAGE — WatchStore
@@ -12,7 +12,7 @@
   align-items: center;
   min-height: calc(100vh - 160px);
   padding: 30px 20px;
-  background: linear-gradient(135deg, #eef2ff 0%, #dde6ff 40%, #ede8ff 75%, #f3f0ff 100%);
+  background: linear-gradient(120deg,#f5f5f5,#f3efe7,#e8dcc7);
   overflow: hidden;
 }
 
@@ -33,7 +33,7 @@
   height: 520px;
   background: #fff;
   border-radius: 30px;
-  box-shadow: 0 10px 48px rgba(90,120,220,.18), 0 2px 8px rgba(0,0,0,.07);
+  box-shadow: 0 20px 60px rgba(0,0,0,.15);
   overflow: hidden;
   font-family: "Poppins", sans-serif;
 }
@@ -81,10 +81,10 @@ form { width: 100%; }
 .auth-container .input-box input {
   width: 100% !important;
   padding: 13px 46px 13px 20px !important;
-  background: #eef0ff !important;
-  border-radius: 8px !important;
-  border: 1.5px solid transparent !important;
-  border-bottom: 1.5px solid transparent !important;
+  background: #f8f8f8 !important;
+  border-radius: 10px !important;
+  border: 1px solid #e6e6e6 !important;
+  border-bottom: 1px solid #e6e6e6 !important;
   outline: none !important;
   box-shadow: none !important;
   font-size: 16px !important;
@@ -97,7 +97,7 @@ form { width: 100%; }
 }
 
 .auth-container .input-box input:focus {
-  border: 1.5px solid #7494ec !important;
+  border: 1px solid #c6a96b !important;
   background: #fff !important;
   box-shadow: none !important;
   outline: none !important;
@@ -109,7 +109,7 @@ form { width: 100%; }
 }
 
 .auth-container .input-box input::placeholder {
-  color: #aab4cc !important;
+  color: #c6a96b !important;
   font-weight: 400 !important;
 }
 
@@ -120,7 +120,7 @@ form { width: 100%; }
   top: 50%;
   transform: translateY(-50%);
   font-size: 20px;
-  color: #aab4cc;
+  color: #c6a96b;
   pointer-events: none;
 }
 
@@ -135,15 +135,12 @@ form { width: 100%; }
   box-shadow: none !important;
   padding: 0;
   cursor: pointer;
-  color: #aab4cc;
-  font-size: 20px;
-  line-height: 1;
-  z-index: 5;
+  color: #c6a96b;
   transition: color .2s;
   display: flex;
   align-items: center;
 }
-.input-box .eye-btn:hover { color: #7494ec; }
+.input-box .eye-btn:hover { color: #c6a96b; }
 .input-box .eye-btn:focus { outline: none; box-shadow: none; }
 
 .invalid-msg {
@@ -166,7 +163,7 @@ form { width: 100%; }
 }
 
 .forgot-link { margin: -15px 0 15px; text-align: right; }
-.forgot-link a { font-size: 14.5px; color: #7494ec; text-decoration: none; }
+.forgot-link a { font-size: 14.5px; color: #b89655; text-decoration: none; }
 .forgot-link a:hover { text-decoration: underline; }
 
 .form-check-row {
@@ -176,15 +173,15 @@ form { width: 100%; }
   margin-bottom: 16px;
   text-align: left;
 }
-.form-check-row input[type=checkbox] { accent-color: #7494ec; width: 15px; height: 15px; cursor: pointer; }
+.form-check-row input[type=checkbox] { accent-color: #c6a96b; width: 15px; height: 15px; cursor: pointer; }
 .form-check-row label { font-size: 14px; color: #555; cursor: pointer; }
 
 .auth-btn {
   width: 100%;
   height: 48px;
-  background: linear-gradient(135deg, #5a7de0, #7494ec);
-  border-radius: 8px;
-  box-shadow: 0 4px 18px rgba(90,125,224,.38);
+  background: linear-gradient(135deg,#c6a96b,#e6c78a);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(198,169,107,.4);
   border: none;
   cursor: pointer;
   font-size: 16px;
@@ -192,10 +189,20 @@ form { width: 100%; }
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   letter-spacing: .4px;
-  transition: transform .15s, box-shadow .15s;
+  transition: transform .3s, box-shadow .3s;
 }
-.auth-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(90,125,224,.5); }
+.auth-btn:hover { transform: translateY(-2px); background: linear-gradient(135deg,#b89655,#d8bb80); box-shadow: 0 10px 24px rgba(198,169,107,.5); }
 .auth-btn:active { transform: translateY(0); }
+
+
+/* Social login */
+.social-divider{display:flex;align-items:center;gap:10px;margin:14px 0;}
+.social-divider::before,.social-divider::after{content:'';flex:1;height:1px;background:#e0d6c8;}
+.social-divider span{font-size:12px;color:#aaa;white-space:nowrap;}
+.social-btns{display:flex;gap:10px;margin-bottom:4px;}
+.btn-social{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 10px;border-radius:10px;border:1.5px solid #e0d6c8;background:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;color:#333;}
+.btn-social:hover{border-color:#c6a96b;background:#fdf8f0;transform:translateY(-1px);}
+.btn-social svg{flex-shrink:0;}
 
 /* Toggle panel */
 .toggle-box { position: absolute; width: 100%; height: 100%; }
@@ -206,7 +213,13 @@ form { width: 100%; }
   left: -250%;
   width: 300%;
   height: 100%;
-  background: linear-gradient(135deg, #5a7de0 0%, #7494ec 50%, #9b8ff5 100%);
+  background: linear-gradient(
+    135deg,
+    #8f7443 0%,
+    #c6a96b 45%,
+    #e6c78a 70%,
+    #8f7443 100%
+  );
   border-radius: 150px;
   z-index: 2;
   transition: 1.8s ease-in-out;
@@ -232,7 +245,9 @@ form { width: 100%; }
 .toggle-panel.toggle-right  { right: -50%; transition-delay: .6s; }
 .auth-container.active .toggle-panel.toggle-right { right: 0; transition-delay: 1.2s; }
 
-.toggle-panel p { margin-bottom: 20px; opacity: .9; }
+.toggle-panel p { margin-bottom: 20px; color: #f4f4f4; opacity: 1; }
+
+.toggle-panel h1 { color: #ffffff; font-weight: 700; letter-spacing: 1px; }
 
 .toggle-panel .auth-btn {
   width: 160px; height: 46px;
@@ -309,6 +324,14 @@ form { width: 100%; }
         </div>
 
         <button type="submit" class="auth-btn">ĐĂNG NHẬP</button>
+
+      <div class="social-divider"><span>hoặc đăng nhập với</span></div>
+      <div class="social-btns">
+        <a href="{% provider_login_url 'google' %}" class="btn-social">
+          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+          Google
+        </a>
+      </div>
       </form>
     </div>
 
@@ -361,6 +384,14 @@ form { width: 100%; }
         </div>
 
         <button type="submit" class="auth-btn">TẠO TÀI KHOẢN</button>
+
+      <div class="social-divider"><span>hoặc đăng ký với</span></div>
+      <div class="social-btns">
+        <a href="{% provider_login_url 'google' %}" class="btn-social">
+          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+          Google
+        </a>
+      </div>
       </form>
     </div>
 
@@ -413,12 +444,12 @@ function toggleEye(id, btn) {
   window.addEventListener('resize', resize);
 
   const PAL = [
-    { body:'#c5d5ff', face:'#f0f4ff', accent:'#5a7de0', strap:'#8aaaf0' },
-    { body:'#d2c5ff', face:'#f4f0ff', accent:'#7c5ce0', strap:'#a88af0' },
-    { body:'#ffe5c5', face:'#fff9f0', accent:'#d4861a', strap:'#f0bb70' },
-    { body:'#c5f0e0', face:'#f0fff8', accent:'#1ab87c', strap:'#70d4aa' },
-    { body:'#ffc5d5', face:'#fff0f4', accent:'#e01a4a', strap:'#f07090' },
-    { body:'#c5eeff', face:'#f0faff', accent:'#1a8ae0', strap:'#70bbf0' },
+    { body:'#e8d9b4', face:'#fdf8ee', accent:'#c6a96b', strap:'#b89655' },
+    { body:'#d4d4d4', face:'#f8f8f8', accent:'#888888', strap:'#aaaaaa' },
+    { body:'#1a1a1a', face:'#2e2e2e', accent:'#c6a96b', strap:'#111111' },
+    { body:'#f5ead5', face:'#fffdf7', accent:'#d4a843', strap:'#c8963a' },
+    { body:'#c0c0c0', face:'#f0f0f0', accent:'#707070', strap:'#999999' },
+    { body:'#2a2a2a', face:'#3a3a3a', accent:'#e3c68d', strap:'#1a1a1a' },
   ];
 
   function drawWatch(x, y, r, aS, aM, aH, pal, op, tilt){

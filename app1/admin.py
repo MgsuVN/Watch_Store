@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.template.response import TemplateResponse
-
+from django.utils.safestring import mark_safe
 from django.utils.html import format_html
 from django.utils import timezone
 from django.db.models import Sum, Q
@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 import json
 import datetime
 
-from .models import Brand, Watch, WatchImage, WatchDescImage, Cart, CartItem, Profile
+from .models import Brand, Watch, WatchImage, WatchDescImage, BrandShowcase, Review, Cart, CartItem, Profile
 from .models import Order, OrderItem, Notification, create_notification
 
 
@@ -58,6 +58,40 @@ class WatchDescImageInline(admin.TabularInline):
         return '-'
     preview.short_description = 'Xem trước'
 
+@admin.register(BrandShowcase)
+class BrandShowcaseAdmin(admin.ModelAdmin):
+    list_display  = ('brand', 'order', 'is_active', 'poster_preview')
+    list_editable = ('order', 'is_active')
+    ordering      = ('order',)
+
+    def poster_preview(self, obj):
+        if obj.poster:
+            return format_html('<img src="{}" style="height:60px;border-radius:6px;">', obj.poster.url)
+        return '-'
+    poster_preview.short_description = 'Poster'
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display   = ('name', 'watch', 'rating', 'is_visible', 'created_at', 'short_comment', 'image_preview')
+    list_editable  = ('is_visible',)
+    list_filter    = ('rating', 'is_visible', 'created_at')
+    search_fields  = ('name', 'comment', 'watch__name')
+    readonly_fields = ('name', 'watch', 'user', 'rating', 'comment', 'image', 'image_preview', 'created_at')
+    ordering       = ('-created_at',)
+
+    def short_comment(self, obj):
+        return obj.comment[:60] + '...' if len(obj.comment) > 60 else obj.comment
+    short_comment.short_description = 'Nội dung'
+
+    def image_preview(self, obj):
+        html = ''
+        for img in [obj.image, obj.image2, obj.image3]:
+            if img:
+                html += f'<img src="{img.url}" style="height:60px;border-radius:6px;margin-right:4px;">'
+        return mark_safe(html) if html else '-'
+    image_preview.short_description = 'Ảnh'
+
+    def has_add_permission(self, request):
+        return False
 @admin.register(Watch)
 class WatchAdmin(admin.ModelAdmin):
     list_display = ('watch_image', 'name', 'brand', 'price', 'discount_percent', 'is_sold_out', 'sold_count')

@@ -316,3 +316,35 @@ def create_notification(user, notif_type, title, message='', order=None):
         message=message,
         order=order,
     )
+class BrandShowcase(models.Model):
+    """Hãng nổi bật hiển thị trên trang chủ."""
+    brand  = models.OneToOneField(Brand, on_delete=models.CASCADE, related_name='showcase')
+    poster = models.ImageField(upload_to='showcase/', help_text='Ảnh poster bên trái')
+    order  = models.PositiveIntegerField(default=0, help_text='Thứ tự hiển thị (số nhỏ lên trước)')
+    is_active = models.BooleanField(default=True, help_text='Bật/tắt hiển thị')
+
+    class Meta:
+        ordering = ['order']
+        verbose_name        = 'Hãng nổi bật'
+        verbose_name_plural = 'Hãng nổi bật trang chủ'
+
+    def __str__(self):
+        return f"{self.brand.name} (thứ tự {self.order})"
+class Review(models.Model):
+    watch      = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='reviews')
+    user       = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
+                                   null=True, blank=True, related_name='reviews')
+    name       = models.CharField(max_length=100)
+    rating     = models.PositiveSmallIntegerField(default=5)
+    comment    = models.TextField()
+    image      = models.ImageField(upload_to='reviews/', blank=True, null=True)
+    image2     = models.ImageField(upload_to='reviews/', blank=True, null=True) 
+    image3     = models.ImageField(upload_to='reviews/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_visible = models.BooleanField(default=True, help_text='Bật/tắt hiển thị đánh giá này')
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.name} — {self.watch.name} ({self.rating}★)"

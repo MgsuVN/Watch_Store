@@ -27,11 +27,9 @@
 .desc-section { border-top: 1px solid var(--border); margin-top: 16px; padding-top: 16px; }
 .desc-section-title {
   font-size: 15px; font-weight: 800; color: var(--text);
-  padding: 10px 14px;
-  border-left: 4px solid var(--orange);
-  background: #fff8ee;
-  border-radius: 0 8px 8px 0;
+  padding: 0;
   margin-bottom: 14px;
+  text-align: center;
 }
 .desc-content {
   font-size: 13.5px; line-height: 1.85; color: #444;
@@ -180,17 +178,17 @@
 .qty-input::-webkit-outer-spin-button,.qty-input::-webkit-inner-spin-button{-webkit-appearance:none;}
 .qty-label{font-size:13px;font-weight:600;color:#555;margin-bottom:6px;}
 /* THÔNG SỐ 4 CỘT */
-.specs-wrap-title{font-size:15px;font-weight:800;margin-bottom:10px;color:var(--text);}
+.specs-wrap-title{font-size:15px;font-weight:800;margin-bottom:10px;color:var(--text);text-align:center;}
 .specs-4col{width:100%;border-collapse:collapse;}
 .specs-4col tr{border-bottom:1px solid #e8e8e8;}
 .specs-4col tr:last-child{border-bottom:none;}
 .specs-4col tr:nth-child(odd){background:#fafafa;}
 .specs-4col tr:nth-child(even){background:#fff;}
-.specs-4col td{padding:8px 10px;font-size:13px;vertical-align:middle;}
-.s4-label{font-weight:700;color:#333;width:24%;white-space:nowrap;}
-.s4-value{color:#444;width:26%;}
-.s4-label2{font-weight:700;color:#333;width:24%;white-space:nowrap;border-left:2px solid #e8e8e8;padding-left:12px!important;}
-.s4-value2{color:#444;width:26%;}
+.specs-4col td{padding:8px 10px;font-size:13px;vertical-align:middle;text-align:center;}
+.s4-label{font-weight:700;color:#333;width:24%;white-space:nowrap;text-align:center;}
+.s4-value{color:#444;width:26%;text-align:center;}
+.s4-label2{font-weight:700;color:#333;width:24%;white-space:nowrap;border-left:2px solid #e8e8e8;padding-left:12px!important;text-align:center;}
+.s4-value2{color:#444;width:26%;text-align:center;}
 /* REVIEW */
 .review-section{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.07);padding:28px;margin-top:24px;}
 .review-section-title{font-size:17px;font-weight:800;margin-bottom:20px;}
@@ -223,8 +221,6 @@
 .review-date{font-size:12px;color:#bbb;margin-top:6px;}
 .review-item-photos{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
 .review-item-photo{width:70px;height:70px;border-radius:8px;object-fit:cover;cursor:pointer;}
-.btn-like{background:none;border:1px solid #ddd;color:#666;font-size:12px;padding:4px 12px;border-radius:20px;cursor:pointer;transition:.2s;margin-top:8px;}
-.btn-like:hover{background:#fff4e0;border-color:var(--orange);color:var(--orange);}
 /* MODAL ĐÁNH GIÁ */
 .rv-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;}
 .rv-overlay.active{display:flex;}
@@ -234,17 +230,40 @@
 .rv-title{font-size:16px;font-weight:800;text-align:center;margin-bottom:4px;}
 .rv-product{font-size:14px;font-weight:600;text-align:center;margin-bottom:20px;color:#444;}
 /* SAO CHỌN - dùng radio ẩn + label */
-.rv-stars-wrap{display:flex;justify-content:center;gap:4px;margin-bottom:6px;direction:rtl;}
+.rv-stars-wrap{display:flex;justify-content:center;gap:16px;margin-bottom:16px;direction:ltr;}
 .rv-stars-wrap input[type=radio]{display:none;}
-.rv-stars-wrap label{font-size:38px;color:#ddd;cursor:pointer;transition:color .1s;line-height:1;padding:0 2px;}
-.rv-stars-wrap input[type=radio]:checked ~ label,
-.rv-stars-wrap label:hover,
-.rv-stars-wrap label:hover ~ label{color:#f90;}
-.rv-star-labels{display:flex;justify-content:space-between;padding:0 4px;margin-bottom:16px;}
-.rv-star-labels span{flex:1;text-align:center;font-size:11px;color:var(--muted);}
+.rv-star-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;}
+.rv-star-item label{font-size:40px;color:#ddd;cursor:pointer;transition:color .15s;line-height:1;}
+.rv-star-item span{font-size:11px;color:var(--muted);white-space:nowrap;}
+.rv-stars-wrap.has-hover .rv-star-item label,
+.rv-star-item.selected label,
+.rv-star-item.hovered label{color:#f90;}
 .rv-textarea{width:100%;border:1px solid #ddd;border-radius:10px;padding:12px;font-size:14px;resize:vertical;min-height:100px;font-family:inherit;box-sizing:border-box;margin-bottom:14px;}
 .rv-textarea:focus{outline:none;border-color:var(--orange);}
-.rv-photo-label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--orange);font-weight:600;cursor:pointer;margin-bottom:16px;}
+.rv-photo-upload{margin-bottom:14px;}
+.rv-photo-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--orange);font-weight:600;cursor:pointer;padding:7px 14px;border:1.5px solid var(--orange);border-radius:20px;margin-bottom:10px;transition:.2s;}
+.rv-photo-btn:hover{background:#fff8ee;}
+.rv-photo-slots{display:flex;gap:10px;flex-wrap:wrap;}
+.rv-photo-slot{
+  width:80px;height:80px;border-radius:8px;
+  border:2px solid #eee;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:20px;overflow:hidden;position:relative;
+  background:#fafafa;flex-shrink:0;
+}
+.rv-photo-slot img.slot-preview{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.rv-slot-progress{
+  position:absolute;bottom:0;left:0;height:4px;
+  background:var(--orange);width:0%;
+  transition:width .25s ease;border-radius:0 0 6px 6px;
+}
+.rv-slot-remove{
+  position:absolute;top:2px;right:2px;
+  background:rgba(0,0,0,.55);color:#fff;
+  border:none;border-radius:50%;width:18px;height:18px;
+  font-size:10px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;line-height:1;padding:0;
+}
 .rv-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
 .rv-input{border:1px solid #ddd;border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;width:100%;box-sizing:border-box;}
 .rv-input:focus{outline:none;border-color:var(--orange);}
@@ -312,7 +331,7 @@
 
   {% if watch.description or desc_images %}
   <div class="desc-section">
-    <div class="desc-section-title">📝 Mô tả chi tiết</div>
+    <div class="desc-section-title">Mô tả chi tiết</div>
 
     <div class="desc-content" id="descContent">
       {% if watch.description %}
@@ -490,24 +509,61 @@
 <!-- ===== ĐÁNH GIÁ ===== -->
 <div class="review-section">
   <div class="review-section-title">Đánh giá sản phẩm <span style="font-weight:400;font-size:15px;color:var(--muted);">{{ watch.name }}</span></div>
+
+  {% with total=reviews|length %}
   <div class="review-summary">
     <div class="review-score-box">
-      <div class="review-score-big" id="scoreAvg">0</div>
+      <div class="review-score-big" id="scoreAvg">—</div>
       <div class="review-score-stars" id="scoreStars">☆☆☆☆☆</div>
-      <div class="review-score-count" id="scoreCount">0 đánh giá</div>
+      <div class="review-score-count">{{ total }} đánh giá</div>
     </div>
     <div class="review-bars">
-      <div class="review-bar-row"><span class="review-bar-label">5</span><span class="review-bar-star">★</span><div class="review-bar-track"><div class="review-bar-fill" id="bar5"></div></div><span class="review-bar-pct" id="pct5">0%</span></div>
-      <div class="review-bar-row"><span class="review-bar-label">4</span><span class="review-bar-star">★</span><div class="review-bar-track"><div class="review-bar-fill" id="bar4"></div></div><span class="review-bar-pct" id="pct4">0%</span></div>
-      <div class="review-bar-row"><span class="review-bar-label">3</span><span class="review-bar-star">★</span><div class="review-bar-track"><div class="review-bar-fill" id="bar3"></div></div><span class="review-bar-pct" id="pct3">0%</span></div>
-      <div class="review-bar-row"><span class="review-bar-label">2</span><span class="review-bar-star">★</span><div class="review-bar-track"><div class="review-bar-fill" id="bar2"></div></div><span class="review-bar-pct" id="pct2">0%</span></div>
-      <div class="review-bar-row"><span class="review-bar-label">1</span><span class="review-bar-star">★</span><div class="review-bar-track"><div class="review-bar-fill" id="bar1"></div></div><span class="review-bar-pct" id="pct1">0%</span></div>
+      {% for star in "54321" %}
+      {% with s=star|add:0 %}
+      <div class="review-bar-row">
+        <span class="review-bar-label">{{ star }}</span>
+        <span class="review-bar-star">★</span>
+        <div class="review-bar-track">
+          <div class="review-bar-fill" id="bar{{ star }}" style="width:0%"></div>
+        </div>
+        <span class="review-bar-pct" id="pct{{ star }}">0%</span>
+      </div>
+      {% endwith %}
+      {% endfor %}
     </div>
-    <div class="review-photos" id="summaryPhotos"></div>
   </div>
+
   <button type="button" class="btn-write-review" onclick="openRvModal()">Viết đánh giá</button>
-  <div id="emptyReviewText" style="text-align:center;color:var(--muted);font-size:14px;padding:16px 0;">Trở thành người đầu tiên đánh giá sản phẩm này!</div>
-  <div class="review-list" id="reviewList"></div>
+
+  {% if not total %}
+  <div style="text-align:center;color:var(--muted);font-size:14px;padding:16px 0;">Trở thành người đầu tiên đánh giá sản phẩm này!</div>
+  {% endif %}
+
+  <div class="review-list">
+    {% for r in reviews %}
+    <div class="review-item" data-rating="{{ r.rating }}">
+      <div class="reviewer-header">
+        <div class="reviewer-avatar">{{ r.name|first|upper }}</div>
+        <div>
+          <div class="reviewer-name">{{ r.name }} <span class="reviewer-verified">✅ Đã mua hàng</span></div>
+        </div>
+      </div>
+      <div class="review-stars">
+        {% for i in "12345" %}{% if forloop.counter <= r.rating %}★{% else %}☆{% endif %}{% endfor %}
+      </div>
+      <div class="review-text">{{ r.comment }}</div>
+      {% if r.image or r.image2 or r.image3 %}
+      <div class="review-item-photos">
+        {% if r.image %}<img class="review-item-photo" src="{{ r.image.url }}" onclick="viewPhoto('{{ r.image.url }}')">{% endif %}
+        {% if r.image2 %}<img class="review-item-photo" src="{{ r.image2.url }}" onclick="viewPhoto('{{ r.image2.url }}')">{% endif %}
+        {% if r.image3 %}<img class="review-item-photo" src="{{ r.image3.url }}" onclick="viewPhoto('{{ r.image3.url }}')">{% endif %}
+      </div>
+      {% endif %}
+      <div class="review-date">{{ r.created_at|date:"d/m/Y" }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endwith %}
 </div>
 
 {% if related %}
@@ -537,48 +593,60 @@
   <div class="lightbox-thumbs" id="lbThumbs"></div>
 </div>
 
-<!-- MODAL ĐÁNH GIÁ — dùng radio thay cho JS button -->
+<!-- MODAL ĐÁNH GIÁ -->
 <div class="rv-overlay" id="rvOverlay" onclick="closeRvOnBg(event)">
 <div class="rv-modal">
   <button type="button" class="rv-close" onclick="closeRvModal()">✕</button>
   <div class="rv-title">Đánh giá sản phẩm</div>
   <div class="rv-product">{{ watch.name }}</div>
 
-  <!-- SAO: radio CSS-only, direction:rtl để hover hoạt động đúng -->
-  <div class="rv-stars-wrap" id="rvStarsWrap">
-    <input type="radio" name="rvStar" id="s5" value="5"><label for="s5" title="Rất tốt">★</label>
-    <input type="radio" name="rvStar" id="s4" value="4"><label for="s4" title="Tốt">★</label>
-    <input type="radio" name="rvStar" id="s3" value="3"><label for="s3" title="Tạm ổn">★</label>
-    <input type="radio" name="rvStar" id="s2" value="2"><label for="s2" title="Tệ">★</label>
-    <input type="radio" name="rvStar" id="s1" value="1"><label for="s1" title="Rất tệ">★</label>
-  </div>
-  <div class="rv-star-labels">
-    <span>Rất tệ</span><span>Tệ</span><span>Tạm ổn</span><span>Tốt</span><span>Rất tốt</span>
-  </div>
+  <form method="POST" action="{% url 'submit_review' watch.slug %}" enctype="multipart/form-data">
+    {% csrf_token %}
 
-  <textarea class="rv-textarea" id="rvText" placeholder="Mời bạn chia sẻ thêm cảm nhận (bắt buộc)..."></textarea>
+    <div class="rv-stars-wrap" id="rvStarsWrap">
+      <input type="radio" name="rating" id="s1" value="1">
+      <input type="radio" name="rating" id="s2" value="2">
+      <input type="radio" name="rating" id="s3" value="3">
+      <input type="radio" name="rating" id="s4" value="4">
+      <input type="radio" name="rating" id="s5" value="5">
+      <div class="rv-star-item" data-val="1"><label for="s1">★</label><span>Rất tệ</span></div>
+      <div class="rv-star-item" data-val="2"><label for="s2">★</label><span>Tệ</span></div>
+      <div class="rv-star-item" data-val="3"><label for="s3">★</label><span>Tạm ổn</span></div>
+      <div class="rv-star-item" data-val="4"><label for="s4">★</label><span>Tốt</span></div>
+      <div class="rv-star-item" data-val="5"><label for="s5">★</label><span>Rất tốt</span></div>
+    </div>
 
-  <label class="rv-photo-label">
-    <span>📷 Gửi ảnh thực tế (tối đa 3 ảnh)</span>
-    <input type="file" id="rvPhotos" accept="image/*" multiple style="display:none;">
-  </label>
+    <textarea class="rv-textarea" name="comment" id="rvText" placeholder="Mời bạn chia sẻ thêm cảm nhận (bắt buộc)..."></textarea>
 
-  <div class="rv-fields">
-    <input class="rv-input" id="rvName" type="text" placeholder="Họ tên (bắt buộc)">
-    <input class="rv-input" id="rvPhone" type="text" placeholder="Số điện thoại (bắt buộc)">
-    <input class="rv-input full" id="rvEmail" type="email" placeholder="Nhận Email khi có phản hồi (không bắt buộc)">
-  </div>
+    <div class="rv-photo-upload">
+      <label class="rv-photo-btn" for="rvPhotosAll">
+        📷 Gửi ảnh thực tế (tối đa 3 ảnh)
+      </label>
+      <input type="file" id="rvPhotosAll" accept="image/*" multiple style="display:none" onchange="handlePhotoSelect(this)">
+      <div class="rv-photo-slots" id="rvPhotoSlots"></div>
+      <!-- hidden inputs để submit form -->
+      <input type="file" name="image"  id="rvHidden1" style="display:none">
+      <input type="file" name="image2" id="rvHidden2" style="display:none">
+      <input type="file" name="image3" id="rvHidden3" style="display:none">
+    </div>
 
-  <label class="rv-policy">
-    <input type="checkbox" id="rvPolicy">
-    <span>Tôi đồng ý với <a href="#">Chính sách xử lý dữ liệu cá nhân</a> của WATCHSTORE.VN</span>
-  </label>
+    <div class="rv-fields">
+      <input class="rv-input" name="name" id="rvName" type="text" placeholder="Họ tên (bắt buộc)">
+      <input class="rv-input" name="phone" id="rvPhone" type="text" placeholder="Số điện thoại (bắt buộc)">
+      <input class="rv-input full" id="rvEmail" type="email" placeholder="Nhận Email khi có phản hồi (không bắt buộc)">
+    </div>
 
-  <button type="button" class="rv-submit" onclick="submitRv()">GỬI ĐÁNH GIÁ</button>
+    <label class="rv-policy">
+      <input type="checkbox" id="rvPolicy">
+      <span>Tôi đồng ý với <a href="#">Chính sách xử lý dữ liệu cá nhân</a> của WATCHSTORE.VN</span>
+    </label>
+
+    <button type="submit" class="rv-submit" onclick="return validateRv()">GỬI ĐÁNH GIÁ</button>
+  </form>
 </div></div>
 
 <script>
-const CSRF_TOKEN='{{ csrf_token }}',WATCH_ID='{{ watch.id }}';
+const CSRF_TOKEN='{{ csrf_token }}';
 const galleryImages=["{{ watch.image.url }}"{% if gallery %},{% for img in gallery %}"{{ img.image.url }}"{% if not forloop.last %},{% endif %}{% endfor %}{% endif %}];
 let galleryIdx=0;
 
@@ -646,56 +714,43 @@ function toggleDesc() {
   }
 }
 
-/* ---- REVIEWS (localStorage) ---- */
-let reviews=[];
-try{const _s=localStorage.getItem('reviews_'+WATCH_ID);if(_s)reviews=JSON.parse(_s);}catch(e){reviews=[];}
+/* ---- REVIEWS — render từ server, JS chỉ tính % bar ---- */
+(function(){
+  const items = document.querySelectorAll('.review-item[data-rating]');
+  const total = items.length;
+  if (!total) return;
 
-function renderReviews(){
-  const list=document.getElementById('reviewList');
-  const empty=document.getElementById('emptyReviewText');
-  if(!reviews.length){empty.style.display='block';list.innerHTML='';updateSummary();return;}
-  empty.style.display='none';
-  list.innerHTML=reviews.map((r,idx)=>{
-    const av=(r.name||'K').charAt(0).toUpperCase();
-    const ph=(r.photos||[]).map(p=>`<img class="review-item-photo" src="${p}" onclick="viewPhoto('${p}')">`).join('');
-    return`<div class="review-item">
-      <div class="reviewer-header"><div class="reviewer-avatar">${av}</div>
-      <div><div class="reviewer-name">${r.name||'Khách'} <span class="reviewer-verified">✅ Đã mua hàng</span></div></div></div>
-      <div class="review-stars">${'★'.repeat(r.star)+'☆'.repeat(5-r.star)}</div>
-      <div class="review-text">${r.text}</div>
-      ${ph?`<div class="review-item-photos">${ph}</div>`:''}
-      <div class="review-date">${r.date}</div>
-      <button type="button" class="btn-like" onclick="likeRv(${idx},this)">👍 Thích (${r.likes||0})</button>
-    </div>`;
-  }).join('');
-  updateSummary();
-}
+  // Tính avg và fill bar
+  let sum = 0;
+  const cnt = {1:0,2:0,3:0,4:0,5:0};
+  items.forEach(el => {
+    const r = parseInt(el.dataset.rating)||0;
+    sum += r; cnt[r] = (cnt[r]||0) + 1;
+  });
+  const avg = (sum/total).toFixed(1);
+  const avgEl = document.getElementById('scoreAvg');
+  const starsEl = document.getElementById('scoreStars');
+  if (avgEl) avgEl.textContent = avg;
+  if (starsEl) starsEl.textContent = '★'.repeat(Math.round(avg)) + '☆'.repeat(5-Math.round(avg));
 
-function updateSummary(){
-  const avg=reviews.length?(reviews.reduce((s,r)=>s+r.star,0)/reviews.length):0;
-  document.getElementById('scoreAvg').textContent=avg?avg.toFixed(2):'0';
-  document.getElementById('scoreStars').textContent=avg>0?'★'.repeat(Math.round(avg))+'☆'.repeat(5-Math.round(avg)):'☆☆☆☆☆';
-  document.getElementById('scoreCount').textContent=reviews.length+' đánh giá';
-  if(reviews.length){
-    const ri=document.getElementById('ratingInline');ri.style.display='flex';
-    document.getElementById('ratingStarsInline').textContent='★'.repeat(Math.round(avg))+'☆'.repeat(5-Math.round(avg));
-    document.getElementById('ratingCountInline').textContent=`(${reviews.length} đánh giá)`;
+  for (let i=1;i<=5;i++){
+    const pct = Math.round((cnt[i]||0)/total*100);
+    const b = document.getElementById('bar'+i);
+    const p = document.getElementById('pct'+i);
+    if(b) b.style.width = pct+'%';
+    if(p) p.textContent = pct+'%';
   }
-  for(let i=1;i<=5;i++){
-    const cnt=reviews.filter(r=>r.star===i).length;
-    const pct=reviews.length?Math.round(cnt/reviews.length*100):0;
-    const b=document.getElementById('bar'+i),p=document.getElementById('pct'+i);
-    if(b)b.style.width=pct+'%';if(p)p.textContent=pct+'%';
-  }
-  const ap=reviews.flatMap(r=>r.photos||[]).slice(0,5);
-  document.getElementById('summaryPhotos').innerHTML=ap.map(p=>`<img class="review-photo" src="${p}" onclick="viewPhoto('${p}')">`).join('');
-}
 
-function likeRv(idx,btn){
-  reviews[idx].likes=(reviews[idx].likes||0)+1;
-  localStorage.setItem('reviews_'+WATCH_ID,JSON.stringify(reviews));
-  btn.textContent=`👍 Thích (${reviews[idx].likes})`;
-}
+  // Rating inline (header)
+  const ri = document.getElementById('ratingInline');
+  if(ri){
+    ri.style.display='flex';
+    const rs = document.getElementById('ratingStarsInline');
+    const rc = document.getElementById('ratingCountInline');
+    if(rs) rs.textContent = '★'.repeat(Math.round(avg))+'☆'.repeat(5-Math.round(avg));
+    if(rc) rc.textContent = `(${total} đánh giá)`;
+  }
+})();
 function viewPhoto(src){
   const i=galleryImages.indexOf(src);
   if(i>=0){openLightbox(i);}
@@ -710,39 +765,153 @@ function openRvModal(){
 function closeRvModal(){
   document.getElementById('rvOverlay').classList.remove('active');
   document.body.style.overflow='';
-  // Reset form
-  document.querySelectorAll('input[name="rvStar"]').forEach(r=>r.checked=false);
-  ['rvText','rvName','rvPhone','rvEmail'].forEach(id=>document.getElementById(id).value='');
+  document.querySelectorAll('input[name="rating"]').forEach(r=>r.checked=false);
+  ['rvText','rvName','rvPhone','rvEmail'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  resetPhotoUpload();
   document.getElementById('rvPolicy').checked=false;
 }
 function closeRvOnBg(e){if(e.target===document.getElementById('rvOverlay'))closeRvModal();}
 
-function submitRv(){
-  const starEl=document.querySelector('input[name="rvStar"]:checked');
-  if(!starEl){alert('Vui lòng chọn số sao!');return;}
-  const star=parseInt(starEl.value);
+function validateRv(){
+  const starEl=document.querySelector('input[name="rating"]:checked');
+  if(!starEl){alert('Vui lòng chọn số sao!');return false;}
   const text=document.getElementById('rvText').value.trim();
   const name=document.getElementById('rvName').value.trim();
   const phone=document.getElementById('rvPhone').value.trim();
-  if(!text){alert('Vui lòng nhập nội dung đánh giá!');return;}
-  if(!name){alert('Vui lòng nhập họ tên!');return;}
-  if(!phone){alert('Vui lòng nhập số điện thoại!');return;}
-  if(!document.getElementById('rvPolicy').checked){alert('Vui lòng đồng ý chính sách!');return;}
-  const files=Array.from(document.getElementById('rvPhotos').files).slice(0,3);
-  Promise.all(files.map(f=>new Promise(res=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(f);}))).then(photos=>{
-    reviews.unshift({name,star,text,photos,date:new Date().toLocaleDateString('vi-VN'),likes:0});
-    try{localStorage.setItem('reviews_'+WATCH_ID,JSON.stringify(reviews));}catch(e){}
-    renderReviews();closeRvModal();
-    // Hiển thị thông báo thành công
-    const toast = document.createElement('div');
-    toast.textContent = 'Cảm ơn bạn đã đánh giá sản phẩm!';
-    toast.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a9e3f;color:#fff;font-weight:700;font-size:14px;padding:12px 28px;border-radius:30px;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,.18);animation:fadeUp .35s ease';
-    document.body.appendChild(toast);
-    setTimeout(()=>toast.remove(),3000);
+  if(!text){alert('Vui lòng nhập nội dung đánh giá!');return false;}
+  if(!name){alert('Vui lòng nhập họ tên!');return false;}
+  if(!phone){alert('Vui lòng nhập số điện thoại!');return false;}
+  if(!document.getElementById('rvPolicy').checked){alert('Vui lòng đồng ý chính sách!');return false;}
+  return true;
+}
+
+/* ---- PHOTO UPLOAD ---- */
+let uploadedFiles = [];
+
+function handlePhotoSelect(input) {
+  const newFiles = Array.from(input.files);
+  const remaining = 3 - uploadedFiles.length;
+
+  if (newFiles.length > remaining) {
+    if (uploadedFiles.length >= 3) {
+      alert('Đã đạt giới hạn 3 ảnh!');
+      input.value = '';
+      return;
+    }
+    alert(`Chỉ có thể thêm ${remaining} ảnh nữa. Đã chọn ${newFiles.length} ảnh, chỉ lấy ${remaining} ảnh đầu.`);
+  }
+
+  const toAdd = newFiles.slice(0, remaining);
+  input.value = '';
+  toAdd.forEach(file => addPhotoPreview(file));
+}
+
+function addPhotoPreview(file) {
+  if (uploadedFiles.length >= 3) {
+    alert('Đã quá giới hạn 3 ảnh!');
+    return;
+  }
+  const idx = uploadedFiles.length;
+  uploadedFiles.push(file);
+
+  const slot = document.createElement('div');
+  slot.className = 'rv-photo-slot';
+  slot.dataset.idx = idx;
+
+  const bar = document.createElement('div');
+  bar.className = 'rv-slot-progress';
+  slot.appendChild(bar);
+
+  document.getElementById('rvPhotoSlots').appendChild(slot);
+
+  // Giả lập tiến độ
+  let pct = 0;
+  const interval = setInterval(() => {
+    pct = Math.min(pct + Math.random() * 35, 90);
+    bar.style.width = pct + '%';
+  }, 60);
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    clearInterval(interval);
+    bar.style.width = '100%';
+    setTimeout(() => {
+      bar.style.opacity = '0';
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.className = 'slot-preview';
+      slot.appendChild(img);
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'rv-slot-remove';
+      btn.innerHTML = '✕';
+      btn.onclick = ev => {
+        ev.stopPropagation();
+        const i = parseInt(slot.dataset.idx);
+        uploadedFiles.splice(i, 1);
+        slot.remove();
+        // Re-index slots còn lại
+        document.querySelectorAll('#rvPhotoSlots .rv-photo-slot').forEach((s,j) => s.dataset.idx = j);
+      };
+      slot.appendChild(btn);
+    }, 300);
+
+    // Gán file vào hidden input tương ứng
+    syncHiddenInputs();
+  };
+  reader.readAsDataURL(file);
+}
+
+function syncHiddenInputs() {
+  // Tạo DataTransfer để gán file vào hidden input
+  ['rvHidden1','rvHidden2','rvHidden3'].forEach((id, i) => {
+    const inp = document.getElementById(id);
+    if (!inp) return;
+    if (uploadedFiles[i]) {
+      const dt = new DataTransfer();
+      dt.items.add(uploadedFiles[i]);
+      inp.files = dt.files;
+    } else {
+      inp.value = '';
+    }
   });
 }
 
-/* ---- THÊM GIỎ HÀNG ---- */
+function resetPhotoUpload() {
+  uploadedFiles = [];
+  document.getElementById('rvPhotoSlots').innerHTML = '';
+  ['rvHidden1','rvHidden2','rvHidden3'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.value = '';
+  });
+}
+
+/* ---- STAR PICKER ---- */
+(function(){
+  const items = document.querySelectorAll('.rv-star-item');
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const val = parseInt(item.dataset.val);
+      items.forEach(i => {
+        i.classList.toggle('hovered', parseInt(i.dataset.val) <= val);
+      });
+    });
+    item.addEventListener('mouseleave', () => {
+      items.forEach(i => i.classList.remove('hovered'));
+      updateSelected();
+    });
+    item.querySelector('label').addEventListener('click', () => {
+      setTimeout(updateSelected, 10);
+    });
+  });
+  function updateSelected(){
+    const checked = document.querySelector('input[name="rating"]:checked');
+    const val = checked ? parseInt(checked.value) : 0;
+    items.forEach(i => {
+      i.classList.toggle('selected', parseInt(i.dataset.val) <= val);
+    });
+  }
+})();
 function changeQty(delta){
   const inp = document.getElementById('qtyInput');
   if(!inp) return;
@@ -797,6 +966,6 @@ function addToCartAjax(btn){
   }).catch(()=>{btn.disabled=false;btn.innerHTML='🛒 Thêm vào giỏ hàng';});
 }
 
-renderReviews();
+
 </script>
 {% endblock %}

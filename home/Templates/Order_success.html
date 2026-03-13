@@ -4,82 +4,293 @@
 {% block content %}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&display=swap');
-/* ══ SUCCESS CARD ══ */
-#success-content{font-family:'Be Vietnam Pro',sans-serif;background:#f5f5f5;min-height:100vh;padding:40px 16px 60px;}
-.s-card{max-width:560px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 4px 28px rgba(0,0,0,.09);overflow:hidden;}
-.s-head{background:linear-gradient(135deg,#1e1b4b,#4c1d95);padding:30px 24px;text-align:center;color:#fff;}
-.s-emoji{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 12px;animation:pope .6s cubic-bezier(.34,1.56,.64,1);}
-@keyframes pope{from{transform:scale(0)}to{transform:scale(1)}}
-.s-head h2{font-size:21px;font-weight:800;margin:0 0 4px;}
-.s-head p{font-size:13px;opacity:.85;margin:0;}
-.status-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 14px;margin-top:12px;font-size:13px;font-weight:600;}
-.s-dot{width:8px;height:8px;border-radius:50%;background:#fbbf24;animation:sdot 1.2s ease-in-out infinite;}
-@keyframes sdot{0%,100%{opacity:1}50%{opacity:.3}}
-.tl{padding:20px 24px;border-bottom:1px solid #f0f0f0;}
-.tl-title{font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;}
-.tl-row{display:flex;align-items:center;}
-.tl-node{display:flex;flex-direction:column;align-items:center;flex:1;}
-.tl-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:4px;font-weight:700;}
-.dot-done{background:#d1fae5;box-shadow:0 0 0 3px #10b981;color:#10b981;}
-.dot-active{background:#fef3c7;box-shadow:0 0 0 3px #f59e0b;animation:pa 1.5s infinite;}
-.dot-wait{background:#f5f5f5;color:#ccc;}
-@keyframes pa{0%,100%{box-shadow:0 0 0 3px #f59e0b}50%{box-shadow:0 0 0 7px rgba(245,158,11,.2)}}
-.tl-lbl{font-size:10px;color:#999;text-align:center;line-height:1.4;}
-.tl-lbl.act{color:#f59e0b;font-weight:700;}
-.tl-bar{flex:1;height:2px;background:#eee;margin-bottom:22px;}
-.tl-bar.done{background:#10b981;}
-.pending{margin:0 20px 16px;padding:13px 15px;border-radius:12px;background:#fffbeb;border-left:4px solid #f59e0b;display:flex;gap:10px;align-items:flex-start;}
-.pending .ico{font-size:18px;flex-shrink:0;}
-.pending p{font-size:13px;color:#78350f;margin:0;line-height:1.6;}
-.pending strong{color:#d97706;}
-.info-block{padding:14px 20px;border-bottom:1px solid #f5f5f5;}
-.block-title{font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;}
-.irow{display:flex;justify-content:space-between;padding:5px 0;font-size:13px;border-bottom:1px solid #fafafa;}
-.irow:last-child{border-bottom:none;}
-.irow .lbl{color:#888;}
-.irow .val{font-weight:600;color:#222;text-align:right;max-width:60%;}
-.val.red{color:#e60023;font-size:15px;}
-.val.green{color:#10b981;}
-.order-badge{background:#fef3c7;color:#d97706;font-weight:800;font-size:14px;padding:3px 11px;border-radius:16px;border:2px solid #f59e0b;}
-.items-block{padding:14px 20px;border-bottom:1px solid #f5f5f5;}
-.iitem{display:flex;align-items:center;padding:6px 0;border-bottom:1px solid #fafafa;font-size:13px;}
-.iitem:last-child{border-bottom:none;}
-.iitem .nm{flex:1;color:#333;}
-.iitem .qty{color:#aaa;margin:0 10px;}
-.iitem .pr{font-weight:700;color:#e60023;}
-.s-actions{padding:16px 20px;display:flex;gap:10px;}
-.btn-act{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:700;font-family:inherit;text-decoration:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.18s;}
-.btn-primary{background:#1e1b4b;color:#fff;}
-.btn-primary:hover{background:#312e81;}
-.btn-secondary{background:#f0f0f0;color:#333;}
-.btn-secondary:hover{background:#e4e4e4;}
+
+/* ══ LUXURY COLOR SYSTEM ══ */
+:root {
+    --gold:       #C6A96B;
+    --gold-soft:  #E5D3A3;
+    --black:      #111111;
+    --dark:       #1C1C1E;
+    --apple-gray: #F5F5F7;
+    --border:     #ECECEC;
+}
+
+/* ══ BASE ══ */
+#success-content {
+    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--apple-gray);
+    min-height: 100vh;
+    padding: 40px 16px 60px;
+}
+
+/* ══ ICON SYSTEM ══ */
+.luxury-icon {
+    color: var(--gold);
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.6;
+}
+svg { stroke-linecap: round; stroke-linejoin: round; }
+
+/* ══ CARD ══ */
+.s-card {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.04);
+    overflow: hidden;
+}
+
+/* ══ HEADER ══ */
+.s-head {
+    background: linear-gradient(135deg, #fbf7ee, #f2e4c8);
+    border-bottom: 1px solid var(--gold);
+    padding: 34px 24px;
+    text-align: center;
+    color: #3a2e12;
+}
+
+.s-emoji {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    animation: pope .6s cubic-bezier(.34,1.56,.64,1);
+}
+.s-emoji .luxury-icon { width: 30px; height: 30px; }
+
+@keyframes pope { from { transform: scale(0) } to { transform: scale(1) } }
+
+.s-head h2 { font-size: 20px; font-weight: 800; margin: 0 0 5px; letter-spacing: -.2px; }
+.s-head p  { font-size: 13px; opacity: .8; color: #6c5a2c; margin: 0; }
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #fff7e3;
+    border: 1px solid #e3c68d;
+    border-radius: 999px;
+    padding: 5px 15px;
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #8a6b2e;
+    letter-spacing: .2px;
+}
+
+.s-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: sdot 1.4s ease-in-out infinite;
+}
+@keyframes sdot { 0%,100% { opacity: 1 } 50% { opacity: .25 } }
+
+/* ══ TIMELINE ══ */
+.tl {
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid var(--border);
+    background: #fafafa;
+}
+.tl-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    margin-bottom: 16px;
+}
+.tl-row { display: flex; align-items: center; }
+.tl-node { display: flex; flex-direction: column; align-items: center; flex: 1; }
+
+.tl-dot {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+.tl-dot i { width: 16px; height: 16px; stroke-width: 2; color: #9a875a; }
+
+.dot-done {
+    background: #fff;
+    border-color: var(--gold);
+}
+.dot-done i { color: var(--gold); stroke-width: 2.2; }
+
+.dot-active {
+    background: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 4px rgba(198,169,107,.18);
+    animation: pa 1.6s ease-in-out infinite;
+}
+.dot-active i { color: #a8843c; }
+
+@keyframes pa {
+    0%,100% { box-shadow: 0 0 0 3px rgba(198,169,107,.2) }
+    50%      { box-shadow: 0 0 0 7px rgba(198,169,107,.07) }
+}
+
+.tl-lbl     { font-size: 10px; color: #aaa; text-align: center; line-height: 1.45; }
+.tl-lbl.act { color: var(--gold); font-weight: 700; }
+.tl-bar     { flex: 1; height: 1.5px; background: var(--border); margin-bottom: 24px; }
+.tl-bar.done { background: var(--gold); }
+
+/* ══ PENDING NOTICE ══ */
+.pending {
+    margin: 16px 20px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    background: #fdf9f0;
+    border-left: 3px solid var(--gold);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+.pending .ico { flex-shrink: 0; padding-top: 1px; }
+.pending .ico .luxury-icon { width: 18px; height: 18px; }
+.pending p { font-size: 13px; color: #5a4a2a; margin: 0; line-height: 1.65; }
+.pending strong { color: #9a6f20; }
+
+/* ══ INFO / ITEMS BLOCK ══ */
+.info-block  { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+.items-block { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+
+.block-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    margin-bottom: 10px;
+}
+
+.irow { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5; }
+.irow:last-child { border-bottom: none; }
+.irow .lbl { color: #999; }
+.irow .val { font-weight: 600; color: #1a1a1a; text-align: right; max-width: 62%; }
+.val.red   { color: #e60023; font-size: 15px; }
+.val.green { color: #15a85e; }
+
+.order-badge {
+    display: inline-block;
+    background: var(--black);
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 13px;
+    padding: 2px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gold);
+    letter-spacing: .3px;
+}
+
+.iitem { display: flex; align-items: center; padding: 7px 0; border-bottom: 1px solid #f5f5f5; font-size: 13px; }
+.iitem:last-child { border-bottom: none; }
+.iitem .nm  { flex: 1; color: #2a2a2a; }
+.iitem .qty { color: #bbb; margin: 0 12px; font-size: 12px; }
+.iitem .pr  { font-weight: 700; color: #e60023; }
+
+/* ══ ACTIONS ══ */
+.s-actions { padding: 16px 20px 20px; display: flex; gap: 10px; }
+
+.btn-act {
+    flex: 1;
+    padding: 12px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition: background .15s, border-color .15s;
+}
+.btn-act i { width: 15px; height: 15px; stroke-width: 2; }
+
+.btn-primary {
+    background: var(--black);
+    color: #fff;
+    border: 1px solid var(--gold);
+}
+.btn-primary:hover {
+    background: var(--dark);
+    border-color: var(--gold-soft);
+    color: #fff;
+}
+
+.btn-secondary {
+    background: #f2f2f4;
+    color: #333;
+    border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: #e8e8ea; }
 </style>
 
-<!-- SUCCESS CARD -->
+<!-- ══ SUCCESS CARD ══ -->
 <div id="success-content">
   <div class="s-card">
+
+    <!-- Header -->
     <div class="s-head">
-      <div class="s-emoji">🎉</div>
+      <div class="s-emoji">
+        <i data-lucide="check-circle" class="luxury-icon"></i>
+      </div>
       <h2>Đặt hàng thành công!</h2>
       <p>Cảm ơn bạn đã tin tưởng mua sắm tại WATCHSTORE.VN</p>
-      <div class="status-pill"><span class="s-dot"></span>Đang chờ xác nhận</div>
+      <div class="status-pill">
+        <span class="s-dot"></span>Đang chờ xác nhận
+      </div>
     </div>
+
+    <!-- Timeline -->
     <div class="tl">
       <div class="tl-title">Trạng thái đơn hàng</div>
       <div class="tl-row">
-        <div class="tl-node"><div class="tl-dot dot-done">✓</div><div class="tl-lbl">Đã đặt<br>hàng</div></div>
+        <div class="tl-node">
+          <div class="tl-dot dot-done"><i data-lucide="check"></i></div>
+          <div class="tl-lbl">Đã đặt<br>hàng</div>
+        </div>
         <div class="tl-bar done"></div>
-        <div class="tl-node"><div class="tl-dot dot-active">🕐</div><div class="tl-lbl act">Chờ xác<br>nhận</div></div>
+        <div class="tl-node">
+          <div class="tl-dot dot-active"><i data-lucide="clock"></i></div>
+          <div class="tl-lbl act">Chờ xác<br>nhận</div>
+        </div>
         <div class="tl-bar"></div>
-        <div class="tl-node"><div class="tl-dot dot-wait">🚚</div><div class="tl-lbl">Đang<br>giao</div></div>
+        <div class="tl-node">
+          <div class="tl-dot"><i data-lucide="truck"></i></div>
+          <div class="tl-lbl">Đang<br>giao</div>
+        </div>
         <div class="tl-bar"></div>
-        <div class="tl-node"><div class="tl-dot dot-wait">✅</div><div class="tl-lbl">Đã nhận<br>hàng</div></div>
+        <div class="tl-node">
+          <div class="tl-dot"><i data-lucide="package-check"></i></div>
+          <div class="tl-lbl">Đã nhận<br>hàng</div>
+        </div>
       </div>
     </div>
+
+    <!-- Pending notice -->
     <div class="pending">
-      <div class="ico">⏳</div>
+      <div class="ico"><i data-lucide="loader-circle" class="luxury-icon"></i></div>
       <p>Đơn hàng <strong>#{{ order.id }}</strong> đang <strong>chờ nhân viên xác nhận</strong>. Chúng tôi sẽ liên hệ số <strong>{{ order.phone }}</strong> trong vòng <strong>30 phút</strong>.</p>
     </div>
+
+    <!-- Order info -->
     <div class="info-block">
       <div class="block-title">Thông tin đơn hàng</div>
       <div class="irow"><span class="lbl">Mã đơn</span><span class="val"><span class="order-badge">#{{ order.id }}</span></span></div>
@@ -90,6 +301,8 @@
       <div class="irow"><span class="lbl">Tổng tiền</span><span class="val red">{{ order.total|floatformat:0 }} ₫</span></div>
       <div class="irow"><span class="lbl">Vận chuyển</span><span class="val green">Miễn phí</span></div>
     </div>
+
+    <!-- Items -->
     <div class="items-block">
       <div class="block-title">Sản phẩm đã đặt</div>
       {% for item in order.items.all %}
@@ -100,11 +313,20 @@
       </div>
       {% endfor %}
     </div>
+
+    <!-- Actions -->
     <div class="s-actions">
-      <a href="{% url 'home' %}" class="btn-act btn-primary">🏠 Về trang chủ</a>
-      <a href="{% url 'orders' %}" class="btn-act btn-secondary">📋 Đơn hàng</a>
+      <a href="{% url 'home' %}" class="btn-act btn-primary">
+        <i data-lucide="home"></i> Về trang chủ
+      </a>
+      <a href="{% url 'orders' %}" class="btn-act btn-secondary">
+        <i data-lucide="receipt"></i> Đơn hàng
+      </a>
     </div>
+
   </div>
 </div>
 
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
 {% endblock %}

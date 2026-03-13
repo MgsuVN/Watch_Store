@@ -1,7 +1,7 @@
 import profile
-
+from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, Order, OrderItem, Notification, create_notification
+from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, BrandShowcase, Review, Order, OrderItem, Notification, create_notification
 from .forms import WatchForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -12,7 +12,7 @@ from django.conf import settings
 def home(request):
     brands = Brand.objects.all()
     products = Watch.objects.all().order_by('-id')
-
+    showcases = BrandShowcase.objects.filter(is_active=True).select_related('brand')[:6]
     brand_slug = request.GET.get('brand')
     current_brand = None
     if brand_slug:
@@ -29,6 +29,7 @@ def home(request):
         'page_obj': page_obj,
         'current_brand': current_brand,
         'brand_slug': brand_slug or '',
+        'showcases': showcases, 
     }
 
     if request.headers.get('HX-Request'):
@@ -74,7 +75,8 @@ def watch_detail(request, slug):
     watch = get_object_or_404(Watch, slug=slug)
     related = Watch.objects.filter(brand=watch.brand).exclude(id=watch.id)[:4]
     gallery = list(watch.extra_images.all())
-    desc_images = list(watch.desc_images.all())  
+    desc_images = list(watch.desc_images.all())
+    reviews = watch.reviews.filter(is_visible=True)
     cart_count = 0
     if request.user.is_authenticated:
         cart, _ = Cart.objects.get_or_create(user=request.user)
@@ -86,8 +88,29 @@ def watch_detail(request, slug):
         'cart_count': cart_count,
         'gallery': gallery,
         'desc_images': desc_images,
+        'reviews': reviews,
     })
-
+@require_POST
+def submit_review(request, slug):
+    watch   = get_object_or_404(Watch, slug=slug)
+    name    = request.POST.get('name', '').strip()
+    rating  = int(request.POST.get('rating', 5))
+    comment = request.POST.get('comment', '').strip()
+    image   = request.FILES.get('image')
+    image2  = request.FILES.get('image2')
+    image3  = request.FILES.get('image3')
+    if name and comment and 1 <= rating <= 5:
+        Review.objects.create(
+            watch=watch,
+            user=request.user if request.user.is_authenticated else None,
+            name=name,
+            rating=rating,
+            comment=comment,
+            image=image,
+            image2=image2,
+            image3=image3,
+        )
+    return redirect('watch_detail', slug=slug)
 
 # ===== TÌM KIẾM =====
 def search_view(request):
@@ -284,7 +307,14 @@ def orders_view(request):
         'latest_order': latest_order,
     })
 
-
+@login_required
+@require_POST
+def cancel_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    if order.status == 'pending':
+        order.status = 'cancelled'
+        order.save()
+    return redirect('orders')
 @login_required
 def order_detail_view(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)

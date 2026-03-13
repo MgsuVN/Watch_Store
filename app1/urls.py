@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('brand/<slug:slug>/', views.brand_detail, name='brand_detail'),
     path('watch/<slug:slug>/', views.watch_detail, name='watch_detail'),
-
+    path('watch/<slug:slug>/review/', views.submit_review, name='submit_review'),
     # Tìm kiếm
     path('search/', views.search_view, name='search'),
     path('search/ajax/', views.search_ajax, name='search_ajax'),
@@ -23,7 +23,7 @@ urlpatterns = [
     path('orders/', views.orders_view, name='orders'),
     path('orders/<int:order_id>/', views.order_detail_view, name='order_detail'),
     path('orders/success/<int:order_id>/', views.order_success_view, name='order_success'),
-
+    path('orders/<int:order_id>/cancel/', views.cancel_order, name='cancel_order'),
     # Yêu thích
     path('wishlist/', views.wishlist_view, name='wishlist'),
     path('wishlist/toggle/<int:watch_id>/', views.wishlist_toggle, name='wishlist_toggle'),
