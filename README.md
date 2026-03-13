@@ -2,7 +2,7 @@
 
 ## 📌 Giới thiệu
 
-Watch Store là website bán đồng hồ được xây dựng bằng Django.  
+Watch Store là website bán đồng hồ được xây dựng bằng Django.
 Hệ thống cho phép:
 
 - Xem danh sách sản phẩm theo hãng
@@ -36,7 +36,7 @@ python -m venv venv
 run.bat
 ```
 
-> `run.bat` sẽ tự động: kích hoạt venv, cài thư viện, migrate, load dữ liệu và chạy server.
+> `run.bat` sẽ tự động: kích hoạt venv, cài thư viện, migrate, load dữ liệu từ `fixtures/data.json` và chạy server.
 
 ---
 
@@ -69,22 +69,20 @@ pip install -r requirements.txt
 
 **Bước 4: Migrate database**
 ```bash
-python manage.py makemigrations
 python manage.py migrate
 ```
 
 **Bước 5: Load dữ liệu mẫu**
 ```bash
-python manage.py loaddata data.json
+python manage.py loaddata fixtures/data.json
 ```
 
 **Bước 6: Cấu hình API keys (tuỳ chọn)**
 
-Mở file `mysite/settings.py`, thêm vào cuối:
+Mở file `mysite/settings.py`, tìm dòng `GEMINI_API_KEY` và thay bằng key của bạn:
 
 ```python
-# Chatbot AI (Google Gemini - miễn phí)
-# Lấy key tại: https://aistudio.google.com/apikey
+# Lấy key miễn phí tại: https://aistudio.google.com/apikey
 GEMINI_API_KEY = 'AIzaSy...'
 ```
 
@@ -105,39 +103,42 @@ Truy cập: http://127.0.0.1:8000/admin
 
 | Username | Password |
 |----------|----------|
-| admin1   | (nhập mật khẩu của bạn) |
-
-> Nếu chưa có tài khoản, tạo bằng lệnh:
-> ```bash
-> python manage.py createsuperuser
-> ```
+| admin1   | 123456 |
 
 ---
 
-## 💾 Backup & Deploy — Export dữ liệu lên GitHub
+## 💾 Quy trình cập nhật data (dành cho team dev)
 
-Sau khi thêm/sửa sản phẩm hoặc có thay đổi code, chạy lệnh sau để backup và push:
+Sau khi thêm/sửa sản phẩm hoặc có thay đổi, chạy lệnh sau để export và push:
 
+**1. Export data mới nhất:**
 ```bash
-python manage.py makemigrations
-python manage.py migrate
 python -c "
-import os, django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+import os, django, io
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
 django.setup()
-from django.core import serializers
-from django.apps import apps
-all_objects = []
-for model in apps.get_models():
-    all_objects.extend(model.objects.all())
-data = serializers.serialize('json', all_objects, indent=2)
-with open('data.json', 'w', encoding='utf-8') as f:
-    f.write(data)
+from django.core.management import call_command
+with io.open('fixtures/data.json', 'w', encoding='utf-8') as f:
+    call_command('dumpdata', '--natural-foreign', '--natural-primary',
+        exclude=['contenttypes', 'auth.permission', 'socialaccount'],
+        indent=2, stdout=f)
 print('Done!')
 "
-git add .
-git commit -m "Update data and code"
+```
+
+**2. Commit và push:**
+```bash
+git add fixtures/data.json
+git add media/
+git commit -m "Update data"
 git push
+```
+
+**3. Các thành viên còn lại sau khi pull:**
+```bash
+git pull
+python manage.py migrate
+python manage.py loaddata fixtures/data.json
 ```
 
 ---
@@ -150,21 +151,11 @@ Watch_Store/
 ├── mysite/          - Cấu hình project Django (settings, urls)
 ├── templates/       - Giao diện HTML
 │   ├── base.html
-│   ├── checkout.html
-│   ├── order_success.html
 │   └── includes/
-│       └── chatbot_widget.html
 ├── static/          - CSS, JS, hình ảnh tĩnh
 ├── media/           - Ảnh sản phẩm upload
-├── data.json        - Dữ liệu mẫu (sản phẩm, đơn hàng...)
+├── fixtures/
+│   └── data.json    - Dữ liệu mẫu (sản phẩm, tài khoản...)
 ├── run.bat          - Script chạy tự động (Windows)
 └── requirements.txt
 ```
-
----
-
-## 👨‍🎓 Thông tin đồ án
-
-- **Sinh viên:** (Điền tên)
-- **Môn học:** (Điền môn học)
-- **Giảng viên:** (Điền tên GVHD)

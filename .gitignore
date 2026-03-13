@@ -8,7 +8,7 @@ __pycache__/
 venv/
 env/
 
-# Database
+# Database — KHÔNG commit sqlite, dùng fixtures/data.json thay thế
 db.sqlite3
 
 # OS files
@@ -20,3 +20,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Secrets — KHÔNG commit file chứa API key thật
+.env
