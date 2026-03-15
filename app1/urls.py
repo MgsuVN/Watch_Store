@@ -36,5 +36,12 @@ urlpatterns = [
     path('notifications/read/', views.notification_mark_read, name='notification_mark_all'),
     path('notifications/read/<int:notif_id>/', views.notification_mark_read, name='notification_mark_read'),
 
-    # Admin
+    # QR
+    path('payment/qr/<int:order_id>/',      views.qr_payment_view,       name='qr_payment'),
+    path('payment/confirm/<int:order_id>/', views.confirm_payment_view,  name='confirm_payment'),
+    path('invoice/<int:order_id>/',         views.invoice_view,           name='invoice'),
+
+    # Profile
+    path('profile/',      views.profile_view,      name='profile'),
+    path('profile/edit/', views.profile_edit_view,  name='profile_edit'),
 ]

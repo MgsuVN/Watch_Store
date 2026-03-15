@@ -580,11 +580,11 @@ h1, h2, h3, h4, h5, h6,
 .showcase-product-card:hover img { transform: scale(1.06); }
 .showcase-product-info { padding: 10px 12px 12px; }
 .showcase-product-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: #333;
-    line-height: 1.35;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.45;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -592,10 +592,10 @@ h1, h2, h3, h4, h5, h6,
     margin-bottom: 5px;
 }
 .showcase-product-price {
-    font-family: 'DM Sans', sans-serif;
+    font-family: inherit;
     font-size: 13px;
-    font-weight: 600;
-    color: #b5271a;
+    font-weight: 700;
+    color: #e60023;
     letter-spacing: -.2px;
 }
 
@@ -632,8 +632,10 @@ h1, h2, h3, h4, h5, h6,
 }
 @media (max-width: 575px) {
     .showcase-block { flex-direction: column; padding: 0; }
-    .showcase-poster { flex: none; width: 100%; height: 200px; min-width: unset; border-radius: 3px; }
-    .showcase-right { margin-left: 0; padding: 12px; }
+    .showcase-poster { flex: none; width: 100%; height: auto; min-width: unset; border-radius: 3px 3px 0 0; }
+    .showcase-poster img { height: auto; object-fit: contain; object-position: center center; }
+    .showcase-right { margin-left: 0; padding: 10px; }
+    .showcase-brand-pill { font-size: 9px; padding: 4px 14px; }
     .showcase-products-track .showcase-product-card { max-width: calc(50% - 5px); }
 }
 
@@ -935,21 +937,21 @@ h1, h2, h3, h4, h5, h6,
     padding-top: 40px;
     border-top: 1px solid rgba(255,255,255,.07);
 }
-.craft-stat { display: flex; flex-direction: column; gap: 5px; }
+.craft-stat { display: flex; flex-direction: column; gap: 4px; }
 .craft-stat .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 40px;
-    font-weight: 700;
+    font-family: inherit;
+    font-size: 28px;
+    font-weight: 800;
     color: var(--gold);
     line-height: 1;
-    letter-spacing: -1px;
+    letter-spacing: -.5px;
 }
 .craft-stat .stat-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 9px;
+    font-family: inherit;
+    font-size: 10px;
     font-weight: 500;
-    color: rgba(255,255,255,.32);
-    letter-spacing: 3px;
+    color: rgba(255,255,255,.45);
+    letter-spacing: 2px;
     text-transform: uppercase;
 }
 
@@ -1119,7 +1121,7 @@ h1, h2, h3, h4, h5, h6,
         preload="metadata"
         aria-hidden="true"
         id="heroVideo">
-        <source src="{% static 'video/hero.mp4' %}" type="video/mp4">
+        <source src="{% static 'video/hero1.webm' %}" type="video/mp4">
     </video>
 
     <div class="hero-video-overlay"></div>

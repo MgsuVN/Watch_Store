@@ -11,10 +11,14 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-4">
                         {% if profile.avatar %}
-                            <img src="{{ profile.avatar.url }}" alt="Avatar" class="rounded-circle me-3" style="width:120px; height:120px; object-fit:cover; border:2px solid #007bff;">
+                            <img src="{{ profile.avatar.url }}" alt="Avatar"
+                                 class="rounded-circle me-3"
+                                 style="width:120px;height:120px;object-fit:cover;border:3px solid #f39200;">
                         {% else %}
-                            <div class="rounded-circle bg-secondary me-3 d-flex justify-content-center align-items-center" style="width:120px; height:120px; color:white; font-size:40px;">
-                                {{ profile.user.username|first|upper }}
+                            <div class="rounded-circle me-3 d-flex justify-content-center align-items-center"
+                                 style="width:120px;height:120px;background:{{ profile.avatar_color }};
+                                        color:#fff;font-size:48px;font-weight:700;">
+                                {{ profile.avatar_initial }}
                             </div>
                         {% endif %}
                         <div>

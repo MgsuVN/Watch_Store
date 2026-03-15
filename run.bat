@@ -15,21 +15,33 @@ python -m pip install --upgrade pip
 echo Installing requirements...
 pip install -r requirements.txt
 
-:: 4. Migrate database
+:: 4. Xoa db cu de tranh conflict khi load fixtures
+if exist db.sqlite3 (
+    echo Removing old database...
+    del db.sqlite3
+)
+
+:: 5. Migrate database
 echo Running migrations...
 python manage.py makemigrations
 python manage.py migrate
 
-:: 5. Load data tu fixtures/data.json
+:: 6. Load data tu fixtures/data.json
 if exist fixtures\data.json (
     echo Loading data from fixtures/data.json...
     python manage.py loaddata fixtures/data.json
+    if errorlevel 1 (
+        echo.
+        echo [ERROR] Load data that bai! Kiem tra app1/migrations/ da duoc commit chua.
+        pause
+        exit /b 1
+    )
     echo Data loaded successfully!
 ) else (
     echo [WARNING] fixtures/data.json not found - no data loaded.
 )
 
-:: 6. Chay server
+:: 7. Chay server
 echo.
 echo =====================================
 echo   SERVER IS RUNNING

@@ -19,10 +19,16 @@
                             {% endif %}
                             <div class="text-danger fw-bold mt-1">{{ item.watch.sale_price|vnd }} vnđ</div>
                         </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-light text-dark border px-3 py-2" style="font-size:14px;">{{ item.quantity }}</span>
+                        <div class="d-flex align-items-center quantity-box">
+                            <button class="btn btn-light border minus" data-id="{{ item.id }}">−</button>
+                            <input type="text"
+                                   class="form-control text-center quantity-input"
+                                   value="{{ item.quantity }}"
+                                   data-id="{{ item.id }}"
+                                   style="width:52px;border-radius:0;border-left:0;border-right:0;border-bottom:1px solid #dee2e6;box-shadow:none;">
+                            <button class="btn btn-light border plus" data-id="{{ item.id }}">+</button>
                         </div>
-                        <div class="fw-bold text-danger" style="min-width:100px;text-align:right;">
+                        <div class="fw-bold text-danger text-nowrap" id="subtotal-{{ item.id }}" style="min-width:120px;text-align:right;">
                             {{ item.subtotal|vnd }} vnđ
                         </div>
                         <form method="post" action="{% url 'remove_from_cart' item.id %}">
@@ -41,8 +47,8 @@
             <div class="card border-0 shadow-sm p-4" style="border-radius:16px;">
                 <h6 class="fw-bold mb-3">Tóm tắt đơn hàng</h6>
                 <div class="d-flex justify-content-between mb-2" style="font-size:14px;">
-                    <span class="text-muted">Tạm tính ({{ cart.item_count }} sản phẩm)</span>
-                    <span class="fw-bold">{{ cart.total|vnd }} vnđ</span>
+                    <span class="text-muted">Tạm tính (<span id="cart-item-count">{{ cart.item_count }}</span> sản phẩm)</span>
+                    <span class="fw-bold" id="cart-total-top">{{ cart.total|vnd }} vnđ</span>
                 </div>
                 <div class="d-flex justify-content-between mb-3" style="font-size:14px;">
                     <span class="text-muted">Phí vận chuyển</span>
@@ -51,7 +57,7 @@
                 <hr>
                 <div class="d-flex justify-content-between mb-4">
                     <span class="fw-bold">Tổng cộng</span>
-                    <span class="fw-bold text-danger" style="font-size:20px;">{{ cart.total|vnd }} vnđ</span>
+                    <span class="fw-bold text-danger" id="cart-total-grand" style="font-size:20px;">{{ cart.total|vnd }} vnđ</span>
                 </div>
                 <a href="{% url 'checkout' %}" class="btn btn-danger rounded-pill w-100 fw-bold py-2">
                     <i class="fa-solid fa-credit-card me-2"></i>Thanh toán
@@ -73,4 +79,74 @@
     </div>
     {% endif %}
 </div>
+
+<style>
+.quantity-box .btn { padding: 4px 10px; font-size: 15px; line-height: 1; }
+.quantity-box .quantity-input {
+    font-size: 14px; font-weight: 700; padding: 4px 0;
+    border-top: 1px solid #dee2e6 !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.quantity-box .quantity-input:focus { box-shadow: none !important; }
+.quantity-box .minus { border-radius: 6px 0 0 6px; }
+.quantity-box .plus  { border-radius: 0 6px 6px 0; }
+</style>
+
+<script>
+document.querySelectorAll('.plus').forEach(btn => {
+    btn.onclick = function () {
+        const input = this.parentElement.querySelector('.quantity-input');
+        input.value = parseInt(input.value) + 1;
+        updateCart(input.dataset.id, input.value);
+    };
+});
+
+document.querySelectorAll('.minus').forEach(btn => {
+    btn.onclick = function () {
+        const input = this.parentElement.querySelector('.quantity-input');
+        if (parseInt(input.value) > 1) {
+            input.value = parseInt(input.value) - 1;
+            updateCart(input.dataset.id, input.value);
+        }
+    };
+});
+
+document.querySelectorAll('.quantity-input').forEach(input => {
+    input.addEventListener('change', function () {
+        let val = parseInt(this.value);
+        if (isNaN(val) || val < 1) { val = 1; this.value = 1; }
+        updateCart(this.dataset.id, val);
+    });
+});
+
+function updateCart(id, quantity) {
+    fetch(`/cart/update/${id}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ quantity: parseInt(quantity) })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) return;
+        // Cập nhật subtotal từng sản phẩm
+        const subtotalEl = document.getElementById('subtotal-' + id);
+        if (subtotalEl) subtotalEl.textContent = data.item_subtotal + ' vnđ';
+        // Cập nhật tổng tiền + số lượng — không reload trang
+        const totalTop   = document.getElementById('cart-total-top');
+        const totalGrand = document.getElementById('cart-total-grand');
+        const itemCount  = document.getElementById('cart-item-count');
+        if (totalTop)   totalTop.textContent   = data.cart_total + ' vnđ';
+        if (totalGrand) totalGrand.textContent = data.cart_total + ' vnđ';
+        if (itemCount)  itemCount.textContent  = data.item_count;
+    });
+}
+</script>
+
 {% endblock %}

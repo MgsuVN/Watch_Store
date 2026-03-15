@@ -21,7 +21,7 @@
     padding: 4px 0;
     background: #fff;
     z-index: 1050;
-    min-height: 72px;
+    min-height: 80px;
     /* Bỏ sticky-top của Bootstrap — tự xử lý bằng JS */
     position: relative;
 }
@@ -51,7 +51,7 @@
     display: block;
 }
 .nav-link {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
     color: #333 !important;
     padding-top: 8px !important;
@@ -75,7 +75,7 @@
     outline: none;
     box-shadow: none;
     border-color: #f39200;
-    width: 260px;
+    width: 240px;
 }
 .search-box-container .btn-search {
     border-radius: 0 20px 20px 0;
@@ -227,7 +227,7 @@
 .notif-dropdown {
     position: absolute;
     top: calc(100% + 14px);
-    right: -10px;
+    right: 0;
     width: 320px;
     background: #fff;
     border-radius: 14px;
@@ -488,7 +488,7 @@
                         <div class="dropdown w-100 w-lg-auto">
                             <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#"
                                role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="text-end me-2 d-none d-sm-block user-info-wrapper">
+                                <div class="text-end me-3 d-none d-sm-block user-info-wrapper">
                                     <small class="d-block" style="font-size: 12px; font-weight: 800; color: #f39200; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1;">
                                         Xin chào,
                                     </small>
@@ -497,7 +497,10 @@
                                 {% if user.app1_profile.avatar %}
                                     <img src="{{ user.app1_profile.avatar.url }}" alt="Avatar" class="user-avatar">
                                 {% else %}
-                                    <div class="user-avatar-placeholder">{{ user.username|first }}</div>
+                                    <div class="user-avatar-placeholder"
+                                         style="background:{{ user.app1_profile.avatar_color }};">
+                                        {{ user.app1_profile.avatar_initial }}
+                                    </div>
                                 {% endif %}
                                 <span class="ms-2 d-lg-none fw-semibold text-dark">{{ user.username }}</span>
                             </a>
@@ -506,9 +509,12 @@
                                     <div class="dropdown-header d-flex align-items-center p-3">
                                         <div class="me-2">
                                             {% if user.app1_profile.avatar %}
-                                                <img src="{{ user.app1_profile.avatar.url }}" class="rounded-circle" width="40" height="40" style="object-fit: cover;">
+                                                <img src="{{ user.app1_profile.avatar.url }}" class="rounded-circle" width="38" height="38" style="object-fit: cover;">
                                             {% else %}
-                                                <div class="user-avatar-placeholder" style="width:40px;height:40px;">{{ user.username|first }}</div>
+                                                <div class="user-avatar-placeholder"
+                                                     style="width:40px;height:40px;background:{{ user.app1_profile.avatar_color }};">
+                                                    {{ user.app1_profile.avatar_initial }}
+                                                </div>
                                             {% endif %}
                                         </div>
                                         <div style="overflow: hidden;">
@@ -672,6 +678,17 @@
         });
     }
 
+    function getIcon(type) {
+        const icons = {
+            order_confirmed: '<i class="fa-solid fa-circle-check text-success"></i>',
+            order_shipping:  '<i class="fa-solid fa-truck-fast text-primary"></i>',
+            order_delivered: '<i class="fa-solid fa-box-open" style="color:#1a9e3f;"></i>',
+            order_cancelled: '<i class="fa-solid fa-circle-xmark text-danger"></i>',
+            promotion:       '<i class="fa-solid fa-gift text-warning"></i>',
+        };
+        return icons[type] || '<i class="fa-solid fa-bell" style="color:#f39200;"></i>';
+    }
+
     function buildDropdownHTML(notifications) {
         let items = '';
         if (!notifications.length) {
@@ -681,7 +698,7 @@
                 <div class="notif-item ${n.is_read ? '' : 'unread'}"
                      onclick="markRead(${n.id}, this)"
                      ${n.order_id ? `data-url="/orders/"` : ''}>
-                    <div class="notif-icon ${n.icon_class}">${n.icon}</div>
+                    <div class="notif-icon ${n.icon_class}">${getIcon(n.type)}</div>
                     <div class="notif-content">
                         <div class="notif-title">${n.title}</div>
                         <div class="notif-time">${n.time}</div>

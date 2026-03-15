@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from app1.models import Watch   # 👈 sửa ở đây
+from app1.models import Watch, Profile
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm
-from .models import Profile
+from app1.forms import ProfileForm
 from django.contrib import messages
 
 

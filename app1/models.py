@@ -1,23 +1,3 @@
-# ================================================================
-# models.py — TẦNG MODEL (M trong MTV)
-# ================================================================
-# Kiến trúc dự án theo MTV (tương đương MVC):
-#   Model    → models.py        (file này) — Định nghĩa dữ liệu & DB
-#   Template → templates/*.html            — Giao diện hiển thị
-#   View     → views.py                    — Xử lý logic & điều hướng
-#
-# Các model trong file này:
-#   Brand        — Thương hiệu đồng hồ
-#   Watch        — Sản phẩm đồng hồ
-#   WatchImage   — Ảnh phụ của sản phẩm
-#   Cart         — Giỏ hàng (1 user = 1 giỏ)
-#   CartItem     — Từng sản phẩm trong giỏ
-#   Profile      — Thông tin mở rộng của user
-#   Order        — Đơn hàng
-#   OrderItem    — Từng sản phẩm trong đơn hàng
-#   Notification — Thông báo cho user
-# ================================================================
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -183,6 +163,19 @@ class Profile(models.Model):
     def __str__(self):
         return f"Profile: {self.user.username}"
 
+    @property
+    def avatar_color(self):
+        """Màu nền avatar mặc định theo chữ cái đầu username."""
+        colors = ['#f39200', '#e60023', '#1565c0', '#1a9e3f',
+                  '#8b5cf6', '#06b6d4', '#f97316', '#ec4899']
+        initial = self.user.username[0].upper() if self.user.username else 'U'
+        return colors[ord(initial) % len(colors)]
+
+    @property
+    def avatar_initial(self):
+        """Chữ cái đầu để hiển thị trong avatar mặc định."""
+        return self.user.username[0].upper() if self.user.username else 'U'
+
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
@@ -220,7 +213,11 @@ class Order(models.Model):
     total      = models.DecimalField(max_digits=12, decimal_places=0, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    payment_status = models.CharField(
+    max_length=20,
+    choices=[('pending','Chờ thanh toán'), ('waiting_confirm','Chờ xác nhận'), ('paid','Đã thanh toán')],
+    default='pending',
+)
     class Meta:
         ordering = ['-created_at']
         verbose_name = 'Đơn hàng'
@@ -348,3 +345,6 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.watch.name} ({self.rating}★)"
+
+
+# ── Thương hiệu đồng hồ ──────────────────────────────────────

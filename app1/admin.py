@@ -43,6 +43,7 @@ class WatchImageInline(admin.TabularInline):
             return format_html('<img src="{}" style="height:60px;border-radius:4px;">', obj.image.url)
         return '-'
     preview.short_description = 'Xem trước'
+
 class WatchDescImageInline(admin.TabularInline):
     model = WatchDescImage
     extra = 2
@@ -69,6 +70,7 @@ class BrandShowcaseAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" style="height:60px;border-radius:6px;">', obj.poster.url)
         return '-'
     poster_preview.short_description = 'Poster'
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display   = ('name', 'watch', 'rating', 'is_visible', 'created_at', 'short_comment', 'image_preview')
@@ -92,6 +94,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
+
 @admin.register(Watch)
 class WatchAdmin(admin.ModelAdmin):
     list_display = ('watch_image', 'name', 'brand', 'price', 'discount_percent', 'is_sold_out', 'sold_count')
@@ -169,19 +172,67 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 # ================================================================
-# ORDER
+# ORDER  (duy nhất — đã tích hợp payment_status)
 # ================================================================
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0
+    readonly_fields = ('watch_name', 'price', 'quantity', 'subtotal')
+    can_delete = False
+
+
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display   = ['id', 'full_name', 'phone', 'total', 'status_badge', 'created_at', 'send_notif_btn']
-    list_filter    = ['status', 'payment', 'created_at']
+    list_display   = [
+        'id', 'full_name', 'phone', 'total_display',
+        'payment_badge', 'payment_status_badge',
+        'status_badge', 'created_at', 'send_notif_btn',
+    ]
+    list_filter    = ['status', 'payment_status', 'payment', 'created_at']
     search_fields  = ['full_name', 'phone', 'id']
     readonly_fields = ['created_at', 'updated_at']
     list_editable  = []
+    inlines        = [OrderItemInline]
+    actions        = ['mark_payment_waiting', 'mark_payment_paid', 'mark_payment_pending']
+
+    fieldsets = (
+        ('Thông tin khách hàng', {
+            'fields': ('user', 'full_name', 'phone', 'address', 'city', 'note')
+        }),
+        ('Đơn hàng', {
+            'fields': ('payment', 'total', 'status')
+        }),
+        ('✅ Trạng thái thanh toán QR', {
+            'fields': ('payment_status',),
+            'description': (
+                '⏳ pending = chờ thanh toán  |  '
+                '🔍 waiting_confirm = khách đã chuyển khoản, chờ admin xác nhận  |  '
+                '✅ paid = đã xác nhận thanh toán thành công'
+            ),
+        }),
+        ('Thời gian', {
+            'fields': ('created_at', 'updated_at'),
+        }),
+    )
+
+    # ── Actions để đổi payment_status hàng loạt ───────────────────
+    def mark_payment_paid(self, request, queryset):
+        updated = queryset.update(payment_status='paid')
+        self.message_user(request, f'✅ Đã xác nhận thanh toán cho {updated} đơn hàng.')
+    mark_payment_paid.short_description = '✅ Xác nhận đã thanh toán (paid)'
+
+    def mark_payment_waiting(self, request, queryset):
+        updated = queryset.update(payment_status='waiting_confirm')
+        self.message_user(request, f'🔍 Đã chuyển {updated} đơn sang "Chờ xác nhận".')
+    mark_payment_waiting.short_description = '🔍 Chuyển sang Chờ xác nhận'
+
+    def mark_payment_pending(self, request, queryset):
+        updated = queryset.update(payment_status='pending')
+        self.message_user(request, f'⏳ Đã reset {updated} đơn về "Chờ thanh toán".')
+    mark_payment_pending.short_description = '⏳ Reset về Chờ thanh toán'
 
     def save_model(self, request, obj, form, change):
         if change and 'status' in form.changed_data:
-            old_status = Order.objects.get(pk=obj.pk).status
             super().save_model(request, obj, form, change)
             self._send_status_notification(obj)
         else:
@@ -189,14 +240,26 @@ class OrderAdmin(admin.ModelAdmin):
 
     def _send_status_notification(self, order):
         messages_map = {
-            'confirmed': ('order_confirmed', f'✅ Đơn hàng #{order.id} đã được xác nhận',
-                          'Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.'),
-            'shipping':  ('order_shipping',  f'🚚 Đơn hàng #{order.id} đang được vận chuyển',
-                          'Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.'),
-            'delivered': ('order_delivered', f'🎉 Đơn hàng #{order.id} đã được giao thành công',
-                          'Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.'),
-            'cancelled': ('order_cancelled', f'❌ Đơn hàng #{order.id} đã bị hủy',
-                          'Đơn hàng của bạn đã bị hủy. Liên hệ hotline nếu cần hỗ trợ.'),
+            'confirmed': (
+                'order_confirmed',
+                f' Đơn hàng #{order.id} đã được xác nhận',
+                'Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.',
+            ),
+            'shipping': (
+                'order_shipping',
+                f' Đơn hàng #{order.id} đang được vận chuyển',
+                'Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.',
+            ),
+            'delivered': (
+                'order_delivered',
+                f' Đơn hàng #{order.id} đã giao thành công',
+                'Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.',
+            ),
+            'cancelled': (
+                'order_cancelled',
+                f' Đơn hàng #{order.id} đã bị hủy',
+                'Đơn hàng của bạn đã bị hủy. Liên hệ hotline nếu cần hỗ trợ.',
+            ),
         }
         if order.status in messages_map:
             notif_type, title, message = messages_map[order.status]
@@ -205,6 +268,36 @@ class OrderAdmin(admin.ModelAdmin):
                     user=order.user, notif_type=notif_type,
                     title=title, message=message, order=order,
                 )
+
+    # ── Cột hiển thị ──────────────────────────────────────────────
+    def total_display(self, obj):
+        formatted = f"{int(obj.total):,} đ"
+        return format_html('<strong style="color:#e60023;">{}</strong>', formatted)
+    total_display.short_description = 'Tổng tiền'
+    total_display.admin_order_field = 'total'
+
+    def payment_badge(self, obj):
+        icons = {'bank': '💳', 'cod': '🚚', 'installment': '📆'}
+        labels = {'bank': 'Chuyển khoản', 'cod': 'COD', 'installment': 'Fundiin'}
+        return format_html(
+            '<span style="font-size:12px;">{} {}</span>',
+            icons.get(obj.payment, ''), labels.get(obj.payment, obj.payment)
+        )
+    payment_badge.short_description = 'Thanh toán'
+
+    def payment_status_badge(self, obj):
+        cfg = {
+            'pending':         ('#f39200', '⏳ Chờ TT'),
+            'waiting_confirm': ('#1565c0', '🔍 Chờ xác nhận'),
+            'paid':            ('#1a9e3f', '✅ Đã TT'),
+        }
+        color, label = cfg.get(obj.payment_status, ('#888', obj.payment_status))
+        return format_html(
+            '<span style="background:{};color:#fff;padding:3px 10px;'
+            'border-radius:12px;font-size:12px;white-space:nowrap;">{}</span>',
+            color, label
+        )
+    payment_status_badge.short_description = 'TT Thanh toán'
 
     def status_badge(self, obj):
         colors = {
@@ -215,14 +308,14 @@ class OrderAdmin(admin.ModelAdmin):
             '<span style="background:{};color:#fff;padding:3px 10px;border-radius:12px;font-size:12px;">{}</span>',
             colors.get(obj.status, '#666'), obj.get_status_display()
         )
-    status_badge.short_description = 'Trạng thái'
+    status_badge.short_description = 'Trạng thái ĐH'
 
     def send_notif_btn(self, obj):
         return format_html(
             '<a href="/admin/app1/order/{}/change/" style="font-size:12px;color:#f39200;">Đổi trạng thái</a>',
             obj.pk
         )
-    send_notif_btn.short_description = 'Thông báo'
+    send_notif_btn.short_description = 'Thao tác'
 
 
 # ================================================================
@@ -398,6 +491,7 @@ def get_dashboard_stats(request):
             for o in recent_raw
         ],
     }
+
 def revenue_view(request):
     context = dict(
         admin.site.each_context(request),
@@ -416,4 +510,3 @@ def get_admin_urls(urls):
 
 
 admin.site.get_urls = get_admin_urls(admin.site.get_urls())
-

@@ -1,13 +1,15 @@
-import profile
-from django.views.decorators.http import require_POST
+﻿from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, BrandShowcase, Review, Order, OrderItem, Notification, create_notification
-from .forms import WatchForm
+from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, BrandShowcase, Review, Order, OrderItem, Notification, create_notification, Profile
+from .forms import WatchForm, ProfileForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib import messages
 from django.conf import settings
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from django.dispatch import receiver
 
 def home(request):
     brands = Brand.objects.all()
@@ -29,7 +31,7 @@ def home(request):
         'page_obj': page_obj,
         'current_brand': current_brand,
         'brand_slug': brand_slug or '',
-        'showcases': showcases, 
+        'showcases': showcases,
     }
 
     if request.headers.get('HX-Request'):
@@ -90,6 +92,7 @@ def watch_detail(request, slug):
         'desc_images': desc_images,
         'reviews': reviews,
     })
+
 @require_POST
 def submit_review(request, slug):
     watch   = get_object_or_404(Watch, slug=slug)
@@ -134,7 +137,6 @@ def search_ajax(request):
     ids_param = request.GET.get('ids', '').strip()
     results = []
 
-    # Lấy theo danh sách ids (cho trang wishlist)
     if ids_param:
         try:
             ids = [int(i) for i in ids_param.split(',') if i.strip().isdigit()]
@@ -149,7 +151,6 @@ def search_ajax(request):
                 })
         except Exception:
             pass
-    # Tìm kiếm theo tên
     elif len(q) >= 2:
         watches = Watch.objects.filter(name__icontains=q)[:6]
         for w in watches:
@@ -170,7 +171,6 @@ def add_to_cart(request, watch_id):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     item, created = CartItem.objects.get_or_create(cart=cart, watch=watch)
 
-    # Trả về JSON nếu là AJAX request (hiệu ứng bay)
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         if created:
             msg = f'Đã thêm "{watch.name}" vào giỏ hàng!'
@@ -205,7 +205,6 @@ def cart_view(request):
 def remove_from_cart(request, item_id):
     item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
     item.delete()
-    # Nếu là AJAX request (từ checkout page) → trả JSON, không redirect
     if request.headers.get('Content-Type') == 'application/json' or \
        request.headers.get('x-requested-with') == 'XMLHttpRequest':
         return JsonResponse({'success': True})
@@ -237,8 +236,7 @@ def checkout_view(request):
             messages.error(request, 'Vui lòng điền đầy đủ thông tin giao hàng!')
             return redirect('checkout')
 
-        # Lưu vào profile nếu chưa có
-        # Luôn cập nhật phone và address từ form vào profile
+        # Cập nhật profile
         profile = getattr(request.user, 'app1_profile', None)
         if profile:
             profile.phone = phone
@@ -255,6 +253,7 @@ def checkout_view(request):
             note=note,
             payment=payment,
             total=cart.total,
+            # payment_status mặc định = 'pending'
         )
 
         # Tạo các order item từ giỏ hàng
@@ -268,12 +267,17 @@ def checkout_view(request):
                 subtotal=item.subtotal,
             )
 
-        # Xóa giỏ hàng sau khi đặt hàng
+        # Xóa giỏ hàng
         cart.items.all().delete()
 
-        messages.success(request, f'Đặt hàng thành công! Cảm ơn {full_name} đã mua hàng tại WATCHSTORE.VN! Mã đơn: #{order.id}')
-        return redirect('order_success', order_id=order.id)
-        
+        # ── Redirect theo phương thức thanh toán ──────────────────
+        if payment == 'bank':
+            # Chuyển khoản → trang QR VietQR
+            return redirect('qr_payment', order_id=order.id)
+        else:
+            # COD / installment → trang thành công cũ
+            messages.success(request, f'Đặt hàng thành công! Cảm ơn {full_name} đã mua hàng tại WATCHSTORE.VN! Mã đơn: #{order.id}')
+            return redirect('order_success', order_id=order.id)
 
     return render(request, 'checkout.html', {
         'cart': cart,
@@ -291,7 +295,18 @@ def update_cart_item(request, item_id):
         if qty < 1: qty = 1
         item.quantity = qty
         item.save()
-        return JsonResponse({'success': True})
+        cart = item.cart
+        # Format theo kiểu VN: dấu chấm phân cách hàng nghìn
+        def vnd(n): return '{:,.0f}'.format(float(n)).replace(',', '.')
+        # item_count: tổng số lượng tất cả sản phẩm trong giỏ
+        from django.db.models import Sum
+        item_count = cart.items.aggregate(total=Sum('quantity'))['total'] or 0
+        return JsonResponse({
+            'success':      True,
+            'item_subtotal': vnd(item.subtotal),
+            'cart_total':    vnd(cart.total),
+            'item_count':    item_count,
+        })
     return JsonResponse({'success': False})
 
 
@@ -300,7 +315,6 @@ def update_cart_item(request, item_id):
 @login_required
 def orders_view(request):
     orders = Order.objects.filter(user=request.user).prefetch_related('items').order_by('-created_at')
-    # Lấy đơn hàng mới nhất để hiển thị tracking
     latest_order = orders.first()
     return render(request, 'orders.html', {
         'orders': orders,
@@ -315,6 +329,7 @@ def cancel_order(request, order_id):
         order.status = 'cancelled'
         order.save()
     return redirect('orders')
+
 @login_required
 def order_detail_view(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
@@ -358,7 +373,7 @@ def add_watch(request):
     else:
         form = WatchForm()
     return render(request, 'add_watch.html', {'form': form})
-# ================================================================
+
 # ================================================================
 # THÊM VÀO CUỐI FILE  app1/views.py
 # ================================================================
@@ -370,6 +385,7 @@ def add_watch(request):
 import json as _json
 import urllib.request as _urllib
 import urllib.error as _urllib_error
+import re as _re
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
@@ -383,9 +399,9 @@ def chatbot_view(request):
     except Exception:
         return JsonResponse({'error': 'Invalid request'}, status=400)
 
-    # ── Lấy sản phẩm từ database ──────────────────────────────
-    watches = Watch.objects.select_related('brand').all()[:200]
-    watch_list = []  # lưu để so khớp sau
+    total_watches = Watch.objects.count()
+    watches = Watch.objects.select_related('brand').all().order_by('-discount_percent')[:200]
+    watch_list = []
     product_lines = []
     for w in watches:
         stock = 'Còn hàng'
@@ -393,7 +409,7 @@ def chatbot_view(request):
             stock = 'Hết hàng'
         brand = w.brand.name if w.brand else ''
         line  = (
-            f"- {w.name} | Thương hiệu: {brand} | "
+            f"[ID:{w.id}] {w.name} | Thương hiệu: {brand} | "
             f"Giá gốc: {int(w.price):,}đ | "
             f"Giá sale: {int(w.sale_price):,}đ"
         )
@@ -402,166 +418,187 @@ def chatbot_view(request):
         line += f" | {stock}"
         product_lines.append(line)
         watch_list.append(w)
+    # Map ID → watch object để lookup nhanh
+    watch_map = {w.id: w for w in watch_list}
 
     products_text = '\n'.join(product_lines) if product_lines else 'Chưa có sản phẩm.'
 
-    system_prompt = f"""Bạn là trợ lý tư vấn bán hàng của WATCHSTORE.VN – cửa hàng đồng hồ chính hãng.
-
-DANH SÁCH SẢN PHẨM HIỆN TẠI:
-{products_text}
-
-QUY TẮC:
-- Trả lời tiếng Việt, thân thiện, ngắn gọn
-- Chỉ dùng dữ liệu từ danh sách trên, không bịa thêm
-- Nếu hỏi giá: dùng giá sale (giá bán thực tế)
-- Nếu không tìm thấy sản phẩm: gợi ý sản phẩm tương tự
-- Khi đề cập sản phẩm cụ thể, hãy viết ĐÚNG tên sản phẩm như trong danh sách
-"""
-
-    api_key = getattr(settings, 'GEMINI_API_KEY', '')
-    if not api_key:
-        return JsonResponse({'reply': 'Chatbot chưa cấu hình API key. Liên hệ hotline: 093 189 2222'})
-
-    # ── Chuyển messages sang format Gemini ────────────────────
-    gemini_contents = []
-    for msg in messages:
-        role    = 'model' if msg.get('role') == 'assistant' else 'user'
-        content = msg.get('content', '').strip()
-        if content:
-            gemini_contents.append({
-                'role': role,
-                'parts': [{'text': content}]
-            })
-
-    # Tin nhắn cuối phải là 'user'
-    if gemini_contents and gemini_contents[-1]['role'] == 'model':
-        gemini_contents.pop()
-    if not gemini_contents:
-        gemini_contents = [{'role': 'user', 'parts': [{'text': 'Xin chào'}]}]
-
-    payload = _json.dumps({
-        'contents': gemini_contents,
-        'system_instruction': {
-            'parts': [{'text': system_prompt}]
-        },
-        'generationConfig': {
-            'maxOutputTokens': 1000,
-            'temperature': 0.7,
-        }
-    }).encode('utf-8')
-
-    url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}'
-    req = _urllib.Request(
-        url,
-        data=payload,
-        headers={'Content-Type': 'application/json'},
-        method='POST',
-    )
-
-    try:
-        with _urllib.urlopen(req, timeout=30) as resp:
-            result = _json.loads(resp.read())
-            reply  = result['candidates'][0]['content']['parts'][0]['text']
-
-    except _urllib_error.HTTPError as e:
-        body = e.read().decode('utf-8', errors='ignore')
-        print(f"--- CHI TIẾT LỖI TỪ GOOGLE ---\n{body}\n-------------------------------")
-        reply = f'Lỗi API ({e.code}). Kiểm tra lại API Key hoặc liên hệ hotline: 093 189 2222'
-
-    except _urllib_error.URLError as e:
-        print(f"[CHATBOT] URLError: {e.reason}")
-        reply = 'Không thể kết nối đến máy chủ Google. Vui lòng thử lại sau.'
-
-    except Exception as e:
-        print(f"[CHATBOT] Lỗi không xác định: {e}")
-        reply = 'Đã có lỗi xảy ra. Vui lòng liên hệ hotline: 093 189 2222'
-
-    # ── So khớp sản phẩm: ưu tiên reply, bổ sung từ câu hỏi ──
-    import re as _re
-
-    # Lấy câu hỏi cuối của user
-    user_msg = ''
+    # Lọc sản phẩm theo giá trước khi đưa vào prompt
+    user_msg_pre = ''
     for msg in reversed(messages):
         if msg.get('role') == 'user':
-            user_msg = msg.get('content', '').lower()
+            user_msg_pre = msg.get('content', '').lower()
             break
+    import re as _re2
+    pre_max = None
+    for pat in [r'dưới\s*(\d+)\s*tr', r'(\d+)\s*tr(?:iệu)?(?:\s*trở\s*xuống|\s*đổ\s*lại|\s*dưới)']:
+        m = _re2.search(pat, user_msg_pre)
+        if m:
+            pre_max = int(m.group(1)) * 1_000_000
+            break
+    if pre_max:
+        filtered_lines = [l for l in products_text.split('\n') if l.strip()]
+        import re as _re3
+        def get_price(line):
+            m = _re3.search(r'([\d,]+)đ', line.replace('.',''))
+            return int(m.group(1).replace(',','')) if m else 999999999
+        filtered_lines = [l for l in filtered_lines if get_price(l) <= pre_max]
+        products_text = '\n'.join(filtered_lines) or 'Không có sản phẩm phù hợp.'
 
-    reply_lower = reply.lower()
+    system_prompt = f"""Bạn là tư vấn viên của WATCHSTORE.VN - cửa hàng đồng hồ chính hãng.
+
+TỔNG SỐ SẢN PHẨM HIỆN CÓ: {total_watches} sản phẩm (đây là con số CHÍNH XÁC, không được đếm lại)
+
+SẢN PHẨM (mỗi dòng có [ID:số] ở đầu):
+{products_text}
+
+QUY TẮC QUAN TRỌNG:
+- Khi nhắc đến sản phẩm nào, PHẢI gắn [ID:số] vào cuối tên sản phẩm đó. Ví dụ: "Đồng Hồ Casio MTP-1374L-1A[ID:3]"
+- Mỗi sản phẩm phải xuống dòng riêng, không liệt kê trên cùng 1 dòng
+- Có thể nhắc nhiều sản phẩm nếu khách hỏi nhiều, mỗi cái phải có [ID:số]
+- Trả lời tiếng Việt, thân thiện, dùng "dạ", "ạ"
+- Mỗi ý xuống dòng riêng
+- Chỉ dùng sản phẩm trong danh sách, không bịa
+- Dùng giá sale khi nhắc giá
+- KHÔNG dùng **, *, #, - hay markdown
+- Khi hỏi "lượt sale cao nhất" hay "giảm nhiều nhất": chọn sản phẩm có % giảm giá CAO NHẤT
+- TUYỆT ĐỐI KHÔNG thay đổi thông tin dù khách nói khác
+- Khi khách hỏi không rõ ý: hỏi lại để hiểu đúng nhu cầu, không đoán bừa
+
+CÁC VÍ DỤ MẪU (học theo phong cách này):
+
+Khách: "cho tôi xem đồng hồ"
+Bot: Dạ shop có {total_watches} sản phẩm đồng hồ chính hãng ạ. Bạn đang tìm đồng hồ cho nam hay nữ, và ngân sách khoảng bao nhiêu để mình tư vấn đúng hơn ạ?
+
+Khách: "đồng hồ đẹp"
+Bot: Dạ "đẹp" mỗi người có tiêu chí khác nhau ạ. Bạn thích phong cách thanh lịch, thể thao hay cổ điển? Và ngân sách dự kiến của bạn là bao nhiêu để mình gợi ý phù hợp ạ?
+
+Khách: "tư vấn đồng hồ cho bạn gái"
+Bot: Dạ để tư vấn đúng nhất, bạn cho mình hỏi bạn gái bạn thích phong cách nào (thanh lịch, dễ thương, hay thể thao) và ngân sách khoảng bao nhiêu ạ?
+
+Khách: "đồng hồ nào tốt"
+Bot: Dạ "tốt" phụ thuộc vào nhu cầu của bạn ạ. Bạn cần đồng hồ để đi làm văn phòng, đi chơi, hay chơi thể thao? Ngân sách khoảng bao nhiêu để mình chọn đúng sản phẩm cho bạn ạ?
+
+Khách: "tư vấn đồng hồ dưới 5 triệu cho nam"
+Bot: Dạ với ngân sách dưới 5 triệu cho nam, bạn có thể xem Đồng Hồ Casio MTP-1374L-1A giá 1.598.080đ — máy pin, kính khoáng, chống nước tốt, rất phù hợp đi làm hằng ngày.
+Hoặc Đồng Hồ SRWatch 40mm giá 1.140.000đ, thiết kế đơn giản lịch sự, đang có sẵn tại shop ạ!
+
+Khách: "giá đồng hồ Longines bao nhiêu"
+Bot: Dạ shop đang có một số mẫu Longines, mức giá dao động tùy dòng ạ. Bạn đang quan tâm dòng nào (Longines Master, HydroConquest, hay Primaluna) để mình báo giá chính xác hơn ạ?
+
+Khách: "shop có bán đồng hồ Rolex không"
+Bot: Dạ hiện tại shop chưa có sản phẩm Rolex trong danh sách ạ. Tuy nhiên shop có nhiều thương hiệu cao cấp khác như Longines, Omega với mức giá và chất lượng tương đương, bạn có muốn xem thử không ạ?
+"""
+
+
+    groq_key = getattr(settings, 'GROQ_API_KEY', '')
+    reply    = None
+
+    if groq_key:
+        # Groq API - nhanh, ít rate limit
+        GROQ_MODELS = ['llama-3.3-70b-versatile', 'llama-3.1-70b-versatile', 'llama-3.1-8b-instant']
+        for model in GROQ_MODELS:
+            payload = _json.dumps({
+                'model': model,
+                'messages': [{'role': 'system', 'content': system_prompt}] + [
+                    {'role': m.get('role', 'user'), 'content': m.get('content', '')}
+                    for m in (messages[-6:] if len(messages) > 6 else messages)
+                ],
+                'max_tokens': 512,
+                'temperature': 0.5,
+            }).encode('utf-8')
+            req = _urllib.Request(
+                'https://api.groq.com/openai/v1/chat/completions',
+                data=payload,
+                headers={'Content-Type': 'application/json', 'Authorization': f'Bearer {groq_key}', 'User-Agent': 'Mozilla/5.0'},
+                method='POST',
+            )
+            try:
+                with _urllib.urlopen(req, timeout=15) as resp:
+                    result = _json.loads(resp.read())
+                    reply  = result['choices'][0]['message']['content']
+                print(f"[CHATBOT] Groq OK: {model}")
+                break
+            except _urllib_error.HTTPError as e:
+                body = e.read().decode('utf-8', errors='ignore')
+                print(f"[CHATBOT] Groq {model} lỗi {e.code}: {body[:200]}")
+                if e.code in (429, 503):
+                    continue
+                reply = f'Lỗi kết nối ({e.code}). Liên hệ hotline: 123456789'
+                break
+            except Exception as e:
+                print(f"[CHATBOT] Groq lỗi: {e}")
+                reply = 'Đã có lỗi xảy ra. Liên hệ hotline: 123456789'
+                break
+
+    else:
+        reply = 'Chatbot chưa cấu hình API key. Liên hệ hotline: 123456789'
+
+    if reply is None:
+        reply = 'Chatbot đang quá tải, vui lòng thử lại sau vài giây.'
+
+    # Parse ID từ reply của AI — chính xác 100%
+    id_matches = _re.findall(r'\[ID:(\d+)\]', reply)
     suggested = []
     seen_ids = set()
 
-    # Phát hiện lọc theo giá từ câu hỏi user
-    max_price = None
-    min_price = None
-    price_patterns = [
-        (r'(\d+)\s*tr(?:iệu)?(?:\s*đổ\s*lại|\s*trở\s*xuống|\s*dưới)?', 'max'),
-        (r'dưới\s*(\d+)\s*tr', 'max'),
-        (r'trên\s*(\d+)\s*tr', 'min'),
-        (r'từ\s*(\d+)\s*tr', 'min'),
-    ]
-    for pattern, ptype in price_patterns:
-        m = _re.search(pattern, user_msg)
-        if m:
-            val = int(m.group(1)) * 1_000_000
-            if ptype == 'max':
-                max_price = val
-            else:
-                min_price = val
+    for id_str in id_matches:
+        wid = int(id_str)
+        if wid in watch_map and wid not in seen_ids:
+            w = watch_map[wid]
+            suggested.append({'name': w.name, 'url': f'/watch/{w.slug}/',
+                               'price': f"{int(w.sale_price):,}đ",
+                               'image': w.image.url if w.image else ''})
+            seen_ids.add(wid)
 
-    # Phát hiện lọc theo thương hiệu
-    brand_filter = None
-    for w in watch_list:
-        if w.brand and w.brand.name.lower() in user_msg:
-            brand_filter = w.brand.name.lower()
-            break
-
-    # Phát hiện lọc giảm giá
-    want_sale = any(kw in user_msg for kw in ['giảm giá', 'sale', 'khuyến mãi', 'discount'])
-
-    # Bước 1: match tên sản phẩm trong reply
-    for w in watch_list:
-        if w.id not in seen_ids and w.name.lower() in reply_lower:
-            suggested.append({
-                'name': w.name,
-                'url': f'/watch/{w.slug}/',
-                'price': f"{int(w.sale_price):,}đ",
-                'image': w.image.url if w.image else '',
-            })
-            seen_ids.add(w.id)
-            if len(suggested) >= 4:
+    # Fallback nếu AI không gắn ID (hỏi chung chung, không nhắc SP cụ thể)
+    if not suggested:
+        user_msg = ''
+        for msg in reversed(messages):
+            if msg.get('role') == 'user':
+                user_msg = msg.get('content', '').lower()
                 break
+        want_sale = any(kw in user_msg for kw in ['giảm giá', 'sale', 'khuyến mãi', 'discount', 'lượt sale', 'giảm nhiều'])
+        brand_filter = None
+        for w in watch_list:
+            if w.brand and w.brand.name.lower() in user_msg:
+                brand_filter = w.brand.name.lower()
+                break
+        max_price = None
+        min_price = None
+        for pat, ptype in [
+            (r'(\d+)\s*tr(?:iệu)?(?:\s*đổ\s*lại|\s*trở\s*xuống|\s*dưới)?', 'max'),
+            (r'dưới\s*(\d+)\s*tr', 'max'),
+            (r'trên\s*(\d+)\s*tr', 'min'),
+        ]:
+            m = _re.search(pat, user_msg)
+            if m:
+                val = int(m.group(1)) * 1_000_000
+                if ptype == 'max': max_price = val
+                else: min_price = val
 
-    # Bước 2: nếu chưa đủ 4, bổ sung theo filter từ câu hỏi
-    if len(suggested) < 4:
-        candidates = watch_list[:]
-        if want_sale:
-            candidates = [w for w in candidates if hasattr(w, 'discount_percent') and w.discount_percent > 0]
-        if brand_filter:
-            candidates = [w for w in candidates if w.brand and w.brand.name.lower() == brand_filter]
-        if max_price:
-            candidates = [w for w in candidates if w.sale_price <= max_price]
-        if min_price:
-            candidates = [w for w in candidates if w.sale_price >= min_price]
+        cands = watch_list[:]
+        if want_sale:    cands = [w for w in cands if getattr(w, 'discount_percent', 0) > 0]
+        if brand_filter: cands = [w for w in cands if w.brand and w.brand.name.lower() == brand_filter]
+        if max_price:    cands = [w for w in cands if w.sale_price <= max_price]
+        if min_price:    cands = [w for w in cands if w.sale_price >= min_price]
+        if any(kw in user_msg for kw in ['rẻ nhất', 'giá rẻ', 'giá thấp']):
+            cands.sort(key=lambda w: w.sale_price)
+        elif any(kw in user_msg for kw in ['đắt nhất', 'cao cấp', 'giá cao']):
+            cands.sort(key=lambda w: w.sale_price, reverse=True)
+        elif want_sale:
+            cands.sort(key=lambda w: getattr(w, 'discount_percent', 0), reverse=True)
+        for w in cands[:4]:
+            suggested.append({'name': w.name, 'url': f'/watch/{w.slug}/',
+                               'price': f"{int(w.sale_price):,}đ",
+                               'image': w.image.url if w.image else ''})
 
-        # Sắp xếp: giảm giá cao nhất trước, nếu không thì rẻ nhất trước
-        if want_sale:
-            candidates.sort(key=lambda w: getattr(w, 'discount_percent', 0), reverse=True)
-        elif max_price:
-            candidates.sort(key=lambda w: w.sale_price, reverse=True)
-
-        for w in candidates:
-            if w.id not in seen_ids:
-                suggested.append({
-                    'name': w.name,
-                    'url': f'/watch/{w.slug}/',
-                    'price': f"{int(w.sale_price):,}đ",
-                    'image': w.image.url if w.image else '',
-                })
-                seen_ids.add(w.id)
-                if len(suggested) >= 4:
-                    break
+    # Xóa tag [ID:x] khỏi reply trước khi gửi cho client
+    reply = _re.sub(r'\[ID:\d+\]', '', reply).strip()
 
     return JsonResponse({'reply': reply, 'suggested_products': suggested})
+
+
 @login_required
 def order_success_view(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
@@ -598,7 +635,6 @@ def notification_mark_read(request, notif_id=None):
         if notif_id:
             Notification.objects.filter(id=notif_id, user=request.user).update(is_read=True)
         else:
-            # Đánh dấu tất cả
             Notification.objects.filter(user=request.user, is_read=False).update(is_read=True)
         unread_count = Notification.objects.filter(user=request.user, is_read=False).count()
         return JsonResponse({'ok': True, 'unread_count': unread_count})
@@ -621,3 +657,98 @@ def _time_ago(dt):
         return f'{seconds // 86400} ngày trước'
     else:
         return dt.strftime('%d/%m/%Y')
+
+
+# ================================================================
+# QR BANK TRANSFER PAYMENT VIEWS  (mới thêm)
+# ================================================================
+
+@login_required
+def qr_payment_view(request, order_id):
+    """
+    Trang thanh toán QR VietQR.
+    URL: /payment/qr/<order_id>/
+    Chỉ hiển thị nếu phương thức là 'bank'.
+    """
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+
+    # Bảo vệ: nếu không phải chuyển khoản → về order success
+    if order.payment != 'bank':
+        return redirect('order_success', order_id=order.id)
+
+    return render(request, 'qr_payment.html', {'order': order})
+
+
+@login_required
+def confirm_payment_view(request, order_id):
+    """
+    User nhấn 'Tôi đã chuyển khoản' → cập nhật payment_status = waiting_confirm.
+    URL: /payment/confirm/<order_id>/
+    """
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+
+    if order.payment_status == 'pending':
+        order.payment_status = 'waiting_confirm'
+        order.save(update_fields=['payment_status', 'updated_at'])
+
+    messages.success(
+        request,
+        'Vui lòng chuyển khoản theo mã QR. '
+        'Sau khi chuyển khoản thành công admin sẽ xác nhận thanh toán.'
+    )
+    return redirect('invoice', order_id=order.id)
+
+
+@login_required
+def invoice_view(request, order_id):
+    """
+    Trang hóa đơn – hiển thị trạng thái thanh toán theo payment_status.
+    URL: /invoice/<order_id>/
+    """
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'invoice.html', {'order': order})
+
+# ================================================================
+# PROFILE VIEWS
+# ================================================================
+
+@login_required
+def profile_view(request):
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+    return render(request, 'profile.html', {'profile': profile})
+
+
+@login_required
+def profile_edit_view(request):
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cập nhật thông tin thành công!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Có lỗi xảy ra, vui lòng kiểm tra lại.')
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile_edit.html', {'form': form, 'profile': profile})
+
+
+# ================================================================
+# SIGNAL: Tự động tạo Profile + avatar mặc định khi user đăng ký
+# ================================================================
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    """Tạo Profile ngay khi User mới được tạo."""
+    if created:
+        Profile.objects.get_or_create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    """Đảm bảo Profile luôn được save khi User save."""
+    if hasattr(instance, 'app1_profile'):
+        instance.app1_profile.save()

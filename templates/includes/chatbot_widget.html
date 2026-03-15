@@ -4,6 +4,7 @@
 {#   {% include 'includes/chatbot_widget.html' %}                     #}
 {# ================================================================ #}
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <style>
 /* ── CHATBOT WIDGET ─────────────────────────────────────── */
 #chat-fab {
@@ -28,7 +29,8 @@
 
 #chat-box {
     position: fixed; bottom: 96px; right: 28px; z-index: 1000;
-    width: 360px; max-height: 540px;
+    width: min(360px, calc(100vw - 40px));
+    max-height: min(540px, calc(100vh - 160px));
     background: #fff; border-radius: 16px;
     box-shadow: 0 8px 40px rgba(0,0,0,0.18);
     display: flex; flex-direction: column;
@@ -85,11 +87,11 @@
 
 /* Messages */
 #chat-messages {
-    flex: 1; overflow-y: auto; padding: 8px 12px 4px;
+    flex: 1; overflow-y: auto; overflow-x: hidden; padding: 8px 12px 4px;
     display: flex; flex-direction: column; gap: 8px;
     scrollbar-width: thin; scrollbar-color: #eee transparent;
 }
-.chat-msg { display: flex; gap: 8px; max-width: 90%; }
+.chat-msg { display: flex; gap: 8px; max-width: 88%; min-width: 0; }
 .chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
 .chat-msg.bot  { align-self: flex-start; }
 .msg-avatar {
@@ -101,7 +103,7 @@
 .msg-bubble {
     padding: 9px 13px; border-radius: 16px;
     font-size: 13px; line-height: 1.5; max-width: 100%;
-    word-break: break-word;
+    word-break: break-word; overflow-wrap: anywhere; min-width: 0;
 }
 .chat-msg.user .msg-bubble {
     background: #e60023; color: #fff;
@@ -110,7 +112,9 @@
 .chat-msg.bot .msg-bubble {
     background: #f5f5f5; color: #222;
     border-bottom-left-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
+.msg-bubble strong { font-weight: 600; }
 .typing-dots { display: flex; gap: 4px; padding: 4px 0; }
 .typing-dots span {
     width: 7px; height: 7px; border-radius: 50%;
@@ -160,7 +164,8 @@
 .chat-product-info { flex: 1; min-width: 0; }
 .chat-product-name {
     font-weight: 600; font-size: 12px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; line-height: 1.35;
 }
 .chat-product-price { color: #e60023; font-weight: 700; font-size: 12px; margin-top: 2px; }
 .chat-product-btn {
@@ -239,39 +244,93 @@
     }
     .msg-bubble { font-size: 12px; }
 }
+/* ICON SIZES */
+#chat-fab i { font-size: 22px; }
+.chat-avatar i { font-size: 18px; color: #fff; }
+/* FAB ATTENTION ANIMATION */
+@keyframes chatPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+#chat-fab.attention { animation: chatPulse 1.6s infinite; }
+/* INVITE BUBBLE */
+#chat-invite {
+    position: fixed;
+    right: 95px;
+    bottom: 35px;
+    background: linear-gradient(135deg, #ffffff, #fff6f6);
+    padding: 11px 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    font-size: 13px;
+    max-width: 190px;
+    line-height: 1.5;
+    z-index: 999;
+    font-weight: 500;
+    animation: fadeInInvite 0.5s;
+}
+#chat-invite::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    bottom: 14px;
+    border: 8px solid transparent;
+    border-right: none;
+    border-left-color: #fff;
+    filter: drop-shadow(2px 0 2px rgba(0,0,0,0.08));
+}
+@keyframes fadeInInvite {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+/* SUGGESTION ICON */
+.chat-suggestion i { margin-right: 4px; font-size: 12px; }
 </style>
 
 <!-- FAB Button -->
 <button id="chat-fab" onclick="toggleChat()" title="Tư vấn sản phẩm">
-    <span id="chat-fab-icon">💬</span>
+    <i id="chat-fab-icon" class="bi bi-chat-dots-fill"></i>
     <span class="chat-badge" id="chat-badge">1</span>
 </button>
+
+<!-- Invite Bubble -->
+<div id="chat-invite">
+    💬 Bạn cần tư vấn chọn đồng hồ?<br>
+    Nhắn tôi để được hỗ trợ nhanh.
+</div>
 
 <!-- Chat Box -->
 <div id="chat-box">
     <div id="chat-header">
-        <div class="chat-avatar">🤖</div>
-        <div class="chat-header-info">
-            <div class="chat-header-name">Trợ lý WATCHSTORE</div>
-            <div class="chat-header-status">Đang hoạt động</div>
+        <div class="chat-avatar">
+            <i class="bi bi-headset"></i>
         </div>
-        <button id="chat-close" onclick="toggleChat()">✕</button>
+        <div class="chat-header-info">
+            <div class="chat-header-name">WATCHSTORE Support</div>
+            <div class="chat-header-status">Tư vấn đồng hồ • Online</div>
+        </div>
+        <button id="chat-close" onclick="toggleChat()"><i class="bi bi-x-lg"></i></button>
     </div>
 
     <div id="chat-suggestions">
-        <button class="chat-suggestion" onclick="sendSuggestion(this)">Đồng hồ Rolex có gì?</button>
-        <button class="chat-suggestion" onclick="sendSuggestion(this)">Sản phẩm đang giảm giá</button>
-        <button class="chat-suggestion" onclick="sendSuggestion(this)">Đồng hồ dưới 5 triệu</button>
-        <button class="chat-suggestion" onclick="sendSuggestion(this)">Hàng còn không?</button>
-        <button class="chat-suggestion" onclick="sendSuggestion(this)">Tư vấn cho tôi</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)"><i class="bi bi-star"></i> Đồng hồ bán chạy</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)"><i class="bi bi-cash-coin"></i> Đồng hồ dưới 5 triệu</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)"><i class="bi bi-fire"></i> Sản phẩm giảm giá</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)"><i class="bi bi-gift"></i> Gợi ý đồng hồ làm quà</button>
+        <button class="chat-suggestion" onclick="sendSuggestion(this)"><i class="bi bi-chat-dots"></i> Tư vấn giúp tôi</button>
     </div>
 
     <div id="chat-messages">
         <div class="chat-msg bot">
-            <div class="msg-avatar">🤖</div>
+            <div class="msg-avatar"><i class="bi bi-headset" style="font-size:14px;color:#e60023;"></i></div>
             <div class="msg-bubble">
-                Xin chào! Tôi là trợ lý tư vấn của <strong>WATCHSTORE.VN</strong> 👋<br>
-                Tôi có thể giúp bạn tìm đồng hồ phù hợp, kiểm tra giá, tình trạng hàng và nhiều hơn nữa. Bạn cần tư vấn gì?
+                Xin chào 👋<br>
+                Tôi có thể giúp bạn:<br>
+                • Tìm đồng hồ phù hợp<br>
+                • Kiểm tra giá và khuyến mãi<br>
+                • Xem mẫu đang bán chạy<br><br>
+                Bạn đang tìm đồng hồ khoảng bao nhiêu tiền?
             </div>
         </div>
     </div>
@@ -279,7 +338,7 @@
     <div id="chat-input-row">
         <input id="chat-input" type="text" placeholder="Nhập câu hỏi của bạn..." maxlength="300"
                onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendMessage();}">
-        <button id="chat-send" onclick="sendMessage()">➤</button>
+        <button id="chat-send" onclick="sendMessage()"><i class="bi bi-send-fill"></i></button>
     </div>
 </div>
 
@@ -293,10 +352,19 @@
     window.toggleChat = function() {
         isOpen = !isOpen;
         document.getElementById('chat-box').classList.toggle('open', isOpen);
-        document.getElementById('chat-fab-icon').textContent = isOpen ? '✕' : '💬';
+        document.getElementById('chat-fab-icon').className =
+            isOpen ? 'bi bi-x-lg' : 'bi bi-chat-dots-fill';
         document.getElementById('chat-badge').style.display = 'none';
+        document.getElementById('chat-fab').classList.remove('attention');
+        const invite = document.getElementById('chat-invite');
+        if (invite) invite.style.display = 'none';
         if (isOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
     };
+
+    // Thêm attention animation khi hover
+    document.getElementById('chat-fab').addEventListener('mouseenter', function() {
+        this.classList.remove('attention');
+    });
 
     window.sendSuggestion = function(btn) {
         document.getElementById('chat-input').value = btn.textContent;
@@ -358,15 +426,46 @@
         const div  = document.createElement('div');
         div.className = `chat-msg ${role}`;
 
-        // Convert markdown-ish formatting
-        const formatted = text
+        // Format text + tự động bôi đậm tên SP và giá đỏ
+        let formatted = text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*\*/g, '')
+            .replace(/^[\-\*] /gm, '• ')
             .replace(/\n/g, '<br>');
 
-        // Build product cards HTML
+        // Bôi đỏ giá tiền dạng 1.234.567đ
+        formatted = formatted.replace(
+            /(\d[\d.,]+\s*đ)/g,
+            '<strong style="color:#e60023;font-weight:700">$1</strong>'
+        );
+
+        // Bôi đậm tên sản phẩm — match linh hoạt
+        if (products && products.length > 0) {
+            products.forEach(p => {
+                // Match tên đầy đủ (escape ký tự đặc biệt kể cả dấu chấm)
+                const esc = p.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                formatted = formatted.replace(new RegExp(esc, 'gi'), '<strong>$&</strong>');
+                // Match từng từ >= 4 ký tự
+                p.name.split(' ').filter(w => w.length >= 4).forEach(word => {
+                    const we = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    formatted = formatted.replace(new RegExp(we, 'gi'), '<strong>$&</strong>');
+                });
+                // Match model code có dấu chấm hoặc gạch ngang (vd: L8.126.0.71.6, MTP-1374L-1A)
+                const parts = p.name.match(/[A-Z0-9][A-Z0-9.\-]{3,}/g);
+                if (parts) parts.forEach(part => {
+                    const pe = part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    formatted = formatted.replace(new RegExp(pe, 'gi'), '<strong>$&</strong>');
+                });
+            });
+        }
+
+        // Build product cards — match đúng sản phẩm AI nhắc
         let productHTML = '';
         if (products && products.length > 0) {
-            const cards = products.map(p => `
+            const textLower = text.toLowerCase();
+            // Backend đã match đúng sản phẩm qua ID — hiện tất cả
+            const showProducts = products;
+            const cards = showProducts.map(p => `
                 <a href="${p.url}" target="_blank" class="chat-product-card">
                     <img src="${p.image}" onerror="this.style.display='none'" alt="${p.name}">
                     <div class="chat-product-info">
@@ -379,7 +478,7 @@
         }
 
         div.innerHTML = role === 'bot'
-            ? `<div class="msg-avatar">🤖</div><div class="msg-bubble">${formatted}${productHTML}</div>`
+            ? `<div class="msg-avatar"><i class="bi bi-headset" style="font-size:14px;color:#e60023;"></i></div><div class="msg-bubble">${formatted}${productHTML}</div>`
             : `<div class="msg-bubble">${formatted}</div>`;
 
         msgs.appendChild(div);
@@ -394,7 +493,7 @@
         typingEl = document.createElement('div');
         typingEl.className = 'chat-msg bot';
         typingEl.id = 'typing-indicator';
-        typingEl.innerHTML = `<div class="msg-avatar">🤖</div>
+        typingEl.innerHTML = `<div class="msg-avatar"><i class="bi bi-headset" style="font-size:14px;color:#e60023;"></i></div>
             <div class="msg-bubble"><div class="typing-dots">
                 <span></span><span></span><span></span>
             </div></div>`;
@@ -407,5 +506,36 @@
         document.getElementById('chat-send').disabled = false;
         if (typingEl) { typingEl.remove(); typingEl = null; }
     }
+    // Invite bubble ẩn sau 5 giây
+    setTimeout(() => {
+        const invite = document.getElementById('chat-invite');
+        if (invite && !isOpen) invite.style.display = 'none';
+    }, 5000);
+
+    // Auto tin nhắn mời sau 11 giây (bubble 1 ẩn lúc 5s, chờ thêm 6s nữa)
+    setTimeout(() => {
+        if (!isOpen) {
+            // Thêm attention animation cho FAB
+            document.getElementById('chat-fab').classList.add('attention');
+
+            const invite = document.getElementById('chat-invite');
+            if (invite) {
+                invite.innerHTML = '⌚ Bạn đang tìm đồng hồ nào?<br>Tôi có thể gợi ý mẫu đẹp và đang giảm giá.';
+                invite.style.display = 'block';
+                setTimeout(() => { invite.style.display = 'none'; }, 6000);
+            }
+            const fab = document.getElementById('chat-fab');
+            fab.style.transform = 'scale(1.15)';
+            fab.style.boxShadow = '0 6px 28px rgba(230,0,35,0.7)';
+            setTimeout(() => {
+                fab.style.transform = '';
+                fab.style.boxShadow = '';
+            }, 600);
+            const badge = document.getElementById('chat-badge');
+            if (badge) badge.style.display = 'flex';
+            appendMessage('bot', '⌚ Bạn đang tìm đồng hồ nào?\nTôi có thể gợi ý mẫu đẹp và đang giảm giá.');
+        }
+    }, 11000);
+
 })();
 </script>

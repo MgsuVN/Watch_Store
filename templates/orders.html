@@ -43,7 +43,6 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     padding: 28px 0 70px;
     position: relative;
 }
-/* Dot pattern background */
 .orders-page::before {
     content: '';
     position: fixed; inset: 0;
@@ -69,15 +68,13 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .page-title-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
 .page-title-icon {
     width: 52px; height: 52px; border-radius: 14px;
-    background: #111;
-    border: 1px solid #C6A96B;
+    background: #111; border: 1px solid #C6A96B;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
 }
 .page-title-text h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: 26px; color: var(--text); margin: 0;
-    line-height: 1.2;
+    font-size: 26px; color: var(--text); margin: 0; line-height: 1.2;
 }
 .page-title-text p { font-size: 13px; color: var(--muted); margin: 3px 0 0; font-weight: 600; }
 
@@ -86,13 +83,9 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ===== SIDEBAR ===== */
 .history-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    position: sticky;
-    top: 80px;
-    border: 1px solid var(--border);
+    background: var(--card-bg); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+    position: sticky; top: 80px; border: 1px solid var(--border);
 }
 .history-header {
     padding: 16px 18px 13px;
@@ -111,20 +104,14 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     padding: 2px 9px; border-radius: 20px;
     min-width: 26px; text-align: center;
 }
-
 .history-list { max-height: 500px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #e0e4f0 transparent; }
 .history-list::-webkit-scrollbar { width: 4px; }
 .history-list::-webkit-scrollbar-thumb { background: #dde1f0; border-radius: 4px; }
-
 .history-item {
     display: flex; align-items: center; gap: 12px;
-    padding: 13px 18px;
-    border-bottom: 1px solid #f5f7fd;
-    cursor: pointer;
-    transition: all 0.18s;
-    text-decoration: none;
-    color: var(--text);
-    position: relative;
+    padding: 13px 18px; border-bottom: 1px solid #f5f7fd;
+    cursor: pointer; transition: all 0.18s;
+    text-decoration: none; color: var(--text); position: relative;
 }
 .history-item:hover { background: #f8f9ff; }
 .history-item.active {
@@ -135,42 +122,67 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     content: '';
     position: absolute; right: 0; top: 50%; transform: translateY(-50%);
     border-left: 7px solid var(--red);
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
+    border-top: 6px solid transparent; border-bottom: 6px solid transparent;
 }
-
 .history-item-icon {
     width: 40px; height: 40px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .history-item-icon.pending   { background: #fff4df; }
 .history-item-icon.confirmed { background: #e8fff3; }
 .history-item-icon.shipping  { background: #e8f3ff; }
 .history-item-icon.delivered { background: #e8fff3; }
 .history-item-icon.cancelled { background: #fff0f1; }
-
 .history-item-info { flex: 1; min-width: 0; }
-.history-item-id   { font-weight: 800; font-size: 13px; color: var(--text); }
+.history-item-id   { font-weight: 800; font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .history-item-date { font-size: 11px; color: var(--muted); margin-top: 2px; font-weight: 600; }
 .history-item-price { font-size: 13px; font-weight: 800; color: var(--red); white-space: nowrap; }
 
+/* Badge "Chưa TT" trong sidebar */
+.unpaid-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 800;
+    padding: 2px 7px; border-radius: 10px;
+    background: #fff4df; color: #c47c00;
+    border: 1px solid #ffe4a0;
+    white-space: nowrap; line-height: 1.4;
+    flex-shrink: 0;
+}
+
 /* ===== MAIN DETAIL CARD ===== */
 .detail-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    border: 1px solid var(--border);
+    background: var(--card-bg); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border);
 }
+
+/* ===== FIX 1: HEADER — không wrap, pills không xuống dòng ===== */
 .detail-header {
     padding: 20px 24px 17px;
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;    /* KHÔNG WRAP */
+    gap: 12px;
     background: linear-gradient(135deg, #fafbff 0%, #f4f6ff 100%);
+    overflow: hidden;
 }
-.detail-header-order { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--text); margin: 0 0 3px; }
+.detail-header-left { min-width: 0; flex: 1; overflow: hidden; }
+.detail-header-order {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--text); margin: 0 0 3px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .detail-header-time  { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+/* Gom pills thành 1 nhóm, không bao giờ xuống dòng */
+.detail-header-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;      /* KHÔNG CO LẠI */
+    flex-wrap: nowrap;   /* KHÔNG WRAP */
+}
 
 /* STATUS PILL */
 .status-pill {
@@ -178,6 +190,8 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     font-size: 12px; font-weight: 800;
     padding: 6px 14px; border-radius: 30px;
     letter-spacing: 0.2px;
+    white-space: nowrap; /* KHÔNG XUỐNG DÒNG */
+    flex-shrink: 0;
 }
 .status-pill.pending   { background: #fff4df; color: #c47c00; border: 1.5px solid #ffe4a0; }
 .status-pill.confirmed { background: #e6fff3; color: #09904a; border: 1.5px solid #abe9c9; }
@@ -192,7 +206,43 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .status-dot.cancelled { background: #cc1a28; }
 @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
 
-/* ===== TIMELINE ===== */
+/* ===== PAYMENT STATUS PILL ===== */
+.pay-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: .2px;
+    white-space: nowrap; /* KHÔNG XUỐNG DÒNG */
+    flex-shrink: 0;      /* KHÔNG CO */
+}
+.pay-status-pill.pending         { background: #fff4df; color: #c47c00; border: 1.5px solid #ffe4a0; }
+.pay-status-pill.waiting_confirm { background: #e8f2ff; color: #1a6bcc; border: 1.5px solid #a8caff; }
+.pay-status-pill.paid            { background: #e6fff3; color: #09904a; border: 1.5px solid #abe9c9; }
+
+/* ===== NÚT THANH TOÁN NGAY QR ===== */
+.btn-pay-qr {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 800;
+    text-decoration: none; border: none; color: #fff;
+    background: linear-gradient(135deg, #f39200 0%, #e07800 100%);
+    box-shadow: 0 6px 18px rgba(243,146,0,.30);
+    transition: .2s; cursor: pointer;
+    animation: payGlow 2.5s ease-in-out infinite;
+}
+.btn-pay-qr:hover {
+    background: linear-gradient(135deg, #e07800 0%, #c96a00 100%); color: #fff;
+    transform: translateY(-2px); box-shadow: 0 10px 24px rgba(243,146,0,.4);
+}
+@keyframes payGlow {
+    0%,100% { box-shadow: 0 6px 18px rgba(243,146,0,.30); }
+    50%      { box-shadow: 0 6px 28px rgba(243,146,0,.55); }
+}
+
+/* ===== FIX 2: TIMELINE — dài hết khung, progress đúng màu ===== */
 .tracking-section {
     padding: 22px 24px 24px;
     border-bottom: 1px solid var(--border);
@@ -206,21 +256,41 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 }
 .section-label svg { opacity: 0.6; }
 
-.timeline { display: flex; justify-content: space-between; position: relative; }
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+}
+/* Nền xám từ đầu đến cuối */
 .timeline::before {
     content: '';
-    position: absolute; top: 22px; left: 22px; right: 22px;
-    height: 3px; background: var(--border); border-radius: 3px; z-index: 0;
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--border);
+    border-radius: 3px;
+    z-index: 0;
 }
+/* Progress màu — JS sẽ set left + width chính xác */
 .timeline-progress {
-    position: absolute; top: 22px; left: 22px;
-    height: 3px; border-radius: 3px;
+    position: absolute;
+    top: 22px;
+    left: 0;
+    height: 3px;
+    width: 0;
+    border-radius: 3px;
     background: linear-gradient(90deg, #2ed573, #ffa502);
-    z-index: 1; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    z-index: 1;
+    transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
 }
 
-.timeline-step { display: flex; flex-direction: column; align-items: center; gap: 10px; position: relative; z-index: 2; flex: 1; }
-
+.timeline-step {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 10px; position: relative; z-index: 2; flex: 1; text-align: center;
+}
 .step-dot {
     width: 44px; height: 44px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
@@ -242,11 +312,24 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     0%,100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-4px) scale(1.08); }
 }
-
 .step-label { font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; line-height: 1.3; }
 .step-label.active { color: var(--text); font-weight: 800; }
 
 /* Cancelled notice */
+.cancel-notice {
+    background: linear-gradient(135deg, #fff0f1, #ffe8ea);
+    border-radius: 14px; padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    border: 1.5px solid #ffccd0;
+}
+.cancel-notice-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: #ff4757; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; box-shadow: 0 4px 12px rgba(255,71,87,0.35);
+}
+.cancel-notice-text strong { font-weight: 800; color: #cc1a28; display: block; font-size: 14px; margin-bottom: 2px; }
+.cancel-notice-text span { font-size: 12px; color: #aa4455; }
+
 /* CANCEL MODAL */
 .cancel-modal-ov {
     display: none; position: fixed; inset: 0; z-index: 9999;
@@ -257,8 +340,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .cancel-modal {
     background: #fff; border-radius: 16px; padding: 28px 28px 24px;
     width: 360px; max-width: 92vw;
-    box-shadow: 0 20px 60px rgba(0,0,0,.2);
-    animation: modalIn .2s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2); animation: modalIn .2s ease;
 }
 @keyframes modalIn { from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1} }
 .cancel-modal-icon {
@@ -279,6 +361,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     border: none; background: #e60023; color: #fff; cursor: pointer; transition: .2s;
 }
 .cancel-modal-btns .btn-confirm-cancel:hover { background: #c0001e; }
+
 .order-actions {
     display: flex; gap: 12px; padding: 20px 24px 24px;
     border-top: 1px solid #f0f0f0; margin-top: 4px;
@@ -286,54 +369,21 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .btn-action-home {
     flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
     padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700;
-    text-decoration: none; border: none; color: #fff;
-    background: #1e2235; transition: .2s;
+    text-decoration: none; border: none; color: #fff; background: #1e2235; transition: .2s;
 }
 .btn-action-home:hover { background: #2d3350; color: #fff; }
 .btn-action-cancel {
     flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
     padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700;
-    cursor: pointer; border: none; color: #fff;
-    background: #e60023; transition: .2s;
+    cursor: pointer; border: none; color: #fff; background: #e60023; transition: .2s;
 }
 .btn-action-cancel:hover { background: #c0001e; }
-.btn-action-cancel.disabled {
-    background: #eee; color: #bbb;
-    cursor: not-allowed; opacity: .6;
-}
-.btn-cancel-order {
-    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700;
-    cursor: pointer; border: none; color: #fff;
-    background: #e60023; transition: .2s;
-}
-.btn-cancel-order:hover { background: #c0001e; }
-.btn-cancel-order.disabled {
-    background: #eee; color: #bbb;
-    cursor: not-allowed; opacity: .6;
-}
-
-.cancel-notice {
-    background: linear-gradient(135deg, #fff0f1, #ffe8ea);
-    border-radius: 14px; padding: 16px 20px;
-    display: flex; align-items: center; gap: 14px;
-    border: 1.5px solid #ffccd0;
-}
-.cancel-notice-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    background: #ff4757; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; box-shadow: 0 4px 12px rgba(255,71,87,0.35);
-}
-.cancel-notice-text strong { font-weight: 800; color: #cc1a28; display: block; font-size: 14px; margin-bottom: 2px; }
-.cancel-notice-text span { font-size: 12px; color: #aa4455; }
+.btn-action-cancel.disabled { background: #eee; color: #bbb; cursor: not-allowed; opacity: .6; }
 
 /* ===== INFO SECTION ===== */
 .info-section { padding: 20px 24px; border-bottom: 1px solid var(--border); }
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.info-block {
-    background: #f8f9ff; border-radius: 12px; padding: 12px 14px;
-    border: 1px solid #edf0fb;
-}
+.info-block { background: #f8f9ff; border-radius: 12px; padding: 12px 14px; border: 1px solid #edf0fb; }
 .info-block label {
     font-size: 10px; color: var(--muted); font-weight: 800;
     text-transform: uppercase; letter-spacing: 0.8px; display: flex; align-items: center; gap: 5px;
@@ -345,9 +395,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .items-section { padding: 20px 24px; border-bottom: 1px solid var(--border); }
 .order-item-row {
     display: flex; align-items: center; gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f5f7fd;
-    transition: background 0.15s;
+    padding: 12px 0; border-bottom: 1px solid #f5f7fd; transition: background 0.15s;
 }
 .order-item-row:last-child { border-bottom: none; }
 .order-item-img-wrap {
@@ -358,8 +406,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 }
 .order-item-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .order-item-name { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.4; }
-.order-item-qty  { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 600;
-    display: inline-flex; align-items: center; gap: 4px; }
+.order-item-qty  { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
 .qty-badge { background: #f0f2f8; border-radius: 6px; padding: 1px 7px; font-size: 11px; font-weight: 800; color: #555; }
 .order-item-price { font-size: 14px; font-weight: 800; color: var(--red); white-space: nowrap; }
 
@@ -405,6 +452,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 575.98px) {
     .orders-page { padding: 14px 0 40px; }
     .detail-header, .tracking-section, .info-section, .items-section, .total-section { padding: 16px; }
+    .detail-header { flex-wrap: wrap; } /* mobile nhỏ thì cho wrap */
     .info-grid { grid-template-columns: 1fr; gap: 10px; }
     .step-dot { width: 32px; height: 32px; border-radius: 9px; }
     .step-label { display: none; }
@@ -437,10 +485,9 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
         </div>
 
         {% if not orders %}
-        <!-- EMPTY STATE -->
         <div class="empty-orders">
             <div class="empty-anim">
-                <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="110" height="110" viewBox="0 0 110 110" fill="none">
                     <circle cx="55" cy="55" r="55" fill="#f0f2f8"/>
                     <rect x="28" y="32" width="54" height="50" rx="8" fill="#fff" stroke="#e0e4f0" stroke-width="2"/>
                     <path d="M40 50h30M40 61h20" stroke="#c8cfe8" stroke-width="3" stroke-linecap="round"/>
@@ -461,7 +508,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
         {% else %}
         <div class="orders-layout">
 
-            <!-- ===== SIDEBAR: LỊCH SỬ ===== -->
+            <!-- SIDEBAR -->
             <div class="history-card">
                 <div class="history-header">
                     <div class="history-header-icon">
@@ -476,20 +523,22 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                     <a href="{% url 'order_detail' order.id %}"
                        class="history-item {% if latest_order.id == order.id %}active{% endif %}">
                         <div class="history-item-icon {{ s }}">
-                            {% if s == 'pending' %}
-                            <i data-lucide="clock" class="luxury-icon"></i>
-                            {% elif s == 'confirmed' %}
-                            <i data-lucide="badge-check" class="luxury-icon"></i>
-                            {% elif s == 'shipping' %}
-                            <i data-lucide="truck" class="luxury-icon"></i>
-                            {% elif s == 'delivered' %}
-                            <i data-lucide="check-circle" class="luxury-icon"></i>
-                            {% elif s == 'cancelled' %}
-                            <i data-lucide="x-circle" class="luxury-icon"></i>
+                            {% if s == 'pending' %}<i data-lucide="clock" class="luxury-icon"></i>
+                            {% elif s == 'confirmed' %}<i data-lucide="badge-check" class="luxury-icon"></i>
+                            {% elif s == 'shipping' %}<i data-lucide="truck" class="luxury-icon"></i>
+                            {% elif s == 'delivered' %}<i data-lucide="check-circle" class="luxury-icon"></i>
+                            {% elif s == 'cancelled' %}<i data-lucide="x-circle" class="luxury-icon"></i>
                             {% endif %}
                         </div>
                         <div class="history-item-info">
-                            <div class="history-item-id">Đơn #{{ order.id }}</div>
+                            <div class="history-item-id">
+                                Đơn #{{ order.id }}
+                                {% if order.payment == 'bank' and order.payment_status == 'pending' %}
+                                <span class="unpaid-badge">⏳ Chưa thanh toán</span>
+                                {% elif order.payment == 'bank' and order.payment_status == 'waiting_confirm' %}
+                                <span class="unpaid-badge" style="background:#e8f2ff;color:#1a6bcc;border-color:#a8caff;">🔍 Chờ xác nhận</span>
+                                {% endif %}
+                            </div>
                             <div class="history-item-date">{{ order.created_at|date:"d/m/Y H:i" }}</div>
                         </div>
                         <div class="history-item-price">{{ order.total|vnd }}đ</div>
@@ -499,14 +548,14 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                 </div>
             </div>
 
-            <!-- ===== MAIN: CHI TIẾT ===== -->
+            <!-- MAIN DETAIL -->
             {% if latest_order %}
             {% with o=latest_order s=latest_order.status %}
             <div class="detail-card">
 
-                <!-- Header -->
+                <!-- ===== HEADER — pills không bao giờ xuống dòng ===== -->
                 <div class="detail-header">
-                    <div>
+                    <div class="detail-header-left">
                         <div class="detail-header-order">Đơn hàng #{{ o.id }}</div>
                         <div class="detail-header-time">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="display:inline;vertical-align:-1px;margin-right:3px;">
@@ -516,15 +565,25 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                             Đặt lúc {{ o.created_at|date:"H:i — d/m/Y" }}
                         </div>
                     </div>
-                    <span class="status-pill {{ s }}">
-                        <span class="status-dot {{ s }}"></span>
-                        {% if s == 'pending'   %}Chờ xác nhận
-                        {% elif s == 'confirmed' %}Đã xác nhận
-                        {% elif s == 'shipping'  %}Đang giao hàng
-                        {% elif s == 'delivered' %}Đã giao hàng
-                        {% elif s == 'cancelled' %}Đã hủy
+                    <div class="detail-header-pills">
+                        <span class="status-pill {{ s }}">
+                            <span class="status-dot {{ s }}"></span>
+                            {% if s == 'pending'   %}Chờ xác nhận
+                            {% elif s == 'confirmed' %}Đã xác nhận
+                            {% elif s == 'shipping'  %}Đang giao hàng
+                            {% elif s == 'delivered' %}Đã giao hàng
+                            {% elif s == 'cancelled' %}Đã hủy
+                            {% endif %}
+                        </span>
+                        {% if o.payment == 'bank' %}
+                        <span class="pay-status-pill {{ o.payment_status }}">
+                            {% if o.payment_status == 'pending' %}⏳ Chưa thanh toán
+                            {% elif o.payment_status == 'waiting_confirm' %}🔍 Chờ xác nhận TT
+                            {% elif o.payment_status == 'paid' %}✅ Đã thanh toán
+                            {% endif %}
+                        </span>
                         {% endif %}
-                    </span>
+                    </div>
                 </div>
 
                 <!-- TRACKING TIMELINE -->
@@ -537,27 +596,18 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                     <div class="timeline" id="timeline">
                         <div class="timeline-progress" id="timelineProgress"></div>
 
-                        <!-- Step 1: Đặt hàng -->
+                        <!-- Step 1: Đặt hàng — luôn done -->
                         <div class="timeline-step">
-                            <div class="step-dot {% if s in 'pending,confirmed,shipping,delivered' %}done{% endif %}">
-                                {% if s in 'pending,confirmed,shipping,delivered' %}
+                            <div class="step-dot done">
                                 <i data-lucide="check"></i>
-                                {% else %}
-                                <i data-lucide="clipboard-list"></i>
-                                {% endif %}
                             </div>
                             <span class="step-label {% if s == 'pending' %}active{% endif %}">Đặt hàng</span>
                         </div>
 
                         <!-- Step 2: Xác nhận -->
                         <div class="timeline-step">
-                            <div class="step-dot
-                                {% if s == 'confirmed' %}current
-                                {% elif s in 'shipping,delivered' %}done
-                                {% endif %}">
-                                {% if s in 'shipping,delivered' %}
-                                <i data-lucide="check"></i>
-                                {% elif s == 'confirmed' %}
+                            <div class="step-dot {% if s == 'confirmed' %}current{% elif s == 'shipping' or s == 'delivered' %}done{% endif %}">
+                                {% if s == 'shipping' or s == 'delivered' or s == 'confirmed' %}
                                 <i data-lucide="check"></i>
                                 {% else %}
                                 <i data-lucide="badge-check"></i>
@@ -568,14 +618,9 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
                         <!-- Step 3: Vận chuyển -->
                         <div class="timeline-step">
-                            <div class="step-dot
-                                {% if s == 'shipping' %}current
-                                {% elif s == 'delivered' %}done
-                                {% endif %}">
+                            <div class="step-dot {% if s == 'shipping' %}current{% elif s == 'delivered' %}done{% endif %}">
                                 {% if s == 'delivered' %}
                                 <i data-lucide="check"></i>
-                                {% elif s == 'shipping' %}
-                                <i data-lucide="truck"></i>
                                 {% else %}
                                 <i data-lucide="truck"></i>
                                 {% endif %}
@@ -598,7 +643,6 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                     </div>
                 </div>
                 {% else %}
-                <!-- Đã hủy -->
                 <div class="tracking-section">
                     <div class="cancel-notice">
                         <div class="cancel-notice-icon">
@@ -615,7 +659,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                 </div>
                 {% endif %}
 
-
+                <!-- INFO -->
                 <div class="info-section">
                     <div class="section-label">
                         <i data-lucide="user" class="luxury-icon"></i>
@@ -676,7 +720,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                     </div>
                 </div>
 
-                <!-- SẢN PHẨM ĐÃ ĐẶT -->
+                <!-- SẢN PHẨM -->
                 <div class="items-section">
                     <div class="section-label">
                         <i data-lucide="package" class="luxury-icon"></i>
@@ -737,7 +781,17 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                         <i data-lucide="home"></i>
                         Về trang chủ
                     </a>
-                    {% if s == 'pending' %}
+                    {% if o.payment == 'bank' and o.payment_status == 'pending' %}
+                    <a href="{% url 'qr_payment' o.id %}" class="btn-pay-qr">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="#fff" stroke-width="2"/>
+                            <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="#fff" stroke-width="2"/>
+                            <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="#fff" stroke-width="2"/>
+                            <path d="M13 13h3M16 13v3M13 19h8M19 16v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Thanh toán ngay
+                    </a>
+                    {% elif s == 'pending' %}
                     <form method="post" action="{% url 'cancel_order' o.id %}" id="cancelForm">
                         {% csrf_token %}
                         <button type="button" class="btn-action-cancel" onclick="showCancelModal()">
@@ -796,28 +850,40 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentStatus = "{{ latest_order.status }}";
     const step = statusOrder[currentStatus] ?? 0;
 
-    // Tính width dựa trên khoảng cách giữa step-dots
-    const dots = document.querySelectorAll('.step-dot');
-    if (dots.length < 2) return;
+    function calcProgress() {
+        const dots = document.querySelectorAll('.step-dot');
+        if (dots.length < 2) return;
 
-    const timelineEl = document.getElementById('timeline');
-    const firstRect = dots[0].getBoundingClientRect();
-    const tlRect = timelineEl.getBoundingClientRect();
+        const timelineEl = document.getElementById('timeline');
+        const tlRect = timelineEl.getBoundingClientRect();
+        const firstRect = dots[0].getBoundingClientRect();
 
-    let targetPx = 0;
-    if (step > 0 && step < dots.length) {
-        const targetRect = dots[step].getBoundingClientRect();
-        targetPx = (targetRect.left + targetRect.width / 2) - (firstRect.left + firstRect.width / 2);
-    } else if (step >= dots.length) {
-        const lastRect = dots[dots.length-1].getBoundingClientRect();
-        targetPx = (lastRect.left + lastRect.width / 2) - (firstRect.left + firstRect.width / 2);
+        // Tâm dot đầu tiên, tính tương đối với timeline
+        const startX = (firstRect.left + firstRect.width / 2) - tlRect.left;
+
+        let endX = startX;
+        if (step > 0) {
+            const targetDot = dots[Math.min(step, dots.length - 1)];
+            const targetRect = targetDot.getBoundingClientRect();
+            endX = (targetRect.left + targetRect.width / 2) - tlRect.left;
+        }
+
+        // Set progress: bắt đầu từ tâm dot đầu, kéo đến tâm dot hiện tại
+        progressEl.style.left  = startX + 'px';
+        progressEl.style.width = Math.max(0, endX - startX) + 'px';
     }
 
-    setTimeout(() => {
-        progressEl.style.width = targetPx + 'px';
-    }, 200);
+    // Lucide cần thời gian render icons
+    setTimeout(calcProgress, 200);
+    window.addEventListener('resize', calcProgress);
 });
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<script>lucide.createIcons();</script>
+<script>
+lucide.createIcons();
+// Trigger lại sau khi icons render xong
+setTimeout(function() {
+    window.dispatchEvent(new Event('resize'));
+}, 350);
+</script>
 {% endblock %}

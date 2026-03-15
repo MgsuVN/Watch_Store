@@ -203,8 +203,24 @@ svg { stroke-linecap: round; stroke-linejoin: round; }
 .iitem .qty { color: #bbb; margin: 0 12px; font-size: 12px; }
 .iitem .pr  { font-weight: 700; color: #e60023; }
 
+/* ══ QR NOTICE ══ */
+.qr-notice {
+    margin: 0 20px 4px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    background: #fffbf0;
+    border: 1px dashed #e3c068;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+.qr-notice .ico { flex-shrink: 0; padding-top: 2px; }
+.qr-notice .ico .luxury-icon { width: 18px; height: 18px; color: #c8a040; }
+.qr-notice p { font-size: 12.5px; color: #5a4a1a; margin: 0; line-height: 1.65; }
+.qr-notice strong { color: #9a6f10; }
+
 /* ══ ACTIONS ══ */
-.s-actions { padding: 16px 20px 20px; display: flex; gap: 10px; }
+.s-actions { padding: 16px 20px 20px; display: flex; gap: 10px; flex-wrap: wrap; }
 
 .btn-act {
     flex: 1;
@@ -287,7 +303,11 @@ svg { stroke-linecap: round; stroke-linejoin: round; }
     <!-- Pending notice -->
     <div class="pending">
       <div class="ico"><i data-lucide="loader-circle" class="luxury-icon"></i></div>
+      {% if order.payment == 'bank' %}
+      <p>Đơn hàng <strong>#{{ order.id }}</strong> đã được tạo. Vui lòng <strong>thanh toán qua QR</strong> để chúng tôi xác nhận và bắt đầu xử lý.</p>
+      {% else %}
       <p>Đơn hàng <strong>#{{ order.id }}</strong> đang <strong>chờ nhân viên xác nhận</strong>. Chúng tôi sẽ liên hệ số <strong>{{ order.phone }}</strong> trong vòng <strong>30 phút</strong>.</p>
+      {% endif %}
     </div>
 
     <!-- Order info -->
@@ -314,14 +334,31 @@ svg { stroke-linecap: round; stroke-linejoin: round; }
       {% endfor %}
     </div>
 
+    <!-- QR notice (chỉ hiện khi payment == bank và chưa thanh toán) -->
+    {% if order.payment == 'bank' and order.payment_status == 'pending' %}
+    <div class="qr-notice">
+      <div class="ico"><i data-lucide="clock" class="luxury-icon"></i></div>
+      <p>Đơn hàng sẽ được <strong>giữ trong 24 giờ</strong> để bạn hoàn tất thanh toán. Sau thời gian này đơn có thể bị hủy tự động.</p>
+    </div>
+    {% endif %}
+
     <!-- Actions -->
     <div class="s-actions">
+      {% if order.payment == 'bank' and order.payment_status == 'pending' %}
+      <a href="{% url 'qr_payment' order.id %}" class="btn-act btn-primary" style="flex: 2; min-width: 160px;">
+        <i data-lucide="qr-code"></i> Thanh toán QR ngay
+      </a>
+      <a href="{% url 'orders' %}" class="btn-act btn-secondary" style="flex: 1; min-width: 100px;">
+        <i data-lucide="receipt"></i> Đơn hàng
+      </a>
+      {% else %}
       <a href="{% url 'home' %}" class="btn-act btn-primary">
         <i data-lucide="home"></i> Về trang chủ
       </a>
       <a href="{% url 'orders' %}" class="btn-act btn-secondary">
         <i data-lucide="receipt"></i> Đơn hàng
       </a>
+      {% endif %}
     </div>
 
   </div>
