@@ -15,18 +15,33 @@ python -m pip install --upgrade pip
 echo Installing requirements...
 pip install -r requirements.txt
 
-:: 4. Xoa db cu de tranh conflict khi load fixtures
+:: 4. Kiem tra file .env
+if not exist .env (
+    echo.
+    echo [WARNING] Chua co file .env!
+    echo Dang copy tu .env.example...
+    copy .env.example .env
+    echo.
+    echo [ACTION REQUIRED] Mo file .env va dien cac gia tri:
+    echo   - SECRET_KEY: chay lenh ben duoi de tao key moi
+    echo     python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+    echo   - GROQ_API_KEY: lay tai https://console.groq.com
+    echo.
+    pause
+)
+
+:: 5. Xoa db cu de tranh conflict khi load fixtures
 if exist db.sqlite3 (
     echo Removing old database...
     del db.sqlite3
 )
 
-:: 5. Migrate database
+:: 6. Migrate database
 echo Running migrations...
 python manage.py makemigrations
 python manage.py migrate
 
-:: 6. Load data tu fixtures/data.json
+:: 7. Load data tu fixtures/data.json
 if exist fixtures\data.json (
     echo Loading data from fixtures/data.json...
     python manage.py flush --no-input
@@ -42,7 +57,7 @@ if exist fixtures\data.json (
     echo [WARNING] fixtures/data.json not found - no data loaded.
 )
 
-:: 7. Chay server
+:: 8. Chay server
 echo.
 echo =====================================
 echo   SERVER IS RUNNING

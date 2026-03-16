@@ -21,7 +21,7 @@ Hệ thống hỗ trợ đầy đủ luồng mua hàng từ duyệt sản phẩm
 **Tính năng quản trị (Admin):**
 - Quản lý sản phẩm với inline gallery ảnh và ảnh mô tả chi tiết (hỗ trợ layout trái/phải/full), có thể thêm sửa xóa sản phẩm
 - Quản lý hãng sản phẩm: Có thể thêm sửa xóa các hãng sản phẩm
-- Quản lý đơn hàng:  xem nhãn màu trạng thái, xác nhận thanh toán QR, gửi thông báo cho khách
+- Quản lý đơn hàng: xem nhãn màu trạng thái, xác nhận thanh toán QR, gửi thông báo cho khách
 - Quản lý thông báo: đánh dấu đã đọc, gửi khuyến mãi tới tất cả người dùng
 - Dashboard doanh thu tùy chỉnh tại `/admin/doanh-thu/`: biểu đồ theo ngày/tháng, top sản phẩm bán chạy, thống kê theo thương hiệu, bộ lọc thời gian linh hoạt
 
@@ -40,18 +40,50 @@ Hệ thống hỗ trợ đầy đủ luồng mua hàng từ duyệt sản phẩm
 | Media | Pillow |
 | Deploy | Whitenoise (static), Gunicorn (WSGI) |
 
+---
+
 ## 📥 Hướng dẫn cài đặt và chạy dự án
 
 ### 🔹 Cách 1: Chạy tự động (Windows) ✅ Khuyến nghị
 
+**Bước 1: Clone project**
 ```bash
 git clone https://github.com/MgsuVN/Watch_Store.git
 cd Watch_Store
+```
+
+**Bước 2: Tạo môi trường ảo**
+```bash
 python -m venv venv
+```
+
+**Bước 3: Tạo file `.env`**
+```bash
+copy .env.example .env
+```
+
+Mở file `.env` vừa tạo, điền các giá trị:
+```env
+# Tạo SECRET_KEY mới bằng lệnh bên dưới rồi dán vào đây
+SECRET_KEY=your-secret-key-here
+
+DEBUG=True
+
+# Lấy miễn phí tại: https://console.groq.com → API Keys → Create API Key
+GROQ_API_KEY=your-groq-api-key-here
+```
+
+Tạo `SECRET_KEY` mới:
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+**Bước 4: Chạy**
+```bash
 run.bat
 ```
 
-> `run.bat` sẽ tự động: kích hoạt venv, cài thư viện, migrate, load dữ liệu từ `fixtures/data.json` và chạy server.
+> `run.bat` sẽ tự động: kích hoạt venv, cài thư viện, kiểm tra `.env`, migrate, load dữ liệu và chạy server.
 
 ---
 
@@ -82,26 +114,41 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**Bước 4: Migrate database**
+**Bước 4: Tạo file `.env`**
+
+🪟 Windows:
+```bash
+copy .env.example .env
+```
+
+🍎 macOS / Linux:
+```bash
+cp .env.example .env
+```
+
+Mở file `.env`, điền các giá trị:
+```env
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+GROQ_API_KEY=your-groq-api-key-here
+```
+
+Tạo `SECRET_KEY` mới:
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+Lấy `GROQ_API_KEY` miễn phí tại: https://console.groq.com → API Keys → Create API Key
+
+**Bước 5: Migrate database**
 ```bash
 python manage.py migrate
 ```
 
-**Bước 5: Load dữ liệu mẫu**
+**Bước 6: Load dữ liệu mẫu**
 ```bash
 python manage.py loaddata fixtures/data.json
 ```
-
-**Bước 6: Cấu hình API keys (tuỳ chọn)**
-
-Mở file `mysite/settings.py`, tìm dòng `GROQ_API_KEY` và thay bằng key của bạn:
-
-```python
-# Lấy key miễn phí tại: https://console.groq.com → API Keys → Create API Key
-GROQ_API_KEY = 'gsk_...'
-```
-
-> Không cấu hình vẫn chạy bình thường, chỉ chatbot sẽ không hoạt động.
 
 **Bước 7: Chạy server**
 ```bash
@@ -124,34 +171,29 @@ Truy cập: http://127.0.0.1:8000/admin
 
 ## 💾 Quy trình cập nhật data (dành cho team dev)
 
-Sau khi thêm/sửa sản phẩm hoặc có thay đổi, chạy lệnh sau để export và push:
+Sau khi thêm/sửa sản phẩm hoặc có thay đổi dữ liệu, chạy lệnh sau để export và push:
 
-**1. Export data mới nhất:**
+**1. Export data mới nhất (chạy được trên mọi hệ điều hành):**
 ```bash
 python -c "
-import os, django, io
+import os, django
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
 django.setup()
 from django.core.management import call_command
-with io.open('fixtures/data.json', 'w', encoding='utf-8') as f:
-    call_command('dumpdata', '--natural-foreign', '--natural-primary',
-        exclude=['contenttypes', 'auth.permission'],
-        indent=2, stdout=f)
+with open('fixtures/data.json', 'w', encoding='utf-8') as f:
+    call_command('dumpdata', '--natural-foreign', '--natural-primary', '--indent', '2', '--exclude', 'contenttypes', '--exclude', 'auth.Permission', '--exclude', 'admin.LogEntry', '--exclude', 'app1.Profile', stdout=f)
 print('Done!')
 "
 ```
 
 **2. Commit và push bằng VS Code:**
 
-Nhấn `Ctrl+Shift+G` → Stage `fixtures/data.json` và `media/` → nhập commit message → **Commit** → **Sync Changes**
-
-
+Nhấn `Ctrl+Shift+G` → Stage `fixtures/data.json` → nhập commit message → **Commit** → **Sync Changes**
 
 **3. Các thành viên còn lại sau khi pull:**
 ```bash
 git pull
-python manage.py migrate
-python manage.py loaddata fixtures/data.json
+run.bat
 ```
 
 ---
@@ -204,7 +246,7 @@ Watch_Store/
 │   │                              # (đăng nhập bằng username + email), widget_tweaks,
 │   │                              # ngôn ngữ vi / múi giờ Asia/Ho_Chi_Minh,
 │   │                              # GROQ_API_KEY, STATIC + MEDIA config
-│   │                              # ⚠️ SECRET_KEY & GROQ_API_KEY đang hardcode
+│   │                              # Đọc cấu hình từ file .env
 │   ├── urls.py                    # URL gốc: admin/, accounts/ (allauth),
 │   │                              # profile/ (home), '' (app1)
 │   ├── wsgi.py                    # WSGI config (deploy truyền thống)
@@ -246,6 +288,7 @@ Watch_Store/
 ├── manage.py                      # Django management CLI
 ├── requirements.txt               # Thư viện Python cần thiết
 ├── run.bat                        # Script chạy project tự động (Windows)
-├── .env                           # Biến môi trường (SECRET_KEY, GROQ_API_KEY) ← không commit
+├── .env                           # ⚠️ Biến môi trường (SECRET_KEY, GROQ_API_KEY) — KHÔNG commit
+├── .env.example                   # File mẫu .env — commit lên Git
 └── README.md                      # Tài liệu hướng dẫn
 ```
