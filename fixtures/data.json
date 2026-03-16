@@ -1,4 +1,4 @@
-[
+﻿[
 {
   "model": "auth.user",
   "fields": {
@@ -164,7 +164,7 @@
     ],
     "avatar": "avatars/an-ba-to-com-3-1725471597.jpg",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "bio": "alolo"
   }
 },
@@ -226,7 +226,7 @@
   "fields": {
     "name": "CASIO",
     "slug": "casio",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-03-08_162202.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-03-08_162202.png"
   }
 },
 {
@@ -235,7 +235,7 @@
   "fields": {
     "name": "ORIENT",
     "slug": "orient",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_215451.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_215451.png"
   }
 },
 {
@@ -244,7 +244,7 @@
   "fields": {
     "name": "BENTLEY",
     "slug": "bentley",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_220648_Ru0OXsx.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_220648_Ru0OXsx.png"
   }
 },
 {
@@ -253,7 +253,7 @@
   "fields": {
     "name": "CITIZEN",
     "slug": "citizen",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_220756_Fa87oEI.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_220756_Fa87oEI.png"
   }
 },
 {
@@ -262,7 +262,7 @@
   "fields": {
     "name": "SR",
     "slug": "sr",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_220823_1dUyzQU.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_220823_1dUyzQU.png"
   }
 },
 {
@@ -271,7 +271,7 @@
   "fields": {
     "name": "G-SHOCK",
     "slug": "g-shock",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_220900_IgdrmuN.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_220900_IgdrmuN.png"
   }
 },
 {
@@ -280,7 +280,7 @@
   "fields": {
     "name": "SEIKO",
     "slug": "seiko",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_220926_4HBOQIF.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_220926_4HBOQIF.png"
   }
 },
 {
@@ -289,7 +289,7 @@
   "fields": {
     "name": "LONGINES",
     "slug": "longines",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_220959_57Lxxky.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_220959_57Lxxky.png"
   }
 },
 {
@@ -298,7 +298,7 @@
   "fields": {
     "name": "OMEGA",
     "slug": "omega",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_221032_Hurxj7v.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_221032_Hurxj7v.png"
   }
 },
 {
@@ -307,7 +307,7 @@
   "fields": {
     "name": "HUBLOT",
     "slug": "hublot",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_221053_O8oMZSw.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_221053_O8oMZSw.png"
   }
 },
 {
@@ -316,7 +316,7 @@
   "fields": {
     "name": "TISSOT",
     "slug": "tissot",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_221133_Fa0HvIe.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_221133_Fa0HvIe.png"
   }
 },
 {
@@ -325,7 +325,7 @@
   "fields": {
     "name": "ROLEX",
     "slug": "rolex",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-02-21_221202_hNdzgnD.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-02-21_221202_hNdzgnD.png"
   }
 },
 {
@@ -334,14 +334,14 @@
   "fields": {
     "name": "SAGA",
     "slug": "saga",
-    "image": "brands/Ảnh_chụp_màn_hình_2026-03-10_164211.png"
+    "image": "brands/ß║ónh_chß╗Ñp_m├án_h├¼nh_2026-03-10_164211.png"
   }
 },
 {
   "model": "app1.watch",
   "pk": 1,
   "fields": {
-    "name": "Đồng Hồ Casio MTP-1374L-1A",
+    "name": "─Éß╗ông Hß╗ô Casio MTP-1374L-1A",
     "slug": "djng-h-casio-mtp-1374l-1a",
     "brand": 1,
     "price": 1816000,
@@ -352,18 +352,18 @@
     "gender": "Nam",
     "water_resistance": "5atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Khoáng",
-    "strap_material": "Dây Da",
+    "glass_material": "K├¡nh Kho├íng",
+    "strap_material": "D├óy Da",
     "diameter": "43.5mm",
     "thickness": "10.4mm",
-    "dial_color": "Màu đen",
+    "dial_color": "M├áu ─æen",
     "series": "Casio MTP 1374",
     "case_diameter": "42 - 45 mm",
-    "case_color": "Màu bạc",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
+    "case_color": "M├áu bß║íc",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
     "features": "",
-    "warranty": "24 tháng",
+    "warranty": "24 th├íng",
     "sold_count": 5,
     "created_at": "2026-02-23T13:29:15.614Z"
   }
@@ -372,7 +372,7 @@
   "model": "app1.watch",
   "pk": 2,
   "fields": {
-    "name": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "name": "─Éß╗ông Hß╗ô Casio 38.5mm Nam MTP-1302DS-1AVDF",
     "slug": "djng-h-casio-385mm-nam-mtp-1302ds-1avdf",
     "brand": 1,
     "price": 2000000,
@@ -383,18 +383,18 @@
     "gender": "Unisex",
     "water_resistance": "5atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Khoáng",
-    "strap_material": "Kim Loại",
+    "glass_material": "K├¡nh Kho├íng",
+    "strap_material": "Kim Loß║íi",
     "diameter": "38.5mm",
     "thickness": "9.4mm",
-    "dial_color": "Khảm đá",
+    "dial_color": "Khß║úm ─æ├í",
     "series": "Casio 38.5mm Nam MTP-1302DS-1AVDF",
     "case_diameter": "37 - 40 mm",
-    "case_color": "Bạc",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
+    "case_color": "Bß║íc",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
     "features": "",
-    "warranty": "24 tháng",
+    "warranty": "24 th├íng",
     "sold_count": 6,
     "created_at": "2026-02-23T13:48:21.746Z"
   }
@@ -403,7 +403,7 @@
   "model": "app1.watch",
   "pk": 3,
   "fields": {
-    "name": "Đồng Hồ Orient 40.8mm Nam RA-AR0009L30B",
+    "name": "─Éß╗ông Hß╗ô Orient 40.8mm Nam RA-AR0009L30B",
     "slug": "djng-h-orient-408mm-nam-ra-ar0009l30b",
     "brand": 2,
     "price": 11345000,
@@ -414,18 +414,18 @@
     "gender": "Nam",
     "water_resistance": "5atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Kim Loại",
+    "glass_material": "K├¡nh Sapphire",
+    "strap_material": "Kim Loß║íi",
     "diameter": "40.8mm",
     "thickness": "9.4mm",
-    "dial_color": "Màu xanh",
+    "dial_color": "M├áu xanh",
     "series": "Casio 38.5mm Nam MTP-1302DS-1AVDF",
     "case_diameter": "40 - 42 mm",
-    "case_color": "Màu trắng",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Hở tim lộ đáy",
-    "features": "Dạ quang, Giờ, phút, Small Second",
-    "warranty": "24 tháng",
+    "case_color": "M├áu trß║»ng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Hß╗ƒ tim lß╗Ö ─æ├íy",
+    "features": "Dß║í quang, Giß╗¥, ph├║t, Small Second",
+    "warranty": "24 th├íng",
     "sold_count": 10,
     "created_at": "2026-02-23T13:55:59.041Z"
   }
@@ -434,7 +434,7 @@
   "model": "app1.watch",
   "pk": 4,
   "fields": {
-    "name": "Đồng Hồ Orient 36.6 mm Nữ RA-AG0729S30B",
+    "name": "─Éß╗ông Hß╗ô Orient 36.6 mm Nß╗» RA-AG0729S30B",
     "slug": "djng-h-orient-366-mm-n-ra-ag0729s30b",
     "brand": 2,
     "price": 15000000,
@@ -442,21 +442,21 @@
     "image": "products/khong-ten-2024-11-18t165004-151_1731923498-400x400.webp",
     "description": "",
     "is_sold_out": true,
-    "gender": "Nữ",
+    "gender": "Nß╗»",
     "water_resistance": "5atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Khoáng",
-    "strap_material": "Dây Da",
+    "glass_material": "K├¡nh Kho├íng",
+    "strap_material": "D├óy Da",
     "diameter": "36.6 mm",
     "thickness": "12.2mm",
-    "dial_color": "Màu trắng",
-    "series": "Orient 36.6 mm Nữ RA-AG0729S30B",
+    "dial_color": "M├áu trß║»ng",
+    "series": "Orient 36.6 mm Nß╗» RA-AG0729S30B",
     "case_diameter": "33 - 37 mm",
-    "case_color": "Màu vàng",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Hở tim lộ đáy",
-    "features": "Giờ, phút, giây",
-    "warranty": "tháng",
+    "case_color": "M├áu v├áng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Hß╗ƒ tim lß╗Ö ─æ├íy",
+    "features": "Giß╗¥, ph├║t, gi├óy",
+    "warranty": "th├íng",
     "sold_count": 23,
     "created_at": "2026-02-23T14:02:09.617Z"
   }
@@ -465,7 +465,7 @@
   "model": "app1.watch",
   "pk": 5,
   "fields": {
-    "name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "slug": "djng-h-bentley-43mm-nam-bl1784-252kbb-s2-m",
     "brand": 3,
     "price": 8590000,
@@ -476,18 +476,18 @@
     "gender": "Nam",
     "water_resistance": "5atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Dây Da",
+    "glass_material": "K├¡nh Sapphire",
+    "strap_material": "D├óy Da",
     "diameter": "43mm",
     "thickness": "13.5mm",
-    "dial_color": "Màu trắng",
+    "dial_color": "M├áu trß║»ng",
     "series": "Bentley 43mm Nam BL1784-252KBB-S2-M",
     "case_diameter": "42 - 45 mm",
-    "case_color": "Màu vàng",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Hở tim lộ đáy",
-    "features": "Dạ quang, Giờ, phút, giây, Lịch 24 giờ",
-    "warranty": "24 tháng",
+    "case_color": "M├áu v├áng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Hß╗ƒ tim lß╗Ö ─æ├íy",
+    "features": "Dß║í quang, Giß╗¥, ph├║t, gi├óy, Lß╗ïch 24 giß╗¥",
+    "warranty": "24 th├íng",
     "sold_count": 76,
     "created_at": "2026-02-23T14:09:02.158Z"
   }
@@ -496,7 +496,7 @@
   "model": "app1.watch",
   "pk": 6,
   "fields": {
-    "name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "slug": "djng-h-bentley-41mm-nam-bl1831-15mwnn",
     "brand": 3,
     "price": 7000000,
@@ -507,18 +507,18 @@
     "gender": "Nam",
     "water_resistance": "5atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Dây Da",
+    "glass_material": "K├¡nh Sapphire",
+    "strap_material": "D├óy Da",
     "diameter": "41mm",
     "thickness": "12mm",
-    "dial_color": "Màu trắng",
+    "dial_color": "M├áu trß║»ng",
     "series": "Bentley 43mm Nam BL1784-252KBB-S2-M",
     "case_diameter": "40 - 42 mm",
-    "case_color": "Màu bạc",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Hở tim lộ đáy",
-    "features": "Dạ quang, Giờ, phút, giây",
-    "warranty": "24 tháng",
+    "case_color": "M├áu bß║íc",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Hß╗ƒ tim lß╗Ö ─æ├íy",
+    "features": "Dß║í quang, Giß╗¥, ph├║t, gi├óy",
+    "warranty": "24 th├íng",
     "sold_count": 8,
     "created_at": "2026-02-23T14:12:08.391Z"
   }
@@ -527,7 +527,7 @@
   "model": "app1.watch",
   "pk": 9,
   "fields": {
-    "name": "Saga Chroma Dance 54390-SVWTSV-2 – Nữ – Quartz (Pin) – Mặt Số 34mm – Kính Cứng – Mặt Số Đổi Màu",
+    "name": "Saga Chroma Dance 54390-SVWTSV-2 ΓÇô N╞░╠â ΓÇô Quartz (Pin) ΓÇô M─â╠út S├┤╠ü 34mm ΓÇô Ki╠ünh C╞░╠üng ΓÇô M─â╠út S├┤╠ü ─É├┤╠ëi Ma╠Çu",
     "slug": "saga-chroma-dance-54390-svwtsv-2-n-quartz-pin-mat",
     "brand": 13,
     "price": 6548000,
@@ -535,21 +535,21 @@
     "image": "products/saga1.jpg",
     "description": "",
     "is_sold_out": false,
-    "gender": "Nữ",
+    "gender": "Nß╗»",
     "water_resistance": "3atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Cứng",
-    "strap_material": "Thép không gỉ",
+    "glass_material": "K├¡nh Cß╗⌐ng",
+    "strap_material": "Th├⌐p kh├┤ng gß╗ë",
     "diameter": "34mm",
     "thickness": "8mm",
-    "dial_color": "Màu trắng",
+    "dial_color": "M├áu trß║»ng",
     "series": "Saga Chroma Dance 54390",
     "case_diameter": "34mm",
-    "case_color": "Trắng đổi màu",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
-    "features": "Saga Chroma Dance 54390-SVWTSV-2 sở hữu thiết kế trẻ trung nữ tính, mặt số có khả năng đổi màu từ xanh hồng sang xanh cam tùy theo điều kiện ánh sáng. Đính đá pha lê cao cấp, tỏa sáng rực rỡ.",
-    "warranty": "24 tháng",
+    "case_color": "Trß║»ng ─æ├┤╠ëi ma╠Çu",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
+    "features": "Saga Chroma Dance 54390-SVWTSV-2 s╞í╠ë h╞░╠âu thi├¬╠üt k├¬╠ü tre╠ë trung n╞░╠â ti╠ünh, m─â╠út s├┤╠ü co╠ü kha╠ë n─âng ─æ├┤╠ëi ma╠Çu t╞░╠Ç xanh h├┤╠Çng sang xanh cam tu╠Çy theo ─æi├¬╠Çu ki├¬╠ún a╠ünh sa╠üng. ─Éi╠ünh ─æa╠ü pha l├¬ cao c├ó╠üp, to╠ëa sa╠üng r╞░╠úc r╞í╠â.",
+    "warranty": "24 th├íng",
     "sold_count": 5,
     "created_at": "2026-03-10T09:50:33.097Z"
   }
@@ -558,7 +558,7 @@
   "model": "app1.watch",
   "pk": 10,
   "fields": {
-    "name": "Saga Stella Chance 53578-SVBLSV-2 – Nữ – Quartz (Pin) – Mặt Số 30mm, Kính Cứng, Chống Nước 3ATM",
+    "name": "Saga Stella Chance 53578-SVBLSV-2 ΓÇô Nß╗» ΓÇô Quartz (Pin) ΓÇô Mß║╖t Sß╗æ 30mm, K├¡nh Cß╗⌐ng, Chß╗æng N╞░ß╗¢c 3ATM",
     "slug": "saga-stella-chance-53578-svblsv-2-n-quartz-pin-mt",
     "brand": 13,
     "price": 9653787,
@@ -566,21 +566,21 @@
     "image": "products/sagahang1.avif",
     "description": "",
     "is_sold_out": false,
-    "gender": "Nữ",
+    "gender": "Nß╗»",
     "water_resistance": "3atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Cứng",
-    "strap_material": "Thép không gỉ",
+    "glass_material": "K├¡nh Cß╗⌐ng",
+    "strap_material": "Th├⌐p kh├┤ng gß╗ë",
     "diameter": "34mm",
     "thickness": "8mm",
-    "dial_color": "Màu xanh dương",
+    "dial_color": "M├áu xanh d╞░╞íng",
     "series": "Saga Stella Chance 53578",
     "case_diameter": "30mm",
-    "case_color": "Trắng đổi màu",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
+    "case_color": "Trß║»ng ─æ├┤╠ëi ma╠Çu",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
     "features": "",
-    "warranty": "24 tháng",
+    "warranty": "24 th├íng",
     "sold_count": 7,
     "created_at": "2026-03-10T09:57:35.868Z"
   }
@@ -589,7 +589,7 @@
   "model": "app1.watch",
   "pk": 11,
   "fields": {
-    "name": "Đồng Hồ Citizen 42mm Nam BL8150-86L",
+    "name": "─Éß╗ông Hß╗ô Citizen 42mm Nam BL8150-86L",
     "slug": "djng-h-citizen-42mm-nam-bl8150-86l",
     "brand": 4,
     "price": 75000000,
@@ -600,18 +600,18 @@
     "gender": "Nam",
     "water_resistance": "10atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Cứng",
-    "strap_material": "Kim Loại",
+    "glass_material": "K├¡nh Cß╗⌐ng",
+    "strap_material": "Kim Loß║íi",
     "diameter": "42mm",
     "thickness": "8mm",
-    "dial_color": "Màu trắng",
+    "dial_color": "M├áu trß║»ng",
     "series": "Citizen 42mm Nam BL8150-86L",
     "case_diameter": "30mm",
-    "case_color": "Trắng đổi màu",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
-    "features": "Báo thức, Dạ quang, Lịch thứ, Lịch ngày, Perpetual Calendar, Giờ, phút, giây, Lịch tháng",
-    "warranty": "24 tháng",
+    "case_color": "Trß║»ng ─æ├┤╠ëi ma╠Çu",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
+    "features": "B├ío thß╗⌐c, Dß║í quang, Lß╗ïch thß╗⌐, Lß╗ïch ng├áy, Perpetual Calendar, Giß╗¥, ph├║t, gi├óy, Lß╗ïch th├íng",
+    "warranty": "24 th├íng",
     "sold_count": 32,
     "created_at": "2026-03-10T10:11:49.449Z"
   }
@@ -620,7 +620,7 @@
   "model": "app1.watch",
   "pk": 12,
   "fields": {
-    "name": "Đồng Hồ Citizen 40mm Nam NJ0151-88M",
+    "name": "─Éß╗ông Hß╗ô Citizen 40mm Nam NJ0151-88M",
     "slug": "djng-h-citizen-40mm-nam-nj0151-88m",
     "brand": 4,
     "price": 20500000,
@@ -630,19 +630,19 @@
     "is_sold_out": false,
     "gender": "Nam",
     "water_resistance": "5atm",
-    "movement": "Cơ",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Thép không gỉ",
+    "movement": "C╞í",
+    "glass_material": "K├¡nh Sapphire",
+    "strap_material": "Th├⌐p kh├┤ng gß╗ë",
     "diameter": "40mm",
     "thickness": "8mm",
-    "dial_color": "Màu xanh",
+    "dial_color": "M├áu xanh",
     "series": "Citizen 40mm Nam NJ0151-88M",
     "case_diameter": "35mm",
-    "case_color": "Trắng",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
-    "features": "Dạ quang, Lịch ngày, Giờ, phút, giây",
-    "warranty": "24 tháng",
+    "case_color": "Trß║»ng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
+    "features": "Dß║í quang, Lß╗ïch ng├áy, Giß╗¥, ph├║t, gi├óy",
+    "warranty": "24 th├íng",
     "sold_count": 6,
     "created_at": "2026-03-10T10:17:13.547Z"
   }
@@ -651,7 +651,7 @@
   "model": "app1.watch",
   "pk": 13,
   "fields": {
-    "name": "Đồng Hồ SRWatch 40mm Nam SG3002.4602CV",
+    "name": "─Éß╗ông Hß╗ô SRWatch 40mm Nam SG3002.4602CV",
     "slug": "djng-h-srwatch-40mm-nam-sg30024602cv",
     "brand": 5,
     "price": 1200000,
@@ -661,19 +661,19 @@
     "is_sold_out": false,
     "gender": "Nam",
     "water_resistance": "5atm",
-    "movement": "Cơ",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Dây Da",
+    "movement": "C╞í",
+    "glass_material": "K├¡nh Sapphire",
+    "strap_material": "D├óy Da",
     "diameter": "40mm",
     "thickness": "8mm",
-    "dial_color": "Màu vàng",
+    "dial_color": "M├áu v├áng",
     "series": "SRWatch 40mm Nam SG3002.4602CV",
     "case_diameter": "35mm",
     "case_color": "",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
-    "features": "Lịch ngày, Giờ, phút, giây",
-    "warranty": "24 tháng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
+    "features": "Lß╗ïch ng├áy, Giß╗¥, ph├║t, gi├óy",
+    "warranty": "24 th├íng",
     "sold_count": 8,
     "created_at": "2026-03-10T10:24:03.806Z"
   }
@@ -682,7 +682,7 @@
   "model": "app1.watch",
   "pk": 14,
   "fields": {
-    "name": "Đồng Hồ SRWatch 36mm Nữ SL99993.4603GLA",
+    "name": "─Éß╗ông Hß╗ô SRWatch 36mm Nß╗» SL99993.4603GLA",
     "slug": "djng-h-srwatch-36mm-n-sl999934603gla",
     "brand": 5,
     "price": 7500000,
@@ -690,21 +690,21 @@
     "image": "products/srw1.webp",
     "description": "",
     "is_sold_out": false,
-    "gender": "Nữ",
+    "gender": "Nß╗»",
     "water_resistance": "5atm",
-    "movement": "Cơ",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Dây Da",
+    "movement": "C╞í",
+    "glass_material": "K├¡nh Sapphire",
+    "strap_material": "D├óy Da",
     "diameter": "36mm",
     "thickness": "8mm",
-    "dial_color": "Màu vàng",
-    "series": "SRWatch 36mm Nữ SL99993.4603GLA",
+    "dial_color": "M├áu v├áng",
+    "series": "SRWatch 36mm Nß╗» SL99993.4603GLA",
     "case_diameter": "36mm",
-    "case_color": "Mạ vàng",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
-    "features": "Dạ quang, Giờ, phút, giây",
-    "warranty": "24 tháng",
+    "case_color": "Mß║í v├áng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
+    "features": "Dß║í quang, Giß╗¥, ph├║t, gi├óy",
+    "warranty": "24 th├íng",
     "sold_count": 7,
     "created_at": "2026-03-10T10:29:16.614Z"
   }
@@ -713,7 +713,7 @@
   "model": "app1.watch",
   "pk": 15,
   "fields": {
-    "name": "G-Shock DW-5610BEP-2 – Nam – Quartz (Pin) – Mặt Số 48.9 mm x 43.8 mm, BlackEyePatch, Chống Nước 20ATM",
+    "name": "G-Shock DW-5610BEP-2 ΓÇô Nam ΓÇô Quartz (Pin) ΓÇô Mß║╖t Sß╗æ 48.9 mm x 43.8 mm, BlackEyePatch, Chß╗æng N╞░ß╗¢c 20ATM",
     "slug": "g-shock-dw-5610bep-2-nam-quartz-pin-mt-s-489-mm-x",
     "brand": 6,
     "price": 7432000,
@@ -724,18 +724,18 @@
     "gender": "Nam",
     "water_resistance": "20 ATM",
     "movement": "Quartz (Pin)",
-    "glass_material": "Kính Cứng",
-    "strap_material": "Nhựa sinh học",
+    "glass_material": "K├¡nh Cß╗⌐ng",
+    "strap_material": "Nhß╗▒a sinh hß╗ìc",
     "diameter": "13.4 mm",
     "thickness": "8mm",
-    "dial_color": "Màu vàng",
+    "dial_color": "M├áu v├áng",
     "series": "",
     "case_diameter": "48.9 mm x 43.8 mm",
     "case_color": "",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
-    "features": "Giờ thế giới – Bộ bấm giờ – Báo thức – Đèn LED – Vài chức năng khác",
-    "warranty": "24 tháng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
+    "features": "Giß╗¥ thß║┐ giß╗¢i ΓÇô Bß╗Ö bß║Ñm giß╗¥ ΓÇô B├ío thß╗⌐c ΓÇô ─É├¿n LED ΓÇô V├ái chß╗⌐c n─âng kh├íc",
+    "warranty": "24 th├íng",
     "sold_count": 6,
     "created_at": "2026-03-10T10:35:57.849Z"
   }
@@ -744,7 +744,7 @@
   "model": "app1.watch",
   "pk": 16,
   "fields": {
-    "name": "G-Shock DW-5600BBM-2DR – Nam – Kính Cứng – Quartz (Pin) – Mặt Số 42.8mm, Bộ Bấm Giờ, Chống Nước 20ATM",
+    "name": "G-Shock DW-5600BBM-2DR ΓÇô Nam ΓÇô K├¡nh Cß╗⌐ng ΓÇô Quartz (Pin) ΓÇô Mß║╖t Sß╗æ 42.8mm, Bß╗Ö Bß║Ñm Giß╗¥, Chß╗æng N╞░ß╗¢c 20ATM",
     "slug": "g-shock-dw-5600bbm-2dr-nam-kinh-cng-quartz-pin-mt",
     "brand": 6,
     "price": 3500000,
@@ -755,18 +755,18 @@
     "gender": "Nam",
     "water_resistance": "20atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Cứng",
-    "strap_material": "Dây cao su",
+    "glass_material": "K├¡nh Cß╗⌐ng",
+    "strap_material": "D├óy cao su",
     "diameter": "13.4 mm",
     "thickness": "8mm",
     "dial_color": "",
     "series": "Citizen 42mm Nam BL8150-86L",
     "case_diameter": "48.9 mm x 42.8 mm",
-    "case_color": "Đen",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Thanh lịch - Thể thao",
-    "features": "Lịch – Bộ bấm giờ – Giờ kép – Đèn led – Vài chức năng khác",
-    "warranty": "24 tháng",
+    "case_color": "─Éen",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Thanh lß╗ïch - Thß╗â thao",
+    "features": "Lß╗ïch ΓÇô Bß╗Ö bß║Ñm giß╗¥ ΓÇô Giß╗¥ k├⌐p ΓÇô ─É├¿n led ΓÇô V├ái chß╗⌐c n─âng kh├íc",
+    "warranty": "24 th├íng",
     "sold_count": 12,
     "created_at": "2026-03-10T10:39:31.734Z"
   }
@@ -775,7 +775,7 @@
   "model": "app1.watch",
   "pk": 17,
   "fields": {
-    "name": "Seiko 5 Sports SRPJ45K1 – Nam – Automatic (Tự Động) – Mặt Số 43mm – Kính Hardlex – Chống Nước 10ATM – Bezel Xoay – Dạ Quang LumiBrite",
+    "name": "Seiko 5 Sports SRPJ45K1 ΓÇô Nam ΓÇô Automatic (Tß╗▒ ─Éß╗Öng) ΓÇô Mß║╖t Sß╗æ 43mm ΓÇô K├¡nh Hardlex ΓÇô Chß╗æng N╞░ß╗¢c 10ATM ΓÇô Bezel Xoay ΓÇô Dß║í Quang LumiBrite",
     "slug": "seiko-5-sports-srpj45k1-nam-automatic-t-djng-mt-s",
     "brand": 7,
     "price": 20000000,
@@ -786,18 +786,18 @@
     "gender": "Nam",
     "water_resistance": "20 ATM",
     "movement": "Quartz (Pin)",
-    "glass_material": "Kính Hardlex",
-    "strap_material": "Thép không gỉ",
+    "glass_material": "K├¡nh Hardlex",
+    "strap_material": "Th├⌐p kh├┤ng gß╗ë",
     "diameter": "13,4 mm",
     "thickness": "8mm",
     "dial_color": "Xanh",
     "series": "Seiko 5 Sports SRPJ45K1",
     "case_diameter": "43 mm",
     "case_color": "Xanh",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng",
-    "features": "Lịch ngày – Lịch thứ",
-    "warranty": "24 tháng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng",
+    "features": "Lß╗ïch ng├áy ΓÇô Lß╗ïch thß╗⌐",
+    "warranty": "24 th├íng",
     "sold_count": 23,
     "created_at": "2026-03-10T10:45:08.499Z"
   }
@@ -806,7 +806,7 @@
   "model": "app1.watch",
   "pk": 18,
   "fields": {
-    "name": "Seiko 5 Sports SSK003K1 – Nam – Kính Hardlex – Automatic – Mặt Số 42.5mm, Trữ cót 41 giờ, GMT",
+    "name": "Seiko 5 Sports SSK003K1 ΓÇô Nam ΓÇô K├¡nh Hardlex ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 42.5mm, Trß╗» c├│t 41 giß╗¥, GMT",
     "slug": "seiko-5-sports-ssk003k1-nam-kinh-hardlex-automatic",
     "brand": 7,
     "price": 15000000,
@@ -817,18 +817,18 @@
     "gender": "Nam",
     "water_resistance": "10atm",
     "movement": "Pin/Quartz",
-    "glass_material": "Kính Cứng",
-    "strap_material": "Thép không gỉ",
+    "glass_material": "K├¡nh Cß╗⌐ng",
+    "strap_material": "Th├⌐p kh├┤ng gß╗ë",
     "diameter": "13.6 mm",
     "thickness": "13.6 mm",
-    "dial_color": "Màu xanh",
+    "dial_color": "M├áu xanh",
     "series": "Seiko 5 Sports SSK003K1",
     "case_diameter": "42.5mm",
-    "case_color": "Đen",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Thanh lịch - Thể thao",
-    "features": "Lịch ngày – GMT",
-    "warranty": "24 tháng",
+    "case_color": "─Éen",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Thanh lß╗ïch - Thß╗â thao",
+    "features": "Lß╗ïch ng├áy ΓÇô GMT",
+    "warranty": "24 th├íng",
     "sold_count": 7,
     "created_at": "2026-03-10T10:50:10.192Z"
   }
@@ -837,7 +837,7 @@
   "model": "app1.watch",
   "pk": 19,
   "fields": {
-    "name": "Longines Primaluna Moonphase L8.126.0.71.6 – Nữ – Automatic (Tự Động) – Mặt Số 34mm – Kính Sapphire – Lịch Tuần Trăng – 58 Viên Kim Cương Tự Nhiên 0.580 carats",
+    "name": "Longines Primaluna Moonphase L8.126.0.71.6 ΓÇô Nß╗» ΓÇô Automatic (T╞░╠ú ─É├┤╠úng) ΓÇô M─â╠út S├┤╠ü 34mm ΓÇô Ki╠ünh Sapphire ΓÇô Li╠úch Tu├ó╠Çn Tr─âng ΓÇô 58 Vi├¬n Kim C╞░╞íng T╞░╠ú Nhi├¬n 0.580 carats",
     "slug": "longines-primaluna-moonphase-l81260716-n-automatic",
     "brand": 8,
     "price": 170000000,
@@ -845,21 +845,21 @@
     "image": "products/lo1.jpg",
     "description": "",
     "is_sold_out": false,
-    "gender": "Nữ",
+    "gender": "Nß╗»",
     "water_resistance": "5 ATM",
     "movement": "Quartz (Pin)",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Thép không gỉ",
+    "glass_material": "Ki╠ünh Sapphire",
+    "strap_material": "Th├⌐p kh├┤ng gß╗ë",
     "diameter": "13,4 mm",
     "thickness": "11,6 mm",
-    "dial_color": "Màu ngà voi Opaline",
+    "dial_color": "Ma╠Çu nga╠Ç voi Opaline",
     "series": "Longines Primaluna Moonphase L8.126.0.71.6",
     "case_diameter": "34mm",
     "case_color": "Xanh",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Đính 58 viên kim cương Top Wesselton IF-VVS, tổng trọng lượng 0,580 carats",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "─É├¡nh 58 vi├¬n kim c╞░╞íng Top Wesselton IF-VVS, t├┤╠ëng tro╠úng l╞░╞í╠úng 0,580 carats",
     "features": "",
-    "warranty": "24 tháng",
+    "warranty": "24 th├íng",
     "sold_count": 1,
     "created_at": "2026-03-10T10:55:45.639Z"
   }
@@ -868,7 +868,7 @@
   "model": "app1.watch",
   "pk": 20,
   "fields": {
-    "name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "name": "Longines Hydroconquest L3.742.3.96.7 ΓÇô Nam ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 41mm ΓÇô Chß╗æng N╞░ß╗¢c 30 ATM ΓÇô Trß╗» C├│t 72 Giß╗¥",
     "slug": "longines-hydroconquest-l37423967-nam-automatic-mt",
     "brand": 8,
     "price": 47657000,
@@ -879,18 +879,18 @@
     "gender": "Nam",
     "water_resistance": "30 ATM",
     "movement": "Quartz (Pin)",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Thép không gỉ",
+    "glass_material": "Ki╠ünh Sapphire",
+    "strap_material": "Th├⌐p kh├┤ng gß╗ë",
     "diameter": "13,4 mm",
     "thickness": "11.9 mm",
-    "dial_color": "Xanh dương",
+    "dial_color": "Xanh d╞░╞íng",
     "series": "Longines Hydroconquest L3.742.3.96.7",
     "case_diameter": "42mm",
     "case_color": "Xanh",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng, quý",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng, qu├╜",
     "features": "",
-    "warranty": "24 tháng",
+    "warranty": "24 th├íng",
     "sold_count": 5,
     "created_at": "2026-03-10T11:02:49.894Z"
   }
@@ -899,7 +899,7 @@
   "model": "app1.watch",
   "pk": 21,
   "fields": {
-    "name": "Đồng Hồ Omega 38.5mm Nam 231.10.39.21.57.001",
+    "name": "─Éß╗ông Hß╗ô Omega 38.5mm Nam 231.10.39.21.57.001",
     "slug": "djng-h-omega-385mm-nam-23110392157001",
     "brand": 9,
     "price": 91000000,
@@ -909,19 +909,19 @@
     "is_sold_out": false,
     "gender": "Nam",
     "water_resistance": "15ATM",
-    "movement": "Cơ",
-    "glass_material": "Kính Sapphire",
-    "strap_material": "Dây kim loại",
+    "movement": "C╞í",
+    "glass_material": "Ki╠ünh Sapphire",
+    "strap_material": "D├óy kim loß║íi",
     "diameter": "38.5mm",
     "thickness": "11.9 mm",
-    "dial_color": "Bạc",
+    "dial_color": "Bß║íc",
     "series": "Omega 38.5mm Nam 231.10.39.21.57.001",
     "case_diameter": "",
     "case_color": "Xanh",
-    "dial_shape": "Mặt tròn",
-    "design_style": "Sang trọng, quý",
-    "features": "Dạ quang, Lịch ngày, Giờ, phút, giây",
-    "warranty": "24 tháng",
+    "dial_shape": "Mß║╖t tr├▓n",
+    "design_style": "Sang trß╗ìng, qu├╜",
+    "features": "Dß║í quang, Lß╗ïch ng├áy, Giß╗¥, ph├║t, gi├óy",
+    "warranty": "24 th├íng",
     "sold_count": 4,
     "created_at": "2026-03-10T11:08:38.720Z"
   }
@@ -1330,7 +1330,7 @@
   "fields": {
     "watch": 9,
     "image": "watch_desc/saga4.jpg",
-    "caption": "Hoa sen xanh toả nắng trên tay Nàng – Cô gái kiêu hãnh\r\nKhơi nguồn từ linh hồn của loài hoa sen gắn liền với hình ảnh đất nước Việt Nam, Saga Chroma Dance 54390-SVWTSV-2 là bản tụng ca dành riêng cho các cô gái Việt – những đóa sen đương độ rạng ngời nhất. \r\n\r\nTuyệt tác này khắc họa trọn vẹn cốt cách của những ‘nàng sen’ hiện đại: Thuần khiết nhưng đầy kiên cường, thanh cao mà vẫn rạng rỡ.\r\n\r\nĐánh dấu bước ngoặt trong lịch sử chế tác, đây là dòng đồng hồ sở hữu mặt số chuyển sắc lần đầu tiên xuất hiện tại Việt Nam.",
+    "caption": "Hoa sen xanh toß║ú nß║»ng tr├¬n tay N├áng ΓÇô C├┤ g├íi ki├¬u h├únh\r\nKh╞íi nguß╗ôn tß╗½ linh hß╗ôn cß╗ºa lo├ái hoa sen gß║»n liß╗ün vß╗¢i h├¼nh ß║únh ─æß║Ñt n╞░ß╗¢c Viß╗çt Nam, Saga Chroma Dance 54390-SVWTSV-2 l├á bß║ún tß╗Ñng ca d├ánh ri├¬ng cho c├íc c├┤ g├íi Viß╗çt ΓÇô nhß╗»ng ─æ├│a sen ─æ╞░╞íng ─æß╗Ö rß║íng ngß╗¥i nhß║Ñt. \r\n\r\nTuyß╗çt t├íc n├áy khß║»c hß╗ìa trß╗ìn vß║╣n cß╗æt c├ích cß╗ºa nhß╗»ng ΓÇÿn├áng senΓÇÖ hiß╗çn ─æß║íi: Thuß║ºn khiß║┐t nh╞░ng ─æß║ºy ki├¬n c╞░ß╗¥ng, thanh cao m├á vß║½n rß║íng rß╗í.\r\n\r\n─É├ính dß║Ñu b╞░ß╗¢c ngoß║╖t trong lß╗ïch sß╗¡ chß║┐ t├íc, ─æ├óy l├á d├▓ng ─æß╗ông hß╗ô sß╗ƒ hß╗»u mß║╖t sß╗æ chuyß╗ân sß║»c lß║ºn ─æß║ºu ti├¬n xuß║Ñt hiß╗çn tß║íi Viß╗çt Nam.",
     "layout": "full",
     "order": 0
   }
@@ -1341,7 +1341,7 @@
   "fields": {
     "watch": 9,
     "image": "",
-    "caption": "Dưới cái chạm của nắng, sen như được tiếp thêm sinh khí, bừng nở đầy mềm mại và nữ tính. \r\n\r\nĐiểm xuyết trên ‘vũ khúc ánh sáng’ ấy là 7 tinh thể pha lê Danube thượng hạng, biểu tượng của sự vĩnh cửu và may mắn, dẫn lối cho mọi hành trình đầy kiêu hãnh của phái đẹp.\r\n\r\nBáu vật Phương Đông kết hợp cùng công nghệ Phương Tây\r\nSaga Chroma Dance gói ghém cả một mùa hạ rực rỡ vào trong mặt số với công nghệ đổi màu độc bản từ Mỹ, đem lại nguồn năng lượng nữ tính cho các cô Nàng!",
+    "caption": "D╞░ß╗¢i c├íi chß║ím cß╗ºa nß║»ng, sen nh╞░ ─æ╞░ß╗úc tiß║┐p th├¬m sinh kh├¡, bß╗½ng nß╗ƒ ─æß║ºy mß╗üm mß║íi v├á nß╗» t├¡nh. \r\n\r\n─Éiß╗âm xuyß║┐t tr├¬n ΓÇÿv┼⌐ kh├║c ├ính s├íngΓÇÖ ß║Ñy l├á 7 tinh thß╗â pha l├¬ Danube th╞░ß╗úng hß║íng, biß╗âu t╞░ß╗úng cß╗ºa sß╗▒ v─⌐nh cß╗¡u v├á may mß║»n, dß║½n lß╗æi cho mß╗ìi h├ánh tr├¼nh ─æß║ºy ki├¬u h├únh cß╗ºa ph├íi ─æß║╣p.\r\n\r\nB├íu vß║¡t Ph╞░╞íng ─É├┤ng kß║┐t hß╗úp c├╣ng c├┤ng nghß╗ç Ph╞░╞íng T├óy\r\nSaga Chroma Dance g├│i gh├⌐m cß║ú mß╗Öt m├╣a hß║í rß╗▒c rß╗í v├áo trong mß║╖t sß╗æ vß╗¢i c├┤ng nghß╗ç ─æß╗òi m├áu ─æß╗Öc bß║ún tß╗½ Mß╗╣, ─æem lß║íi nguß╗ôn n─âng l╞░ß╗úng nß╗» t├¡nh cho c├íc c├┤ N├áng!",
     "layout": "full",
     "order": 0
   }
@@ -1352,7 +1352,7 @@
   "fields": {
     "watch": 10,
     "image": "watch_desc/sagahang2.avif",
-    "caption": "Giới thiệu thương hiệu đồng hồ Saga\r\nXuất thân từ nước Mỹ xứ cờ hoa, Saga thừa hưởng những tinh hoa nghệ thuật chế tác đỉnh cao. Thành lập năm 1950, trải qua hơn 70 phát triển, Saga sở hữu nhiều dòng đồng hồ chiếm trọn trái tim hai phái.\r\n\r\nKết hợp hài hòa giữa thiết kế kiểu dáng từ Mỹ và bộ máy của Thụy Sỹ tạo nên những sản phẩm độc đáo và thời trang. Mức giá của đồng hồ Saga thuộc phân khúc tầm trung khá dễ tiếp cận với người dùng tại Việt Nam.",
+    "caption": "Giß╗¢i thiß╗çu th╞░╞íng hiß╗çu ─æß╗ông hß╗ô Saga\r\nXuß║Ñt th├ón tß╗½ n╞░ß╗¢c Mß╗╣ xß╗⌐ cß╗¥ hoa, Saga thß╗½a h╞░ß╗ƒng nhß╗»ng tinh hoa nghß╗ç thuß║¡t chß║┐ t├íc ─æß╗ënh cao. Th├ánh lß║¡p n─âm 1950, trß║úi qua h╞ín 70 ph├ít triß╗ân, Saga sß╗ƒ hß╗»u nhiß╗üu d├▓ng ─æß╗ông hß╗ô chiß║┐m trß╗ìn tr├íi tim hai ph├íi.\r\n\r\nKß║┐t hß╗úp h├ái h├▓a giß╗»a thiß║┐t kß║┐ kiß╗âu d├íng tß╗½ Mß╗╣ v├á bß╗Ö m├íy cß╗ºa Thß╗Ñy Sß╗╣ tß║ío n├¬n nhß╗»ng sß║ún phß║⌐m ─æß╗Öc ─æ├ío v├á thß╗¥i trang. Mß╗⌐c gi├í cß╗ºa ─æß╗ông hß╗ô Saga thuß╗Öc ph├ón kh├║c tß║ºm trung kh├í dß╗à tiß║┐p cß║¡n vß╗¢i ng╞░ß╗¥i d├╣ng tß║íi Viß╗çt Nam.",
     "layout": "full",
     "order": 0
   }
@@ -1363,7 +1363,7 @@
   "fields": {
     "watch": 12,
     "image": "watch_desc/citizen4.png",
-    "caption": "Tạo nên một làn sóng mạnh mẽ trong cộng đồng yêu đồng hồ, Citizen NJ0151-88M là sự giao thoa hoàn hảo giữa phong cách thể thao sang trọng và xu hướng màu sắc hiện đại. Đến từ thương hiệu Citizen danh tiếng Nhật Bản, model này nhanh chóng trở thành phụ kiện được săn đón bởi các quý ông sành điệu.\r\n\r\nTâm điểm của mọi sự chú ý chính là mặt số màu xanh Tiffany độc đáo, một gam màu tươi mới, táo bạo và đầy cuốn hút. Trên nền xanh ấy, thiết kế tối giản được tôn vinh với các cọc số dạng vạch được chế tác tinh xảo. Ô lịch ngày ở vị trí 3 giờ được trang bị thêm kính lúp (cyclops), không chỉ giúp người dùng dễ dàng quan sát mà còn là một chi tiết kinh điển của dòng đồng hồ cao cấp.\r\n\r\nĐiểm nhấn đắt giá của phụ kiện nằm ở bộ vỏ 40mm và dây đeo được làm từ thép không gỉ 316L, tích hợp liền khối tạo thành một tổng thể mượt mà, ôm trọn cổ tay. Đặc biệt, việc trang bị mặt kính Sapphire cao cấp mang lại khả năng chống trầy xước gần như tuyệt đối, giúp chiếc đồng hồ nam giữ được vẻ đẹp trong trẻo theo năm tháng.\r\n\r\nThiết bị sử dụng bộ máy cơ tự động (Automatic) đáng tin cậy, vận hành nhịp nhàng nhờ vào chính chuyển động của người đeo, mang lại một linh hồn cơ khí thực sự. Các tiện ích thiết thực như kim dạ quang và khả năng chống nước 5 ATM giúp đây trở thành người bạn đồng hành lý tưởng, sẵn sàng cho mọi hoạt động thường nhật như đi mưa hay rửa tay.\r\n\r\nĐồng hồ Citizen NJ0151-88M không chỉ là phụ kiện xem giờ, mà còn là một tuyên ngôn về gu thẩm mỹ tinh tế và sự nhạy bén với xu hướng của người đàn ông hiện đại.",
+    "caption": "Tß║ío n├¬n mß╗Öt l├án s├│ng mß║ính mß║╜ trong cß╗Öng ─æß╗ông y├¬u ─æß╗ông hß╗ô, Citizen NJ0151-88M l├á sß╗▒ giao thoa ho├án hß║úo giß╗»a phong c├ích thß╗â thao sang trß╗ìng v├á xu h╞░ß╗¢ng m├áu sß║»c hiß╗çn ─æß║íi. ─Éß║┐n tß╗½ th╞░╞íng hiß╗çu Citizen danh tiß║┐ng Nhß║¡t Bß║ún, model n├áy nhanh ch├│ng trß╗ƒ th├ánh phß╗Ñ kiß╗çn ─æ╞░ß╗úc s─ân ─æ├│n bß╗ƒi c├íc qu├╜ ├┤ng s├ánh ─æiß╗çu.\r\n\r\nT├óm ─æiß╗âm cß╗ºa mß╗ìi sß╗▒ ch├║ ├╜ ch├¡nh l├á mß║╖t sß╗æ m├áu xanh Tiffany ─æß╗Öc ─æ├ío, mß╗Öt gam m├áu t╞░╞íi mß╗¢i, t├ío bß║ío v├á ─æß║ºy cuß╗æn h├║t. Tr├¬n nß╗ün xanh ß║Ñy, thiß║┐t kß║┐ tß╗æi giß║ún ─æ╞░ß╗úc t├┤n vinh vß╗¢i c├íc cß╗ìc sß╗æ dß║íng vß║ích ─æ╞░ß╗úc chß║┐ t├íc tinh xß║úo. ├ö lß╗ïch ng├áy ß╗ƒ vß╗ï tr├¡ 3 giß╗¥ ─æ╞░ß╗úc trang bß╗ï th├¬m k├¡nh l├║p (cyclops), kh├┤ng chß╗ë gi├║p ng╞░ß╗¥i d├╣ng dß╗à d├áng quan s├ít m├á c├▓n l├á mß╗Öt chi tiß║┐t kinh ─æiß╗ân cß╗ºa d├▓ng ─æß╗ông hß╗ô cao cß║Ñp.\r\n\r\n─Éiß╗âm nhß║Ñn ─æß║»t gi├í cß╗ºa phß╗Ñ kiß╗çn nß║▒m ß╗ƒ bß╗Ö vß╗Å 40mm v├á d├óy ─æeo ─æ╞░ß╗úc l├ám tß╗½ th├⌐p kh├┤ng gß╗ë 316L, t├¡ch hß╗úp liß╗ün khß╗æi tß║ío th├ánh mß╗Öt tß╗òng thß╗â m╞░ß╗út m├á, ├┤m trß╗ìn cß╗ò tay. ─Éß║╖c biß╗çt, viß╗çc trang bß╗ï mß║╖t k├¡nh Sapphire cao cß║Ñp mang lß║íi khß║ú n─âng chß╗æng trß║ºy x╞░ß╗¢c gß║ºn nh╞░ tuyß╗çt ─æß╗æi, gi├║p chiß║┐c ─æß╗ông hß╗ô nam giß╗» ─æ╞░ß╗úc vß║╗ ─æß║╣p trong trß║╗o theo n─âm th├íng.\r\n\r\nThiß║┐t bß╗ï sß╗¡ dß╗Ñng bß╗Ö m├íy c╞í tß╗▒ ─æß╗Öng (Automatic) ─æ├íng tin cß║¡y, vß║¡n h├ánh nhß╗ïp nh├áng nhß╗¥ v├áo ch├¡nh chuyß╗ân ─æß╗Öng cß╗ºa ng╞░ß╗¥i ─æeo, mang lß║íi mß╗Öt linh hß╗ôn c╞í kh├¡ thß╗▒c sß╗▒. C├íc tiß╗çn ├¡ch thiß║┐t thß╗▒c nh╞░ kim dß║í quang v├á khß║ú n─âng chß╗æng n╞░ß╗¢c 5 ATM gi├║p ─æ├óy trß╗ƒ th├ánh ng╞░ß╗¥i bß║ín ─æß╗ông h├ánh l├╜ t╞░ß╗ƒng, sß║╡n s├áng cho mß╗ìi hoß║ít ─æß╗Öng th╞░ß╗¥ng nhß║¡t nh╞░ ─æi m╞░a hay rß╗¡a tay.\r\n\r\n─Éß╗ông hß╗ô Citizen NJ0151-88M kh├┤ng chß╗ë l├á phß╗Ñ kiß╗çn xem giß╗¥, m├á c├▓n l├á mß╗Öt tuy├¬n ng├┤n vß╗ü gu thß║⌐m mß╗╣ tinh tß║┐ v├á sß╗▒ nhß║íy b├⌐n vß╗¢i xu h╞░ß╗¢ng cß╗ºa ng╞░ß╗¥i ─æ├án ├┤ng hiß╗çn ─æß║íi.",
     "layout": "full",
     "order": 0
   }
@@ -1374,7 +1374,7 @@
   "fields": {
     "watch": 13,
     "image": "watch_desc/sr4.jpg",
-    "caption": "Thiết kế cặp màu trắng - nâu nhẹ nhàng của phiên bản SRWatch SG3002.4602CV giúp tôn lên mọi sắc tố da từ da ngăm, da sẫm màu đến da trắng, da vàng. Nếu bạn là người đàn ông chững chạc, thích sự mộc mạc pha chút trầm lắng, cá tính thì chiếc đồng hồ 3 kim 1 lịch này thực sự phù hợp. \r\n\r\nSRWatch SG3002.4602CV dây nâu, mặt trắng TRẺ TRUNG, SANG TRỌNG\r\nĐồng hồ nam SRWatch đơn giản mà nổi bật với dây da màu nâu, mặt trắng tạo sự tương phản hài hòa, dịu mắt nhưng đủ để thu hút mọi ánh nhìn. Mặc dù dây da nâu mang nét hoài cổ, kết hợp vỏ thép mạ vàng PVD cho ra vẻ đẹp sang trọng nhưng sản phẩm vẫn đậm chất trẻ trung nhờ sự góp mặt của nền dial trắng thanh tao.",
+    "caption": "Thiß║┐t kß║┐ cß║╖p m├áu trß║»ng - n├óu nhß║╣ nh├áng cß╗ºa phi├¬n bß║ún SRWatch SG3002.4602CV gi├║p t├┤n l├¬n mß╗ìi sß║»c tß╗æ da tß╗½ da ng─âm, da sß║½m m├áu ─æß║┐n da trß║»ng, da v├áng. Nß║┐u bß║ín l├á ng╞░ß╗¥i ─æ├án ├┤ng chß╗»ng chß║íc, th├¡ch sß╗▒ mß╗Öc mß║íc pha ch├║t trß║ºm lß║»ng, c├í t├¡nh th├¼ chiß║┐c ─æß╗ông hß╗ô 3 kim 1 lß╗ïch n├áy thß╗▒c sß╗▒ ph├╣ hß╗úp. \r\n\r\nSRWatch SG3002.4602CV d├óy n├óu, mß║╖t trß║»ng TRß║║ TRUNG, SANG TRß╗îNG\r\n─Éß╗ông hß╗ô nam SRWatch ─æ╞ín giß║ún m├á nß╗òi bß║¡t vß╗¢i d├óy da m├áu n├óu, mß║╖t trß║»ng tß║ío sß╗▒ t╞░╞íng phß║ún h├ái h├▓a, dß╗ïu mß║»t nh╞░ng ─æß╗º ─æß╗â thu h├║t mß╗ìi ├ính nh├¼n. Mß║╖c d├╣ d├óy da n├óu mang n├⌐t ho├ái cß╗ò, kß║┐t hß╗úp vß╗Å th├⌐p mß║í v├áng PVD cho ra vß║╗ ─æß║╣p sang trß╗ìng nh╞░ng sß║ún phß║⌐m vß║½n ─æß║¡m chß║Ñt trß║╗ trung nhß╗¥ sß╗▒ g├│p mß║╖t cß╗ºa nß╗ün dial trß║»ng thanh tao.",
     "layout": "full",
     "order": 0
   }
@@ -1396,7 +1396,7 @@
   "fields": {
     "watch": 15,
     "image": "watch_desc/gs5.avif",
-    "caption": "G-Shock không đơn giản là đồng hồ, nó đại diện cho phong cách, lối sống của nhiều bạn trẻ hiện nay. Điển hình trong văn hóa Rap Hip-Hop tại Mỹ, nhiều nghệ sĩ nổi tiếng như Justin Bieber diện đồng hồ G-Shock. Chúng như một lời tuyên ngôn của sự mạnh mẽ, kiên cường và vươn lên.\r\n\r\nG-Shock DW-5610BEP-2 - ảnh 8\r\n\r\nTrong cuộc sống hàng ngày, G-Shock DW-5610BEP-2 đáp ứng nhu cầu sở hữu một chiếc đồng hồ thời trang, tính bền bỉ cao. Nhiều người dùng đánh giá G-Shock là mẫu đồng hồ độc đáo, không đụng hàng và rất bền.\r\n\r\nChúng tôi đã thử đeo G-Shock DW-5610BEP-2 khoảng 1 tuần, cảm giác thật tuyệt vời bởi kiểu dáng thiết kế lấy cảm hứng từ Shiba Inu. Điều này giúp đồng hồ có thêm sự khác biệt so với phiên bản Origin.\r\n\r\nCác va chạm hàng ngày không làm chúng tôi cảm thấy lo lắng bởi vì đây là G-Shock. Nếu đó là một chiếc đồng hồ sang trọng làm bằng thép thì câu chuyện có thể sẽ khác. Bạn sẽ phải kiểm tra xem có bị cấn móp hay trầy xước gì không.\r\n\r\nG-Shock DW-5610BEP-2 - ảnh 5\r\n\r\nBộ máy quartz Nhật Bản luôn cho phép hiển thị giờ đúng, ít khi sai số. Một vài chức năng hữu ích như báo thức, bấm giờ thể thao cũng được sử dụng vô cùng hiệu quả. Cảm giác đeo nhẹ, thoải mái và không gây cản trở hoạt động thường ngày.\r\n\r\nNếu bạn là người thường xuyên tập gym hoặc chơi thể thao, G-Shock DW-5610BEP-2 sẽ là người bạn đồng hành hoàn hảo. Đặc biệt phù hợp với các bạn trẻ yêu thích phong cách đường phố, các DJ, dancer hoặc những người đam mê thể thao mạo hiểm.\r\n\r\nLựa chọn tương tự G-Shock DW-5610BEP-2\r\nĐồng hồ G-Shock là trường hợp hiếm hoi không có đối thủ cạnh tranh trên thị trường. Thương hiệu phụ của Casio có một hướng đi táo bạo trong thiết kế lẫn phong cách mà không hãng nào sao chép được.\r\n\r\nChính vì vậy thật khó để từ chối nếu bạn đã yêu thích vẻ đẹp của mẫu đồng hồ thể thao này. Lựa chọn thay thế G-Shock DW-5610BEP-2 chính là Casio W218H. Người anh em chung công ty mẹ Casio, cảm hứng thiết kế tương tự nhau.\r\n\r\n\r\n\r\nCông tâm so sánh, Casio W218H dành cho những ai có ngân sách thấp hơn nhưng vẫn muốn có thiết kế của DW5600. G-Shock DW-5610BEP-2 vượt trội hơn nhờ cấu trúc chống va đập bền bỉ và phong cách mạnh mẽ mà không hãng nào có được.",
+    "caption": "G-Shock kh├┤ng ─æ╞ín giß║ún l├á ─æß╗ông hß╗ô, n├│ ─æß║íi diß╗çn cho phong c├ích, lß╗æi sß╗æng cß╗ºa nhiß╗üu bß║ín trß║╗ hiß╗çn nay. ─Éiß╗ân h├¼nh trong v─ân h├│a Rap Hip-Hop tß║íi Mß╗╣, nhiß╗üu nghß╗ç s─⌐ nß╗òi tiß║┐ng nh╞░ Justin Bieber diß╗çn ─æß╗ông hß╗ô G-Shock. Ch├║ng nh╞░ mß╗Öt lß╗¥i tuy├¬n ng├┤n cß╗ºa sß╗▒ mß║ính mß║╜, ki├¬n c╞░ß╗¥ng v├á v╞░╞ín l├¬n.\r\n\r\nG-Shock DW-5610BEP-2 - ß║únh 8\r\n\r\nTrong cuß╗Öc sß╗æng h├áng ng├áy, G-Shock DW-5610BEP-2 ─æ├íp ß╗⌐ng nhu cß║ºu sß╗ƒ hß╗»u mß╗Öt chiß║┐c ─æß╗ông hß╗ô thß╗¥i trang, t├¡nh bß╗ün bß╗ë cao. Nhiß╗üu ng╞░ß╗¥i d├╣ng ─æ├ính gi├í G-Shock l├á mß║½u ─æß╗ông hß╗ô ─æß╗Öc ─æ├ío, kh├┤ng ─æß╗Ñng h├áng v├á rß║Ñt bß╗ün.\r\n\r\nCh├║ng t├┤i ─æ├ú thß╗¡ ─æeo G-Shock DW-5610BEP-2 khoß║úng 1 tuß║ºn, cß║úm gi├íc thß║¡t tuyß╗çt vß╗¥i bß╗ƒi kiß╗âu d├íng thiß║┐t kß║┐ lß║Ñy cß║úm hß╗⌐ng tß╗½ Shiba Inu. ─Éiß╗üu n├áy gi├║p ─æß╗ông hß╗ô c├│ th├¬m sß╗▒ kh├íc biß╗çt so vß╗¢i phi├¬n bß║ún Origin.\r\n\r\nC├íc va chß║ím h├áng ng├áy kh├┤ng l├ám ch├║ng t├┤i cß║úm thß║Ñy lo lß║»ng bß╗ƒi v├¼ ─æ├óy l├á G-Shock. Nß║┐u ─æ├│ l├á mß╗Öt chiß║┐c ─æß╗ông hß╗ô sang trß╗ìng l├ám bß║▒ng th├⌐p th├¼ c├óu chuyß╗çn c├│ thß╗â sß║╜ kh├íc. Bß║ín sß║╜ phß║úi kiß╗âm tra xem c├│ bß╗ï cß║Ñn m├│p hay trß║ºy x╞░ß╗¢c g├¼ kh├┤ng.\r\n\r\nG-Shock DW-5610BEP-2 - ß║únh 5\r\n\r\nBß╗Ö m├íy quartz Nhß║¡t Bß║ún lu├┤n cho ph├⌐p hiß╗ân thß╗ï giß╗¥ ─æ├║ng, ├¡t khi sai sß╗æ. Mß╗Öt v├ái chß╗⌐c n─âng hß╗»u ├¡ch nh╞░ b├ío thß╗⌐c, bß║Ñm giß╗¥ thß╗â thao c┼⌐ng ─æ╞░ß╗úc sß╗¡ dß╗Ñng v├┤ c├╣ng hiß╗çu quß║ú. Cß║úm gi├íc ─æeo nhß║╣, thoß║úi m├íi v├á kh├┤ng g├óy cß║ún trß╗ƒ hoß║ít ─æß╗Öng th╞░ß╗¥ng ng├áy.\r\n\r\nNß║┐u bß║ín l├á ng╞░ß╗¥i th╞░ß╗¥ng xuy├¬n tß║¡p gym hoß║╖c ch╞íi thß╗â thao, G-Shock DW-5610BEP-2 sß║╜ l├á ng╞░ß╗¥i bß║ín ─æß╗ông h├ánh ho├án hß║úo. ─Éß║╖c biß╗çt ph├╣ hß╗úp vß╗¢i c├íc bß║ín trß║╗ y├¬u th├¡ch phong c├ích ─æ╞░ß╗¥ng phß╗æ, c├íc DJ, dancer hoß║╖c nhß╗»ng ng╞░ß╗¥i ─æam m├¬ thß╗â thao mß║ío hiß╗âm.\r\n\r\nLß╗▒a chß╗ìn t╞░╞íng tß╗▒ G-Shock DW-5610BEP-2\r\n─Éß╗ông hß╗ô G-Shock l├á tr╞░ß╗¥ng hß╗úp hiß║┐m hoi kh├┤ng c├│ ─æß╗æi thß╗º cß║ính tranh tr├¬n thß╗ï tr╞░ß╗¥ng. Th╞░╞íng hiß╗çu phß╗Ñ cß╗ºa Casio c├│ mß╗Öt h╞░ß╗¢ng ─æi t├ío bß║ío trong thiß║┐t kß║┐ lß║½n phong c├ích m├á kh├┤ng h├úng n├áo sao ch├⌐p ─æ╞░ß╗úc.\r\n\r\nCh├¡nh v├¼ vß║¡y thß║¡t kh├│ ─æß╗â tß╗½ chß╗æi nß║┐u bß║ín ─æ├ú y├¬u th├¡ch vß║╗ ─æß║╣p cß╗ºa mß║½u ─æß╗ông hß╗ô thß╗â thao n├áy. Lß╗▒a chß╗ìn thay thß║┐ G-Shock DW-5610BEP-2 ch├¡nh l├á Casio W218H. Ng╞░ß╗¥i anh em chung c├┤ng ty mß║╣ Casio, cß║úm hß╗⌐ng thiß║┐t kß║┐ t╞░╞íng tß╗▒ nhau.\r\n\r\n\r\n\r\nC├┤ng t├óm so s├ính, Casio W218H d├ánh cho nhß╗»ng ai c├│ ng├ón s├ích thß║Ñp h╞ín nh╞░ng vß║½n muß╗æn c├│ thiß║┐t kß║┐ cß╗ºa DW5600. G-Shock DW-5610BEP-2 v╞░ß╗út trß╗Öi h╞ín nhß╗¥ cß║Ñu tr├║c chß╗æng va ─æß║¡p bß╗ün bß╗ë v├á phong c├ích mß║ính mß║╜ m├á kh├┤ng h├úng n├áo c├│ ─æ╞░ß╗úc.",
     "layout": "full",
     "order": 0
   }
@@ -1407,7 +1407,7 @@
   "fields": {
     "watch": 17,
     "image": "watch_desc/se5.avif",
-    "caption": "Thuộc bộ sưu tập Seiko 5 Sports lừng danh, SRPJ45K1 gây ấn tượng mạnh mẽ với tinh thần đột phá hiếm có.\r\n\r\nChiếc đồng hồ này là sự kết hợp táo bạo giữa di sản chế tác lâu đời của Seiko và ngôn ngữ thiết kế hiện đại, sẵn sàng phá vỡ mọi giới hạn truyền thống.\r\n\r\nĐiểm nhấn làm nên sự khác biệt và thu hút của SRPJ45K1 là mặt số độc đáo, được chế tác vô cùng tinh xảo. Thiết kế này là sự hồi sinh từ huyền thoại “Time Sonar” của Seiko, ra đời từ thập niên 1970.\r\n\r\nMặt số Time Sonar huyền thoại\r\nMặt số “Time Sonar” – di sản lừng danh của Seiko, nổi tiếng từ những năm 1970 với thiết kế vintage độc đáo\r\n\r\nThay vì sử dụng mặt số kín đặc như truyền thống, SRPJ45K1 trang bị tấm kính trong suốt màu xanh Teal ấn tượng.\r\n\r\nTấm kính này được điểm xuyết bằng các vòng tròn đồng tâm dập nổi, cho phép người dùng quan sát một phần cơ cấu hiển thị lịch ngày và lịch thứ tinh vi bên dưới.\r\n\r\nMặt số độc đáo được đặt gọn gàng trong thân vỏ thép không gỉ của dòng SKX biểu tượng.\r\n\r\nVề mặt lịch sử, SNK đã ngưng sản xuất trước khi Seiko 5 Sports chính thức ra đời vào 2019 nhưng SRPJ45K1 đã tiếp nối chúng cho nhóm khách hàng yêu thích SNK800 trước đó.\r\n\r\nSự kết hợp này tạo nên sự dung hòa giữa sự chắc chắn, bền bỉ và tính lịch sử, sự khác biệt cuốn hút.\r\n\r\nDòng SKX series\r\nDòng SKX – biểu tượng của sự bền bỉ vượt thời gian\r\n\r\nSRPJ45K1 kế thừa trọn vẹn thông điệp cốt lõi “Show Your Style” (Tự tin thể hiện cá tính) của bộ sưu tập. Chiếc đồng hồ mang đến một “làn gió mới” với phong cách thể thao, trẻ trung và hiện đại.\r\n\r\nĐây là lựa chọn lý tưởng cho những người trẻ, năng động, khao khát sở hữu một chiếc đồng hồ cơ không chỉ chất lượng cao mà còn phải có chiều sâu lịch sử và phong cách không thể hòa lẫn.",
+    "caption": "Thuß╗Öc bß╗Ö s╞░u tß║¡p Seiko 5 Sports lß╗½ng danh, SRPJ45K1 g├óy ß║Ñn t╞░ß╗úng mß║ính mß║╜ vß╗¢i tinh thß║ºn ─æß╗Öt ph├í hiß║┐m c├│.\r\n\r\nChiß║┐c ─æß╗ông hß╗ô n├áy l├á sß╗▒ kß║┐t hß╗úp t├ío bß║ío giß╗»a di sß║ún chß║┐ t├íc l├óu ─æß╗¥i cß╗ºa Seiko v├á ng├┤n ngß╗» thiß║┐t kß║┐ hiß╗çn ─æß║íi, sß║╡n s├áng ph├í vß╗í mß╗ìi giß╗¢i hß║ín truyß╗ün thß╗æng.\r\n\r\n─Éiß╗âm nhß║Ñn l├ám n├¬n sß╗▒ kh├íc biß╗çt v├á thu h├║t cß╗ºa SRPJ45K1 l├á mß║╖t sß╗æ ─æß╗Öc ─æ├ío, ─æ╞░ß╗úc chß║┐ t├íc v├┤ c├╣ng tinh xß║úo. Thiß║┐t kß║┐ n├áy l├á sß╗▒ hß╗ôi sinh tß╗½ huyß╗ün thoß║íi ΓÇ£Time SonarΓÇ¥ cß╗ºa Seiko, ra ─æß╗¥i tß╗½ thß║¡p ni├¬n 1970.\r\n\r\nMß║╖t sß╗æ Time Sonar huyß╗ün thoß║íi\r\nMß║╖t sß╗æ ΓÇ£Time SonarΓÇ¥ ΓÇô di sß║ún lß╗½ng danh cß╗ºa Seiko, nß╗òi tiß║┐ng tß╗½ nhß╗»ng n─âm 1970 vß╗¢i thiß║┐t kß║┐ vintage ─æß╗Öc ─æ├ío\r\n\r\nThay v├¼ sß╗¡ dß╗Ñng mß║╖t sß╗æ k├¡n ─æß║╖c nh╞░ truyß╗ün thß╗æng, SRPJ45K1 trang bß╗ï tß║Ñm k├¡nh trong suß╗æt m├áu xanh Teal ß║Ñn t╞░ß╗úng.\r\n\r\nTß║Ñm k├¡nh n├áy ─æ╞░ß╗úc ─æiß╗âm xuyß║┐t bß║▒ng c├íc v├▓ng tr├▓n ─æß╗ông t├óm dß║¡p nß╗òi, cho ph├⌐p ng╞░ß╗¥i d├╣ng quan s├ít mß╗Öt phß║ºn c╞í cß║Ñu hiß╗ân thß╗ï lß╗ïch ng├áy v├á lß╗ïch thß╗⌐ tinh vi b├¬n d╞░ß╗¢i.\r\n\r\nMß║╖t sß╗æ ─æß╗Öc ─æ├ío ─æ╞░ß╗úc ─æß║╖t gß╗ìn g├áng trong th├ón vß╗Å th├⌐p kh├┤ng gß╗ë cß╗ºa d├▓ng SKX biß╗âu t╞░ß╗úng.\r\n\r\nVß╗ü mß║╖t lß╗ïch sß╗¡, SNK ─æ├ú ng╞░ng sß║ún xuß║Ñt tr╞░ß╗¢c khi Seiko 5 Sports ch├¡nh thß╗⌐c ra ─æß╗¥i v├áo 2019 nh╞░ng SRPJ45K1 ─æ├ú tiß║┐p nß╗æi ch├║ng cho nh├│m kh├ích h├áng y├¬u th├¡ch SNK800 tr╞░ß╗¢c ─æ├│.\r\n\r\nSß╗▒ kß║┐t hß╗úp n├áy tß║ío n├¬n sß╗▒ dung h├▓a giß╗»a sß╗▒ chß║»c chß║»n, bß╗ün bß╗ë v├á t├¡nh lß╗ïch sß╗¡, sß╗▒ kh├íc biß╗çt cuß╗æn h├║t.\r\n\r\nD├▓ng SKX series\r\nD├▓ng SKX ΓÇô biß╗âu t╞░ß╗úng cß╗ºa sß╗▒ bß╗ün bß╗ë v╞░ß╗út thß╗¥i gian\r\n\r\nSRPJ45K1 kß║┐ thß╗½a trß╗ìn vß║╣n th├┤ng ─æiß╗çp cß╗æt l├╡i ΓÇ£Show Your StyleΓÇ¥ (Tß╗▒ tin thß╗â hiß╗çn c├í t├¡nh) cß╗ºa bß╗Ö s╞░u tß║¡p. Chiß║┐c ─æß╗ông hß╗ô mang ─æß║┐n mß╗Öt ΓÇ£l├án gi├│ mß╗¢iΓÇ¥ vß╗¢i phong c├ích thß╗â thao, trß║╗ trung v├á hiß╗çn ─æß║íi.\r\n\r\n─É├óy l├á lß╗▒a chß╗ìn l├╜ t╞░ß╗ƒng cho nhß╗»ng ng╞░ß╗¥i trß║╗, n─âng ─æß╗Öng, khao kh├ít sß╗ƒ hß╗»u mß╗Öt chiß║┐c ─æß╗ông hß╗ô c╞í kh├┤ng chß╗ë chß║Ñt l╞░ß╗úng cao m├á c├▓n phß║úi c├│ chiß╗üu s├óu lß╗ïch sß╗¡ v├á phong c├ích kh├┤ng thß╗â h├▓a lß║½n.",
     "layout": "full",
     "order": 0
   }
@@ -1418,7 +1418,7 @@
   "fields": {
     "watch": 18,
     "image": "watch_desc/sei5.avif",
-    "caption": "NHỮNG ĐIỀU ANH EM CẦN BIẾT VỀ SEIKO 5 SPORTS SSK003K1\r\nSeiko 5 Sports với nâng cấp bộ máy, chức năng kim GMT mà có thể bạn chưa biết ý nghĩa của nó.\r\n\r\n1. PHIÊN BẢN BATMAN MÀU XANH ĐEN GRADIENT QUYẾN RŨ\r\nĐược cho rằng lấy cảm hứng từ nhân vật Batman trong phim siêu anh hùng, Seiko 5 Sports SSK003K1 có mặt số chuyển sắc từ xanh dương sang đen tuyền. Viền bezel 2 màu phục vụ cho nhu cầu xem múi giờ thứ 2 thông qua kim GMT. Màu sắc xanh đen sẽ giúp cho việc theo dõi giờ ngày đêm dễ dàng hơn.\r\n\r\nSeiko 5 Sports SSK003K1 - ảnh 3\r\n\r\nĐây là một trong các phiên bản đồng hồ Seiko GMT bán chạy nhất tại Đồng Hồ Hải Triều một năm trở lại đây\r\n\r\nCọc số thiết kế theo các dạng hình học (vuông, tròn và tam giác) phủ dạ quang LumiBrite siêu sáng. Bên cạnh 3 kim chính, chúng ta có thêm 1 chiếc kim GMT màu đỏ nổi bật. Cửa sổ ngày góc 3 giờ được phóng đại qua thấu kính cyclops.\r\n\r\nĐặc trưng giúp nhận biết nhanh đồng hồ Seiko 5 chính là núm vặn lớn đặt tại góc 4 giờ. Lý giải cho thiết kế này, việc đặt lệch núm vặn giúp cho chuyển động cổ tay thoải mái, tránh bị cấn hơn. Tuy nhiên không hẳn như vậy, có nhiều lý do đưa ra nhằm tăng tính thẩm mỹ và độc đáo hơn.\r\n\r\n2. CHỨC NĂNG BỔ SUNG – OFFICE GMT HIỂN THỊ MÚI GIỜ THỨ 2\r\nLà một người dùng văn phòng thích theo dõi múi giờ của một nước thứ 2 nào đó, Seiko 5 Sports SSK003K1 trở thành lựa chọn phù hợp. Chức năng Office GMT cho phép điều chỉnh kim GMT độc lập, dễ dàng biết bất cứ giờ của một nước nếu bạn biết được múi giờ của nước đó.\r\n\r\nSeiko 5 Sports SSK003K1 - ảnh 3\r\n\r\nTại sao đồng hồ GMT được yêu thích? Xuất phát từ phong cách, kiểu dáng độc đáo. Viền bezel xoay trang trí nhiều màu sắc, kim GMT tăng độ tinh xảo và phức tạp trong cấu trúc bộ máy. Mục đích chính dùng để xem giờ của một nước thứ 2.\r\n\r\n3. BỘ MÁY AUTOMATIC IN-HOUSE 4R34\r\nKhi Seiko 5 Sports GMT ra mắt đã tạo nên cơn sốt trong giới mộ điệu. Nhà sản xuất Nhật Bản mang đến trải nghiệm chức năng GMT phức tạp với mức giá khá hời. Cơ chế lên cót tự động khi đeo và lên cót thủ công bằng cách vặn núm.\r\n\r\nLà bộ máy cung cấp thêm chức năng GMT nên hầu hết thông số của 4R34 không khác nhiều so với bộ máy 4R36 trên Seiko 5 Sports cơ bản.\r\n\r\nSeiko 5 Sports SSK003K1 - ảnh 4\r\n\r\nThông số kỹ thuật:\r\n\r\nTần số dao động: 21.600 vph\r\nChân kính: 24 viên\r\nThời gian trữ cót: 41 giờ\r\nLên cót tay: Có\r\nCông nghệ: Magic Lever\r\nChống sốc: Diashock\r\nChống từ: 4.800 A/m\r\nĐộ chính xác của Seiko 5 Sports SSK003K1 luôn nằm trong ngưỡng an toàn + 45 đến – 35 giây mỗi ngày. Thời gian khuyến khích bảo dưỡng khoảng 3 năm để đảm bảo bộ máy không gặp vấn đề, sai số quá cao.\r\n\r\n4. DÂY ĐEO JUBILEE MỀM MẠI CHẮC CHẮN\r\nThiết kế dây đeo mang tính biểu tượng nhất phải kể đến Jubilee của Rolex. Giới thiệu lần đầu tiên năm 1945 nhân dịp thành lập 40 năm của Rolex, trang bị trên các dòng đồng hồ Rolex Datejust và không có nhiều thay đổi qua các năm.\r\n\r\nSeiko 5 Sports SSK003K1 không ngần ngại thử sức với kiểu dáng dây Jubilee này. Thật sự bùng nổ khi ra mắt công chúng, kiểu dáng mắt xích nhỏ chính giữa tạo nên sự mềm mại. Các mắt xích ngoài cùng được bo cong theo hình bán nguyệt tạo nên sự thoải mái, ôm sát cổ tay.\r\n\r\nChất liệu thép không gỉ 316L đảm bảo độ bền theo thời gian. Không lo thấm nước, mồ hôi hay bị biến dạng nếu có va chạm. Đặc biệt người dùng có thể đánh bóng để lấy lại vẻ đẹp nguyên bản sau 1 thời gian sử dụng.\r\n\r\nNGƯỜI DÙNG NÓI GÌ VỀ SEIKO 5 SSK003K1?\r\nAnh Huy – Chuyên ngành du lịch hàng không, đã mua chiếc đồng hồ SSK003K1 cách đây 1 năm trước. Anh chia sẻ rằng do tính chất công việc đặc thù nên tính năng GMT có ý nghĩa quan trọng trong quá trình chọn mẫu đồng hồ.\r\n\r\nSeiko 5 Sports SSK003K1 là sự lựa chọn hoàn hảo cho những anh em thích phong cách thể thao sang trọng. Màu mặt số xanh đen hiệu ứng chuyển sắc độc đáo giúp tăng thêm tính thẩm mỹ cho outfit.\r\n\r\nBezel xoay 2 chiều kết hợp kim GMT nhanh chóng xác định giờ hiện tại của nước thứ 2. Kết cấu khung vỏ đầy đặn cho cảm giác đeo chắc chắn, khả năng hoàn thiện tốt theo từng chi tiết.\r\n\r\nSeiko 5 Sports SSK003K1 - ảnh 5\r\n\r\nMột số ý kiến cho rằng kính Hardlex không đáng để mua. Tuy nhiên Anh Huy lại thấy khác, chất liệu không ảnh hưởng nhiều đến trải nghiệm đeo của mình. Độ trong suốt, khả năng chịu lực chống trầy ở mức ổn trong các hoạt động hàng ngày.\r\n\r\nKích thước 42.5mm của SSK003K1 rất vừa vặn với cổ tay 17cm của anh. Thường xuyên đeo nó đi làm, đi chơi và đi du lịch. Chức năng GMT lúc này phát huy tác dụng một cách rõ rệt. Anh không phải chỉnh giờ khi di chuyển giữa Việt Nam và Nhật.\r\n\r\nBộ máy cơ in-house của Seiko thì không có gì để chê. Anh cho biết độ sai số thực tế thấp chỉ khoảng 1 – 2 giây mỗi ngày. Vì đeo thường xuyên nên anh cũng không phải lên cót tay cho đồng hồ. Khi không đeo thì anh đặt trong một hộp xoay để giữ năng lượng cho bộ máy.\r\n\r\nAnh không phải fan của Seiko nhưng sau khi anh sở hữu mẫu SSK003K1 thì anh đã có góc nhìn khác về thương hiệu. Ai cần kiểu dáng đẹp, bộ máy bền bỉ và mức giá không quá cao thì nên cân nhắc Seiko.",
+    "caption": "NHß╗«NG ─ÉIß╗ÇU ANH EM Cß║ªN BIß║╛T Vß╗Ç SEIKO 5 SPORTS SSK003K1\r\nSeiko 5 Sports vß╗¢i n├óng cß║Ñp bß╗Ö m├íy, chß╗⌐c n─âng kim GMT m├á c├│ thß╗â bß║ín ch╞░a biß║┐t ├╜ ngh─⌐a cß╗ºa n├│.\r\n\r\n1. PHI├èN Bß║óN BATMAN M├ÇU XANH ─ÉEN GRADIENT QUYß║╛N R┼¿\r\n─É╞░ß╗úc cho rß║▒ng lß║Ñy cß║úm hß╗⌐ng tß╗½ nh├ón vß║¡t Batman trong phim si├¬u anh h├╣ng, Seiko 5 Sports SSK003K1 c├│ mß║╖t sß╗æ chuyß╗ân sß║»c tß╗½ xanh d╞░╞íng sang ─æen tuyß╗ün. Viß╗ün bezel 2 m├áu phß╗Ñc vß╗Ñ cho nhu cß║ºu xem m├║i giß╗¥ thß╗⌐ 2 th├┤ng qua kim GMT. M├áu sß║»c xanh ─æen sß║╜ gi├║p cho viß╗çc theo d├╡i giß╗¥ ng├áy ─æ├¬m dß╗à d├áng h╞ín.\r\n\r\nSeiko 5 Sports SSK003K1 - ß║únh 3\r\n\r\n─É├óy l├á mß╗Öt trong c├íc phi├¬n bß║ún ─æß╗ông hß╗ô Seiko GMT b├ín chß║íy nhß║Ñt tß║íi ─Éß╗ông Hß╗ô Hß║úi Triß╗üu mß╗Öt n─âm trß╗ƒ lß║íi ─æ├óy\r\n\r\nCß╗ìc sß╗æ thiß║┐t kß║┐ theo c├íc dß║íng h├¼nh hß╗ìc (vu├┤ng, tr├▓n v├á tam gi├íc) phß╗º dß║í quang LumiBrite si├¬u s├íng. B├¬n cß║ính 3 kim ch├¡nh, ch├║ng ta c├│ th├¬m 1 chiß║┐c kim GMT m├áu ─æß╗Å nß╗òi bß║¡t. Cß╗¡a sß╗ò ng├áy g├│c 3 giß╗¥ ─æ╞░ß╗úc ph├│ng ─æß║íi qua thß║Ñu k├¡nh cyclops.\r\n\r\n─Éß║╖c tr╞░ng gi├║p nhß║¡n biß║┐t nhanh ─æß╗ông hß╗ô Seiko 5 ch├¡nh l├á n├║m vß║╖n lß╗¢n ─æß║╖t tß║íi g├│c 4 giß╗¥. L├╜ giß║úi cho thiß║┐t kß║┐ n├áy, viß╗çc ─æß║╖t lß╗çch n├║m vß║╖n gi├║p cho chuyß╗ân ─æß╗Öng cß╗ò tay thoß║úi m├íi, tr├ính bß╗ï cß║Ñn h╞ín. Tuy nhi├¬n kh├┤ng hß║│n nh╞░ vß║¡y, c├│ nhiß╗üu l├╜ do ─æ╞░a ra nhß║▒m t─âng t├¡nh thß║⌐m mß╗╣ v├á ─æß╗Öc ─æ├ío h╞ín.\r\n\r\n2. CHß╗¿C N─éNG Bß╗ö SUNG ΓÇô OFFICE GMT HIß╗éN THß╗è M├ÜI GIß╗£ THß╗¿ 2\r\nL├á mß╗Öt ng╞░ß╗¥i d├╣ng v─ân ph├▓ng th├¡ch theo d├╡i m├║i giß╗¥ cß╗ºa mß╗Öt n╞░ß╗¢c thß╗⌐ 2 n├áo ─æ├│, Seiko 5 Sports SSK003K1 trß╗ƒ th├ánh lß╗▒a chß╗ìn ph├╣ hß╗úp. Chß╗⌐c n─âng Office GMT cho ph├⌐p ─æiß╗üu chß╗ënh kim GMT ─æß╗Öc lß║¡p, dß╗à d├áng biß║┐t bß║Ñt cß╗⌐ giß╗¥ cß╗ºa mß╗Öt n╞░ß╗¢c nß║┐u bß║ín biß║┐t ─æ╞░ß╗úc m├║i giß╗¥ cß╗ºa n╞░ß╗¢c ─æ├│.\r\n\r\nSeiko 5 Sports SSK003K1 - ß║únh 3\r\n\r\nTß║íi sao ─æß╗ông hß╗ô GMT ─æ╞░ß╗úc y├¬u th├¡ch? Xuß║Ñt ph├ít tß╗½ phong c├ích, kiß╗âu d├íng ─æß╗Öc ─æ├ío. Viß╗ün bezel xoay trang tr├¡ nhiß╗üu m├áu sß║»c, kim GMT t─âng ─æß╗Ö tinh xß║úo v├á phß╗⌐c tß║íp trong cß║Ñu tr├║c bß╗Ö m├íy. Mß╗Ñc ─æ├¡ch ch├¡nh d├╣ng ─æß╗â xem giß╗¥ cß╗ºa mß╗Öt n╞░ß╗¢c thß╗⌐ 2.\r\n\r\n3. Bß╗ÿ M├üY AUTOMATIC IN-HOUSE 4R34\r\nKhi Seiko 5 Sports GMT ra mß║»t ─æ├ú tß║ío n├¬n c╞ín sß╗æt trong giß╗¢i mß╗Ö ─æiß╗çu. Nh├á sß║ún xuß║Ñt Nhß║¡t Bß║ún mang ─æß║┐n trß║úi nghiß╗çm chß╗⌐c n─âng GMT phß╗⌐c tß║íp vß╗¢i mß╗⌐c gi├í kh├í hß╗¥i. C╞í chß║┐ l├¬n c├│t tß╗▒ ─æß╗Öng khi ─æeo v├á l├¬n c├│t thß╗º c├┤ng bß║▒ng c├ích vß║╖n n├║m.\r\n\r\nL├á bß╗Ö m├íy cung cß║Ñp th├¬m chß╗⌐c n─âng GMT n├¬n hß║ºu hß║┐t th├┤ng sß╗æ cß╗ºa 4R34 kh├┤ng kh├íc nhiß╗üu so vß╗¢i bß╗Ö m├íy 4R36 tr├¬n Seiko 5 Sports c╞í bß║ún.\r\n\r\nSeiko 5 Sports SSK003K1 - ß║únh 4\r\n\r\nTh├┤ng sß╗æ kß╗╣ thuß║¡t:\r\n\r\nTß║ºn sß╗æ dao ─æß╗Öng: 21.600 vph\r\nCh├ón k├¡nh: 24 vi├¬n\r\nThß╗¥i gian trß╗» c├│t: 41 giß╗¥\r\nL├¬n c├│t tay: C├│\r\nC├┤ng nghß╗ç: Magic Lever\r\nChß╗æng sß╗æc: Diashock\r\nChß╗æng tß╗½: 4.800 A/m\r\n─Éß╗Ö ch├¡nh x├íc cß╗ºa Seiko 5 Sports SSK003K1 lu├┤n nß║▒m trong ng╞░ß╗íng an to├án + 45 ─æß║┐n ΓÇô 35 gi├óy mß╗ùi ng├áy. Thß╗¥i gian khuyß║┐n kh├¡ch bß║úo d╞░ß╗íng khoß║úng 3 n─âm ─æß╗â ─æß║úm bß║úo bß╗Ö m├íy kh├┤ng gß║╖p vß║Ñn ─æß╗ü, sai sß╗æ qu├í cao.\r\n\r\n4. D├éY ─ÉEO JUBILEE Mß╗ÇM Mß║áI CHß║«C CHß║«N\r\nThiß║┐t kß║┐ d├óy ─æeo mang t├¡nh biß╗âu t╞░ß╗úng nhß║Ñt phß║úi kß╗â ─æß║┐n Jubilee cß╗ºa Rolex. Giß╗¢i thiß╗çu lß║ºn ─æß║ºu ti├¬n n─âm 1945 nh├ón dß╗ïp th├ánh lß║¡p 40 n─âm cß╗ºa Rolex, trang bß╗ï tr├¬n c├íc d├▓ng ─æß╗ông hß╗ô Rolex Datejust v├á kh├┤ng c├│ nhiß╗üu thay ─æß╗òi qua c├íc n─âm.\r\n\r\nSeiko 5 Sports SSK003K1 kh├┤ng ngß║ºn ngß║íi thß╗¡ sß╗⌐c vß╗¢i kiß╗âu d├íng d├óy Jubilee n├áy. Thß║¡t sß╗▒ b├╣ng nß╗ò khi ra mß║»t c├┤ng ch├║ng, kiß╗âu d├íng mß║»t x├¡ch nhß╗Å ch├¡nh giß╗»a tß║ío n├¬n sß╗▒ mß╗üm mß║íi. C├íc mß║»t x├¡ch ngo├ái c├╣ng ─æ╞░ß╗úc bo cong theo h├¼nh b├ín nguyß╗çt tß║ío n├¬n sß╗▒ thoß║úi m├íi, ├┤m s├ít cß╗ò tay.\r\n\r\nChß║Ñt liß╗çu th├⌐p kh├┤ng gß╗ë 316L ─æß║úm bß║úo ─æß╗Ö bß╗ün theo thß╗¥i gian. Kh├┤ng lo thß║Ñm n╞░ß╗¢c, mß╗ô h├┤i hay bß╗ï biß║┐n dß║íng nß║┐u c├│ va chß║ím. ─Éß║╖c biß╗çt ng╞░ß╗¥i d├╣ng c├│ thß╗â ─æ├ính b├│ng ─æß╗â lß║Ñy lß║íi vß║╗ ─æß║╣p nguy├¬n bß║ún sau 1 thß╗¥i gian sß╗¡ dß╗Ñng.\r\n\r\nNG╞»ß╗£I D├ÖNG N├ôI G├î Vß╗Ç SEIKO 5 SSK003K1?\r\nAnh Huy ΓÇô Chuy├¬n ng├ánh du lß╗ïch h├áng kh├┤ng, ─æ├ú mua chiß║┐c ─æß╗ông hß╗ô SSK003K1 c├ích ─æ├óy 1 n─âm tr╞░ß╗¢c. Anh chia sß║╗ rß║▒ng do t├¡nh chß║Ñt c├┤ng viß╗çc ─æß║╖c th├╣ n├¬n t├¡nh n─âng GMT c├│ ├╜ ngh─⌐a quan trß╗ìng trong qu├í tr├¼nh chß╗ìn mß║½u ─æß╗ông hß╗ô.\r\n\r\nSeiko 5 Sports SSK003K1 l├á sß╗▒ lß╗▒a chß╗ìn ho├án hß║úo cho nhß╗»ng anh em th├¡ch phong c├ích thß╗â thao sang trß╗ìng. M├áu mß║╖t sß╗æ xanh ─æen hiß╗çu ß╗⌐ng chuyß╗ân sß║»c ─æß╗Öc ─æ├ío gi├║p t─âng th├¬m t├¡nh thß║⌐m mß╗╣ cho outfit.\r\n\r\nBezel xoay 2 chiß╗üu kß║┐t hß╗úp kim GMT nhanh ch├│ng x├íc ─æß╗ïnh giß╗¥ hiß╗çn tß║íi cß╗ºa n╞░ß╗¢c thß╗⌐ 2. Kß║┐t cß║Ñu khung vß╗Å ─æß║ºy ─æß║╖n cho cß║úm gi├íc ─æeo chß║»c chß║»n, khß║ú n─âng ho├án thiß╗çn tß╗æt theo tß╗½ng chi tiß║┐t.\r\n\r\nSeiko 5 Sports SSK003K1 - ß║únh 5\r\n\r\nMß╗Öt sß╗æ ├╜ kiß║┐n cho rß║▒ng k├¡nh Hardlex kh├┤ng ─æ├íng ─æß╗â mua. Tuy nhi├¬n Anh Huy lß║íi thß║Ñy kh├íc, chß║Ñt liß╗çu kh├┤ng ß║únh h╞░ß╗ƒng nhiß╗üu ─æß║┐n trß║úi nghiß╗çm ─æeo cß╗ºa m├¼nh. ─Éß╗Ö trong suß╗æt, khß║ú n─âng chß╗ïu lß╗▒c chß╗æng trß║ºy ß╗ƒ mß╗⌐c ß╗òn trong c├íc hoß║ít ─æß╗Öng h├áng ng├áy.\r\n\r\nK├¡ch th╞░ß╗¢c 42.5mm cß╗ºa SSK003K1 rß║Ñt vß╗½a vß║╖n vß╗¢i cß╗ò tay 17cm cß╗ºa anh. Th╞░ß╗¥ng xuy├¬n ─æeo n├│ ─æi l├ám, ─æi ch╞íi v├á ─æi du lß╗ïch. Chß╗⌐c n─âng GMT l├║c n├áy ph├ít huy t├íc dß╗Ñng mß╗Öt c├ích r├╡ rß╗çt. Anh kh├┤ng phß║úi chß╗ënh giß╗¥ khi di chuyß╗ân giß╗»a Viß╗çt Nam v├á Nhß║¡t.\r\n\r\nBß╗Ö m├íy c╞í in-house cß╗ºa Seiko th├¼ kh├┤ng c├│ g├¼ ─æß╗â ch├¬. Anh cho biß║┐t ─æß╗Ö sai sß╗æ thß╗▒c tß║┐ thß║Ñp chß╗ë khoß║úng 1 ΓÇô 2 gi├óy mß╗ùi ng├áy. V├¼ ─æeo th╞░ß╗¥ng xuy├¬n n├¬n anh c┼⌐ng kh├┤ng phß║úi l├¬n c├│t tay cho ─æß╗ông hß╗ô. Khi kh├┤ng ─æeo th├¼ anh ─æß║╖t trong mß╗Öt hß╗Öp xoay ─æß╗â giß╗» n─âng l╞░ß╗úng cho bß╗Ö m├íy.\r\n\r\nAnh kh├┤ng phß║úi fan cß╗ºa Seiko nh╞░ng sau khi anh sß╗ƒ hß╗»u mß║½u SSK003K1 th├¼ anh ─æ├ú c├│ g├│c nh├¼n kh├íc vß╗ü th╞░╞íng hiß╗çu. Ai cß║ºn kiß╗âu d├íng ─æß║╣p, bß╗Ö m├íy bß╗ün bß╗ë v├á mß╗⌐c gi├í kh├┤ng qu├í cao th├¼ n├¬n c├ón nhß║»c Seiko.",
     "layout": "full",
     "order": 0
   }
@@ -1429,7 +1429,7 @@
   "fields": {
     "watch": 19,
     "image": "watch_desc/lo5.avif",
-    "caption": "Longines Primaluna L8.126.0.71.6 đính 58 viên kim cương Top Wesselton IF-VVS\r\nNếu như thời gian là một dòng chảy vô hình, thì Longines Primaluna Moonphase L8.126.0.71.6 chính là con thuyền chuyên chở những giấc mơ lãng mạn nhất của phái đẹp trên dòng chảy ấy. Không ồn ào, không phô trương, chiếc đồng hồ này chinh phục giới mộ điệu bằng một vẻ đẹp tĩnh lặng nhưng đầy nội lực. Toát ra vẻ đẹp của một “Nữ hoàng” biết rõ giá trị của chính mình.\r\n\r\nĐồng hồ Longines Primaluna Moonphase L8.126.0.71.6 - Ảnh 3\r\nNgay từ cái nhìn đầu tiên, L8.126.0.71.6 không cố gắng thu hút bạn bằng những mảng màu sặc sỡ. Thay vào đó, nó “thôi miên” thị giác người đối diện bằng dải ánh sáng thuần khiết chạy dọc theo viền bezel. Đó là ánh sáng của sự xa xỉ, của đẳng cấp thượng lưu được kết tinh từ 58 viên kim cương thiên nhiên Top Wesselton IF-VVS với tổng trọng lượng là 0,580 carats.\r\n\r\nĐồng hồ Longines Primaluna Moonphase L8.126.0.71.6 - Ảnh 6\r\n58 viên kim cương tự nhiên Top Wesselton IF-VVS xung quanh khung viền tạo nên “hàng rào” tỏa sáng lấp lánh dưới ánh sáng\r\n\r\nTiêu chuẩn Top Wesselton thể hiện toàn bộ 58 viên kim cương đều đạt nước màu F-G. Một chuẩn màu hiếm, không bị ám vàng, giữ được độ sáng trong vắt.\r\n\r\nĐộ tinh khiết IF-VVS là viết tắt của “Internally Flawless” (IF) đến “Very Very Slightly Included” (VVS), thể hiện độ sạch và tinh khiết cực kỳ cao của kim cương. Hoàn toàn không có tạp chất bên trong hoặc tạp chất cực kỳ nhỏ, không thể thấy ngay cả khi soi dưới kính lúp phóng đại 10X.\r\n\r\nĐạt được tiêu chuẩn kim cương này chứng tỏ rằng đây là những viên kim cương tinh túy và hiếm có bậc nhất trên thế giới, không phải ai cũng sở hữu được. Và đúng là như vậy, chỉ có một chiếc Longines Primaluna Moonphase L8.126.0.71.6 duy nhất tại hệ thống Đồng Hồ Hải Triều thôi đấy nhé.\r\n\r\nĐộc bản: Chỉ 1 chiếc duy nhất tại Đồng Hồ Hải Triều\r\nChính vì những tiêu chuẩn tuyển chọn kim cương khắt khe đó, số lượng sản phẩm Longines Primaluna L8.126.0.71.6 cực kỳ hạn chế. Việc tìm kiếm một sự đồng nhất hoàn hảo về màu sắc và độ trong suốt cho 58 viên kim cương trên cùng một chiếc đồng hồ tốn rất nhiều thời gian của các nghệ nhân kim hoàn Thụy Sỹ.\r\n\r\nĐó là lý do tại sao, ngay tại thời điểm này, trên toàn hệ thống Đồng Hồ Hải Triều – Đại lý ủy quyền chính thức của Longines, chỉ còn có duy nhất 01 chiếc. Sở hữu chiếc đồng hồ cuối cùng này đồng nghĩa với việc bạn đang nắm giữ một báu vật mà không ai khác có thể sở hữu. Liệu bạn có phải là người may mắn sở hữu “Nàng thơ” cuối cùng này trước khi hết hàng?\r\n\r\nBức tranh rực rỡ của vũ trụ, ánh trăng hòa quyện cùng bầu trời đêm sao\r\nTrên mẫu L8.126.0.71.6, Longines đã dành vị trí trang trọng nhất tại góc 6 giờ cho ô cửa sổ Moonphase. Trên nền đĩa xanh thẫm tựa bầu trời đêm, hình ảnh mặt trăng tròn đầy và những vì sao tinh tú được chế tác bằng vàng chuyển động chậm rãi, mô phỏng chính xác chu kỳ 29.5 ngày của mặt trăng thực tế.\r\n\r\nMặt trăng luôn đại diện cho sự dịu dàng, bí ẩn và khả năng tái sinh mạnh mẽ của phái đẹp. Chi tiết này còn nhắc nhở quý cô về sự vận hành vĩnh cửu của đất trời, kết nối chặt chẽ với thiên nhiên.\r\n\r\nĐồng hồ Longines Primaluna Moonphase L8.126.0.71.6 - Ảnh 10\r\nKết hợp cùng những viên kim cương quý giá đính xung quanh viền, mặt số như khắc họa bức tranh bầu trời đêm tràn ngập ánh sao. Với hình ảnh mặt trăng ở vị trí trung tâm, những vì tinh tú phản chiếu lấp lánh. Một khung cảnh đầy lãng mạn và thơ mộng.\r\n\r\nKhám phá tuyệt tác Longines Primaluna Moonphase L8.126.0.71.6\r\nKhông chỉ sắc sảo ở ngoại hình, L8.126.0.71.6 còn mạnh mẽ bên trong. Ẩn sau lớp vỏ thép tinh tế là “trái tim” cơ khí Swiss Movement bền bỉ, hội tụ những công nghệ tiên tiến nhất Thụy Sỹ.",
+    "caption": "Longines Primaluna L8.126.0.71.6 ─æ├¡nh 58 vi├¬n kim c╞░╞íng Top Wesselton IF-VVS\r\nNß║┐u nh╞░ thß╗¥i gian l├á mß╗Öt d├▓ng chß║úy v├┤ h├¼nh, th├¼ Longines Primaluna Moonphase L8.126.0.71.6 ch├¡nh l├á con thuyß╗ün chuy├¬n chß╗ƒ nhß╗»ng giß║Ñc m╞í l├úng mß║ín nhß║Ñt cß╗ºa ph├íi ─æß║╣p tr├¬n d├▓ng chß║úy ß║Ñy. Kh├┤ng ß╗ôn ├áo, kh├┤ng ph├┤ tr╞░╞íng, chiß║┐c ─æß╗ông hß╗ô n├áy chinh phß╗Ñc giß╗¢i mß╗Ö ─æiß╗çu bß║▒ng mß╗Öt vß║╗ ─æß║╣p t─⌐nh lß║╖ng nh╞░ng ─æß║ºy nß╗Öi lß╗▒c. To├ít ra vß║╗ ─æß║╣p cß╗ºa mß╗Öt ΓÇ£Nß╗» ho├ángΓÇ¥ biß║┐t r├╡ gi├í trß╗ï cß╗ºa ch├¡nh m├¼nh.\r\n\r\n─É├┤╠Çng h├┤╠Ç Longines Primaluna Moonphase L8.126.0.71.6 - A╠ënh 3\r\nNgay tß╗½ c├íi nh├¼n ─æß║ºu ti├¬n, L8.126.0.71.6 kh├┤ng cß╗æ gß║»ng thu h├║t bß║ín bß║▒ng nhß╗»ng mß║úng m├áu sß║╖c sß╗í. Thay v├áo ─æ├│, n├│ ΓÇ£th├┤i mi├¬nΓÇ¥ thß╗ï gi├íc ng╞░ß╗¥i ─æß╗æi diß╗çn bß║▒ng dß║úi ├ính s├íng thuß║ºn khiß║┐t chß║íy dß╗ìc theo viß╗ün bezel. ─É├│ l├á ├ính s├íng cß╗ºa sß╗▒ xa xß╗ë, cß╗ºa ─æß║│ng cß║Ñp th╞░ß╗úng l╞░u ─æ╞░ß╗úc kß║┐t tinh tß╗½ 58 vi├¬n kim c╞░╞íng thi├¬n nhi├¬n Top Wesselton IF-VVS vß╗¢i tß╗òng trß╗ìng l╞░ß╗úng l├á 0,580 carats.\r\n\r\n─É├┤╠Çng h├┤╠Ç Longines Primaluna Moonphase L8.126.0.71.6 - A╠ënh 6\r\n58 vi├¬n kim c╞░╞íng t╞░╠ú nhi├¬n Top Wesselton IF-VVS xung quanh khung vi├¬╠Çn ta╠úo n├¬n ΓÇ£ha╠Çng ra╠ÇoΓÇ¥ to╠ëa sa╠üng l├ó╠üp la╠ünh d╞░╞í╠üi a╠ünh sa╠üng\r\n\r\nTi├¬u chuß║⌐n Top Wesselton thß╗â hiß╗çn to├án bß╗Ö 58 vi├¬n kim c╞░╞íng ─æß╗üu ─æß║ít n╞░ß╗¢c m├áu F-G. Mß╗Öt chuß║⌐n m├áu hiß║┐m, kh├┤ng bß╗ï ├ím v├áng, giß╗» ─æ╞░ß╗úc ─æß╗Ö s├íng trong vß║»t.\r\n\r\n─Éß╗Ö tinh khiß║┐t IF-VVS l├á viß║┐t tß║»t cß╗ºa ΓÇ£Internally FlawlessΓÇ¥ (IF) ─æß║┐n ΓÇ£Very Very Slightly IncludedΓÇ¥ (VVS), thß╗â hi├¬╠ún ─æß╗Ö sß║ích v├á tinh khiß║┐t cß╗▒c kß╗│ cao cß╗ºa kim c╞░╞íng. Ho├án to├án kh├┤ng c├│ tß║íp chß║Ñt b├¬n trong hoß║╖c tß║íp chß║Ñt cß╗▒c kß╗│ nhß╗Å, kh├┤ng thß╗â thß║Ñy ngay cß║ú khi soi d╞░ß╗¢i k├¡nh l├║p ph├│ng ─æß║íi 10X.\r\n\r\n─Éß║ít ─æ╞░ß╗úc ti├¬u chuß║⌐n kim c╞░╞íng n├áy chß╗⌐ng tß╗Å rß║▒ng ─æ├óy l├á nhß╗»ng vi├¬n kim c╞░╞íng tinh t├║y v├á hiß║┐m c├│ bß║¡c nhß║Ñt tr├¬n thß║┐ giß╗¢i, kh├┤ng phß║úi ai c┼⌐ng sß╗ƒ hß╗»u ─æ╞░ß╗úc. V├á ─æ├║ng l├á nh╞░ vß║¡y, chß╗ë c├│ mß╗Öt chiß║┐c Longines Primaluna Moonphase L8.126.0.71.6 duy nhß║Ñt tß║íi hß╗ç thß╗æng ─Éß╗ông Hß╗ô Hß║úi Triß╗üu th├┤i ─æß║Ñy nh├⌐.\r\n\r\n─Éß╗Öc bß║ún: Chß╗ë 1 chiß║┐c duy nhß║Ñt tß║íi ─Éß╗ông Hß╗ô Hß║úi Triß╗üu\r\nCh├¡nh v├¼ nhß╗»ng ti├¬u chuß║⌐n tuyß╗ân chß╗ìn kim c╞░╞íng khß║»t khe ─æ├│, sß╗æ l╞░ß╗úng sß║ún phß║⌐m Longines Primaluna L8.126.0.71.6 cß╗▒c kß╗│ hß║ín chß║┐. Viß╗çc t├¼m kiß║┐m mß╗Öt sß╗▒ ─æß╗ông nhß║Ñt ho├án hß║úo vß╗ü m├áu sß║»c v├á ─æß╗Ö trong suß╗æt cho 58 vi├¬n kim c╞░╞íng tr├¬n c├╣ng mß╗Öt chiß║┐c ─æß╗ông hß╗ô tß╗æn rß║Ñt nhiß╗üu thß╗¥i gian cß╗ºa c├íc nghß╗ç nh├ón kim ho├án Thß╗Ñy Sß╗╣.\r\n\r\n─É├│ l├á l├╜ do tß║íi sao, ngay tß║íi thß╗¥i ─æiß╗âm n├áy, tr├¬n to├án hß╗ç thß╗æng ─Éß╗ông Hß╗ô Hß║úi Triß╗üu ΓÇô ─Éß║íi l├╜ ß╗ºy quyß╗ün ch├¡nh thß╗⌐c cß╗ºa Longines, chß╗ë c├▓n c├│ duy nhß║Ñt 01 chiß║┐c. Sß╗ƒ hß╗»u chiß║┐c ─æß╗ông hß╗ô cuß╗æi c├╣ng n├áy ─æß╗ông ngh─⌐a vß╗¢i viß╗çc bß║ín ─æang nß║»m giß╗» mß╗Öt b├íu vß║¡t m├á kh├┤ng ai kh├íc c├│ thß╗â sß╗ƒ hß╗»u. Liß╗çu bß║ín c├│ phß║úi l├á ng╞░ß╗¥i may mß║»n sß╗ƒ hß╗»u ΓÇ£N├áng th╞íΓÇ¥ cuß╗æi c├╣ng n├áy tr╞░ß╗¢c khi hß║┐t h├áng?\r\n\r\nBß╗⌐c tranh rß╗▒c rß╗í cß╗ºa v┼⌐ trß╗Ñ, ├ính tr─âng h├▓a quyß╗çn c├╣ng bß║ºu trß╗¥i ─æ├¬m sao\r\nTr├¬n mß║½u L8.126.0.71.6, Longines ─æ├ú d├ánh vß╗ï tr├¡ trang trß╗ìng nhß║Ñt tß║íi g├│c 6 giß╗¥ cho ├┤ cß╗¡a sß╗ò Moonphase. Tr├¬n nß╗ün ─æ─⌐a xanh thß║½m tß╗▒a bß║ºu trß╗¥i ─æ├¬m, h├¼nh ß║únh mß║╖t tr─âng tr├▓n ─æß║ºy v├á nhß╗»ng v├¼ sao tinh t├║ ─æ╞░ß╗úc chß║┐ t├íc bß║▒ng v├áng chuyß╗ân ─æß╗Öng chß║¡m r├úi, m├┤ phß╗Ång ch├¡nh x├íc chu kß╗│ 29.5 ng├áy cß╗ºa mß║╖t tr─âng thß╗▒c tß║┐.\r\n\r\nMß║╖t tr─âng lu├┤n ─æß║íi diß╗çn cho sß╗▒ dß╗ïu d├áng, b├¡ ß║⌐n v├á khß║ú n─âng t├íi sinh mß║ính mß║╜ cß╗ºa ph├íi ─æß║╣p. Chi tiß║┐t n├áy c├▓n nhß║»c nhß╗ƒ qu├╜ c├┤ vß╗ü sß╗▒ vß║¡n h├ánh v─⌐nh cß╗¡u cß╗ºa ─æß║Ñt trß╗¥i, kß║┐t nß╗æi chß║╖t chß║╜ vß╗¢i thi├¬n nhi├¬n.\r\n\r\n─É├┤╠Çng h├┤╠Ç Longines Primaluna Moonphase L8.126.0.71.6 - A╠ënh 10\r\nKß║┐t hß╗úp c├╣ng nhß╗»ng vi├¬n kim c╞░╞íng qu├╜ gi├í ─æ├¡nh xung quanh viß╗ün, mß║╖t sß╗æ nh╞░ khß║»c hß╗ìa bß╗⌐c tranh bß║ºu trß╗¥i ─æ├¬m tr├án ngß║¡p ├ính sao. Vß╗¢i h├¼nh ß║únh mß║╖t tr─âng ß╗ƒ vß╗ï tr├¡ trung t├óm, nhß╗»ng v├¼ tinh t├║ phß║ún chiß║┐u lß║Ñp l├ính. Mß╗Öt khung cß║únh ─æß║ºy l├úng mß║ín v├á th╞í mß╗Öng.\r\n\r\nKh├ím ph├í tuyß╗çt t├íc Longines Primaluna Moonphase L8.126.0.71.6\r\nKh├┤ng chß╗ë sß║»c sß║úo ß╗ƒ ngoß║íi h├¼nh, L8.126.0.71.6 c├▓n mß║ính mß║╜ b├¬n trong. ß║¿n sau lß╗¢p vß╗Å th├⌐p tinh tß║┐ l├á ΓÇ£tr├íi timΓÇ¥ c╞í kh├¡ Swiss Movement bß╗ün bß╗ë, hß╗Öi tß╗Ñ nhß╗»ng c├┤ng nghß╗ç ti├¬n tiß║┐n nhß║Ñt Thß╗Ñy Sß╗╣.",
     "layout": "full",
     "order": 0
   }
@@ -1440,7 +1440,7 @@
   "fields": {
     "watch": 20,
     "image": "watch_desc/log5.avif",
-    "caption": "Review chi tiết Longines Hydroconquest L3.742.3.96.7\r\nLongines L3.742.3.96.7 - ảnh 6\r\nLongines L3.742.3.96.7 có độ hoàn thiện cao với mức giá rất hợp lý\r\n\r\n1. Mặt số tinh giản và dễ quan sát\r\nMột điều hết sức được yêu thích trên đồng hồ thể thao chính là độ trực quan của mặt số. Longines đã làm rất tốt trong khoản này.\r\n\r\nLongines L3.742.3.96.7 có các cọc giờ chính sử dụng chữ số Arab to, font chữ khỏe khoắn và có phủ dạ quang trên rãnh số. Các cọc giờ còn lại là những khối hình tròn cũng phủ dạ quang tương tự.\r\n\r\nLongines L3.742.3.96.7 - ảnh 2\r\nCác vạch chia phút trên mặt số và vành bezel, xoay một chiều có màu xanh dương, được chấm dạ quang tại góc 0 phút.\r\n\r\nVới một công cụ hỗ trợ xem giờ trong mọi điều kiện ánh sáng thì tôi không mong chờ nhiều hơn thế này, vạch kẻ chia phút vừa đủ, để mặt số trông lúc nào cũng sạch sẽ, gọn gàng.\r\n\r\nBộ kim Snowflake được Longines phủ dạ quang một phần, khác biệt so với Tudur – thương hiệu anh em với Rolex và cũng là cha đẻ của kiểu kim này.\r\n\r\nĐiểm độc đáo của bộ kim này chính là tính năng hữu ích của nó, dễ nhìn dễ quan sát trong khi vẫn rất sang trọng, mà không có ý “bắt chước” các phiên bản Rolex Submariner.\r\n\r\nLongines Hydroconquest L3.742.3.96.7\r\n\r\nDạ quang Super Luminova siêu sáng đem lại khả năng quan sát tốt trong mọi điều kiện ánh sáng\r\n\r\nNền mặt số màu xanh dương, hoàn thiện chải tia Sunbray tạo độ bóng bẩy thu hút dưới từng góc độ ánh sáng khác nhau.\r\n\r\nChiếc đồng hồ màu xanh dương hầu như được lựa chọn rất nhiều vì dễ phối, nhìn đẹp mắt và hợp phong thủy của nhiều Quý ông quan tâm.\r\n\r\nMột nhược điểm mà tôi giá như Longines có thể thay đổi, chính là ô cửa sổ Lịch Ngày quá nhỏ, còn các chi tiết khác trông cứ như những gã titan khổng lồ.",
+    "caption": "Review chi tiß║┐t Longines Hydroconquest L3.742.3.96.7\r\nLongines L3.742.3.96.7 - ß║únh 6\r\nLongines L3.742.3.96.7 c├│ ─æß╗Ö ho├án thiß╗çn cao vß╗¢i mß╗⌐c gi├í rß║Ñt hß╗úp l├╜\r\n\r\n1. Mß║╖t sß╗æ tinh giß║ún v├á dß╗à quan s├ít\r\nMß╗Öt ─æiß╗üu hß║┐t sß╗⌐c ─æ╞░ß╗úc y├¬u th├¡ch tr├¬n ─æß╗ông hß╗ô thß╗â thao ch├¡nh l├á ─æß╗Ö trß╗▒c quan cß╗ºa mß║╖t sß╗æ. Longines ─æ├ú l├ám rß║Ñt tß╗æt trong khoß║ún n├áy.\r\n\r\nLongines L3.742.3.96.7 c├│ c├íc cß╗ìc giß╗¥ ch├¡nh sß╗¡ dß╗Ñng chß╗» sß╗æ Arab to, font chß╗» khß╗Åe khoß║»n v├á c├│ phß╗º dß║í quang tr├¬n r├únh sß╗æ. C├íc cß╗ìc giß╗¥ c├▓n lß║íi l├á nhß╗»ng khß╗æi h├¼nh tr├▓n c┼⌐ng phß╗º dß║í quang t╞░╞íng tß╗▒.\r\n\r\nLongines L3.742.3.96.7 - ß║únh 2\r\nC├íc vß║ích chia ph├║t tr├¬n mß║╖t sß╗æ v├á v├ánh bezel, xoay mß╗Öt chiß╗üu c├│ m├áu xanh d╞░╞íng, ─æ╞░ß╗úc chß║Ñm dß║í quang tß║íi g├│c 0 ph├║t.\r\n\r\nVß╗¢i mß╗Öt c├┤ng cß╗Ñ hß╗ù trß╗ú xem giß╗¥ trong mß╗ìi ─æiß╗üu kiß╗çn ├ính s├íng th├¼ t├┤i kh├┤ng mong chß╗¥ nhiß╗üu h╞ín thß║┐ n├áy, vß║ích kß║╗ chia ph├║t vß╗½a ─æß╗º, ─æß╗â mß║╖t sß╗æ tr├┤ng l├║c n├áo c┼⌐ng sß║ích sß║╜, gß╗ìn g├áng.\r\n\r\nBß╗Ö kim Snowflake ─æ╞░ß╗úc Longines phß╗º dß║í quang mß╗Öt phß║ºn, kh├íc biß╗çt so vß╗¢i Tudur ΓÇô th╞░╞íng hiß╗çu anh em vß╗¢i Rolex v├á c┼⌐ng l├á cha ─æß║╗ cß╗ºa kiß╗âu kim n├áy.\r\n\r\n─Éiß╗âm ─æß╗Öc ─æ├ío cß╗ºa bß╗Ö kim n├áy ch├¡nh l├á t├¡nh n─âng hß╗»u ├¡ch cß╗ºa n├│, dß╗à nh├¼n dß╗à quan s├ít trong khi vß║½n rß║Ñt sang trß╗ìng, m├á kh├┤ng c├│ ├╜ ΓÇ£bß║»t ch╞░ß╗¢cΓÇ¥ c├íc phi├¬n bß║ún Rolex Submariner.\r\n\r\nLongines Hydroconquest L3.742.3.96.7\r\n\r\nDß║í quang Super Luminova si├¬u s├íng ─æem lß║íi khß║ú n─âng quan s├ít tß╗æt trong mß╗ìi ─æiß╗üu kiß╗çn ├ính s├íng\r\n\r\nNß╗ün mß║╖t sß╗æ m├áu xanh d╞░╞íng, ho├án thiß╗çn chß║úi tia Sunbray tß║ío ─æß╗Ö b├│ng bß║⌐y thu h├║t d╞░ß╗¢i tß╗½ng g├│c ─æß╗Ö ├ính s├íng kh├íc nhau.\r\n\r\nChiß║┐c ─æß╗ông hß╗ô m├áu xanh d╞░╞íng hß║ºu nh╞░ ─æ╞░ß╗úc lß╗▒a chß╗ìn rß║Ñt nhiß╗üu v├¼ dß╗à phß╗æi, nh├¼n ─æß║╣p mß║»t v├á hß╗úp phong thß╗ºy cß╗ºa nhiß╗üu Qu├╜ ├┤ng quan t├óm.\r\n\r\nMß╗Öt nh╞░ß╗úc ─æiß╗âm m├á t├┤i gi├í nh╞░ Longines c├│ thß╗â thay ─æß╗òi, ch├¡nh l├á ├┤ cß╗¡a sß╗ò Lß╗ïch Ng├áy qu├í nhß╗Å, c├▓n c├íc chi tiß║┐t kh├íc tr├┤ng cß╗⌐ nh╞░ nhß╗»ng g├ú titan khß╗òng lß╗ô.",
     "layout": "full",
     "order": 0
   }
@@ -1451,7 +1451,7 @@
   "fields": {
     "watch": 20,
     "image": "watch_desc/log4.avif",
-    "caption": "2. Vỏ đồng hồ kín nước 30 ATM\r\nVỏ đồng hồ kín nước một cách hoàn hảo\r\n\r\nNúm vặn kín nước được bảo vệ chặt chẽ bởi hàng rào kim loại mặt ngay tại góc 3 giờ. Phía trên thì ô Lịch Ngày quá nhỏ, còn bây giờ chúng ta có phần núm vặn quá to, có thể Longines muốn biến tấu thiết kế của mình trông thật ấn tượng với khách hàng khi mới lần đầu nhìn qua chăng?\r\n\r\nCá nhân tôi – một reviewer, cảm thấy rằng phần núm vặn to là trang bị khá hợp lý, tiện lợi cho anh em thao tác điều chỉnh dễ dàng hơn rất nhiều khi so với những cỡ núm “tí hon”. Ví dụ tôi đang dưới nước với những ngón tay trơn trượt chẳng hạn.\r\n\r\nVà chi tiết kim loại để bảo vệ cũng khá đắt giá, nó sẽ giúp phần núm vặn không bị vướng vào các vật dụng khác khi anh em đeo trên tay.\r\n\r\nNắp lưng kim loại được dập Logo ấn tượng! Nhiều anh em có thể thích một nắp lưng trong suốt hơn để quan sát bộ máy, nhưng với một phiên bản lặn lên tới 30 ATM như thế này, đây là một trang bị hết sức tối ưu.\r\n\r\nTối ưu ở khả năng chống chọi dưới điều kiện lặn sâu. Trong khi mặt kính trong suốt chỉ cung cấp một góc nhìn trực quan về cỗ máy bên trong, nhưng yếu ớt trong khả năng bảo vệ một khi va đập hoặc nứt vỡ dưới áp suất lớn.\r\n\r\nLongines L3.742.3.96.7 - ảnh 7\r\nMặt sau đồng hồ Longines L3.742.3.96.7 bằng kim loại bảo vệ chắc chắn hơn.\r\n\r\nNắp lưng vặn vít được đóng kín như thế này, sẽ giúp ngăn chặn mọi tác nhân có hại từ bên ngoài xâm nhập vào bộ máy.\r\n\r\nLogo EFCo được làm nổi bật bên dưới nắp lưng chính là tên viết tắt của Ernest Francillon & Compagnie (EFCo) – người sáng lập Longines. Và có Logo Longines được đăng ký vào năm 1889 bởi E. Francillon, chính là hình đồng hồ cát có cánh đặc trưng.\r\n\r\nMột phần di sản đáng tự hào của thương hiệu trăm năm này, được tái hiện lại dưới mặt lưng một cách hết sức tinh tế!\r\n\r\nVấu đồng hồ bo cong, ôm gọn vào cổ tay cùng dây đeo kim loại có cơ chế khóa an toàn để bảo đảm đồng hồ an vị tốt trên mọi vị trí được đeo vào.\r\n\r\n3. Máy Automatic L888 hiệu năng mạnh mẽ\r\nĐược xem là cỗ máy “ngựa thồ” của Thụy Sỹ – một đẳng cấp rất khác biệt với “ngựa thồ” 4RX của Seiko Nhật Bản. Caliber L888 trình diễn một loạt thông số kỹ thuật cao, nhưng vẫn rất dễ dùng với nhiều đối tượng khách hàng.\r\n\r\nLongines Hydroconquest L3.781.4.96.6\r\nNắp lưng được dập Logo một cách tinh xảo\r\n\r\nL888 trong Longines L3.742.3.96.7 là biển thể cung cấp chức năng 3 kim (Giây, Giờ, Phút) và 1 ô Lịch Ngày, thuộc thế hệ “ngựa thồ” trung niên đã được kiểm chứng uy tín qua thời gian dài bởi cộng đồng đam mê đồng hồ lặn Quốc tế.\r\n\r\nThông số kỹ thuật chi tiết của Caliber L888:\r\n\r\nPhát triển từ: ETA 2892-2\r\nTần số dao động: 25.200 vph\r\nDự trữ năng lượng: 72 giờ",
+    "caption": "2. Vß╗Å ─æß╗ông hß╗ô k├¡n n╞░ß╗¢c 30 ATM\r\nVß╗Å ─æß╗ông hß╗ô k├¡n n╞░ß╗¢c mß╗Öt c├ích ho├án hß║úo\r\n\r\nN├║m vß║╖n k├¡n n╞░ß╗¢c ─æ╞░ß╗úc bß║úo vß╗ç chß║╖t chß║╜ bß╗ƒi h├áng r├áo kim loß║íi mß║╖t ngay tß║íi g├│c 3 giß╗¥. Ph├¡a tr├¬n th├¼ ├┤ Lß╗ïch Ng├áy qu├í nhß╗Å, c├▓n b├óy giß╗¥ ch├║ng ta c├│ phß║ºn n├║m vß║╖n qu├í to, c├│ thß╗â Longines muß╗æn biß║┐n tß║Ñu thiß║┐t kß║┐ cß╗ºa m├¼nh tr├┤ng thß║¡t ß║Ñn t╞░ß╗úng vß╗¢i kh├ích h├áng khi mß╗¢i lß║ºn ─æß║ºu nh├¼n qua ch─âng?\r\n\r\nC├í nh├ón t├┤i ΓÇô mß╗Öt reviewer, cß║úm thß║Ñy rß║▒ng phß║ºn n├║m vß║╖n to l├á trang bß╗ï kh├í hß╗úp l├╜, tiß╗çn lß╗úi cho anh em thao t├íc ─æiß╗üu chß╗ënh dß╗à d├áng h╞ín rß║Ñt nhiß╗üu khi so vß╗¢i nhß╗»ng cß╗í n├║m ΓÇ£t├¡ honΓÇ¥. V├¡ dß╗Ñ t├┤i ─æang d╞░ß╗¢i n╞░ß╗¢c vß╗¢i nhß╗»ng ng├│n tay tr╞ín tr╞░ß╗út chß║│ng hß║ín.\r\n\r\nV├á chi tiß║┐t kim loß║íi ─æß╗â bß║úo vß╗ç c┼⌐ng kh├í ─æß║»t gi├í, n├│ sß║╜ gi├║p phß║ºn n├║m vß║╖n kh├┤ng bß╗ï v╞░ß╗¢ng v├áo c├íc vß║¡t dß╗Ñng kh├íc khi anh em ─æeo tr├¬n tay.\r\n\r\nNß║»p l╞░ng kim loß║íi ─æ╞░ß╗úc dß║¡p Logo ß║Ñn t╞░ß╗úng! Nhiß╗üu anh em c├│ thß╗â th├¡ch mß╗Öt nß║»p l╞░ng trong suß╗æt h╞ín ─æß╗â quan s├ít bß╗Ö m├íy, nh╞░ng vß╗¢i mß╗Öt phi├¬n bß║ún lß║╖n l├¬n tß╗¢i 30 ATM nh╞░ thß║┐ n├áy, ─æ├óy l├á mß╗Öt trang bß╗ï hß║┐t sß╗⌐c tß╗æi ╞░u.\r\n\r\nTß╗æi ╞░u ß╗ƒ khß║ú n─âng chß╗æng chß╗ìi d╞░ß╗¢i ─æiß╗üu kiß╗çn lß║╖n s├óu. Trong khi mß║╖t k├¡nh trong suß╗æt chß╗ë cung cß║Ñp mß╗Öt g├│c nh├¼n trß╗▒c quan vß╗ü cß╗ù m├íy b├¬n trong, nh╞░ng yß║┐u ß╗¢t trong khß║ú n─âng bß║úo vß╗ç mß╗Öt khi va ─æß║¡p hoß║╖c nß╗⌐t vß╗í d╞░ß╗¢i ├íp suß║Ñt lß╗¢n.\r\n\r\nLongines L3.742.3.96.7 - ß║únh 7\r\nMß║╖t sau ─æß╗ông hß╗ô Longines L3.742.3.96.7 bß║▒ng kim loß║íi bß║úo vß╗ç chß║»c chß║»n h╞ín.\r\n\r\nNß║»p l╞░ng vß║╖n v├¡t ─æ╞░ß╗úc ─æ├│ng k├¡n nh╞░ thß║┐ n├áy, sß║╜ gi├║p ng─ân chß║╖n mß╗ìi t├íc nh├ón c├│ hß║íi tß╗½ b├¬n ngo├ái x├óm nhß║¡p v├áo bß╗Ö m├íy.\r\n\r\nLogo EFCo ─æ╞░ß╗úc l├ám nß╗òi bß║¡t b├¬n d╞░ß╗¢i nß║»p l╞░ng ch├¡nh l├á t├¬n viß║┐t tß║»t cß╗ºa Ernest Francillon & Compagnie (EFCo) ΓÇô ng╞░ß╗¥i s├íng lß║¡p Longines. V├á c├│ Logo Longines ─æ╞░ß╗úc ─æ─âng k├╜ v├áo n─âm 1889 bß╗ƒi E. Francillon, ch├¡nh l├á h├¼nh ─æß╗ông hß╗ô c├ít c├│ c├ính ─æß║╖c tr╞░ng.\r\n\r\nMß╗Öt phß║ºn di sß║ún ─æ├íng tß╗▒ h├áo cß╗ºa th╞░╞íng hiß╗çu tr─âm n─âm n├áy, ─æ╞░ß╗úc t├íi hiß╗çn lß║íi d╞░ß╗¢i mß║╖t l╞░ng mß╗Öt c├ích hß║┐t sß╗⌐c tinh tß║┐!\r\n\r\nVß║Ñu ─æß╗ông hß╗ô bo cong, ├┤m gß╗ìn v├áo cß╗ò tay c├╣ng d├óy ─æeo kim loß║íi c├│ c╞í chß║┐ kh├│a an to├án ─æß╗â bß║úo ─æß║úm ─æß╗ông hß╗ô an vß╗ï tß╗æt tr├¬n mß╗ìi vß╗ï tr├¡ ─æ╞░ß╗úc ─æeo v├áo.\r\n\r\n3. M├íy Automatic L888 hiß╗çu n─âng mß║ính mß║╜\r\n─É╞░ß╗úc xem l├á cß╗ù m├íy ΓÇ£ngß╗▒a thß╗ôΓÇ¥ cß╗ºa Thß╗Ñy Sß╗╣ ΓÇô mß╗Öt ─æß║│ng cß║Ñp rß║Ñt kh├íc biß╗çt vß╗¢i ΓÇ£ngß╗▒a thß╗ôΓÇ¥ 4RX cß╗ºa Seiko Nhß║¡t Bß║ún. Caliber L888 tr├¼nh diß╗àn mß╗Öt loß║ít th├┤ng sß╗æ kß╗╣ thuß║¡t cao, nh╞░ng vß║½n rß║Ñt dß╗à d├╣ng vß╗¢i nhiß╗üu ─æß╗æi t╞░ß╗úng kh├ích h├áng.\r\n\r\nLongines Hydroconquest L3.781.4.96.6\r\nNß║»p l╞░ng ─æ╞░ß╗úc dß║¡p Logo mß╗Öt c├ích tinh xß║úo\r\n\r\nL888 trong Longines L3.742.3.96.7 l├á biß╗ân thß╗â cung cß║Ñp chß╗⌐c n─âng 3 kim (Gi├óy, Giß╗¥, Ph├║t) v├á 1 ├┤ Lß╗ïch Ng├áy, thuß╗Öc thß║┐ hß╗ç ΓÇ£ngß╗▒a thß╗ôΓÇ¥ trung ni├¬n ─æ├ú ─æ╞░ß╗úc kiß╗âm chß╗⌐ng uy t├¡n qua thß╗¥i gian d├ái bß╗ƒi cß╗Öng ─æß╗ông ─æam m├¬ ─æß╗ông hß╗ô lß║╖n Quß╗æc tß║┐.\r\n\r\nTh├┤ng sß╗æ kß╗╣ thuß║¡t chi tiß║┐t cß╗ºa Caliber L888:\r\n\r\nPh├ít triß╗ân tß╗½: ETA 2892-2\r\nTß║ºn sß╗æ dao ─æß╗Öng: 25.200 vph\r\nDß╗▒ trß╗» n─âng l╞░ß╗úng: 72 giß╗¥",
     "layout": "float_left",
     "order": 0
   }
@@ -1542,7 +1542,7 @@
     ],
     "avatar": "avatars/an-ba-to-com-3-1725471597_33Z5drY.jpg",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "bio": ""
   }
 },
@@ -1555,7 +1555,7 @@
     ],
     "avatar": "",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "bio": ""
   }
 },
@@ -1568,7 +1568,7 @@
     ],
     "avatar": "",
     "phone": "0366913800",
-    "address": "ểw",
+    "address": "ß╗âw",
     "bio": ""
   }
 },
@@ -1607,7 +1607,7 @@
     ],
     "full_name": "ffaf",
     "phone": "0366913800",
-    "address": "ểw",
+    "address": "ß╗âw",
     "city": "fafa",
     "note": "faf",
     "payment": "cod",
@@ -1627,7 +1627,7 @@
     ],
     "full_name": "eqe",
     "phone": "0366913800",
-    "address": "ểw",
+    "address": "ß╗âw",
     "city": "qe",
     "note": "qewq",
     "payment": "cod",
@@ -1645,10 +1645,10 @@
     "user": [
       "admin1"
     ],
-    "full_name": "âf",
+    "full_name": "├óf",
     "phone": "0366913800",
-    "address": "ểw",
-    "city": "âf",
+    "address": "ß╗âw",
+    "city": "├óf",
     "note": "fafa",
     "payment": "cod",
     "status": "delivered",
@@ -1667,7 +1667,7 @@
     ],
     "full_name": "sbsb",
     "phone": "0366913800",
-    "address": "ểw",
+    "address": "ß╗âw",
     "city": "sbsb",
     "note": "bs",
     "payment": "cod",
@@ -1687,7 +1687,7 @@
     ],
     "full_name": "rqrq",
     "phone": "0366913800",
-    "address": "ểwqr",
+    "address": "ß╗âwqr",
     "city": "rqr",
     "note": "qrqr",
     "payment": "cod",
@@ -1705,9 +1705,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "0366913800",
-    "address": "ểw",
+    "address": "ß╗âw",
     "city": "faf",
     "note": "",
     "payment": "cod",
@@ -1727,8 +1727,8 @@
     ],
     "full_name": "da",
     "phone": "0366913800",
-    "address": "ểw",
-    "city": "ầ",
+    "address": "ß╗âw",
+    "city": "ß║º",
     "note": "",
     "payment": "cod",
     "status": "pending",
@@ -1745,10 +1745,10 @@
     "user": [
       "khanh123"
     ],
-    "full_name": "qưe",
+    "full_name": "q╞░e",
     "phone": "0366913800",
-    "address": "ểw",
-    "city": "ádsda",
+    "address": "ß╗âw",
+    "city": "├ídsda",
     "note": "",
     "payment": "cod",
     "status": "shipping",
@@ -1765,11 +1765,11 @@
     "user": [
       "admin1"
     ],
-    "full_name": "âf",
+    "full_name": "├óf",
     "phone": "0366913800",
-    "address": "ểw",
-    "city": "âf",
-    "note": "âf",
+    "address": "ß╗âw",
+    "city": "├óf",
+    "note": "├óf",
     "payment": "cod",
     "status": "pending",
     "total": "6160000",
@@ -1785,11 +1785,11 @@
     "user": [
       "khanh123"
     ],
-    "full_name": "khánh",
+    "full_name": "kh├ính",
     "phone": "0366913800",
-    "address": "ểw",
+    "address": "ß╗âw",
     "city": "fafaf",
-    "note": "âfaf",
+    "note": "├ófaf",
     "payment": "cod",
     "status": "delivered",
     "total": "8160500",
@@ -1807,9 +1807,9 @@
     ],
     "full_name": "2113",
     "phone": "0366913800",
-    "address": "ểw",
-    "city": "âf",
-    "note": "âf",
+    "address": "ß╗âw",
+    "city": "├óf",
+    "note": "├óf",
     "payment": "cod",
     "status": "shipping",
     "total": "1800000",
@@ -1825,10 +1825,10 @@
     "user": [
       "khanh123"
     ],
-    "full_name": "ầ",
+    "full_name": "ß║º",
     "phone": "0366913800",
-    "address": "ểw",
-    "city": "âf",
+    "address": "ß╗âw",
+    "city": "├óf",
     "note": "faf",
     "payment": "cod",
     "status": "pending",
@@ -1847,9 +1847,9 @@
     ],
     "full_name": "av",
     "phone": "ad",
-    "address": "ầ",
-    "city": "à",
-    "note": "à",
+    "address": "ß║º",
+    "city": "├á",
+    "note": "├á",
     "payment": "bank",
     "status": "delivered",
     "total": "8160500",
@@ -1886,10 +1886,10 @@
       "admin1"
     ],
     "full_name": "faf",
-    "phone": "à",
-    "address": "à",
-    "city": "à",
-    "note": "à",
+    "phone": "├á",
+    "address": "├á",
+    "city": "├á",
+    "note": "├á",
     "payment": "cod",
     "status": "confirmed",
     "total": "6160000",
@@ -1905,9 +1905,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -1925,9 +1925,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -1945,9 +1945,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "cod",
@@ -1965,9 +1965,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -1985,9 +1985,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -2005,9 +2005,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -2025,9 +2025,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -2045,9 +2045,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -2065,9 +2065,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -2085,9 +2085,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -2105,9 +2105,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "faf",
     "note": "",
     "payment": "bank",
@@ -2125,9 +2125,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "fmfm,,",
     "payment": "installment",
@@ -2145,9 +2145,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "cod",
@@ -2165,9 +2165,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2185,9 +2185,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2205,9 +2205,9 @@
     "user": [
       "admin"
     ],
-    "full_name": "Dương Khánh",
+    "full_name": "D╞░╞íng Kh├ính",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2225,9 +2225,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2245,9 +2245,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2265,9 +2265,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2285,9 +2285,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2305,9 +2305,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2325,9 +2325,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2345,9 +2345,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2365,9 +2365,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "cod",
@@ -2385,9 +2385,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "cod",
@@ -2405,9 +2405,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2425,9 +2425,9 @@
     "user": [
       "admin1"
     ],
-    "full_name": "Dương Khánhbdbdhd322424",
+    "full_name": "D╞░╞íng Kh├ínhbdbdhd322424",
     "phone": "12345678",
-    "address": "Thái Nguyên",
+    "address": "Th├íi Nguy├¬n",
     "city": "fmfm",
     "note": "",
     "payment": "bank",
@@ -2444,7 +2444,7 @@
   "fields": {
     "order": 1,
     "watch": 1,
-    "watch_name": "Đồng Hồ Casio MTP-1374L-1A",
+    "watch_name": "─Éß╗ông Hß╗ô Casio MTP-1374L-1A",
     "price": "1598080",
     "quantity": 2,
     "subtotal": "3196160"
@@ -2456,7 +2456,7 @@
   "fields": {
     "order": 1,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2468,7 +2468,7 @@
   "fields": {
     "order": 2,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2480,7 +2480,7 @@
   "fields": {
     "order": 3,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2492,7 +2492,7 @@
   "fields": {
     "order": 4,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2504,7 +2504,7 @@
   "fields": {
     "order": 5,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2516,7 +2516,7 @@
   "fields": {
     "order": 5,
     "watch": 1,
-    "watch_name": "Đồng Hồ Casio MTP-1374L-1A",
+    "watch_name": "─Éß╗ông Hß╗ô Casio MTP-1374L-1A",
     "price": "1598080",
     "quantity": 1,
     "subtotal": "1598080"
@@ -2528,7 +2528,7 @@
   "fields": {
     "order": 6,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2540,7 +2540,7 @@
   "fields": {
     "order": 7,
     "watch": 2,
-    "watch_name": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "watch_name": "─Éß╗ông Hß╗ô Casio 38.5mm Nam MTP-1302DS-1AVDF",
     "price": "1800000",
     "quantity": 1,
     "subtotal": "1800000"
@@ -2552,7 +2552,7 @@
   "fields": {
     "order": 8,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2564,7 +2564,7 @@
   "fields": {
     "order": 9,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2576,7 +2576,7 @@
   "fields": {
     "order": 10,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2588,7 +2588,7 @@
   "fields": {
     "order": 11,
     "watch": 2,
-    "watch_name": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "watch_name": "─Éß╗ông Hß╗ô Casio 38.5mm Nam MTP-1302DS-1AVDF",
     "price": "1800000",
     "quantity": 1,
     "subtotal": "1800000"
@@ -2600,7 +2600,7 @@
   "fields": {
     "order": 12,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2612,7 +2612,7 @@
   "fields": {
     "order": 13,
     "watch": 5,
-    "watch_name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 43mm Nam BL1784-252KBB-S2-M",
     "price": "8160500",
     "quantity": 1,
     "subtotal": "8160500"
@@ -2624,7 +2624,7 @@
   "fields": {
     "order": 14,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2636,7 +2636,7 @@
   "fields": {
     "order": 15,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2648,7 +2648,7 @@
   "fields": {
     "order": 16,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2660,7 +2660,7 @@
   "fields": {
     "order": 17,
     "watch": 1,
-    "watch_name": "Đồng Hồ Casio MTP-1374L-1A",
+    "watch_name": "─Éß╗ông Hß╗ô Casio MTP-1374L-1A",
     "price": "1598080",
     "quantity": 3,
     "subtotal": "4794240"
@@ -2672,7 +2672,7 @@
   "fields": {
     "order": 17,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2684,7 +2684,7 @@
   "fields": {
     "order": 17,
     "watch": 3,
-    "watch_name": "Đồng Hồ Orient 40.8mm Nam RA-AR0009L30B",
+    "watch_name": "─Éß╗ông Hß╗ô Orient 40.8mm Nam RA-AR0009L30B",
     "price": "10777750",
     "quantity": 1,
     "subtotal": "10777750"
@@ -2780,7 +2780,7 @@
   "fields": {
     "order": 25,
     "watch": 1,
-    "watch_name": "Đồng Hồ Casio MTP-1374L-1A",
+    "watch_name": "─Éß╗ông Hß╗ô Casio MTP-1374L-1A",
     "price": "1598080",
     "quantity": 1,
     "subtotal": "1598080"
@@ -2792,7 +2792,7 @@
   "fields": {
     "order": 26,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2804,7 +2804,7 @@
   "fields": {
     "order": 27,
     "watch": 2,
-    "watch_name": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
+    "watch_name": "─Éß╗ông Hß╗ô Casio 38.5mm Nam MTP-1302DS-1AVDF",
     "price": "1800000",
     "quantity": 1,
     "subtotal": "1800000"
@@ -2816,7 +2816,7 @@
   "fields": {
     "order": 28,
     "watch": 6,
-    "watch_name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
+    "watch_name": "─Éß╗ông Hß╗ô Bentley 41mm Nam BL1831-15MWNN",
     "price": "6160000",
     "quantity": 1,
     "subtotal": "6160000"
@@ -2828,7 +2828,7 @@
   "fields": {
     "order": 29,
     "watch": 21,
-    "watch_name": "Đồng Hồ Omega 38.5mm Nam 231.10.39.21.57.001",
+    "watch_name": "─Éß╗ông Hß╗ô Omega 38.5mm Nam 231.10.39.21.57.001",
     "price": "86450000",
     "quantity": 1,
     "subtotal": "86450000"
@@ -2840,7 +2840,7 @@
   "fields": {
     "order": 30,
     "watch": 21,
-    "watch_name": "Đồng Hồ Omega 38.5mm Nam 231.10.39.21.57.001",
+    "watch_name": "─Éß╗ông Hß╗ô Omega 38.5mm Nam 231.10.39.21.57.001",
     "price": "86450000",
     "quantity": 1,
     "subtotal": "86450000"
@@ -2852,7 +2852,7 @@
   "fields": {
     "order": 31,
     "watch": 21,
-    "watch_name": "Đồng Hồ Omega 38.5mm Nam 231.10.39.21.57.001",
+    "watch_name": "─Éß╗ông Hß╗ô Omega 38.5mm Nam 231.10.39.21.57.001",
     "price": "86450000",
     "quantity": 1,
     "subtotal": "86450000"
@@ -2864,7 +2864,7 @@
   "fields": {
     "order": 32,
     "watch": 20,
-    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 ΓÇô Nam ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 41mm ΓÇô Chß╗æng N╞░ß╗¢c 30 ATM ΓÇô Trß╗» C├│t 72 Giß╗¥",
     "price": "45274150",
     "quantity": 1,
     "subtotal": "45274150"
@@ -2876,7 +2876,7 @@
   "fields": {
     "order": 33,
     "watch": 19,
-    "watch_name": "Longines Primaluna Moonphase L8.126.0.71.6 – Nữ – Automatic (Tự Động) – Mặt Số 34mm – Kính Sapphire – Lịch Tuần Trăng – 58 Viên Kim Cương Tự Nhiên 0.580 carats",
+    "watch_name": "Longines Primaluna Moonphase L8.126.0.71.6 ΓÇô Nß╗» ΓÇô Automatic (T╞░╠ú ─É├┤╠úng) ΓÇô M─â╠út S├┤╠ü 34mm ΓÇô Ki╠ünh Sapphire ΓÇô Li╠úch Tu├ó╠Çn Tr─âng ΓÇô 58 Vi├¬n Kim C╞░╞íng T╞░╠ú Nhi├¬n 0.580 carats",
     "price": "161500000",
     "quantity": 2,
     "subtotal": "323000000"
@@ -2888,7 +2888,7 @@
   "fields": {
     "order": 34,
     "watch": 18,
-    "watch_name": "Seiko 5 Sports SSK003K1 – Nam – Kính Hardlex – Automatic – Mặt Số 42.5mm, Trữ cót 41 giờ, GMT",
+    "watch_name": "Seiko 5 Sports SSK003K1 ΓÇô Nam ΓÇô K├¡nh Hardlex ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 42.5mm, Trß╗» c├│t 41 giß╗¥, GMT",
     "price": "15000000",
     "quantity": 1,
     "subtotal": "15000000"
@@ -2900,7 +2900,7 @@
   "fields": {
     "order": 35,
     "watch": 9,
-    "watch_name": "Saga Chroma Dance 54390-SVWTSV-2 – Nữ – Quartz (Pin) – Mặt Số 34mm – Kính Cứng – Mặt Số Đổi Màu",
+    "watch_name": "Saga Chroma Dance 54390-SVWTSV-2 ΓÇô N╞░╠â ΓÇô Quartz (Pin) ΓÇô M─â╠út S├┤╠ü 34mm ΓÇô Ki╠ünh C╞░╠üng ΓÇô M─â╠út S├┤╠ü ─É├┤╠ëi Ma╠Çu",
     "price": "6220600",
     "quantity": 1,
     "subtotal": "6220600"
@@ -2912,7 +2912,7 @@
   "fields": {
     "order": 36,
     "watch": 20,
-    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 ΓÇô Nam ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 41mm ΓÇô Chß╗æng N╞░ß╗¢c 30 ATM ΓÇô Trß╗» C├│t 72 Giß╗¥",
     "price": "45274150",
     "quantity": 1,
     "subtotal": "45274150"
@@ -2924,7 +2924,7 @@
   "fields": {
     "order": 37,
     "watch": 16,
-    "watch_name": "G-Shock DW-5600BBM-2DR – Nam – Kính Cứng – Quartz (Pin) – Mặt Số 42.8mm, Bộ Bấm Giờ, Chống Nước 20ATM",
+    "watch_name": "G-Shock DW-5600BBM-2DR ΓÇô Nam ΓÇô K├¡nh Cß╗⌐ng ΓÇô Quartz (Pin) ΓÇô Mß║╖t Sß╗æ 42.8mm, Bß╗Ö Bß║Ñm Giß╗¥, Chß╗æng N╞░ß╗¢c 20ATM",
     "price": "3500000",
     "quantity": 1,
     "subtotal": "3500000"
@@ -2936,7 +2936,7 @@
   "fields": {
     "order": 38,
     "watch": 20,
-    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 ΓÇô Nam ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 41mm ΓÇô Chß╗æng N╞░ß╗¢c 30 ATM ΓÇô Trß╗» C├│t 72 Giß╗¥",
     "price": "45274150",
     "quantity": 4,
     "subtotal": "181096600"
@@ -2948,7 +2948,7 @@
   "fields": {
     "order": 39,
     "watch": 20,
-    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 ΓÇô Nam ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 41mm ΓÇô Chß╗æng N╞░ß╗¢c 30 ATM ΓÇô Trß╗» C├│t 72 Giß╗¥",
     "price": "45274150",
     "quantity": 1,
     "subtotal": "45274150"
@@ -2960,7 +2960,7 @@
   "fields": {
     "order": 40,
     "watch": 14,
-    "watch_name": "Đồng Hồ SRWatch 36mm Nữ SL99993.4603GLA",
+    "watch_name": "─Éß╗ông Hß╗ô SRWatch 36mm Nß╗» SL99993.4603GLA",
     "price": "6750000",
     "quantity": 1,
     "subtotal": "6750000"
@@ -2972,7 +2972,7 @@
   "fields": {
     "order": 41,
     "watch": 20,
-    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 ΓÇô Nam ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 41mm ΓÇô Chß╗æng N╞░ß╗¢c 30 ATM ΓÇô Trß╗» C├│t 72 Giß╗¥",
     "price": "45274150",
     "quantity": 1,
     "subtotal": "45274150"
@@ -2984,7 +2984,7 @@
   "fields": {
     "order": 42,
     "watch": 20,
-    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 ΓÇô Nam ΓÇô Automatic ΓÇô Mß║╖t Sß╗æ 41mm ΓÇô Chß╗æng N╞░ß╗¢c 30 ATM ΓÇô Trß╗» C├│t 72 Giß╗¥",
     "price": "45274150",
     "quantity": 1,
     "subtotal": "45274150"
@@ -2998,8 +2998,8 @@
       "khanh123"
     ],
     "notif_type": "general",
-    "title": "Bạn có thông báo mới",
-    "message": "Đơn hàng của bạn đã được xác nhận",
+    "title": "Bß║ín c├│ th├┤ng b├ío mß╗¢i",
+    "message": "─É╞ín h├áng cß╗ºa bß║ín ─æ├ú ─æ╞░ß╗úc x├íc nhß║¡n",
     "order": 9,
     "is_read": true,
     "created_at": "2026-02-26T11:32:01.858Z"
@@ -3013,8 +3013,8 @@
       "khanh123"
     ],
     "notif_type": "order_confirmed",
-    "title": "Đơn hàng #10 đã được xác nhận",
-    "message": "Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.",
+    "title": "─É╞ín h├áng #10 ─æ├ú ─æ╞░ß╗úc x├íc nhß║¡n",
+    "message": "Ch├║ng t├┤i ─æ├ú x├íc nhß║¡n ─æ╞ín h├áng cß╗ºa bß║ín v├á ─æang chuß║⌐n bß╗ï h├áng.",
     "order": 10,
     "is_read": true,
     "created_at": "2026-02-26T11:48:58.757Z"
@@ -3028,8 +3028,8 @@
       "khanh123"
     ],
     "notif_type": "order_shipping",
-    "title": "Đơn hàng #8 đang được vận chuyển",
-    "message": "Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.",
+    "title": "─É╞ín h├áng #8 ─æang ─æ╞░ß╗úc vß║¡n chuyß╗ân",
+    "message": "─É╞ín h├áng cß╗ºa bß║ín ─æang tr├¬n ─æ╞░ß╗¥ng giao ─æß║┐n ─æß╗ïa chß╗ë ─æ├ú ─æ─âng k├╜.",
     "order": 8,
     "is_read": true,
     "created_at": "2026-02-26T11:49:16.041Z"
@@ -3043,8 +3043,8 @@
       "admin1"
     ],
     "notif_type": "order_shipping",
-    "title": "Đơn hàng #11 đang được vận chuyển",
-    "message": "Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.",
+    "title": "─É╞ín h├áng #11 ─æang ─æ╞░ß╗úc vß║¡n chuyß╗ân",
+    "message": "─É╞ín h├áng cß╗ºa bß║ín ─æang tr├¬n ─æ╞░ß╗¥ng giao ─æß║┐n ─æß╗ïa chß╗ë ─æ├ú ─æ─âng k├╜.",
     "order": 11,
     "is_read": true,
     "created_at": "2026-02-26T15:24:58.496Z"
@@ -3058,8 +3058,8 @@
       "khanh123"
     ],
     "notif_type": "order_confirmed",
-    "title": "Đơn hàng #10 đã được giao thành công",
-    "message": "Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.",
+    "title": "─É╞ín h├áng #10 ─æ├ú ─æ╞░ß╗úc giao th├ánh c├┤ng",
+    "message": "Cß║úm ╞ín bß║ín ─æ├ú mua h├áng tß║íi WATCHSTORE.VN! H├úy ─æ├ính gi├í sß║ún phß║⌐m nh├⌐.",
     "order": 10,
     "is_read": true,
     "created_at": "2026-02-26T15:59:18.823Z"
@@ -3073,8 +3073,8 @@
       "admin"
     ],
     "notif_type": "order_delivered",
-    "title": "Đơn hàng #13 đã được giao thành công",
-    "message": "Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.",
+    "title": "─É╞ín h├áng #13 ─æ├ú ─æ╞░ß╗úc giao th├ánh c├┤ng",
+    "message": "Cß║úm ╞ín bß║ín ─æ├ú mua h├áng tß║íi WATCHSTORE.VN! H├úy ─æ├ính gi├í sß║ún phß║⌐m nh├⌐.",
     "order": 13,
     "is_read": true,
     "created_at": "2026-02-28T07:05:24.718Z"
@@ -3088,8 +3088,8 @@
       "khanh123"
     ],
     "notif_type": "order_delivered",
-    "title": "Đơn hàng #14 đã được giao thành công",
-    "message": "Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.",
+    "title": "─É╞ín h├áng #14 ─æ├ú ─æ╞░ß╗úc giao th├ánh c├┤ng",
+    "message": "Cß║úm ╞ín bß║ín ─æ├ú mua h├áng tß║íi WATCHSTORE.VN! H├úy ─æ├ính gi├í sß║ún phß║⌐m nh├⌐.",
     "order": 14,
     "is_read": false,
     "created_at": "2026-03-01T12:04:49.416Z"
@@ -3103,8 +3103,8 @@
       "admin1"
     ],
     "notif_type": "order_confirmed",
-    "title": "Đơn hàng #15 đã được xác nhận",
-    "message": "Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.",
+    "title": "─É╞ín h├áng #15 ─æ├ú ─æ╞░ß╗úc x├íc nhß║¡n",
+    "message": "Ch├║ng t├┤i ─æ├ú x├íc nhß║¡n ─æ╞ín h├áng cß╗ºa bß║ín v├á ─æang chuß║⌐n bß╗ï h├áng.",
     "order": 15,
     "is_read": true,
     "created_at": "2026-03-10T14:50:08.841Z"
@@ -3118,8 +3118,8 @@
       "admin1"
     ],
     "notif_type": "order_shipping",
-    "title": "Đơn hàng #32 đang được vận chuyển",
-    "message": "Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.",
+    "title": "─É╞ín h├áng #32 ─æang ─æ╞░ß╗úc vß║¡n chuyß╗ân",
+    "message": "─É╞ín h├áng cß╗ºa bß║ín ─æang tr├¬n ─æ╞░ß╗¥ng giao ─æß║┐n ─æß╗ïa chß╗ë ─æ├ú ─æ─âng k├╜.",
     "order": 32,
     "is_read": true,
     "created_at": "2026-03-13T14:03:32.103Z"
@@ -3133,8 +3133,8 @@
       "admin1"
     ],
     "notif_type": "order_delivered",
-    "title": "Đơn hàng #32 đã được giao thành công",
-    "message": "Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.",
+    "title": "─É╞ín h├áng #32 ─æ├ú ─æ╞░ß╗úc giao th├ánh c├┤ng",
+    "message": "Cß║úm ╞ín bß║ín ─æ├ú mua h├áng tß║íi WATCHSTORE.VN! H├úy ─æ├ính gi├í sß║ún phß║⌐m nh├⌐.",
     "order": 32,
     "is_read": true,
     "created_at": "2026-03-13T14:04:06.730Z"
@@ -3148,8 +3148,8 @@
       "admin1"
     ],
     "notif_type": "order_delivered",
-    "title": "Đơn hàng #34 đã được giao thành công",
-    "message": "Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.",
+    "title": "─É╞ín h├áng #34 ─æ├ú ─æ╞░ß╗úc giao th├ánh c├┤ng",
+    "message": "Cß║úm ╞ín bß║ín ─æ├ú mua h├áng tß║íi WATCHSTORE.VN! H├úy ─æ├ính gi├í sß║ún phß║⌐m nh├⌐.",
     "order": 34,
     "is_read": true,
     "created_at": "2026-03-13T15:08:18.043Z"
@@ -3163,8 +3163,8 @@
       "admin1"
     ],
     "notif_type": "order_shipping",
-    "title": "Đơn hàng #37 đang được vận chuyển",
-    "message": "Đơn hàng của bạn đang trên đường giao đến địa chỉ đã đăng ký.",
+    "title": "─É╞ín h├áng #37 ─æang ─æ╞░ß╗úc vß║¡n chuyß╗ân",
+    "message": "─É╞ín h├áng cß╗ºa bß║ín ─æang tr├¬n ─æ╞░ß╗¥ng giao ─æß║┐n ─æß╗ïa chß╗ë ─æ├ú ─æ─âng k├╜.",
     "order": 37,
     "is_read": true,
     "created_at": "2026-03-14T09:21:29.164Z"
@@ -3178,8 +3178,8 @@
       "admin1"
     ],
     "notif_type": "order_delivered",
-    "title": " Đơn hàng #37 đã giao thành công",
-    "message": "Cảm ơn bạn đã mua hàng tại WATCHSTORE.VN! Hãy đánh giá sản phẩm nhé.",
+    "title": " ─É╞ín h├áng #37 ─æ├ú giao th├ánh c├┤ng",
+    "message": "Cß║úm ╞ín bß║ín ─æ├ú mua h├áng tß║íi WATCHSTORE.VN! H├úy ─æ├ính gi├í sß║ún phß║⌐m nh├⌐.",
     "order": 37,
     "is_read": true,
     "created_at": "2026-03-14T09:23:19.852Z"
@@ -3193,8 +3193,8 @@
       "admin1"
     ],
     "notif_type": "order_cancelled",
-    "title": " Đơn hàng #39 đã bị hủy",
-    "message": "Đơn hàng của bạn đã bị hủy. Liên hệ hotline nếu cần hỗ trợ.",
+    "title": " ─É╞ín h├áng #39 ─æ├ú bß╗ï hß╗ºy",
+    "message": "─É╞ín h├áng cß╗ºa bß║ín ─æ├ú bß╗ï hß╗ºy. Li├¬n hß╗ç hotline nß║┐u cß║ºn hß╗ù trß╗ú.",
     "order": 39,
     "is_read": true,
     "created_at": "2026-03-14T09:26:42.828Z"
@@ -3208,8 +3208,8 @@
       "admin1"
     ],
     "notif_type": "order_confirmed",
-    "title": " Đơn hàng #38 đã được xác nhận",
-    "message": "Chúng tôi đã xác nhận đơn hàng của bạn và đang chuẩn bị hàng.",
+    "title": " ─É╞ín h├áng #38 ─æ├ú ─æ╞░ß╗úc x├íc nhß║¡n",
+    "message": "Ch├║ng t├┤i ─æ├ú x├íc nhß║¡n ─æ╞ín h├áng cß╗ºa bß║ín v├á ─æang chuß║⌐n bß╗ï h├áng.",
     "order": 38,
     "is_read": true,
     "created_at": "2026-03-14T09:27:04.861Z"
@@ -3253,9 +3253,9 @@
     "user": [
       "admin1"
     ],
-    "name": "Đồng hồ apple",
+    "name": "─Éß╗ông hß╗ô apple",
     "rating": 5,
-    "comment": "tày rồi tày rồi",
+    "comment": "t├áy rß╗ôi t├áy rß╗ôi",
     "image": "",
     "image2": "",
     "image3": "",
@@ -3271,9 +3271,9 @@
     "user": [
       "admin1"
     ],
-    "name": "Dương Khánh",
+    "name": "D╞░╞íng Kh├ính",
     "rating": 4,
-    "comment": "cũng được",
+    "comment": "c┼⌐ng ─æ╞░ß╗úc",
     "image": "reviews/1-khung-sp-1-1818542633-1853976209-1712563883-400x400.webp",
     "image2": "",
     "image3": "",
@@ -3289,9 +3289,9 @@
     "user": [
       "admin1"
     ],
-    "name": "Dương Khánh",
+    "name": "D╞░╞íng Kh├ính",
     "rating": 5,
-    "comment": "đẹp, hàng ngon",
+    "comment": "─æß║╣p, h├áng ngon",
     "image": "reviews/sagahang2.avif",
     "image2": "",
     "image3": "",
@@ -3307,1832 +3307,14 @@
     "user": [
       "admin1"
     ],
-    "name": "Khánh Dương",
+    "name": "Kh├ính D╞░╞íng",
     "rating": 4,
-    "comment": "cũngdc",
+    "comment": "c┼⌐ngdc",
     "image": "reviews/bl1784-252kbb-s2-m-1-1654936078634-1712583642-768x768.webp",
     "image2": "",
     "image3": "",
     "created_at": "2026-03-13T14:41:31.244Z",
     "is_visible": true
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 1,
-  "fields": {
-    "action_time": "2026-02-23T12:15:48.860Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "profile"
-    ],
-    "object_id": "1",
-    "object_repr": "Profile: admin",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 2,
-  "fields": {
-    "action_time": "2026-02-23T12:39:51.340Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "1",
-    "object_repr": "CASIO",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 3,
-  "fields": {
-    "action_time": "2026-02-23T12:42:09.187Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "2",
-    "object_repr": "ORIENT",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 4,
-  "fields": {
-    "action_time": "2026-02-23T12:42:44.785Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "3",
-    "object_repr": "BENTLEY",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 5,
-  "fields": {
-    "action_time": "2026-02-23T12:43:05.405Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "4",
-    "object_repr": "CITIZEN",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 6,
-  "fields": {
-    "action_time": "2026-02-23T12:43:29.073Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "5",
-    "object_repr": "SR",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 7,
-  "fields": {
-    "action_time": "2026-02-23T12:45:22.303Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "6",
-    "object_repr": "G-SHOCK",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 8,
-  "fields": {
-    "action_time": "2026-02-23T12:45:37.293Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "7",
-    "object_repr": "SEIKO",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 9,
-  "fields": {
-    "action_time": "2026-02-23T12:45:55.478Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "8",
-    "object_repr": "LOGINES",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 10,
-  "fields": {
-    "action_time": "2026-02-23T12:46:08.003Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "9",
-    "object_repr": "OMEGA",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 11,
-  "fields": {
-    "action_time": "2026-02-23T12:46:21.539Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "8",
-    "object_repr": "LONGINES",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Slug\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 12,
-  "fields": {
-    "action_time": "2026-02-23T12:46:36.143Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "10",
-    "object_repr": "HUBLOT",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 13,
-  "fields": {
-    "action_time": "2026-02-23T12:46:56.407Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "11",
-    "object_repr": "TISSOT",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 14,
-  "fields": {
-    "action_time": "2026-02-23T12:47:10.620Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "12",
-    "object_repr": "ROLEX",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 15,
-  "fields": {
-    "action_time": "2026-02-23T13:29:15.621Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "1",
-    "object_repr": "Đồng Hồ Casio MTP-1374L-1A",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #2 - \\u0110\\u1ed3ng H\\u1ed3 Casio MTP-1374L-1A\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #1 - \\u0110\\u1ed3ng H\\u1ed3 Casio MTP-1374L-1A\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 16,
-  "fields": {
-    "action_time": "2026-02-23T13:41:52.005Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "1",
-    "object_repr": "Đồng Hồ Casio MTP-1374L-1A",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Series\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 17,
-  "fields": {
-    "action_time": "2026-02-23T13:48:21.753Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "2",
-    "object_repr": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Casio 38.5mm Nam MTP-1302DS-1AVDF\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Casio 38.5mm Nam MTP-1302DS-1AVDF\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 18,
-  "fields": {
-    "action_time": "2026-02-23T13:55:59.048Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "3",
-    "object_repr": "Đồng Hồ Orient 40.8mm Nam RA-AR0009L30B",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 40.8mm Nam RA-AR0009L30B\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 40.8mm Nam RA-AR0009L30B\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 19,
-  "fields": {
-    "action_time": "2026-02-23T13:56:11.443Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "2",
-    "object_repr": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Ch\\u1ea5t li\\u1ec7u k\\u00ednh\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 20,
-  "fields": {
-    "action_time": "2026-02-23T14:02:09.623Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "4",
-    "object_repr": "Đồng Hồ Orient 36.6 mm Nữ RA-AG0729S30B",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 36.6 mm N\\u1eef RA-AG0729S30B\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Orient 36.6 mm N\\u1eef RA-AG0729S30B\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 21,
-  "fields": {
-    "action_time": "2026-02-23T14:04:16.927Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "4",
-    "object_repr": "Đồng Hồ Orient 36.6 mm Nữ RA-AG0729S30B",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Is sold out\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 22,
-  "fields": {
-    "action_time": "2026-02-23T14:09:02.166Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "5",
-    "object_repr": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 43mm Nam BL1784-252KBB-S2-M\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 43mm Nam BL1784-252KBB-S2-M\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 23,
-  "fields": {
-    "action_time": "2026-02-23T14:12:08.398Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 24,
-  "fields": {
-    "action_time": "2026-02-26T09:03:55.951Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "4",
-    "object_repr": "Đơn #4 - sbsb",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 25,
-  "fields": {
-    "action_time": "2026-02-26T09:15:34.489Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "3",
-    "object_repr": "Đơn #3 - âf",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 26,
-  "fields": {
-    "action_time": "2026-02-26T11:32:01.860Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "1",
-    "object_repr": "[admin] Bạn có thông báo mới",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 27,
-  "fields": {
-    "action_time": "2026-02-26T11:32:18.299Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "1",
-    "object_repr": "[khanh123] Bạn có thông báo mới",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 28,
-  "fields": {
-    "action_time": "2026-02-26T11:33:51.265Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "1",
-    "object_repr": "[khanh123] Bạn có thông báo mới",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Message\", \"Is read\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 29,
-  "fields": {
-    "action_time": "2026-02-26T11:44:36.366Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "1",
-    "object_repr": "[khanh123] Bạn có thông báo mới",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Notif type\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 30,
-  "fields": {
-    "action_time": "2026-02-26T11:48:04.021Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "1",
-    "object_repr": "[khanh123] Bạn có thông báo mới",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Notif type\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 31,
-  "fields": {
-    "action_time": "2026-02-26T11:48:58.759Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "10",
-    "object_repr": "Đơn #10 - khánh",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 32,
-  "fields": {
-    "action_time": "2026-02-26T11:49:16.042Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "8",
-    "object_repr": "Đơn #8 - qưe",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 33,
-  "fields": {
-    "action_time": "2026-02-26T15:24:58.497Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "11",
-    "object_repr": "Đơn #11 - 2113",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 34,
-  "fields": {
-    "action_time": "2026-02-26T15:59:18.824Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "10",
-    "object_repr": "Đơn #10 - khánh",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 35,
-  "fields": {
-    "action_time": "2026-02-28T07:05:24.721Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "13",
-    "object_repr": "Đơn #13 - av",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 36,
-  "fields": {
-    "action_time": "2026-03-01T12:04:49.417Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "14",
-    "object_repr": "Đơn #14 - ssgs",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"User\", \"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 37,
-  "fields": {
-    "action_time": "2026-03-05T16:21:10.773Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 38,
-  "fields": {
-    "action_time": "2026-03-05T16:22:07.521Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\", \"fields\": [\"Caption\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 39,
-  "fields": {
-    "action_time": "2026-03-05T16:22:55.564Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\", \"fields\": [\"Layout\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 40,
-  "fields": {
-    "action_time": "2026-03-05T16:28:44.746Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"deleted\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 41,
-  "fields": {
-    "action_time": "2026-03-05T16:28:51.668Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 42,
-  "fields": {
-    "action_time": "2026-03-05T16:31:47.124Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\", \"fields\": [\"Image\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 43,
-  "fields": {
-    "action_time": "2026-03-05T16:34:03.398Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\", \"fields\": [\"Caption\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 44,
-  "fields": {
-    "action_time": "2026-03-05T16:35:30.488Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\", \"fields\": [\"Layout\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 45,
-  "fields": {
-    "action_time": "2026-03-05T16:36:22.864Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "6",
-    "object_repr": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Bentley 41mm Nam BL1831-15MWNN\", \"fields\": [\"Image\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 46,
-  "fields": {
-    "action_time": "2026-03-08T09:22:29.302Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "1",
-    "object_repr": "CASIO",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 47,
-  "fields": {
-    "action_time": "2026-03-08T10:32:17.757Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brandshowcase"
-    ],
-    "object_id": "1",
-    "object_repr": "CASIO (thứ tự 0)",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 48,
-  "fields": {
-    "action_time": "2026-03-08T10:56:35.530Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brandshowcase"
-    ],
-    "object_id": "1",
-    "object_repr": "CASIO (thứ tự 0)",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Poster\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 49,
-  "fields": {
-    "action_time": "2026-03-08T11:44:30.830Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "7",
-    "object_repr": "test 12",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 50,
-  "fields": {
-    "action_time": "2026-03-08T11:44:51.960Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "8",
-    "object_repr": "test2",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 51,
-  "fields": {
-    "action_time": "2026-03-10T09:13:54.358Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brandshowcase"
-    ],
-    "object_id": "2",
-    "object_repr": "CITIZEN (thứ tự 0)",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 52,
-  "fields": {
-    "action_time": "2026-03-10T09:41:00.952Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "8",
-    "object_repr": "test2",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 53,
-  "fields": {
-    "action_time": "2026-03-10T09:41:05.408Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "7",
-    "object_repr": "test 12",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 54,
-  "fields": {
-    "action_time": "2026-03-10T09:42:38.136Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brand"
-    ],
-    "object_id": "13",
-    "object_repr": "SAGA",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 55,
-  "fields": {
-    "action_time": "2026-03-10T09:50:33.111Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "9",
-    "object_repr": "Saga Chroma Dance 54390-SVWTSV-2 – Nữ – Quartz (Pin) – Mặt Số 34mm – Kính Cứng – Mặt Số Đổi Màu",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (13)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (14)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Saga Chroma Dance 54390-SVWTSV-2 \\u2013 N\\u01b0\\u0303 \\u2013 Quartz (Pin) \\u2013 M\\u0103\\u0323t S\\u00f4\\u0301 34mm \\u2013 Ki\\u0301nh C\\u01b0\\u0301ng \\u2013 M\\u0103\\u0323t S\\u00f4\\u0301 \\u0110\\u00f4\\u0309i Ma\\u0300u\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Saga Chroma Dance 54390-SVWTSV-2 \\u2013 N\\u01b0\\u0303 \\u2013 Quartz (Pin) \\u2013 M\\u0103\\u0323t S\\u00f4\\u0301 34mm \\u2013 Ki\\u0301nh C\\u01b0\\u0301ng \\u2013 M\\u0103\\u0323t S\\u00f4\\u0301 \\u0110\\u00f4\\u0309i Ma\\u0300u\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 56,
-  "fields": {
-    "action_time": "2026-03-10T09:57:35.877Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "10",
-    "object_repr": "Saga Stella Chance 53578-SVBLSV-2 – Nữ – Quartz (Pin) – Mặt Số 30mm, Kính Cứng, Chống Nước 3ATM",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (15)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (16)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Saga Stella Chance 53578-SVBLSV-2 \\u2013 N\\u1eef \\u2013 Quartz (Pin) \\u2013 M\\u1eb7t S\\u1ed1 30mm, K\\u00ednh C\\u1ee9ng, Ch\\u1ed1ng N\\u01b0\\u1edbc 3ATM\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 57,
-  "fields": {
-    "action_time": "2026-03-10T10:00:14.954Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brandshowcase"
-    ],
-    "object_id": "2",
-    "object_repr": "SAGA (thứ tự 0)",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Brand\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 58,
-  "fields": {
-    "action_time": "2026-03-10T10:11:49.458Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "11",
-    "object_repr": "Đồng Hồ Citizen 42mm Nam BL8150-86L",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (17)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (18)\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 59,
-  "fields": {
-    "action_time": "2026-03-10T10:17:13.558Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "12",
-    "object_repr": "Đồng Hồ Citizen 40mm Nam NJ0151-88M",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (19)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (20)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Citizen 40mm Nam NJ0151-88M\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 60,
-  "fields": {
-    "action_time": "2026-03-10T10:18:11.586Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "12",
-    "object_repr": "Đồng Hồ Citizen 40mm Nam NJ0151-88M",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}, {\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Citizen 40mm Nam NJ0151-88M\", \"fields\": [\"Image\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 61,
-  "fields": {
-    "action_time": "2026-03-10T10:18:30.265Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "12",
-    "object_repr": "Đồng Hồ Citizen 40mm Nam NJ0151-88M",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 Citizen 40mm Nam NJ0151-88M\", \"fields\": [\"Image\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 62,
-  "fields": {
-    "action_time": "2026-03-10T10:24:03.817Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "13",
-    "object_repr": "Đồng Hồ SRWatch 40mm Nam SG3002.4602CV",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (21)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (22)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 SRWatch 40mm Nam SG3002.4602CV\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - \\u0110\\u1ed3ng H\\u1ed3 SRWatch 40mm Nam SG3002.4602CV\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 63,
-  "fields": {
-    "action_time": "2026-03-10T10:29:16.622Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "14",
-    "object_repr": "Đồng Hồ SRWatch 36mm Nữ SL99993.4603GLA",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (23)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (24)\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 64,
-  "fields": {
-    "action_time": "2026-03-10T10:35:57.860Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "15",
-    "object_repr": "G-Shock DW-5610BEP-2 – Nam – Quartz (Pin) – Mặt Số 48.9 mm x 43.8 mm, BlackEyePatch, Chống Nước 20ATM",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (25)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (26)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (27)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - G-Shock DW-5610BEP-2 \\u2013 Nam \\u2013 Quartz (Pin) \\u2013 M\\u1eb7t S\\u1ed1 48.9 mm x 43.8 mm, BlackEyePatch, Ch\\u1ed1ng N\\u01b0\\u1edbc 20ATM\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 65,
-  "fields": {
-    "action_time": "2026-03-10T10:39:31.738Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "16",
-    "object_repr": "G-Shock DW-5600BBM-2DR – Nam – Kính Cứng – Quartz (Pin) – Mặt Số 42.8mm, Bộ Bấm Giờ, Chống Nước 20ATM",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (28)\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 66,
-  "fields": {
-    "action_time": "2026-03-10T10:45:08.513Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "17",
-    "object_repr": "Seiko 5 Sports SRPJ45K1 – Nam – Automatic (Tự Động) – Mặt Số 43mm – Kính Hardlex – Chống Nước 10ATM – Bezel Xoay – Dạ Quang LumiBrite",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (29)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (30)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (31)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Seiko 5 Sports SRPJ45K1 \\u2013 Nam \\u2013 Automatic (T\\u1ef1 \\u0110\\u1ed9ng) \\u2013 M\\u1eb7t S\\u1ed1 43mm \\u2013 K\\u00ednh Hardlex \\u2013 Ch\\u1ed1ng N\\u01b0\\u1edbc 10ATM \\u2013 Bezel Xoay \\u2013 D\\u1ea1 Quang LumiBrite\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 67,
-  "fields": {
-    "action_time": "2026-03-10T10:45:18.017Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "17",
-    "object_repr": "Seiko 5 Sports SRPJ45K1 – Nam – Automatic (Tự Động) – Mặt Số 43mm – Kính Hardlex – Chống Nước 10ATM – Bezel Xoay – Dạ Quang LumiBrite",
-    "action_flag": 2,
-    "change_message": "[]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 68,
-  "fields": {
-    "action_time": "2026-03-10T10:45:49.052Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "17",
-    "object_repr": "Seiko 5 Sports SRPJ45K1 – Nam – Automatic (Tự Động) – Mặt Số 43mm – Kính Hardlex – Chống Nước 10ATM – Bezel Xoay – Dạ Quang LumiBrite",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Price\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 69,
-  "fields": {
-    "action_time": "2026-03-10T10:50:10.202Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "18",
-    "object_repr": "Seiko 5 Sports SSK003K1 – Nam – Kính Hardlex – Automatic – Mặt Số 42.5mm, Trữ cót 41 giờ, GMT",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (32)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (33)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (34)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Seiko 5 Sports SSK003K1 \\u2013 Nam \\u2013 K\\u00ednh Hardlex \\u2013 Automatic \\u2013 M\\u1eb7t S\\u1ed1 42.5mm, Tr\\u1eef c\\u00f3t 41 gi\\u1edd, GMT\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 70,
-  "fields": {
-    "action_time": "2026-03-10T10:55:45.651Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "19",
-    "object_repr": "Longines Primaluna Moonphase L8.126.0.71.6 – Nữ – Automatic (Tự Động) – Mặt Số 34mm – Kính Sapphire – Lịch Tuần Trăng – 58 Viên Kim Cương Tự Nhiên 0.580 carats",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (35)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (36)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (37)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Longines Primaluna Moonphase L8.126.0.71.6 \\u2013 N\\u1eef \\u2013 Automatic (T\\u01b0\\u0323 \\u0110\\u00f4\\u0323ng) \\u2013 M\\u0103\\u0323t S\\u00f4\\u0301 34mm \\u2013 Ki\\u0301nh Sapphire \\u2013 Li\\u0323ch Tu\\u00e2\\u0300n Tr\\u0103ng \\u2013 58 Vi\\u00ean Kim C\\u01b0\\u01a1ng T\\u01b0\\u0323 Nhi\\u00ean 0.580 carats\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 71,
-  "fields": {
-    "action_time": "2026-03-10T10:56:21.332Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "19",
-    "object_repr": "Longines Primaluna Moonphase L8.126.0.71.6 – Nữ – Automatic (Tự Động) – Mặt Số 34mm – Kính Sapphire – Lịch Tuần Trăng – 58 Viên Kim Cương Tự Nhiên 0.580 carats",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Series\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 72,
-  "fields": {
-    "action_time": "2026-03-10T11:02:49.910Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "20",
-    "object_repr": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (38)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (39)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (40)\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Longines Hydroconquest L3.742.3.96.7 \\u2013 Nam \\u2013 Automatic \\u2013 M\\u1eb7t S\\u1ed1 41mm \\u2013 Ch\\u1ed1ng N\\u01b0\\u1edbc 30 ATM \\u2013 Tr\\u1eef C\\u00f3t 72 Gi\\u1edd\"}}, {\"added\": {\"name\": \"\\u1ea2nh s\\u1ea3n ph\\u1ea9m\", \"object\": \"\\u1ea2nh #0 - Longines Hydroconquest L3.742.3.96.7 \\u2013 Nam \\u2013 Automatic \\u2013 M\\u1eb7t S\\u1ed1 41mm \\u2013 Ch\\u1ed1ng N\\u01b0\\u1edbc 30 ATM \\u2013 Tr\\u1eef C\\u00f3t 72 Gi\\u1edd\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 73,
-  "fields": {
-    "action_time": "2026-03-10T11:08:38.730Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "21",
-    "object_repr": "Đồng Hồ Omega 38.5mm Nam 231.10.39.21.57.001",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (41)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (42)\"}}, {\"added\": {\"name\": \"watch image\", \"object\": \"WatchImage object (43)\"}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 74,
-  "fields": {
-    "action_time": "2026-03-10T11:09:04.686Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "watch"
-    ],
-    "object_id": "21",
-    "object_repr": "Đồng Hồ Omega 38.5mm Nam 231.10.39.21.57.001",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Lo\\u1ea1i m\\u00e1y\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 75,
-  "fields": {
-    "action_time": "2026-03-10T14:50:08.843Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "15",
-    "object_repr": "Đơn #15 - faf",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 76,
-  "fields": {
-    "action_time": "2026-03-10T15:32:41.973Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "sites",
-      "site"
-    ],
-    "object_id": "1",
-    "object_repr": "127.0.0.1:8000",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Domain name\", \"Display name\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 77,
-  "fields": {
-    "action_time": "2026-03-10T15:34:26.282Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "socialaccount",
-      "socialapp"
-    ],
-    "object_id": "1",
-    "object_repr": "Google",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 78,
-  "fields": {
-    "action_time": "2026-03-10T15:57:06.845Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "socialaccount",
-      "socialapp"
-    ],
-    "object_id": "1",
-    "object_repr": "Google",
-    "action_flag": 2,
-    "change_message": "[]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 79,
-  "fields": {
-    "action_time": "2026-03-10T16:34:02.947Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brandshowcase"
-    ],
-    "object_id": "3",
-    "object_repr": "LONGINES (thứ tự 0)",
-    "action_flag": 1,
-    "change_message": "[{\"added\": {}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 80,
-  "fields": {
-    "action_time": "2026-03-10T16:40:34.509Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "brandshowcase"
-    ],
-    "object_id": "3",
-    "object_repr": "LONGINES (thứ tự 0)",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Poster\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 81,
-  "fields": {
-    "action_time": "2026-03-13T14:01:10.873Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "31",
-    "object_repr": "Đơn #31 - Dương Khánh",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Payment status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 82,
-  "fields": {
-    "action_time": "2026-03-13T14:03:32.103Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "32",
-    "object_repr": "Đơn #32 - Dương Khánhbdbdhd",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\", \"Payment status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 83,
-  "fields": {
-    "action_time": "2026-03-13T14:04:06.731Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "32",
-    "object_repr": "Đơn #32 - Dương Khánhbdbdhd",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 84,
-  "fields": {
-    "action_time": "2026-03-13T14:06:47.702Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "33",
-    "object_repr": "Đơn #33 - Dương Khánhbdbdhd322424",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Payment status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 85,
-  "fields": {
-    "action_time": "2026-03-13T15:08:18.044Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "34",
-    "object_repr": "Đơn #34 - Dương Khánhbdbdhd322424",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 86,
-  "fields": {
-    "action_time": "2026-03-13T15:13:37.087Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "34",
-    "object_repr": "Đơn #34 - Dương Khánhbdbdhd322424",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Payment status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 87,
-  "fields": {
-    "action_time": "2026-03-14T09:05:50.080Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "11",
-    "object_repr": "[admin1] Đơn hàng #34 đã được giao thành công",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 88,
-  "fields": {
-    "action_time": "2026-03-14T09:05:57.538Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "10",
-    "object_repr": "[admin1] Đơn hàng #32 đã được giao thành công",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 89,
-  "fields": {
-    "action_time": "2026-03-14T09:06:04.183Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "9",
-    "object_repr": "[admin1] Đơn hàng #32 đang được vận chuyển",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 90,
-  "fields": {
-    "action_time": "2026-03-14T09:06:10.510Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "4",
-    "object_repr": "[admin1] Đơn hàng #11 đang được vận chuyển",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 91,
-  "fields": {
-    "action_time": "2026-03-14T09:09:51.401Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "8",
-    "object_repr": "[admin1] Đơn hàng #15 đã được xác nhận",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 92,
-  "fields": {
-    "action_time": "2026-03-14T09:09:57.428Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "7",
-    "object_repr": "[khanh123] Đơn hàng #14 đã được giao thành công",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 93,
-  "fields": {
-    "action_time": "2026-03-14T09:10:02.302Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "6",
-    "object_repr": "[admin] Đơn hàng #13 đã được giao thành công",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 94,
-  "fields": {
-    "action_time": "2026-03-14T09:10:14.738Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "5",
-    "object_repr": "[khanh123] Đơn hàng #10 đã được giao thành công",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Notif type\", \"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 95,
-  "fields": {
-    "action_time": "2026-03-14T09:10:19.343Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "3",
-    "object_repr": "[khanh123] Đơn hàng #8 đang được vận chuyển",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 96,
-  "fields": {
-    "action_time": "2026-03-14T09:10:25.234Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "2",
-    "object_repr": "[khanh123] Đơn hàng #10 đã được xác nhận",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 97,
-  "fields": {
-    "action_time": "2026-03-14T09:21:29.166Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "37",
-    "object_repr": "Đơn #37 - Dương Khánhbdbdhd322424",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\", \"Payment status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 98,
-  "fields": {
-    "action_time": "2026-03-14T09:23:19.853Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "37",
-    "object_repr": "Đơn #37 - Dương Khánhbdbdhd322424",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 99,
-  "fields": {
-    "action_time": "2026-03-14T09:23:40.680Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "notification"
-    ],
-    "object_id": "12",
-    "object_repr": "[admin1] Đơn hàng #37 đang được vận chuyển",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 100,
-  "fields": {
-    "action_time": "2026-03-14T09:26:42.829Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "39",
-    "object_repr": "Đơn #39 - Dương Khánhbdbdhd322424",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 101,
-  "fields": {
-    "action_time": "2026-03-14T09:27:04.862Z",
-    "user": [
-      "admin1"
-    ],
-    "content_type": [
-      "app1",
-      "order"
-    ],
-    "object_id": "38",
-    "object_repr": "Đơn #38 - Dương Khánhbdbdhd322424",
-    "action_flag": 2,
-    "change_message": "[{\"changed\": {\"fields\": [\"Status\", \"Payment status\"]}}]"
   }
 },
 {

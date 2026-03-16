@@ -29,6 +29,7 @@ python manage.py migrate
 :: 6. Load data tu fixtures/data.json
 if exist fixtures\data.json (
     echo Loading data from fixtures/data.json...
+    python manage.py flush --no-input
     python manage.py loaddata fixtures/data.json
     if errorlevel 1 (
         echo.
