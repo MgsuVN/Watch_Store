@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Phụ Kiện Đồng Hồ — WATCHSTORE.VN{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#e60023; --orange:#f39200; --green:#1a9e3f;
+  --gold:#c9a84c; --gold-light:#f0d080; --gold-dark:#8a6e2f;
+  --ink:#0f0f0f; --surface:#f5f5f7; --border:#e8e4dc; --muted:#9a9690; --text:#1c1a17;
+}
+
+/* ── HERO ── */
+.acc-hero {
+  position:relative;
+  background:#0f0f0f !important;
+  overflow:hidden; padding:72px 0 56px; text-align:center;
+  color:#fff;
+}
+.acc-hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%,rgba(201,168,76,.18) 0%,transparent 70%),
+    repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(201,168,76,.03) 30px,rgba(201,168,76,.03) 31px);
+}
+.acc-hero-eyebrow {
+  font-size:11px; font-weight:600; letter-spacing:4px; text-transform:uppercase;
+  color:#c9a84c; margin-bottom:16px;
+  display:flex; align-items:center; justify-content:center; gap:12px;
+}
+.acc-hero-eyebrow::before,.acc-hero-eyebrow::after {
+  content:''; width:32px; height:1px; background:#c9a84c; opacity:.6;
+}
+.acc-hero h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.6rem,5vw,4rem); font-weight:700; color:#fff !important;
+  line-height:1.1; margin-bottom:14px; letter-spacing:-.5px;
+}
+.acc-hero h1 em { font-style:italic; color:#f0d080; }
+.acc-hero p { color:rgba(255,255,255,.6) !important; font-size:15px; max-width:420px; margin:0 auto; line-height:1.7; }
+
+/* ── FILTER BAR ── */
+.acc-filter-bar {
+  background:#fff; border-bottom:1px solid var(--border);
+  position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
+}
+.acc-filter-inner {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:14px 0;
+}
+.acc-tabs { display:flex; gap:4px; }
+.acc-tab {
+  padding:8px 20px; border-radius:8px; font-size:13px; font-weight:600;
+  color:#666; text-decoration:none; transition:all .2s; border:1.5px solid transparent;
+}
+.acc-tab:hover { color:var(--gold-dark); background:#fdf8ee; }
+.acc-tab.active { background:var(--ink); color:var(--gold-light); border-color:var(--ink); }
+.acc-count-label { font-size:13px; color:var(--muted); white-space:nowrap; }
+.acc-count-label strong { color:var(--text); }
+
+/* ── MAIN SECTION ── */
+.acc-section { background:var(--surface); padding:32px 0 80px; min-height:500px; }
+
+
+
+
+/* ── EMPTY ── */
+.acc-empty { text-align:center; padding:80px 20px; }
+.acc-empty-icon { font-size:56px; margin-bottom:16px; opacity:.4; }
+.acc-empty p { color:var(--muted); font-size:15px; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:575px){
+  .acc-filter-inner{ flex-direction:column; align-items:flex-start; gap:10px; }
+  .acc-tabs{ width:100%; overflow-x:auto; scrollbar-width:none; }
+  .acc-tabs::-webkit-scrollbar{ display:none; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<div class="acc-hero">
+  <div class="acc-hero-eyebrow">Watchstore.VN</div>
+  <h1>Phụ Kiện <em>Đồng Hồ</em></h1>
+  <p>Dây đồng hồ cao cấp, hộp đựng sang trọng và nhiều phụ kiện chính hãng khác</p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="acc-filter-bar">
+  <div class="container">
+    <div class="acc-filter-inner">
+      <div class="acc-tabs">
+        <a href="{% url 'accessory' %}"                        class="acc-tab {% if not category %}active{% endif %}">Tất cả</a>
+        <a href="{% url 'accessory' %}?category=strap"         class="acc-tab {% if category == 'strap' %}active{% endif %}">Dây Đồng Hồ</a>
+        <a href="{% url 'accessory' %}?category=box"           class="acc-tab {% if category == 'box' %}active{% endif %}">Hộp Đựng</a>
+      </div>
+      <div class="acc-count-label"><strong>{{ total }}</strong> sản phẩm</div>
+    </div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="acc-section">
+  <div class="container">
+
+    {% if page_obj %}
+
+    <div class="row g-4">
+      {% for product in page_obj %}
+      <div class="col-6 col-md-3">
+        <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column {% if product.gender %}has-gender{% endif %}"
+             onclick="saveToHistory('{{ product.id }}','{{ product.name|escapejs }}','{{ product.image.url }}','{{ product.sale_price|vnd }} vnđ','{% url 'watch_detail' product.slug %}'); window.location.href='{% url 'watch_detail' product.slug %}';"
+             style="cursor:pointer;">
+
+          {% if product.is_sold_out %}
+          <div class="sold-overlay">TẠM HẾT HÀNG</div>
+          {% endif %}
+
+          {# Gender badge — góc trên phải (nếu phụ kiện có gender) #}
+          {% if product.gender %}
+          <span class="gender-badge
+              {% if product.gender == 'Nam' %}badge-nam
+              {% elif product.gender == 'Nữ' %}badge-nu
+              {% else %}badge-unisex{% endif %}">
+              {% if product.gender == 'Nam' %}<i class="fa-solid fa-mars me-1"></i>Nam
+              {% elif product.gender == 'Nữ' %}<i class="fa-solid fa-venus me-1"></i>Nữ
+              {% else %}⚥ Unisex{% endif %}
+          </span>
+          {% endif %}
+
+          {# Sale badge #}
+          {% if product.discount_percent %}
+          <span class="sale-badge">-{{ product.discount_percent }}%</span>
+          {% endif %}
+
+          {# Nút tim — góc TRÁI, emoji đồng nhất #}
+          <button class="heart-btn wishlist-btn"
+              onclick="event.stopPropagation(); toggleWishlistCard({{ product.id }}, this)"
+              data-id="{{ product.id }}"
+              style="position:absolute;top:8px;left:10px;z-index:5;
+                     background:none !important;border:none !important;border-radius:0 !important;
+                     box-shadow:none !important;width:auto !important;height:auto !important;
+                     font-size:26px;line-height:1;padding:0;color:#ccc;"><i class="fa-regular fa-heart"></i></button>
+
+          
+
+          <img src="{{ product.image.url }}" class="img-fluid mb-3" style="height:200px;object-fit:contain;" loading="lazy" alt="{{ product.name }}">
+
+          <h6 style="font-family:inherit;font-size:14px;font-weight:600;line-height:1.45;color:#000;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:center;letter-spacing:-0.1px;">
+            {{ product.name }}
+          </h6>
+
+          {% if product.brand %}
+          <p style="font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;text-align:center;">
+            {{ product.brand }}
+          </p>
+          {% endif %}
+
+          {% if product.discount_percent %}
+          <p style="font-size:13px;color:#999;text-decoration:line-through;text-align:center;font-weight:400;">
+            {{ product.price|vnd }} vnđ
+          </p>
+          <p style="font-size:14px;font-weight:700;color:#e60023;text-align:center;">
+            {{ product.sale_price|vnd }} vnđ
+          </p>
+          {% else %}
+          <p style="font-size:14px;font-weight:700;color:#e60023;text-align:center;">
+            {{ product.price|vnd }} vnđ
+          </p>
+          {% endif %}
+
+          {% if product.is_sold_out %}
+          <button class="btn btn-secondary w-100 rounded-pill mt-auto" disabled>Hết hàng</button>
+          {% else %}
+          <a href="{% url 'watch_detail' product.slug %}" class="btn btn-outline-dark w-100 rounded-pill mt-auto" onclick="event.stopPropagation()">Chi tiết</a>
+          {% endif %}
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- PHÂN TRANG -->
+    <div class="text-center mt-4">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}&category={{ category }}"
+         class="btn btn-outline-dark btn-sm">‹</a>
+      {% endif %}
+      {% for num in page_obj.paginator.page_range %}
+      <a href="?page={{ num }}&category={{ category }}"
+         class="btn btn-outline-dark btn-sm {% if page_obj.number == num %}active{% endif %}">{{ num }}</a>
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}&category={{ category }}"
+         class="btn btn-outline-dark btn-sm">›</a>
+      {% endif %}
+    </div>
+
+    {% else %}
+    <div class="acc-empty">
+      <div class="acc-empty-icon">⌚</div>
+      <p>Chưa có sản phẩm phụ kiện nào.<br>Vui lòng quay lại sau!</p>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="wish-toast" id="wishToastAcc" style="display:none;"></div>
+
+<!-- Wishlist JS được xử lý bởi base.html -->
+<script>
+function saveToHistory(id, name, image, price, url) {
+  let history = JSON.parse(localStorage.getItem('rv_history') || '[]');
+  history = history.filter(p => p.id !== id);
+  history.unshift({ id, name, image, price, url });
+  if (history.length > 10) history = history.slice(0, 10);
+  localStorage.setItem('rv_history', JSON.stringify(history));
+}
+</script>
+
+{% endblock %}

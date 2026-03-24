@@ -30,7 +30,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 # ================================================================
-# WATCH
+# WATCH (chỉ hiện Đồng Hồ — category='watch')
 # ================================================================
 class WatchImageInline(admin.TabularInline):
     model = WatchImage
@@ -97,17 +97,21 @@ class ReviewAdmin(admin.ModelAdmin):
 
 @admin.register(Watch)
 class WatchAdmin(admin.ModelAdmin):
-    list_display = ('watch_image', 'name', 'brand', 'price', 'discount_percent', 'is_sold_out', 'sold_count')
+    list_display = ('watch_image', 'name', 'brand', 'category', 'price', 'discount_percent', 'is_sold_out', 'sold_count')
     list_display_links = ('watch_image', 'name')
-    list_filter = ('brand', 'is_sold_out', 'gender')
+    list_filter = ('category', 'brand', 'is_sold_out', 'gender')
     search_fields = ('name', 'brand__name')
     prepopulated_fields = {'slug': ('name',)}
-    list_editable = ('is_sold_out',)
+    list_editable = ('is_sold_out', 'category')
     inlines = [WatchImageInline, WatchDescImageInline]
+
+    def get_queryset(self, request):
+        # Bảng Đồng Hồ chỉ hiển thị category='watch'
+        return super().get_queryset(request).filter(category='watch')
 
     fieldsets = (
         ('Thông tin cơ bản', {
-            'fields': ('name', 'slug', 'brand', 'image', 'description', 'is_sold_out')
+            'fields': ('category', 'name', 'slug', 'brand', 'image', 'description', 'is_sold_out')
         }),
         ('Giá & Khuyến mãi', {
             'fields': ('price', 'discount_percent')
@@ -134,6 +138,71 @@ class WatchAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" style="height:50px;border-radius:6px;">', obj.image.url)
         return '-'
     watch_image.short_description = 'Ảnh'
+
+
+# ================================================================
+# PHỤ KIỆN (Proxy Admin — lọc strap + box từ bảng Watch)
+# ================================================================
+class AccessoryProxy(Watch):
+    """Proxy model để tạo mục riêng 'Phụ Kiện' trên admin sidebar."""
+    class Meta:
+        proxy = True
+        verbose_name        = 'Phụ kiện'
+        verbose_name_plural = 'Phụ kiện (Dây & Hộp)'
+
+@admin.register(AccessoryProxy)
+class AccessoryAdmin(admin.ModelAdmin):
+    list_display       = ('accessory_image', 'name', 'category_badge', 'brand', 'price', 'discount_percent', 'is_sold_out')
+    list_display_links = ('accessory_image', 'name')
+    list_filter        = ('category', 'brand', 'is_sold_out')
+    search_fields      = ('name', 'brand__name')
+    prepopulated_fields = {'slug': ('name',)}
+    list_editable      = ('is_sold_out',)
+    inlines            = [WatchImageInline, WatchDescImageInline]
+
+    def get_queryset(self, request):
+        # Chỉ hiện dây (strap) và hộp (box)
+        return super().get_queryset(request).filter(category__in=['strap', 'box'])
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        # Giới hạn dropdown category chỉ còn strap & box
+        if 'category' in form.base_fields:
+            form.base_fields['category'].choices = [
+                ('strap', 'Dây Đồng Hồ'),
+                ('box',   'Hộp Đựng Đồng Hồ'),
+            ]
+        return form
+
+    fieldsets = (
+        ('Thông tin cơ bản', {
+            'fields': ('category', 'name', 'slug', 'brand', 'image', 'description', 'is_sold_out')
+        }),
+        ('Giá & Khuyến mãi', {
+            'fields': ('price', 'discount_percent')
+        }),
+        ('Thông số', {
+            'fields': ('strap_material', 'diameter', 'warranty', 'features'),
+        }),
+        ('Thống kê', {
+            'fields': ('sold_count',),
+        }),
+    )
+
+    def accessory_image(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="height:50px;border-radius:6px;">', obj.image.url)
+        return '-'
+    accessory_image.short_description = 'Ảnh'
+
+    def category_badge(self, obj):
+        color = '#1565c0' if obj.category == 'strap' else '#6d4c41'
+        label = obj.get_category_display()
+        return format_html(
+            '<span style="background:{};color:#fff;padding:2px 10px;border-radius:10px;font-size:12px;">{}</span>',
+            color, label
+        )
+    category_badge.short_description = 'Loại'
 
 
 # ================================================================
@@ -353,11 +422,9 @@ class NotificationAdmin(admin.ModelAdmin):
 # DASHBOARD THỐNG KÊ — override trang chủ Jazzmin Admin
 # ================================================================
 def get_dashboard_stats(request):
-    """Tính toán số liệu thống kê cho dashboard."""
     now   = timezone.now()
     today = now.date()
 
-    # Bộ lọc thời gian
     period    = request.GET.get('period', 'month')
     date_from = request.GET.get('date_from', '')
     date_to   = request.GET.get('date_to', '')
@@ -384,7 +451,7 @@ def get_dashboard_stats(request):
     elif period == 'all':
         qs_filter    = Q()
         period_label = 'Tất cả thời gian'
-    else:  # month (mặc định)
+    else:
         qs_filter    = Q(created_at__year=now.year, created_at__month=now.month)
         period_label = f'Tháng {now.month}/{now.year}'
 
@@ -406,7 +473,6 @@ def get_dashboard_stats(request):
         'cancelled': 'Đã hủy',
     }
 
-    # Biểu đồ 30 ngày
     daily_labels, daily_data = [], []
     for i in range(29, -1, -1):
         d   = today - datetime.timedelta(days=i)
@@ -415,7 +481,6 @@ def get_dashboard_stats(request):
         daily_labels.append(d.strftime('%d/%m'))
         daily_data.append(int(rev))
 
-    # Biểu đồ 12 tháng
     monthly_labels, monthly_data = [], []
     for i in range(11, -1, -1):
         m, y = now.month - i, now.year
@@ -427,7 +492,6 @@ def get_dashboard_stats(request):
         monthly_labels.append(f'T{m}/{y}')
         monthly_data.append(int(rev))
 
-    # Biểu đồ thương hiệu
     brand_stats = (
         OrderItem.objects
         .filter(order__in=Order.objects.exclude(status='cancelled'))
@@ -436,7 +500,6 @@ def get_dashboard_stats(request):
         .order_by('-rev')[:8]
     )
 
-    # Top sản phẩm bán chạy
     top_raw = (
         OrderItem.objects.filter(order__in=orders_qs)
         .values('watch_name')
@@ -444,7 +507,6 @@ def get_dashboard_stats(request):
         .order_by('-total_qty')[:8]
     )
 
-    # Đơn hàng mới nhất
     recent_raw = Order.objects.order_by('-created_at')[:8]
 
     return {

@@ -233,6 +233,8 @@ Watch_Store/
 │       ├── home.html              # Trang chủ
 │       ├── brand_detail.html      # Trang thương hiệu
 │       ├── watch_detail.html      # Chi tiết sản phẩm
+│       ├── gender_watch.html      # Trang lọc theo giới tính (Nam / Nữ)
+│       ├── accessory.html         # Trang phụ kiện đồng hồ (dây, hộp đựng...)
 │       ├── checkout.html          # Trang thanh toán
 │       ├── qr_payment.html        # Thanh toán QR
 │       ├── invoice.html           # Hoá đơn

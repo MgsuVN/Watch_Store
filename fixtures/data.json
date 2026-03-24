@@ -3,7 +3,7 @@
   "model": "auth.user",
   "fields": {
     "password": "pbkdf2_sha256$1200000$HSkuq9POTkh9vrr4WOE2K7$CxCUkj9JvtXjbUaFDAe0pMriqZgN8GZcBS7RYxNUzaE=",
-    "last_login": "2026-03-14T07:41:54.187Z",
+    "last_login": "2026-03-18T02:00:25.043Z",
     "is_superuser": false,
     "username": "admin",
     "first_name": "",
@@ -20,7 +20,7 @@
   "model": "auth.user",
   "fields": {
     "password": "pbkdf2_sha256$1200000$9nAXAkStRpcjdftaZ77EDL$tmUtc37c53oBwq3vq28ZobTRPt1FAU0md0M/FLHiYUs=",
-    "last_login": "2026-03-14T09:03:11.440Z",
+    "last_login": "2026-03-21T06:47:38.265Z",
     "is_superuser": true,
     "username": "admin1",
     "first_name": "",
@@ -134,18 +134,26 @@
 },
 {
   "model": "sessions.session",
-  "pk": "ee0qbw2xaia809folip9jtsbj1htmkrz",
-  "fields": {
-    "session_data": ".eJxVjDEOwyAQBP9CHSFjsDlSpvcb0HFwwUmEJWNXUf4eLLlImi12ZvctPO5b9ntNq5-juIpeXH67gPRM5QDxgeW-SFrKts5BHoo8aZXTEtPrdrp_BxlrbmuingaILnAgYE6QVGc0sianDdpgLY-qETAaHACrTjsXlB2ZB91SfL4LiDg0:1w1Ktr:aW0dipdyEFZ2b1BXixdv2sUdpcSvmBgVz5NjfzY5eMI",
-    "expire_date": "2026-03-28T09:03:11.455Z"
-  }
-},
-{
-  "model": "sessions.session",
   "pk": "g8jb6hf3veootgv5ouqqfuw35kvzxp28",
   "fields": {
     "session_data": ".eJytzcEKgjAYAOB3-c9Dtrm59FaUhwg6WUaIjDljOpy4rYv47gW9Qufv8K3gnTLSSqVcnELrgwzaQ7FCVd8uMQ7sej_26cOcoXiuMC9Oaf91sO5lJkDQySChmKK1COZR6Va5TrdvvZje6OUnGyJCpBQTSkWS4TznnDcI6L7EujxVYZDjoa7FXwZGEsYx2WW82bYPqRJIeQ:1w0Ae1:T3XSEgeywz0DlUfLMbUlJeC0iOIsCgfCZu59_f9OxAU",
     "expire_date": "2026-03-25T03:54:01.450Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hefribzid3ehs8kkkmwfdafvkzhfwkjh",
+  "fields": {
+    "session_data": ".eJxVkE1uxCAMRu_idYQghABZdt8TVFVk_hraBkaBqK1Gc_dCO5vZIIv3-cn2FdDafKa64lk3n2q0WGNO6-7rll2B5eUK_zUscMFSvvLhYACssDApJyrFLBQZheZaywHO4o-Eu29pdHtMDG6vA_zZ187W2EUjPPwZtB8-deDeMb1lYnOqRzSkR8idFvKcnf98umcfBBuWrXVbO1qhnDbBWBWCV57RiWPgVvMJpZEyzKwRNXGllQqMtqENk3MIgre3S4svpR_Af1_i8dOWHKmeKb39Ag4FYfU:1w3q7W:RziABlL8N5k1sEK2JUVKvf9XXOOM2XIM1Xz2K2w_uQc",
+    "expire_date": "2026-04-04T06:47:38.284Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nwx8vkf87i5ewmmmkh7a7pb6my3m94n7",
+  "fields": {
+    "session_data": ".eJxVkEFuwyAQRe8yawuZgA142X1PUFXWAENNW0NksJooyt1r2myyGY3m_XmLfwN0Lu-pzrjXhVKNDmvMaV6pLtkXmN5u8L_DBGcs5SdvHjrAChNXSvacj0IxyQctpepgL7QlXOlIo19j4nB_7-DPPjc2xyY6wdPNovui1ID_xPSRmcupbtGyFmEPWthr9vT98sg-CRYsy_Ht3MkN2hsbrNMhkCbeS4FBOCMkKqtUGPlBtBTaaB14L4yxXI0hDOKYTVqolFYAXc5xu8LU338BshNgqw:1w3ZSv:mRm4sEm0m5Vv9o6McmJ6z_BzhP56wCklr08c8nPaOls",
+    "expire_date": "2026-04-03T13:00:37.462Z"
   }
 },
 {
@@ -341,6 +349,7 @@
   "model": "app1.watch",
   "pk": 1,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Casio MTP-1374L-1A",
     "slug": "djng-h-casio-mtp-1374l-1a",
     "brand": 1,
@@ -372,6 +381,7 @@
   "model": "app1.watch",
   "pk": 2,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Casio 38.5mm Nam MTP-1302DS-1AVDF",
     "slug": "djng-h-casio-385mm-nam-mtp-1302ds-1avdf",
     "brand": 1,
@@ -403,6 +413,7 @@
   "model": "app1.watch",
   "pk": 3,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Orient 40.8mm Nam RA-AR0009L30B",
     "slug": "djng-h-orient-408mm-nam-ra-ar0009l30b",
     "brand": 2,
@@ -434,6 +445,7 @@
   "model": "app1.watch",
   "pk": 4,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Orient 36.6 mm Nữ RA-AG0729S30B",
     "slug": "djng-h-orient-366-mm-n-ra-ag0729s30b",
     "brand": 2,
@@ -465,6 +477,7 @@
   "model": "app1.watch",
   "pk": 5,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Bentley 43mm Nam BL1784-252KBB-S2-M",
     "slug": "djng-h-bentley-43mm-nam-bl1784-252kbb-s2-m",
     "brand": 3,
@@ -496,6 +509,7 @@
   "model": "app1.watch",
   "pk": 6,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Bentley 41mm Nam BL1831-15MWNN",
     "slug": "djng-h-bentley-41mm-nam-bl1831-15mwnn",
     "brand": 3,
@@ -527,6 +541,7 @@
   "model": "app1.watch",
   "pk": 9,
   "fields": {
+    "category": "watch",
     "name": "Saga Chroma Dance 54390-SVWTSV-2 – Nữ – Quartz (Pin) – Mặt Số 34mm – Kính Cứng – Mặt Số Đổi Màu",
     "slug": "saga-chroma-dance-54390-svwtsv-2-n-quartz-pin-mat",
     "brand": 13,
@@ -558,6 +573,7 @@
   "model": "app1.watch",
   "pk": 10,
   "fields": {
+    "category": "watch",
     "name": "Saga Stella Chance 53578-SVBLSV-2 – Nữ – Quartz (Pin) – Mặt Số 30mm, Kính Cứng, Chống Nước 3ATM",
     "slug": "saga-stella-chance-53578-svblsv-2-n-quartz-pin-mt",
     "brand": 13,
@@ -589,6 +605,7 @@
   "model": "app1.watch",
   "pk": 11,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Citizen 42mm Nam BL8150-86L",
     "slug": "djng-h-citizen-42mm-nam-bl8150-86l",
     "brand": 4,
@@ -620,6 +637,7 @@
   "model": "app1.watch",
   "pk": 12,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Citizen 40mm Nam NJ0151-88M",
     "slug": "djng-h-citizen-40mm-nam-nj0151-88m",
     "brand": 4,
@@ -651,6 +669,7 @@
   "model": "app1.watch",
   "pk": 13,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ SRWatch 40mm Nam SG3002.4602CV",
     "slug": "djng-h-srwatch-40mm-nam-sg30024602cv",
     "brand": 5,
@@ -682,6 +701,7 @@
   "model": "app1.watch",
   "pk": 14,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ SRWatch 36mm Nữ SL99993.4603GLA",
     "slug": "djng-h-srwatch-36mm-n-sl999934603gla",
     "brand": 5,
@@ -713,6 +733,7 @@
   "model": "app1.watch",
   "pk": 15,
   "fields": {
+    "category": "watch",
     "name": "G-Shock DW-5610BEP-2 – Nam – Quartz (Pin) – Mặt Số 48.9 mm x 43.8 mm, BlackEyePatch, Chống Nước 20ATM",
     "slug": "g-shock-dw-5610bep-2-nam-quartz-pin-mt-s-489-mm-x",
     "brand": 6,
@@ -744,6 +765,7 @@
   "model": "app1.watch",
   "pk": 16,
   "fields": {
+    "category": "watch",
     "name": "G-Shock DW-5600BBM-2DR – Nam – Kính Cứng – Quartz (Pin) – Mặt Số 42.8mm, Bộ Bấm Giờ, Chống Nước 20ATM",
     "slug": "g-shock-dw-5600bbm-2dr-nam-kinh-cng-quartz-pin-mt",
     "brand": 6,
@@ -775,6 +797,7 @@
   "model": "app1.watch",
   "pk": 17,
   "fields": {
+    "category": "watch",
     "name": "Seiko 5 Sports SRPJ45K1 – Nam – Automatic (Tự Động) – Mặt Số 43mm – Kính Hardlex – Chống Nước 10ATM – Bezel Xoay – Dạ Quang LumiBrite",
     "slug": "seiko-5-sports-srpj45k1-nam-automatic-t-djng-mt-s",
     "brand": 7,
@@ -806,6 +829,7 @@
   "model": "app1.watch",
   "pk": 18,
   "fields": {
+    "category": "watch",
     "name": "Seiko 5 Sports SSK003K1 – Nam – Kính Hardlex – Automatic – Mặt Số 42.5mm, Trữ cót 41 giờ, GMT",
     "slug": "seiko-5-sports-ssk003k1-nam-kinh-hardlex-automatic",
     "brand": 7,
@@ -837,6 +861,7 @@
   "model": "app1.watch",
   "pk": 19,
   "fields": {
+    "category": "watch",
     "name": "Longines Primaluna Moonphase L8.126.0.71.6 – Nữ – Automatic (Tự Động) – Mặt Số 34mm – Kính Sapphire – Lịch Tuần Trăng – 58 Viên Kim Cương Tự Nhiên 0.580 carats",
     "slug": "longines-primaluna-moonphase-l81260716-n-automatic",
     "brand": 8,
@@ -868,6 +893,7 @@
   "model": "app1.watch",
   "pk": 20,
   "fields": {
+    "category": "watch",
     "name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
     "slug": "longines-hydroconquest-l37423967-nam-automatic-mt",
     "brand": 8,
@@ -899,6 +925,7 @@
   "model": "app1.watch",
   "pk": 21,
   "fields": {
+    "category": "watch",
     "name": "Đồng Hồ Omega 38.5mm Nam 231.10.39.21.57.001",
     "slug": "djng-h-omega-385mm-nam-23110392157001",
     "brand": 9,
@@ -924,6 +951,70 @@
     "warranty": "24 tháng",
     "sold_count": 4,
     "created_at": "2026-03-10T11:08:38.720Z"
+  }
+},
+{
+  "model": "app1.watch",
+  "pk": 22,
+  "fields": {
+    "category": "strap",
+    "name": "Dây Đồng Hồ Hirsch 01028070-2-22",
+    "slug": "day-djng-h-hirsch-01028070-2-22",
+    "brand": null,
+    "price": 15000000,
+    "discount_percent": 5,
+    "image": "products/daydeo.webp",
+    "description": "",
+    "is_sold_out": false,
+    "gender": "",
+    "water_resistance": "",
+    "movement": "",
+    "glass_material": "",
+    "strap_material": "Dây Da",
+    "diameter": "",
+    "thickness": "",
+    "dial_color": "",
+    "series": "",
+    "case_diameter": "",
+    "case_color": "",
+    "dial_shape": "",
+    "design_style": "",
+    "features": "",
+    "warranty": "24 tháng",
+    "sold_count": 8,
+    "created_at": "2026-03-20T14:33:52.947Z"
+  }
+},
+{
+  "model": "app1.watch",
+  "pk": 23,
+  "fields": {
+    "category": "box",
+    "name": "Masamu Zenbox MSM-HOP-6-V2 – Kích Thước 24 cm x 23 cm x 10 cm – Gỗ DMF – 6 Ngăn",
+    "slug": "masamu-zenbox-msm-hop-6-v2-kich-thc-24-cm-x-23-cm",
+    "brand": null,
+    "price": 3100000,
+    "discount_percent": 5,
+    "image": "products/hop1.avif",
+    "description": "",
+    "is_sold_out": false,
+    "gender": "",
+    "water_resistance": "",
+    "movement": "",
+    "glass_material": "",
+    "strap_material": "",
+    "diameter": "24 cm x  23 cm x 10 cm",
+    "thickness": "",
+    "dial_color": "",
+    "series": "",
+    "case_diameter": "",
+    "case_color": "",
+    "dial_shape": "",
+    "design_style": "",
+    "features": "Chất liệu vỏ: Gỗ MDF,\r\nNắp hộp: Kính trong suốt, Loại hộp: 6 ngăn, Màu: Nâu, Khóa bảo vệ",
+    "warranty": "24 tháng",
+    "sold_count": 5,
+    "created_at": "2026-03-24T09:51:30.236Z"
   }
 },
 {
@@ -1314,6 +1405,51 @@
   }
 },
 {
+  "model": "app1.watchimage",
+  "pk": 44,
+  "fields": {
+    "watch": 22,
+    "image": "products/gallery/day2.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 45,
+  "fields": {
+    "watch": 22,
+    "image": "products/gallery/day3.webp",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 46,
+  "fields": {
+    "watch": 23,
+    "image": "products/gallery/hop2.avif",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 47,
+  "fields": {
+    "watch": 23,
+    "image": "products/gallery/hop3.avif",
+    "order": 0
+  }
+},
+{
+  "model": "app1.watchimage",
+  "pk": 48,
+  "fields": {
+    "watch": 23,
+    "image": "products/gallery/hop4.avif",
+    "order": 0
+  }
+},
+{
   "model": "app1.watchdescimage",
   "pk": 2,
   "fields": {
@@ -1526,11 +1662,20 @@
 },
 {
   "model": "app1.cartitem",
-  "pk": 47,
+  "pk": 59,
   "fields": {
-    "cart": 3,
-    "watch": 20,
-    "quantity": 2
+    "cart": 1,
+    "watch": 17,
+    "quantity": 1
+  }
+},
+{
+  "model": "app1.cartitem",
+  "pk": 60,
+  "fields": {
+    "cart": 1,
+    "watch": 18,
+    "quantity": 1
   }
 },
 {
@@ -2374,6 +2519,66 @@
   }
 },
 {
+  "model": "app1.order",
+  "pk": 43,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "full_name": "Dương Khánhbdbdhd322424",
+    "phone": "12345678",
+    "address": "Thái Nguyên",
+    "city": "fmfm",
+    "note": "",
+    "payment": "bank",
+    "status": "pending",
+    "total": "7060400",
+    "created_at": "2026-03-18T01:20:25.683Z",
+    "updated_at": "2026-03-18T01:20:32.986Z",
+    "payment_status": "waiting_confirm"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 44,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "full_name": "12331",
+    "phone": "12345678",
+    "address": "Thái Nguyên",
+    "city": "fmfm",
+    "note": "",
+    "payment": "bank",
+    "status": "pending",
+    "total": "90548300",
+    "created_at": "2026-03-18T02:01:13.782Z",
+    "updated_at": "2026-03-18T02:01:57.495Z",
+    "payment_status": "waiting_confirm"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 45,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "full_name": "Khánh Dương",
+    "phone": "12345678",
+    "address": "Thái Nguyên",
+    "city": "fmfm",
+    "note": "",
+    "payment": "bank",
+    "status": "cancelled",
+    "total": "104798300",
+    "created_at": "2026-03-21T08:46:16.393Z",
+    "updated_at": "2026-03-21T08:46:39.270Z",
+    "payment_status": "waiting_confirm"
+  }
+},
+{
   "model": "app1.orderitem",
   "pk": 1,
   "fields": {
@@ -2926,6 +3131,54 @@
   }
 },
 {
+  "model": "app1.orderitem",
+  "pk": 47,
+  "fields": {
+    "order": 43,
+    "watch": 15,
+    "watch_name": "G-Shock DW-5610BEP-2 – Nam – Quartz (Pin) – Mặt Số 48.9 mm x 43.8 mm, BlackEyePatch, Chống Nước 20ATM",
+    "price": "7060400",
+    "quantity": 1,
+    "subtotal": "7060400"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 48,
+  "fields": {
+    "order": 44,
+    "watch": 20,
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "price": "45274150",
+    "quantity": 2,
+    "subtotal": "90548300"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 49,
+  "fields": {
+    "order": 45,
+    "watch": 20,
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "price": "45274150",
+    "quantity": 2,
+    "subtotal": "90548300"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 50,
+  "fields": {
+    "order": 45,
+    "watch": 22,
+    "watch_name": "Dây Đồng Hồ Hirsch 01028070-2-22",
+    "price": "14250000",
+    "quantity": 1,
+    "subtotal": "14250000"
+  }
+},
+{
   "model": "app1.notification",
   "pk": 1,
   "fields": {
@@ -3250,6 +3503,50 @@
     "image3": "",
     "created_at": "2026-03-13T14:41:31.244Z",
     "is_visible": true
+  }
+},
+{
+  "model": "app1.wishlist",
+  "pk": 24,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "watch": 21,
+    "created_at": "2026-03-21T09:04:09.026Z"
+  }
+},
+{
+  "model": "app1.wishlist",
+  "pk": 25,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "watch": 20,
+    "created_at": "2026-03-21T09:08:12.944Z"
+  }
+},
+{
+  "model": "app1.wishlist",
+  "pk": 36,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "watch": 19,
+    "created_at": "2026-03-21T09:35:23.104Z"
+  }
+},
+{
+  "model": "app1.wishlist",
+  "pk": 37,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "watch": 22,
+    "created_at": "2026-03-21T09:45:24.707Z"
   }
 },
 {

@@ -3,6 +3,9 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('phu-kien/', views.accessory_view, name='accessory'),
+    path('nam/', views.gender_view, {'gender': 'nam'}, name='watch_nam'),
+    path('nu/', views.gender_view, {'gender': 'nu'}, name='watch_nu'),
     path('brand/<slug:slug>/', views.brand_detail, name='brand_detail'),
     path('watch/<slug:slug>/', views.watch_detail, name='watch_detail'),
     path('watch/<slug:slug>/review/', views.submit_review, name='submit_review'),
@@ -27,6 +30,7 @@ urlpatterns = [
     # Yêu thích
     path('wishlist/', views.wishlist_view, name='wishlist'),
     path('wishlist/toggle/<int:watch_id>/', views.wishlist_toggle, name='wishlist_toggle'),
+    path('wishlist/ids/', views.wishlist_ids, name='wishlist_ids'),
 
     # Chat bot
     path('chatbot/', views.chatbot_view, name='chatbot'),

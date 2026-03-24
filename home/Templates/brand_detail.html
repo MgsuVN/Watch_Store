@@ -117,30 +117,8 @@
 }
 .filter-panel.open { max-height: 300px; padding: 20px 0; }
 
-/* PRODUCT CARD */
-.product-card { transition: 0.25s ease; border-radius: 12px !important; }
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(0,0,0,0.13) !important;
-}
-.sale-badge {
-    position: absolute; top: 10px; right: 10px;
-    background: #e60023; color: white;
-    padding: 4px 9px; font-size: 12px;
-    border-radius: 6px; font-weight: 700; z-index: 5;
-}
-.wishlist {
-    position: absolute; top: 10px; left: 10px;
-    font-size: 22px; color: #ccc; cursor: pointer; z-index: 5; transition: 0.2s;
-}
-.wishlist:hover { color: #e60023; transform: scale(1.15); }
-.sold-overlay {
-    position: absolute; inset: 0;
-    background: rgba(255,255,255,0.82);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 15px; color: #e60023;
-    border-radius: 12px; z-index: 4;
-}
+/* PRODUCT CARD — style dùng chung đã có trong base.html */
+/* Nút tim — style dùng chung từ base.html (heart-btn) */
 
 /* PAGINATION */
 .pagination-bar .btn { border-radius: 8px; font-weight: 600; }
@@ -228,19 +206,38 @@
         <div class="row g-4">
             {% for product in page_obj %}
             <div class="col-6 col-md-3">
-                <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column"
+                <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column {% if product.gender %}has-gender{% endif %}"
                      onclick="saveToHistory('{{ product.id }}', '{{ product.name|escapejs }}', '{{ product.image.url }}', '{{ product.sale_price|default:product.price|vnd }} vnđ', '{% url 'watch_detail' product.slug %}'); window.location.href='{% url 'watch_detail' product.slug %}';"
                      style="cursor:pointer;">
-
-                    {% if product.discount_percent > 0 %}
-                    <span class="sale-badge">-{{ product.discount_percent }}%</span>
-                    {% endif %}
 
                     {% if product.is_sold_out %}
                     <div class="sold-overlay">TẠM HẾT HÀNG</div>
                     {% endif %}
 
-                    <span class="wishlist">♥</span>
+                    {# Gender badge — góc trên phải #}
+                    {% if product.gender %}
+                    <span class="gender-badge
+                        {% if product.gender == 'Nam' %}badge-nam
+                        {% elif product.gender == 'Nữ' %}badge-nu
+                        {% else %}badge-unisex{% endif %}">
+                        {% if product.gender == 'Nam' %}<i class="fa-solid fa-mars me-1"></i>Nam
+                        {% elif product.gender == 'Nữ' %}<i class="fa-solid fa-venus me-1"></i>Nữ
+                        {% else %}⚥ Unisex{% endif %}
+                    </span>
+                    {% endif %}
+
+                    {# Sale badge — góc phải, xuống dưới gender badge nhờ has-gender #}
+                    {% if product.discount_percent > 0 %}
+                    <span class="sale-badge">-{{ product.discount_percent }}%</span>
+                    {% endif %}
+
+                    {# Nút tim — cố định góc TRÁI #}
+                    <button class="heart-btn wishlist-btn" data-id="{{ product.id }}"
+                        onclick="event.stopPropagation(); toggleWishlistCard({{ product.id }}, this)"
+                        style="position:absolute;top:8px;left:10px;z-index:5;
+                               background:none !important;border:none !important;border-radius:0 !important;
+                               box-shadow:none !important;width:auto !important;height:auto !important;
+                               font-size:26px;line-height:1;padding:0;color:#ccc;"><i class="fa-regular fa-heart"></i></button>
 
                     <img src="{{ product.image.url }}"
                          class="img-fluid mb-3"

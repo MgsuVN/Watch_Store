@@ -21,7 +21,6 @@
         }
 
         /* ===== DROPDOWN RESPONSIVE (dùng chung) ===== */
-        /* Desktop: dropdown thả xuống bình thường */
         @media (min-width: 992px) {
             .dropdown-menu-end {
                 right: 0;
@@ -29,16 +28,13 @@
             }
         }
 
-        /* Tablet & Mobile: dropdown căn giữa, dễ bấm */
         @media (max-width: 991.98px) {
-            /* Dropdown item dễ bấm hơn */
             .dropdown-item {
                 padding: 12px 20px !important;
                 font-size: 15px;
             }
         }
 
-        /* Icon trong dropdown thẳng hàng */
         .dropdown-item i {
             width: 1.5rem;
             text-align: center;
@@ -50,18 +46,122 @@
             align-items: center;
         }
 
-        /* ===== UTILITY: Tránh ảnh tràn khung ===== */
+        /* ===== UTILITY ===== */
         img {
             max-width: 100%;
             height: auto;
         }
 
-        /* ===== CONTAINER padding nhỏ hơn trên mobile ===== */
         @media (max-width: 575.98px) {
             .container, .container-fluid {
                 padding-left: 12px;
                 padding-right: 12px;
             }
+        }
+
+        /* ===== PRODUCT CARD — DÙNG CHUNG TẤT CẢ TRANG ===== */
+        .product-card {
+            border-radius: 14px !important;
+            transition: transform .22s, box-shadow .22s;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.13) !important;
+        }
+        .product-card img { transition: transform 0.3s ease; }
+        .product-card:hover img { transform: scale(1.05); }
+
+        /* Sale badge */
+        .sale-badge {
+            position: absolute; right: 10px; top: 10px;
+            background: #e60023; color: #fff;
+            padding: 4px 8px; font-size: 10px;
+            border-radius: 20px; font-weight: 700; z-index: 2;
+        }
+        .has-gender .sale-badge { top: 46px; }
+
+        /* Sold out overlay */
+        .sold-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,.45);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 13px; font-weight: 800;
+            letter-spacing: 2px; border-radius: 14px; z-index: 3;
+        }
+
+        /* Gender badge */
+        .gender-badge {
+            position: absolute; top: 10px; right: 10px;
+            font-size: 11px; font-weight: 700;
+            padding: 5px 11px; border-radius: 20px; z-index: 4;
+            letter-spacing: .3px;
+        }
+        .badge-nam    { background: #1565c0; color: #fff; }
+        .badge-nu     { background: #c2185b; color: #fff; }
+        .badge-unisex { background: #546e7a; color: #fff; }
+
+        /* ===== HEART BUTTON — DÙNG CHUNG TẤT CẢ TRANG ===== */
+        .heart-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-size: 20px!important;
+    line-height: 1;
+    padding: 0;
+
+    color: #bbb;
+    transition: all 0.25s ease;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover sang xịn hơn */
+.heart-btn:hover {
+    transform: scale(1.15);
+    color: #e60023;
+}
+
+/* Khi đã yêu thích */
+.heart-btn.active {
+    color: #e60023;
+}
+
+/* Animation mềm hơn */
+.heart-btn.beating {
+    animation: heartBeat 0.4s ease;
+}
+.heart-btn.breaking {
+    animation: heartBreak 0.35s ease;
+}
+
+        /* Wish toast */
+        .wish-toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600;
+            z-index: 99999; opacity: 0; transition: opacity .3s;
+            pointer-events: none; white-space: nowrap;
+        }
+        .wish-toast.show    { opacity: 1; }
+        .wish-toast.success { background: #1a9e3f; color: #fff; }
+        .wish-toast.remove  { background: #e60023; color: #fff; }
+
+        /* Heart animations */
+        @keyframes heartBeat {
+            0%   { transform: scale(1); }
+            25%  { transform: scale(1.6); }
+            50%  { transform: scale(1.2); }
+            75%  { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+        @keyframes heartBreak {
+            0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+            30%  { transform: scale(1.4) rotate(-20deg); opacity: 0.7; }
+            60%  { transform: scale(0.7) rotate(20deg); opacity: 0.4; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
         {% block extra_css %}{% endblock %}
@@ -82,6 +182,102 @@
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
     {% block extra_js %}{% endblock %}
+
+    <!-- ===== WISHLIST GLOBAL JS ===== -->
+    <script>
+    window._userLoggedIn = {% if user.is_authenticated %}true{% else %}false{% endif %};
+
+    function getCookie(name) {
+        for (let c of document.cookie.split(';')) {
+            c = c.trim();
+            if (c.startsWith(name + '=')) return decodeURIComponent(c.slice(name.length + 1));
+        }
+        return null;
+    }
+
+    function showWishToast(msg, type) {
+        let t = document.getElementById('wishToastGlobal');
+        if (!t) {
+            t = document.createElement('div');
+            t.id = 'wishToastGlobal';
+            t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:30px;font-size:14px;font-weight:600;z-index:99999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;color:#fff;';
+            document.body.appendChild(t);
+        }
+        t.textContent = msg;
+        t.style.background = type === 'success' ? '#1a9e3f' : '#e60023';
+        t.style.opacity = '1';
+        setTimeout(() => { t.style.opacity = '0'; }, 2500);
+    }
+
+    // Toggle wishlist — gọi API DB
+    function toggleWishlist(watchId, btn) {
+        if (!window._userLoggedIn) {
+            showWishToast('Vui lòng đăng nhập để yêu thích!', 'remove');
+            setTimeout(() => window.location.href = '/accounts/login/?next=' + window.location.pathname, 1200);
+            return;
+        }
+        fetch('/wishlist/toggle/' + watchId + '/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.added) {
+                btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                btn.classList.add('active', 'beating');
+                btn.style.color = '#e60023';
+                showWishToast('❤️ Đã thêm vào yêu thích!', 'success');
+            } else {
+                btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                btn.classList.remove('active');
+                btn.classList.add('breaking');
+                btn.style.color = '#ccc';
+                showWishToast('💔 Đã xóa khỏi yêu thích!', 'remove');
+            }
+            // Xoá animation class sau khi chạy xong
+            btn.addEventListener('animationend', () => {
+                btn.classList.remove('beating', 'breaking');
+            }, { once: true });
+        });
+    }
+
+    // Alias cho các trang cũ còn dùng tên cũ
+    function toggleWishlistCard(watchId, btn) { toggleWishlist(watchId, btn); }
+
+    // Khởi tạo trạng thái tim từ DB — emoji heart, đồng nhất mọi trang
+    function initWishlistColors() {
+        if (!window._userLoggedIn) {
+            document.querySelectorAll('.wishlist-btn[data-id]').forEach(btn => {
+                btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                btn.style.color = '#ccc';
+                btn.classList.remove('active');
+            });
+            return;
+        }
+        fetch('/wishlist/ids/')
+            .then(r => r.json())
+            .then(data => {
+                const ids = data.ids || [];
+                document.querySelectorAll('.wishlist-btn[data-id]').forEach(btn => {
+                    if (ids.includes(parseInt(btn.dataset.id))) {
+                        btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                        btn.classList.add('active');
+                        btn.style.color = '#e60023';
+                    } else {
+                        btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                        btn.classList.remove('active');
+                        btn.style.color = '#ccc';
+                    }
+                });
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', initWishlistColors);
+    document.addEventListener('htmx:afterSwap', initWishlistColors);
+    </script>
 
     {% include 'includes/chatbot_widget.html' %}
 </body>

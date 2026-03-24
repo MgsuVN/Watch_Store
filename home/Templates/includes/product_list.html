@@ -3,15 +3,9 @@
 
 {% for product in page_obj %}
 <div class="col-6 col-md-3">
-    <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column"
+    <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column {% if product.gender %}has-gender{% endif %}"
          onclick="saveToHistory('{{ product.id }}', '{{ product.name|escapejs }}', '{{ product.image.url }}', '{{ product.sale_price|vnd }} vnđ', '{% url 'watch_detail' product.slug %}'); window.location.href='{% url 'watch_detail' product.slug %}';"
          style="cursor:pointer;">
-
-        {% if product.discount_percent > 0 %}
-        <span class="sale-badge">
-            -{{ product.discount_percent }}%
-        </span>
-        {% endif %}
 
         {% if product.is_sold_out %}
         <div class="sold-overlay">
@@ -19,8 +13,31 @@
         </div>
         {% endif %}
 
-        <button class="wishlist" onclick="event.stopPropagation(); toggleWishlistCard({{ product.id }}, this)"
-            style="background:none;border:none;padding:0;">♥</button>
+        {# Gender badge — góc trên phải #}
+        {% if product.gender %}
+        <span class="gender-badge
+            {% if product.gender == 'Nam' %}badge-nam
+            {% elif product.gender == 'Nữ' %}badge-nu
+            {% else %}badge-unisex{% endif %}">
+            {% if product.gender == 'Nam' %}<i class="fa-solid fa-mars me-1"></i>Nam
+            {% elif product.gender == 'Nữ' %}<i class="fa-solid fa-venus me-1"></i>Nữ
+            {% else %}⚥ Unisex{% endif %}
+        </span>
+        {% endif %}
+
+        {# Sale badge — góc phải, xuống dưới gender badge nhờ class has-gender #}
+        {% if product.discount_percent > 0 %}
+        <span class="sale-badge">-{{ product.discount_percent }}%</span>
+        {% endif %}
+
+        <button class="heart-btn wishlist-btn"
+    onclick="event.stopPropagation(); toggleWishlist({{ product.id }}, this)"
+    data-id="{{ product.id }}"
+    style="position:absolute;top:8px;left:10px;z-index:5;">
+    
+    <i class="fa-regular fa-heart"></i>
+
+</button>
 
         <img src="{{ product.image.url }}"
              class="img-fluid mb-3"
@@ -144,65 +161,12 @@ document.addEventListener('htmx:afterSwap', function(e) {
 </script>
 
 <style>
-@keyframes heartBeat {
-    0%   { transform: scale(1); }
-    25%  { transform: scale(1.6); }
-    50%  { transform: scale(1.2); }
-    75%  { transform: scale(1.5); }
-    100% { transform: scale(1); }
-}
-@keyframes heartBreak {
-    0%   { transform: scale(1) rotate(0deg); opacity:1; }
-    30%  { transform: scale(1.4) rotate(-20deg); opacity:0.7; }
-    60%  { transform: scale(0.7) rotate(20deg); opacity:0.4; }
-    100% { transform: scale(1) rotate(0deg); opacity:1; }
-}
-.wishlist { font-size: 28px !important; transition: color 0.2s; }
-.wishlist.beating { animation: heartBeat 0.5s ease; }
-.wishlist.breaking { animation: heartBreak 0.4s ease; }
-.wish-toast {
-    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-    padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600;
-    z-index: 99999; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap;
-}
-.wish-toast.show { opacity: 1; }
-.wish-toast.success { background: #1a9e3f; color:#fff; }
-.wish-toast.remove  { background: #e60023; color:#fff; }
+/* CSS riêng product_list — heartBeat/heartBreak đã có trong base.html */
+.wishlist-btn.beating  { animation: heartBeat  0.5s ease; }
+.wishlist-btn.breaking { animation: heartBreak 0.4s ease; }
 </style>
 
-<div class="wish-toast" id="wishToastList"></div>
-
 <script>
-function showWishToast(msg, type) {
-    const t = document.getElementById('wishToastList');
-    if (!t) return;
-    t.textContent = msg;
-    t.className = 'wish-toast show ' + type;
-    setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-function toggleWishlistCard(watchId, btn) {
-    let wishlist = JSON.parse(localStorage.getItem('wishlist_ids') || '[]');
-    const idx = wishlist.indexOf(watchId);
-    btn.classList.remove('beating', 'breaking');
-    void btn.offsetWidth;
-    if (idx > -1) {
-        // Xóa yêu thích
-        wishlist.splice(idx, 1);
-        btn.classList.add('breaking');
-        setTimeout(() => { btn.textContent = '♥'; btn.style.color = '#bbb'; }, 400);
-        showWishToast('💔 Đã xóa khỏi yêu thích!', 'remove');
-    } else {
-        // Thêm yêu thích
-        wishlist.push(watchId);
-        btn.classList.add('beating');
-        btn.textContent = '❤️';
-        btn.style.color = '#e60023';
-        showWishToast('❤️ Đã thêm vào yêu thích!', 'success');
-    }
-    localStorage.setItem('wishlist_ids', JSON.stringify(wishlist));
-}
-
 function saveToHistory(id, name, image, price, url) {
     let history = JSON.parse(localStorage.getItem('rv_history') || '[]');
     history = history.filter(p => p.id !== id);
@@ -210,28 +174,4 @@ function saveToHistory(id, name, image, price, url) {
     if (history.length > 10) history = history.slice(0, 10);
     localStorage.setItem('rv_history', JSON.stringify(history));
 }
-
-// Khởi tạo màu wishlist - chạy cả khi load lẫn khi HTMX swap
-function initWishlistColors() {
-    let wishlist = JSON.parse(localStorage.getItem('wishlist_ids') || '[]');
-    document.querySelectorAll('.wishlist').forEach(btn => {
-        const card = btn.closest('[onclick]');
-        if (!card) return;
-        const onclickAttr = card.getAttribute('onclick') || '';
-        const match = onclickAttr.match(/saveToHistory.'(\d+)'/);
-        if (match && wishlist.includes(parseInt(match[1]))) {
-            btn.textContent = '❤️';
-            btn.style.color = '#e60023';
-        } else {
-            btn.textContent = '♥';
-            btn.style.color = '#bbb';
-        }
-    });
-}
-
-// Chạy khi trang load
-document.addEventListener('DOMContentLoaded', initWishlistColors);
-
-// Chạy lại sau mỗi lần HTMX swap nội dung mới (lọc hãng, phân trang...)
-document.addEventListener('htmx:afterSwap', initWishlistColors);
 </script>

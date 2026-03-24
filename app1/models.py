@@ -13,7 +13,6 @@ class Brand(models.Model):
     image = models.ImageField(upload_to='brands/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        # Tự động tạo slug từ tên nếu chưa có
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
@@ -24,6 +23,19 @@ class Brand(models.Model):
 
 # ── Sản phẩm đồng hồ ─────────────────────────────────────────
 class Watch(models.Model):
+    # ===== DANH MỤC =====
+    CATEGORY_CHOICES = [
+        ('watch',     'Đồng Hồ'),
+        ('strap',     'Dây Đồng Hồ'),
+        ('box',       'Hộp Đựng Đồng Hồ'),
+    ]
+    category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES,
+        default='watch',
+        verbose_name='Danh mục'
+    )
+
     # ===== THÔNG TIN CƠ BẢN =====
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -64,14 +76,12 @@ class Watch(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def save(self, *args, **kwargs):
-        # Tự động tạo slug từ tên nếu chưa có
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     @property
     def sale_price(self):
-        """Tính giá sau khi giảm. Nếu không giảm thì trả về giá gốc."""
         if self.discount_percent > 0:
             return int(self.price * (1 - self.discount_percent / 100))
         return self.price
@@ -85,6 +95,16 @@ class WatchImage(models.Model):
     watch = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='extra_images')
     image = models.ImageField(upload_to='products/gallery/')
     order = models.IntegerField(default=0, verbose_name='Thứ tự')
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Ảnh sản phẩm'
+        verbose_name_plural = 'Ảnh sản phẩm'
+
+    def __str__(self):
+        return f"Ảnh #{self.order} - {self.watch.name}"
+
+
 class WatchDescImage(models.Model):
     """Ảnh minh hoạ trong phần mô tả chi tiết sản phẩm (quản lý từ admin)."""
 
@@ -100,21 +120,13 @@ class WatchDescImage(models.Model):
     layout  = models.CharField(max_length=20, choices=LAYOUT_CHOICES, default='full', help_text='Kiểu hiển thị')
     order   = models.PositiveIntegerField(default=0, help_text='Thứ tự hiển thị (số nhỏ hiện trước)')
 
-
     class Meta:
         ordering = ['order']
-        verbose_name        = 'Ảnh mô tả'
+        verbose_name        = 'Ảnh mô tả chi tiết'
         verbose_name_plural = 'Ảnh mô tả sản phẩm'
 
     def __str__(self):
         return f"Ảnh mô tả #{self.order} — {self.watch.name}"
-    class Meta:
-        ordering = ['order']
-        verbose_name = 'Ảnh sản phẩm'
-        verbose_name_plural = 'Ảnh sản phẩm'
-
-    def __str__(self):
-        return f"Ảnh #{self.order} - {self.watch.name}"
 
 
 # ── Giỏ hàng (mỗi user có 1 giỏ duy nhất) ───────────────────
@@ -127,12 +139,10 @@ class Cart(models.Model):
 
     @property
     def total(self):
-        """Tổng tiền tất cả sản phẩm trong giỏ."""
         return sum(item.subtotal for item in self.items.all())
 
     @property
     def item_count(self):
-        """Số lượng loại sản phẩm trong giỏ."""
         return self.items.count()
 
 
@@ -144,7 +154,6 @@ class CartItem(models.Model):
 
     @property
     def subtotal(self):
-        """Thành tiền = giá sale × số lượng."""
         return self.watch.sale_price * self.quantity
 
     def __str__(self):
@@ -152,7 +161,6 @@ class CartItem(models.Model):
 
 
 # ── Thông tin mở rộng của user ────────────────────────────────
-# Tự động tạo khi User mới được tạo (qua signal post_save)
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='app1_profile')
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
@@ -165,7 +173,6 @@ class Profile(models.Model):
 
     @property
     def avatar_color(self):
-        """Màu nền avatar mặc định theo chữ cái đầu username."""
         colors = ['#f39200', '#e60023', '#1565c0', '#1a9e3f',
                   '#8b5cf6', '#06b6d4', '#f97316', '#ec4899']
         initial = self.user.username[0].upper() if self.user.username else 'U'
@@ -173,13 +180,11 @@ class Profile(models.Model):
 
     @property
     def avatar_initial(self):
-        """Chữ cái đầu để hiển thị trong avatar mặc định."""
         return self.user.username[0].upper() if self.user.username else 'U'
 
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
-    """Signal: tự động tạo Profile khi User mới được tạo."""
     if created:
         Profile.objects.create(user=instance)
     else:
@@ -191,7 +196,6 @@ class Order(models.Model):
     PAYMENT_CHOICES = [
         ('cod',         'Thanh toán khi nhận hàng'),
         ('bank',        'Chuyển khoản ngân hàng'),
-        ('installment', 'Trả sau cùng Fundiin'),
     ]
 
     STATUS_CHOICES = [
@@ -214,10 +218,11 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     payment_status = models.CharField(
-    max_length=20,
-    choices=[('pending','Chờ thanh toán'), ('waiting_confirm','Chờ xác nhận'), ('paid','Đã thanh toán')],
-    default='pending',
-)
+        max_length=20,
+        choices=[('pending','Chờ thanh toán'), ('waiting_confirm','Chờ xác nhận'), ('paid','Đã thanh toán')],
+        default='pending',
+    )
+
     class Meta:
         ordering = ['-created_at']
         verbose_name = 'Đơn hàng'
@@ -228,12 +233,10 @@ class Order(models.Model):
 
 
 # ── Từng sản phẩm trong đơn hàng ─────────────────────────────
-# Lưu lại tên & giá tại thời điểm đặt, tránh mất dữ liệu khi
-# sản phẩm bị xóa hoặc thay đổi giá sau này
 class OrderItem(models.Model):
     order      = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
     watch      = models.ForeignKey('Watch', on_delete=models.SET_NULL, null=True, blank=True)
-    watch_name = models.CharField(max_length=300)   # tên tại thời điểm đặt
+    watch_name = models.CharField(max_length=300)
     price      = models.DecimalField(max_digits=12, decimal_places=0, default=0)
     quantity   = models.PositiveIntegerField(default=1)
     subtotal   = models.DecimalField(max_digits=12, decimal_places=0, default=0)
@@ -276,7 +279,6 @@ class Notification(models.Model):
 
     @property
     def icon(self):
-        """Trả về emoji icon theo loại thông báo."""
         icons = {
             'order_placed':    '📦',
             'order_confirmed': '✅',
@@ -290,7 +292,6 @@ class Notification(models.Model):
 
     @property
     def icon_class(self):
-        """Trả về CSS class theo loại thông báo."""
         classes = {
             'order_placed':    'order',
             'order_confirmed': 'order',
@@ -305,7 +306,6 @@ class Notification(models.Model):
 
 # ── Hàm tiện ích ──────────────────────────────────────────────
 def create_notification(user, notif_type, title, message='', order=None):
-    """Tạo thông báo cho user. Gọi từ views.py sau các sự kiện quan trọng."""
     return Notification.objects.create(
         user=user,
         notif_type=notif_type,
@@ -313,11 +313,13 @@ def create_notification(user, notif_type, title, message='', order=None):
         message=message,
         order=order,
     )
+
+
 class BrandShowcase(models.Model):
     """Hãng nổi bật hiển thị trên trang chủ."""
-    brand  = models.OneToOneField(Brand, on_delete=models.CASCADE, related_name='showcase')
-    poster = models.ImageField(upload_to='showcase/', help_text='Ảnh poster bên trái')
-    order  = models.PositiveIntegerField(default=0, help_text='Thứ tự hiển thị (số nhỏ lên trước)')
+    brand     = models.OneToOneField(Brand, on_delete=models.CASCADE, related_name='showcase')
+    poster    = models.ImageField(upload_to='showcase/', help_text='Ảnh poster bên trái')
+    order     = models.PositiveIntegerField(default=0, help_text='Thứ tự hiển thị (số nhỏ lên trước)')
     is_active = models.BooleanField(default=True, help_text='Bật/tắt hiển thị')
 
     class Meta:
@@ -327,6 +329,8 @@ class BrandShowcase(models.Model):
 
     def __str__(self):
         return f"{self.brand.name} (thứ tự {self.order})"
+
+
 class Review(models.Model):
     watch      = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='reviews')
     user       = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
@@ -335,7 +339,7 @@ class Review(models.Model):
     rating     = models.PositiveSmallIntegerField(default=5)
     comment    = models.TextField()
     image      = models.ImageField(upload_to='reviews/', blank=True, null=True)
-    image2     = models.ImageField(upload_to='reviews/', blank=True, null=True) 
+    image2     = models.ImageField(upload_to='reviews/', blank=True, null=True)
     image3     = models.ImageField(upload_to='reviews/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_visible = models.BooleanField(default=True, help_text='Bật/tắt hiển thị đánh giá này')
@@ -347,4 +351,17 @@ class Review(models.Model):
         return f"{self.name} — {self.watch.name} ({self.rating}★)"
 
 
-# ── Thương hiệu đồng hồ ──────────────────────────────────────
+# ── Yêu thích ────────────────────────────────────────────────
+class Wishlist(models.Model):
+    user  = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wishlists')
+    watch = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='wishlisted_by')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'watch')
+        ordering = ['-created_at']
+        verbose_name = 'Yêu thích'
+        verbose_name_plural = 'Danh sách yêu thích'
+
+    def __str__(self):
+        return f"{self.user.username} ❤ {self.watch.name}"

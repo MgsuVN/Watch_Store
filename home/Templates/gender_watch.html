@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ banner_title }} | WatchStore{% endblock %}
+
+{% block content %}
+<script>document.body.classList.add('page-{{ gender }}');</script>
+
+<!-- ═══════════════════════════════════════
+     BANNER — SPLIT NAM / NỮ
+══════════════════════════════════════════ -->
+<section class="gender-split-banner">
+    <a href="{% url 'watch_nam' %}" class="gender-half male {% if gender == 'nam' %}active{% endif %}"
+       style="background-image: url('{% static 'images/nam.webp' %}')">
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="gender-icon"><i class="fa-solid fa-mars"></i></span>
+        </div>
+    </a>
+    <a href="{% url 'watch_nu' %}" class="gender-half female {% if gender == 'nu' %}active{% endif %}"
+       style="background-image: url('{% static 'images/nu.jpg' %}')">
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="gender-icon"><i class="fa-solid fa-venus"></i></span>
+        </div>
+    </a>
+</section>
+
+<!-- Tiêu đề dưới banner — căn giữa + gạch vàng -->
+<div class="page-heading">
+    <h1 class="page-heading-title">{{ banner_title|upper }}</h1>
+    <div class="page-heading-bar"></div>
+    <p class="page-heading-sub">{{ banner_subtitle }}</p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TOOLBAR: tổng SP + sắp xếp
+══════════════════════════════════════════ -->
+<div class="container mt-4 mb-2">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <p class="mb-0 text-muted" style="font-size:14px;">
+            Hiển thị <strong>{{ total }}</strong> sản phẩm
+        </p>
+        <form method="get" class="d-flex align-items-center gap-2">
+            <label class="mb-0 text-muted" style="font-size:14px; white-space:nowrap;">Sắp xếp:</label>
+            <select name="sort" class="form-select form-select-sm sort-select" onchange="this.form.submit()"
+                    style="min-width:170px; border-radius:20px; font-size:13px;">
+                <option value=""          {% if not sort %}selected{% endif %}>Mới nhất</option>
+                <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Giá tăng dần</option>
+                <option value="price_desc"{% if sort == 'price_desc' %}selected{% endif %}>Giá giảm dần</option>
+                <option value="sale"      {% if sort == 'sale' %}selected{% endif %}>Khuyến mãi nhiều nhất</option>
+                <option value="bestseller"{% if sort == 'bestseller' %}selected{% endif %}>Bán chạy nhất</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     LƯỚI SẢN PHẨM
+══════════════════════════════════════════ -->
+{% load custom_filters %}
+<div class="container mb-5">
+    {% if page_obj.object_list %}
+    <div class="row g-4">
+        {% for watch in page_obj %}
+        <div class="col-6 col-md-3">
+            <div class="card product-card border-0 shadow-sm p-3 position-relative h-100 d-flex flex-column has-gender"
+                 onclick="window.location.href='{% url 'watch_detail' watch.slug %}';"
+                 style="cursor:pointer;">
+
+                {% if watch.is_sold_out %}
+                <div class="sold-overlay">TẠM HẾT HÀNG</div>
+                {% endif %}
+
+                <!-- Gender badge — góc trên phải -->
+                <span class="gender-badge
+                    {% if watch.gender == 'Nam' %}badge-nam
+                    {% elif watch.gender == 'Nữ' %}badge-nu
+                    {% else %}badge-unisex{% endif %}">
+                    {% if watch.gender == 'Nam' %}<i class="fa-solid fa-mars me-1"></i>Nam
+                    {% elif watch.gender == 'Nữ' %}<i class="fa-solid fa-venus me-1"></i>Nữ
+                    {% else %}⚥ Unisex{% endif %}
+                </span>
+
+                <!-- Sale badge — góc phải, dưới gender badge -->
+                {% if watch.discount_percent > 0 %}
+                <span class="sale-badge">-{{ watch.discount_percent }}%</span>
+                {% endif %}
+
+                <!-- Nút tim — cố định góc TRÁI -->
+                <button class="heart-btn wishlist-btn"
+                    onclick="event.stopPropagation(); toggleWishlistCard({{ watch.id }}, this)"
+                    data-id="{{ watch.id }}"
+                    style="position:absolute;top:8px;left:10px;z-index:5;
+                           background:none !important;border:none !important;border-radius:0 !important;
+                           box-shadow:none !important;width:auto !important;height:auto !important;
+                           font-size:26px;line-height:1;padding:0;color:#ccc;"><i class="fa-regular fa-heart"></i></button>
+
+                <img src="{{ watch.image.url }}"
+                     class="img-fluid mb-3"
+                     style="height:200px;object-fit:contain;">
+
+                <h6 style="font-family:inherit;font-size:14px;font-weight:600;line-height:1.45;color:#000;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:center;margin-bottom:4px;letter-spacing:-0.1px;">
+                    {{ watch.name }}
+                </h6>
+
+                {% if watch.brand %}
+                <p style="font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;text-align:center;margin-bottom:4px;">
+                    {{ watch.brand }}
+                </p>
+                {% endif %}
+
+                {% if watch.discount_percent > 0 %}
+                    <p style="font-size:13px;color:#999;text-decoration:line-through;text-align:center;margin-bottom:2px;font-weight:400;">
+                        {{ watch.price|vnd }} vnđ
+                    </p>
+                    <p style="font-size:14px;font-weight:700;color:#e60023;text-align:center;margin-bottom:12px;">
+                        {{ watch.sale_price|vnd }} vnđ
+                    </p>
+                {% else %}
+                    <p style="font-size:14px;font-weight:700;color:#e60023;text-align:center;margin-bottom:12px;">
+                        {{ watch.price|vnd }} vnđ
+                    </p>
+                {% endif %}
+
+                {% if watch.is_sold_out %}
+                    <button class="btn btn-secondary w-100 rounded-pill mt-auto" disabled>Hết hàng</button>
+                {% else %}
+                    <a href="{% url 'watch_detail' watch.slug %}"
+                       class="btn btn-outline-dark w-100 rounded-pill mt-auto"
+                       onclick="event.stopPropagation()">Chi tiết</a>
+                {% endif %}
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <nav class="mt-4 d-flex justify-content-center">
+        <ul class="pagination pagination-sm gap-1">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link rounded-pill px-3" href="?page={{ page_obj.previous_page_number }}&sort={{ sort }}">‹</a>
+            </li>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li class="page-item active">
+                    <span class="page-link rounded-pill px-3" style="background:#f39200;border-color:#f39200;">{{ num }}</span>
+                </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <li class="page-item">
+                    <a class="page-link rounded-pill px-3" href="?page={{ num }}&sort={{ sort }}">{{ num }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link rounded-pill px-3" href="?page={{ page_obj.next_page_number }}&sort={{ sort }}">›</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <!-- Không có sản phẩm -->
+    <div class="text-center py-5">
+        <i class="fa-solid fa-box-open fa-3x text-muted mb-3"></i>
+        <p class="text-muted">Chưa có sản phẩm nào trong danh mục này.</p>
+        <a href="{% url 'home' %}" class="btn btn-outline-warning rounded-pill px-4">Về trang chủ</a>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+/* ══ SPLIT BANNER ══ */
+.gender-split-banner {
+    display: flex;
+    height: 260px;
+    overflow: hidden;
+}
+.gender-half {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    transition: flex 0.4s ease;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+.gender-half.male   { background-color: #1a2a4a; border-right: 2px solid rgba(255,255,255,0.2); }
+.gender-half.female { background-color: #3d1a4a; }
+.gender-half .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    transition: background 0.3s ease;
+}
+.gender-half .content {
+    position: relative;
+    z-index: 2;
+}
+.gender-icon { font-size: 42px; opacity: 0.9; }
+.gender-half:hover        { flex: 1.25; }
+.gender-half:hover .overlay { background: rgba(0,0,0,0.15); }
+.gender-half.active       { flex: 1.2; }
+
+/* ── Tiêu đề dưới banner ── */
+.page-heading {
+    text-align: center;
+    padding: 40px 0 28px;
+    background: #fff;
+}
+.page-heading-title {
+   
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #222;
+    margin: 0 0 10px;
+}
+.page-heading-bar {
+    width: 50px;
+    height: 3px;
+    background: #f39200;
+    margin: 0 auto 12px;
+    border-radius: 2px;
+}
+.page-heading-sub {
+    font-size: 13px;
+    color: #999;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* ── Nút tim — dùng chung từ base.html (heart-btn) ── */
+
+/* ── Sort select ── */
+.sort-select:focus {
+    border-color: #f39200;
+    box-shadow: 0 0 0 2px rgba(243,146,0,.15);
+}
+
+/* ── Pagination ── */
+.page-link { color: #333; border-color: #ddd; }
+.page-link:hover { background: #fff8ee; border-color: #f39200; color: #f39200; }
+
+/* ── Ẩn product-actions (không dùng ở trang này) ── */
+.product-actions { display: none; }
+</style>
+
+<!-- Wishlist JS được xử lý bởi base.html -->
+<div class="wish-toast" id="wishToastGender" style="display:none;"></div>
+
+{% endblock %}

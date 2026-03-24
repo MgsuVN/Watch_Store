@@ -1,6 +1,6 @@
 ﻿from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, BrandShowcase, Review, Order, OrderItem, Notification, create_notification, Profile
+from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, BrandShowcase, Review, Order, OrderItem, Notification, create_notification, Profile, Wishlist
 from .forms import WatchForm, ProfileForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -13,18 +13,19 @@ from django.dispatch import receiver
 
 def home(request):
     brands = Brand.objects.all()
-    products = Watch.objects.all().order_by('-id')
+    products = Watch.objects.filter(category='watch').order_by('-id')
     showcases = BrandShowcase.objects.filter(is_active=True).select_related('brand')[:6]
     brand_slug = request.GET.get('brand')
     current_brand = None
     if brand_slug:
         current_brand = Brand.objects.filter(slug=brand_slug).first()
         if current_brand:
-            products = current_brand.products.all().order_by('-id')
+            products = current_brand.products.filter(category='watch').order_by('-id')
 
     paginator = Paginator(products, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    list(page_obj)  # Force evaluate để tránh RecursionError trong Django template
 
     context = {
         'brands': brands,
@@ -38,6 +39,78 @@ def home(request):
         return render(request, 'includes/product_list.html', context)
 
     return render(request, 'home.html', context)
+
+
+def accessory_view(request):
+    """Trang phụ kiện — dây đồng hồ, hộp đựng đồng hồ"""
+    category = request.GET.get('category', '')  # strap, box hoặc '' = tất cả
+    sort = request.GET.get('sort', '')
+
+    products = Watch.objects.exclude(category='watch').order_by('-id')
+
+    if category in ['strap', 'box']:
+        products = products.filter(category=category)
+
+    if sort == 'price_asc':
+        products = products.order_by('price')
+    elif sort == 'price_desc':
+        products = products.order_by('-price')
+    elif sort == 'sale':
+        products = products.order_by('-discount_percent')
+
+    paginator = Paginator(products, 12)
+    page_obj = paginator.get_page(request.GET.get('page'))
+
+    return render(request, 'accessory.html', {
+        'page_obj': page_obj,
+        'category': category,
+        'sort': sort,
+        'total': products.count(),
+    })
+
+
+def gender_view(request, gender):
+    """
+    Trang đồng hồ theo giới tính.
+    gender = 'nam' → filter Nam + Unisex
+    gender = 'nu'  → filter Nữ + Unisex
+    """
+    if gender == 'nam':
+        products = Watch.objects.filter(category='watch', gender__in=['Nam', 'Unisex']).order_by('-id')
+        banner_title    = 'Đồng hồ Nam'
+        banner_subtitle = 'Mạnh mẽ – Lịch lãm – Đẳng cấp'
+        banner_icon     = '⌚'
+        banner_color    = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%)'
+    else:
+        products = Watch.objects.filter(category='watch', gender__in=['Nữ', 'Unisex']).order_by('-id')
+        banner_title    = 'Đồng hồ Nữ'
+        banner_subtitle = 'Tinh tế – Thanh lịch – Quyến rũ'
+        banner_icon     = '✨'
+        banner_color    = 'linear-gradient(135deg, #6a0572 0%, #a3196b 60%, #d4527a 100%)'
+
+    sort = request.GET.get('sort', '')
+    if sort == 'price_asc':
+        products = products.order_by('price')
+    elif sort == 'price_desc':
+        products = products.order_by('-price')
+    elif sort == 'sale':
+        products = products.order_by('-discount_percent')
+    elif sort == 'bestseller':
+        products = products.order_by('-sold_count')
+
+    paginator = Paginator(products, 12)
+    page_obj  = paginator.get_page(request.GET.get('page'))
+
+    return render(request, 'gender_watch.html', {
+        'page_obj':        page_obj,
+        'gender':          gender,
+        'sort':            sort,
+        'total':           products.count(),
+        'banner_title':    banner_title,
+        'banner_subtitle': banner_subtitle,
+        'banner_icon':     banner_icon,
+        'banner_color':    banner_color,
+    })
 
 
 def brand_detail(request, slug):
@@ -342,26 +415,30 @@ def order_detail_view(request, order_id):
 # ===== YÊU THÍCH =====
 @login_required
 def wishlist_view(request):
-    wishlist_ids = request.session.get('wishlist', [])
-    watches = Watch.objects.filter(id__in=wishlist_ids)
+    watches = Watch.objects.filter(wishlisted_by__user=request.user).order_by('-wishlisted_by__created_at')
     return render(request, 'wishlist.html', {'watches': watches})
 
 
 @login_required
 def wishlist_toggle(request, watch_id):
-    wishlist = request.session.get('wishlist', [])
-    if watch_id in wishlist:
-        wishlist.remove(watch_id)
+    """Toggle yêu thích — lưu vào DB. Trả JSON cho AJAX."""
+    watch = get_object_or_404(Watch, id=watch_id)
+    obj, created = Wishlist.objects.get_or_create(user=request.user, watch=watch)
+    if not created:
+        obj.delete()
         added = False
     else:
-        wishlist.append(watch_id)
         added = True
-    request.session['wishlist'] = wishlist
-    request.session.modified = True
 
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return JsonResponse({'added': added, 'count': len(wishlist)})
-    return redirect(request.META.get('HTTP_REFERER', 'home'))
+    count = Wishlist.objects.filter(user=request.user).count()
+    return JsonResponse({'added': added, 'count': count, 'watch_id': watch_id})
+
+
+@login_required
+def wishlist_ids(request):
+    """Trả về danh sách id sản phẩm đã yêu thích của user hiện tại."""
+    ids = list(Wishlist.objects.filter(user=request.user).values_list('watch_id', flat=True))
+    return JsonResponse({'ids': ids})
 
 
 def add_watch(request):
