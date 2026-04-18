@@ -51,10 +51,10 @@
     background: #fff;
     border-radius: 12px;
     border: 2px solid #ff8a00;
-    transition: .25s;
+    transition: 0.3s;
 }
 .qr-box:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     box-shadow: 0 10px 25px rgba(0,0,0,.12);
 }
 .qr-box img {
@@ -215,6 +215,59 @@
     animation: spin .7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== DESKTOP PRO LAYOUT ===== */
+@media (min-width: 992px) {
+
+    .qr-card {
+        max-width: 1000px;
+    }
+
+    .qr-body {
+        display: flex;
+        gap: 40px;
+        padding: 32px;
+    }
+
+    /* LEFT SIDE */
+    .qr-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* RIGHT SIDE */
+    .qr-right {
+        flex: 1.2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .qr-box {
+        width: 360px;
+    }
+
+    .qr-header h2 {
+        font-size: 26px;
+    }
+
+    .qr-info-table td {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    .transfer-content-text {
+        font-size: 20px;
+    }
+
+    .btn-pay-now {
+        font-size: 16px;
+        padding: 14px;
+    }
+}
 </style>
 
 <div class="qr-toast" id="qrToast"></div>
@@ -230,81 +283,87 @@
             </div>
 
             <div class="qr-body">
+                <div class="qr-left">
 
-                <!-- BANK BADGE -->
-                <div style="text-align:center;">
-                    <span class="bank-badge"><i class="bi bi-bank"></i> VietinBank – ICB</span>
-                </div>
-
-                <!-- QR CODE (VietQR với amount & addInfo tự động) -->
-                <div class="qr-box-wrap">
-                    <div class="qr-box">
-                        <img
-                            src="https://img.vietqr.io/image/ICB-103880291059-compact2.png?amount={{ order.total }}&addInfo=ORDER{{ order.id }}&accountName=WATCHSTORE"
-                            alt="QR VietQR thanh toán đơn hàng #{{ order.id }}"
-                            onerror="this.src='https://img.vietqr.io/image/ICB-103880291059-compact.png'"
-                        >
+                    <!-- BANK BADGE -->
+                    <div style="text-align:center;">
+                        <span class="bank-badge"><i class="bi bi-bank"></i> VietinBank – ICB</span>
                     </div>
-                </div>
 
-                <!-- ORDER INFO TABLE -->
-                <table class="qr-info-table">
-                    <tr>
-                        <td>Mã đơn hàng</td>
-                        <td>#{{ order.id }}</td>
-                    </tr>
-                    <tr>
-                        <td>Số tiền</td>
-                        <td class="qr-amount">{{ order.total|vnd }} ₫</td>
-                    </tr>
-                    <tr>
-                        <td>Số tài khoản</td>
-                        <td>103880291059</td>
-                    </tr>
-                    <tr>
-                        <td>Ngân hàng</td>
-                        <td>VietinBank (ICB)</td>
-                    </tr>
-                    <tr>
-                        <td>Chủ tài khoản</td>
-                        <td>DUONG QUOC KHANH</td>
-                    </tr>
-                </table>
-
-                <!-- TRANSFER CONTENT + COPY -->
-                <div class="transfer-info">
-                    <p>Nội dung chuyển khoản (bắt buộc):</p>
-                    <div class="transfer-box">
-                        <span class="transfer-content-text" id="transferContent">ORDER{{ order.id }}</span>
-                        <button class="btn-copy" onclick="copyTransfer(this)">
-                            <i class="bi bi-clipboard"></i> Copy
-                        </button>
+                    <!-- QR CODE (VietQR với amount & addInfo tự động) -->
+                    <div class="qr-box-wrap">
+                        <div class="qr-box">
+                            <img
+                                src="https://img.vietqr.io/image/ICB-103880291059-compact2.png?amount={{ order.total }}&addInfo=ORDER{{ order.id }}&accountName=WATCHSTORE"
+                                alt="QR VietQR thanh toán đơn hàng #{{ order.id }}"
+                                onerror="this.src='https://img.vietqr.io/image/ICB-103880291059-compact.png'"
+                            >
+                        </div>
                     </div>
-                </div>
 
-                <!-- COUNTDOWN -->
-                <div class="countdown-wrap">
-                    <i class="bi bi-hourglass-split"></i> Thời gian giữ đơn: <strong><span id="countdown">24h 00m 00s</span></strong>
-                </div>
+                </div> <!-- END LEFT -->
 
-                <!-- ACTION BUTTONS -->
-                <div class="qr-btn-group">
-                    <a href="{% url 'confirm_payment' order.id %}" class="btn-pay-now" id="btnPayNow">
-                        <span id="payNowText"><i class="bi bi-check-circle"></i> Tôi đã chuyển khoản</span>
-                        <div class="spinner" id="payNowSpinner"></div>
-                    </a>
-                    <a href="{% url 'invoice' order.id %}" class="btn-pay-later">
-                        <i class="bi bi-clock"></i> Thanh toán sau 24h
-                    </a>
-                </div>
+                <div class="qr-right">
 
-                <!-- NOTE -->
-                <p style="font-size:12px;color:#aaa;text-align:center;margin-top:16px;line-height:1.6;">
-                    Sau khi chuyển khoản, nhấn <strong>"Tôi đã chuyển khoản"</strong>.<br>
-                    Admin sẽ xác nhận thanh toán trong vòng 15–30 phút trong giờ hành chính.
-                </p>
+                    <!-- ORDER INFO TABLE -->
+                    <table class="qr-info-table">
+                        <tr>
+                            <td>Mã đơn hàng</td>
+                            <td>#{{ order.id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Số tiền</td>
+                            <td class="qr-amount">{{ order.total|vnd }} ₫</td>
+                        </tr>
+                        <tr>
+                            <td>Số tài khoản</td>
+                            <td>103880291059</td>
+                        </tr>
+                        <tr>
+                            <td>Ngân hàng</td>
+                            <td>VietinBank (ICB)</td>
+                        </tr>
+                        <tr>
+                            <td>Chủ tài khoản</td>
+                            <td>DUONG QUOC KHANH</td>
+                        </tr>
+                    </table>
 
-            </div>
+                    <!-- TRANSFER CONTENT + COPY -->
+                    <div class="transfer-info">
+                        <p>Nội dung chuyển khoản (bắt buộc):</p>
+                        <div class="transfer-box">
+                            <span class="transfer-content-text" id="transferContent">ORDER{{ order.id }}</span>
+                            <button class="btn-copy" onclick="copyTransfer(this)">
+                                <i class="bi bi-clipboard"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- COUNTDOWN -->
+                    <div class="countdown-wrap">
+                        <i class="bi bi-hourglass-split"></i> Thời gian giữ đơn: <strong><span id="countdown">24h 00m 00s</span></strong>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="qr-btn-group">
+                        <a href="{% url 'confirm_payment' order.id %}" class="btn-pay-now" id="btnPayNow">
+                            <span id="payNowText"><i class="bi bi-check-circle"></i> Tôi đã chuyển khoản</span>
+                            <div class="spinner" id="payNowSpinner"></div>
+                        </a>
+                        <a href="{% url 'invoice' order.id %}" class="btn-pay-later">
+                            <i class="bi bi-clock"></i> Thanh toán sau 24h
+                        </a>
+                    </div>
+
+                    <!-- NOTE -->
+                    <p style="font-size:12px;color:#aaa;text-align:center;margin-top:16px;line-height:1.6;">
+                        Sau khi chuyển khoản, nhấn <strong>"Tôi đã chuyển khoản"</strong>.<br>
+                        Admin sẽ xác nhận thanh toán trong vòng 15–30 phút trong giờ hành chính.
+                    </p>
+
+                </div> <!-- END RIGHT -->
+            </div> <!-- qr-body -->
         </div>
     </div>
 </div>

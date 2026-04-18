@@ -166,6 +166,7 @@ def watch_detail(request, slug):
         'reviews': reviews,
     })
 
+@login_required
 @require_POST
 def submit_review(request, slug):
     watch   = get_object_or_404(Watch, slug=slug)
@@ -178,7 +179,7 @@ def submit_review(request, slug):
     if name and comment and 1 <= rating <= 5:
         Review.objects.create(
             watch=watch,
-            user=request.user if request.user.is_authenticated else None,
+            user=request.user,
             name=name,
             rating=rating,
             comment=comment,

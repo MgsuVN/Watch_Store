@@ -533,7 +533,13 @@
     </div>
   </div>
 
+  {% if user.is_authenticated %}
   <button type="button" class="btn-write-review" onclick="openRvModal()">Viết đánh giá</button>
+  {% else %}
+  <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn-write-review" style="display:block;text-align:center;text-decoration:none;">
+    🔑 Đăng nhập để viết đánh giá
+  </a>
+  {% endif %}
 
   {% if not total %}
   <div style="text-align:center;color:var(--muted);font-size:14px;padding:16px 0;">Trở thành người đầu tiên đánh giá sản phẩm này!</div>
@@ -545,7 +551,7 @@
       <div class="reviewer-header">
         <div class="reviewer-avatar">{{ r.name|first|upper }}</div>
         <div>
-          <div class="reviewer-name">{{ r.name }} <span class="reviewer-verified">✅ Đã mua hàng</span></div>
+          <div class="reviewer-name">{{ r.name }}</div>
         </div>
       </div>
       <div class="review-stars">
@@ -600,8 +606,16 @@
   <div class="rv-title">Đánh giá sản phẩm</div>
   <div class="rv-product">{{ watch.name }}</div>
 
+  {% if user.is_authenticated %}
+  <!-- Hiển thị tên người dùng đang đăng nhập -->
+  <div style="text-align:center;margin-bottom:14px;font-size:14px;color:#555;">
+    Đánh giá với tên: <strong style="color:#1a1a1a;">{{ user.get_full_name|default:user.username }}</strong>
+  </div>
+
   <form method="POST" action="{% url 'submit_review' watch.slug %}" enctype="multipart/form-data">
     {% csrf_token %}
+    <!-- Gửi tên user tự động, không cần nhập -->
+    <input type="hidden" name="name" value="{{ user.get_full_name|default:user.username }}">
 
     <div class="rv-stars-wrap" id="rvStarsWrap">
       <input type="radio" name="rating" id="s1" value="1">
@@ -624,25 +638,19 @@
       </label>
       <input type="file" id="rvPhotosAll" accept="image/*" multiple style="display:none" onchange="handlePhotoSelect(this)">
       <div class="rv-photo-slots" id="rvPhotoSlots"></div>
-      <!-- hidden inputs để submit form -->
       <input type="file" name="image"  id="rvHidden1" style="display:none">
       <input type="file" name="image2" id="rvHidden2" style="display:none">
       <input type="file" name="image3" id="rvHidden3" style="display:none">
     </div>
 
-    <div class="rv-fields">
-      <input class="rv-input" name="name" id="rvName" type="text" placeholder="Họ tên (bắt buộc)">
-      <input class="rv-input" name="phone" id="rvPhone" type="text" placeholder="Số điện thoại (bắt buộc)">
-      <input class="rv-input full" id="rvEmail" type="email" placeholder="Nhận Email khi có phản hồi (không bắt buộc)">
-    </div>
-
-    <label class="rv-policy">
-      <input type="checkbox" id="rvPolicy">
-      <span>Tôi đồng ý với <a href="#">Chính sách xử lý dữ liệu cá nhân</a> của WATCHSTORE.VN</span>
-    </label>
-
     <button type="submit" class="rv-submit" onclick="return validateRv()">GỬI ĐÁNH GIÁ</button>
   </form>
+  {% else %}
+  <div style="text-align:center;padding:24px 0 8px;">
+    <p style="color:#666;font-size:14px;margin-bottom:16px;">Vui lòng đăng nhập để viết đánh giá.</p>
+    <a href="{% url 'account_login' %}?next={{ request.path }}" class="rv-submit" style="display:inline-block;text-decoration:none;padding:13px 32px;">Đăng nhập ngay</a>
+  </div>
+  {% endif %}
 </div></div>
 
 <script>
@@ -766,9 +774,9 @@ function closeRvModal(){
   document.getElementById('rvOverlay').classList.remove('active');
   document.body.style.overflow='';
   document.querySelectorAll('input[name="rating"]').forEach(r=>r.checked=false);
-  ['rvText','rvName','rvPhone','rvEmail'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const rvText = document.getElementById('rvText');
+  if(rvText) rvText.value='';
   resetPhotoUpload();
-  document.getElementById('rvPolicy').checked=false;
 }
 function closeRvOnBg(e){if(e.target===document.getElementById('rvOverlay'))closeRvModal();}
 
@@ -776,12 +784,7 @@ function validateRv(){
   const starEl=document.querySelector('input[name="rating"]:checked');
   if(!starEl){alert('Vui lòng chọn số sao!');return false;}
   const text=document.getElementById('rvText').value.trim();
-  const name=document.getElementById('rvName').value.trim();
-  const phone=document.getElementById('rvPhone').value.trim();
   if(!text){alert('Vui lòng nhập nội dung đánh giá!');return false;}
-  if(!name){alert('Vui lòng nhập họ tên!');return false;}
-  if(!phone){alert('Vui lòng nhập số điện thoại!');return false;}
-  if(!document.getElementById('rvPolicy').checked){alert('Vui lòng đồng ý chính sách!');return false;}
   return true;
 }
 
