@@ -1,5 +1,7 @@
 # ⌚ Watch Store — Website Bán Đồng Hồ Chính Hãng
+
 <div align="center">
+
 ![Framework](https://img.shields.io/badge/Framework-Django-green)
 ![Language](https://img.shields.io/badge/Language-Python-blue)
 ![Database](https://img.shields.io/badge/Database-SQLite-lightgrey)
@@ -7,8 +9,11 @@
 ![Payment](https://img.shields.io/badge/Payment-VietQR-red)
 ![Auth](https://img.shields.io/badge/Auth-Allauth-purple)
 ![Admin](https://img.shields.io/badge/Admin-Jazzmin-darkblue)
+
 </div>
+
 ---
+
 ## 📌 Giới Thiệu
 
 **Watch Store** là website thương mại điện tử bán đồng hồ chính hãng, được xây dựng bằng **Django (Python)**. Hệ thống hỗ trợ đầy đủ luồng mua hàng từ duyệt sản phẩm → giỏ hàng → thanh toán → theo dõi đơn hàng, tích hợp AI chatbot tư vấn sản phẩm thông minh và dashboard doanh thu cho admin.
@@ -137,7 +142,9 @@
 | **Biến môi trường** | python-dotenv | 1.2.2 |
 | **HTTP Client** | Requests | 2.32.5 |
 | **Timezone** | tzdata | 2025.3 |
+
 ---
+
 ## 📥 Hướng Dẫn Cài Đặt
 
 ### 🔹 Cách 1: Chạy Tự Động (Windows) ✅ Khuyến nghị
@@ -215,10 +222,10 @@ pip install -r requirements.txt
 🪟 Windows:
 ```bash
 copy .env.example .env
-
+```
 
 🍎 macOS / Linux:
-
+```bash
 cp .env.example .env
 ```
 
@@ -233,6 +240,7 @@ Tạo `SECRET_KEY` mới:
 ```bash
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
+
 > Lấy `GROQ_API_KEY` miễn phí tại: https://console.groq.com → API Keys → Create API Key
 
 **Bước 5: Migrate database**
@@ -299,6 +307,7 @@ Truy cập: http://127.0.0.1:8000/admin
 | `/admin/doanh-thu/` | Dashboard doanh thu tùy chỉnh |
 
 ---
+
 ## 🗄️ Mô Hình Dữ Liệu (Database)
 
 | Model | Mô tả |
@@ -317,6 +326,8 @@ Truy cập: http://127.0.0.1:8000/admin
 | `Review` | Đánh giá sản phẩm (sao, bình luận, tối đa 3 ảnh) |
 | `Wishlist` | Sản phẩm yêu thích (unique user + watch) |
 | `Refund` | Yêu cầu hoàn tiền (thông tin ngân hàng, lý do, trạng thái) |
+
+---
 
 ## 💾 Quy Trình Cập Nhật Dữ Liệu (Dev Team)
 
@@ -347,8 +358,11 @@ git pull
 run.bat
 ```
 
-## 📁 Cấu trúc dự án
-"""
+---
+
+## 📁 Cấu Trúc Dự Án
+
+```
 Watch_Store/
 ├── app1/                          # App chính — toàn bộ logic nghiệp vụ
 │   ├── models.py                  # Brand, Watch, WatchImage, WatchDescImage,
@@ -445,5 +459,4 @@ Watch_Store/
 ├── .env                           # ⚠️ Biến môi trường (SECRET_KEY, GROQ_API_KEY) — KHÔNG commit
 ├── .env.example                   # File mẫu .env — commit lên Git
 └── README.md                      # Tài liệu hướng dẫn
-"""
----
+```
