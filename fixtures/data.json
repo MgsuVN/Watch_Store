@@ -20,7 +20,7 @@
   "model": "auth.user",
   "fields": {
     "password": "pbkdf2_sha256$1200000$9nAXAkStRpcjdftaZ77EDL$tmUtc37c53oBwq3vq28ZobTRPt1FAU0md0M/FLHiYUs=",
-    "last_login": "2026-03-21T06:47:38.265Z",
+    "last_login": "2026-04-22T09:21:55.105Z",
     "is_superuser": true,
     "username": "admin1",
     "first_name": "",
@@ -154,6 +154,21 @@
   "fields": {
     "session_data": ".eJxVkEFuwyAQRe8yawuZgA142X1PUFXWAENNW0NksJooyt1r2myyGY3m_XmLfwN0Lu-pzrjXhVKNDmvMaV6pLtkXmN5u8L_DBGcs5SdvHjrAChNXSvacj0IxyQctpepgL7QlXOlIo19j4nB_7-DPPjc2xyY6wdPNovui1ID_xPSRmcupbtGyFmEPWthr9vT98sg-CRYsy_Ht3MkN2hsbrNMhkCbeS4FBOCMkKqtUGPlBtBTaaB14L4yxXI0hDOKYTVqolFYAXc5xu8LU338BshNgqw:1w3ZSv:mRm4sEm0m5Vv9o6McmJ6z_BzhP56wCklr08c8nPaOls",
     "expire_date": "2026-04-03T13:00:37.462Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "peq7t24dyp1zu7avwmdx48txgupw29za",
+  "fields": {
+    "session_data": ".eJxVkMFuwyAMQP_F5ygKDEyS4-79gmmKDJiFbYEqEG1T1X9f2XrpzfJ7fgdfgJzLR6oLHXXlVKOjGnNaNq5r9gXmlwv8zzDDmUr5yruHDqjCLIzBUU1G6H6YUOpRdXAU3hNtfLPJbzEJuL528FdfGltiC0l42FlyH5wa8O-U3nLvcqp7tH1T-jst_Sl7_ny-uw-Blcp6u0YRgrWMwZigEGVQNqC3PEkjJxFQayUnz-7JjBKtQRdGowbhnBVKEeoWLVxKewB_n-P-A_Nw_QWpiGB7:1wFTmN:dqCoNVKse_nI0Xo-Fk3KWeDPBjTtk4BHnhwpZHVOEIo",
+    "expire_date": "2026-05-06T09:21:55.118Z"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
   }
 },
 {
@@ -1661,24 +1676,6 @@
   }
 },
 {
-  "model": "app1.cartitem",
-  "pk": 59,
-  "fields": {
-    "cart": 1,
-    "watch": 17,
-    "quantity": 1
-  }
-},
-{
-  "model": "app1.cartitem",
-  "pk": 60,
-  "fields": {
-    "cart": 1,
-    "watch": 18,
-    "quantity": 1
-  }
-},
-{
   "model": "app1.order",
   "pk": 1,
   "fields": {
@@ -1833,7 +1830,7 @@
     "payment": "cod",
     "status": "shipping",
     "total": "8160500",
-    "created_at": "2026-02-26T10:32:32.000Z",
+    "created_at": "2026-02-26T10:32:32Z",
     "updated_at": "2026-02-26T11:49:16.039Z",
     "payment_status": "pending"
   }
@@ -2579,6 +2576,46 @@
   }
 },
 {
+  "model": "app1.order",
+  "pk": 46,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "full_name": "Dương Khánh",
+    "phone": "12345678",
+    "address": "Thái Nguyên",
+    "city": "fmfm",
+    "note": "",
+    "payment": "bank",
+    "status": "cancelled",
+    "total": "79274150",
+    "created_at": "2026-04-22T09:22:17.093Z",
+    "updated_at": "2026-04-22T09:22:33.397Z",
+    "payment_status": "refunded"
+  }
+},
+{
+  "model": "app1.order",
+  "pk": 47,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "full_name": "Dương Khánh",
+    "phone": "12345678",
+    "address": "Thái Nguyên",
+    "city": "fmfm",
+    "note": "gsg",
+    "payment": "bank",
+    "status": "cancelled",
+    "total": "45274150",
+    "created_at": "2026-04-22T09:27:40.024Z",
+    "updated_at": "2026-04-22T09:28:00.510Z",
+    "payment_status": "refunded"
+  }
+},
+{
   "model": "app1.orderitem",
   "pk": 1,
   "fields": {
@@ -3179,6 +3216,54 @@
   }
 },
 {
+  "model": "app1.orderitem",
+  "pk": 51,
+  "fields": {
+    "order": 46,
+    "watch": 17,
+    "watch_name": "Seiko 5 Sports SRPJ45K1 – Nam – Automatic (Tự Động) – Mặt Số 43mm – Kính Hardlex – Chống Nước 10ATM – Bezel Xoay – Dạ Quang LumiBrite",
+    "price": "19000000",
+    "quantity": 1,
+    "subtotal": "19000000"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 52,
+  "fields": {
+    "order": 46,
+    "watch": 18,
+    "watch_name": "Seiko 5 Sports SSK003K1 – Nam – Kính Hardlex – Automatic – Mặt Số 42.5mm, Trữ cót 41 giờ, GMT",
+    "price": "15000000",
+    "quantity": 1,
+    "subtotal": "15000000"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 53,
+  "fields": {
+    "order": 46,
+    "watch": 20,
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "price": "45274150",
+    "quantity": 1,
+    "subtotal": "45274150"
+  }
+},
+{
+  "model": "app1.orderitem",
+  "pk": 54,
+  "fields": {
+    "order": 47,
+    "watch": 20,
+    "watch_name": "Longines Hydroconquest L3.742.3.96.7 – Nam – Automatic – Mặt Số 41mm – Chống Nước 30 ATM – Trữ Cót 72 Giờ",
+    "price": "45274150",
+    "quantity": 1,
+    "subtotal": "45274150"
+  }
+},
+{
   "model": "app1.notification",
   "pk": 1,
   "fields": {
@@ -3404,6 +3489,66 @@
   }
 },
 {
+  "model": "app1.notification",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "notif_type": "order_cancelled",
+    "title": "Đơn hàng #46 đã bị hủy – Yêu cầu hoàn tiền đã được gửi",
+    "message": "Đơn hàng #46 đã được hủy. Tiền sẽ được hoàn trong 24h – 7 ngày làm việc vào tài khoản 1234567 (Viettinban).",
+    "order": 46,
+    "is_read": true,
+    "created_at": "2026-04-22T09:22:33.410Z"
+  }
+},
+{
+  "model": "app1.notification",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "notif_type": "general",
+    "title": "Hoàn tiền đơn #46 thành công ✅",
+    "message": "Đơn hàng #46 đã được hoàn tiền thành công. Tiền sẽ về tài khoản của bạn trong 24h.",
+    "order": 46,
+    "is_read": true,
+    "created_at": "2026-04-22T09:25:32.746Z"
+  }
+},
+{
+  "model": "app1.notification",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "notif_type": "order_cancelled",
+    "title": "Đơn hàng #47 đã bị hủy – Yêu cầu hoàn tiền đã được gửi",
+    "message": "Đơn hàng #47 đã được hủy. Tiền sẽ được hoàn trong 24h – 7 ngày làm việc vào tài khoản 1234567afa (Viettinbank).",
+    "order": 47,
+    "is_read": true,
+    "created_at": "2026-04-22T09:28:00.520Z"
+  }
+},
+{
+  "model": "app1.notification",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "admin1"
+    ],
+    "notif_type": "general",
+    "title": "Hoàn tiền đơn #47 thành công ✅",
+    "message": "Đơn hàng #47 đã được hoàn tiền thành công. Tiền sẽ về tài khoản của bạn trong 24h.",
+    "order": 47,
+    "is_read": true,
+    "created_at": "2026-04-22T09:28:17.971Z"
+  }
+},
+{
   "model": "app1.brandshowcase",
   "pk": 1,
   "fields": {
@@ -3547,6 +3692,40 @@
     ],
     "watch": 22,
     "created_at": "2026-03-21T09:45:24.707Z"
+  }
+},
+{
+  "model": "app1.refund",
+  "pk": 1,
+  "fields": {
+    "order": 46,
+    "user": [
+      "admin1"
+    ],
+    "bank_name": "Viettinban",
+    "bank_account": "1234567",
+    "account_holder": "DUONG QUOC KHANH",
+    "reason": "gssgsg",
+    "status": "completed",
+    "created_at": "2026-04-22T09:22:33.402Z",
+    "completed_at": "2026-04-22T09:25:32.742Z"
+  }
+},
+{
+  "model": "app1.refund",
+  "pk": 2,
+  "fields": {
+    "order": 47,
+    "user": [
+      "admin1"
+    ],
+    "bank_name": "Viettinbank",
+    "bank_account": "1234567afa",
+    "account_holder": "DUONG QUOC KHANH",
+    "reason": "adad",
+    "status": "completed",
+    "created_at": "2026-04-22T09:28:00.514Z",
+    "completed_at": "2026-04-22T09:28:17.967Z"
   }
 },
 {

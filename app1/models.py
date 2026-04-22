@@ -219,7 +219,12 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     payment_status = models.CharField(
         max_length=20,
-        choices=[('pending','Chờ thanh toán'), ('waiting_confirm','Chờ xác nhận'), ('paid','Đã thanh toán')],
+        choices=[
+            ('pending',         'Chờ thanh toán'),
+            ('waiting_confirm', 'Chờ xác nhận'),
+            ('paid',            'Đã thanh toán'),
+            ('refunded',        'Đã hoàn tiền'),
+        ],
         default='pending',
     )
 
@@ -365,3 +370,35 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"{self.user.username} ❤ {self.watch.name}"
+class Refund(models.Model):
+    STATUS_CHOICES = [
+        ('pending',   '⏳ Chờ xử lý'),
+        ('completed', '✅ Đã hoàn tiền'),
+    ]
+
+    order          = models.OneToOneField(
+        Order, on_delete=models.CASCADE, related_name='refund',
+        verbose_name='Đơn hàng'
+    )
+    user           = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='refunds',
+        verbose_name='Khách hàng'
+    )
+    bank_name      = models.CharField(max_length=100, verbose_name='Tên ngân hàng')
+    bank_account   = models.CharField(max_length=50,  verbose_name='Số tài khoản')
+    account_holder = models.CharField(max_length=150, verbose_name='Chủ tài khoản')
+    reason         = models.TextField(verbose_name='Lý do hoàn tiền')
+    status         = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default='pending',
+        verbose_name='Trạng thái'
+    )
+    created_at     = models.DateTimeField(auto_now_add=True, verbose_name='Ngày tạo')
+    completed_at   = models.DateTimeField(null=True, blank=True, verbose_name='Ngày hoàn tiền')
+
+    class Meta:
+        ordering         = ['-created_at']
+        verbose_name     = 'Yêu cầu hoàn tiền'
+        verbose_name_plural = 'Yêu cầu hoàn tiền'
+
+    def __str__(self):
+        return f'Hoàn tiền Đơn #{self.order.id} - {self.user.username} [{self.get_status_display()}]'

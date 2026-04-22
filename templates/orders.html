@@ -5,6 +5,8 @@
 {% block title %}Đơn hàng của tôi — WATCHSTORE.VN{% endblock %}
 
 {% block content %}
+<!-- Global CSRF token for JS form fallback -->
+<input type="hidden" id="globalCsrfToken" value="{{ csrf_token }}">
 <!-- Google Fonts: Nunito (ngộ nghĩnh) + DM Serif Display (tiêu đề) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -223,6 +225,41 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .pay-status-pill.waiting_confirm { background: #e8f2ff; color: #1a6bcc; border: 1.5px solid #a8caff; }
 .pay-status-pill.paid            { background: #e6fff3; color: #09904a; border: 1.5px solid #abe9c9; }
 
+/* ===== STATUS BADGE ===== */
+.badge-cancelled {
+    color: #dc3545;
+    background: #fdecee;
+    border: 1px solid #f5c2c7;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.badge-refunded {
+    color: #198754;
+    background: #eaf7f0;
+    border: 1px solid #b7e4c7;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.badge-pending-refund {
+    color: #c47c00;
+    background: #fff4df;
+    border: 1px solid #ffe4a0;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
 /* ===== NÚT THANH TOÁN NGAY QR ===== */
 .btn-pay-qr {
     flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -379,6 +416,17 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 }
 .btn-action-cancel:hover { background: #c0001e; }
 .btn-action-cancel.disabled { background: #eee; color: #bbb; cursor: not-allowed; opacity: .6; }
+
+/* Nút Hủy & Hoàn tiền — màu cam để phân biệt */
+.btn-refund-cancel {
+    background: linear-gradient(135deg, #f39200 0%, #e07800 100%) !important;
+    box-shadow: 0 6px 18px rgba(243,146,0,.28);
+}
+.btn-refund-cancel:hover {
+    background: linear-gradient(135deg, #e07800 0%, #c96a00 100%) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(243,146,0,.4);
+}
 
 /* ===== INFO SECTION ===== */
 .info-section { padding: 20px 24px; border-bottom: 1px solid var(--border); }
@@ -538,6 +586,18 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                                 {% elif order.payment == 'bank' and order.payment_status == 'waiting_confirm' %}
                                 <span class="unpaid-badge" style="background:#e8f2ff;color:#1a6bcc;border-color:#a8caff;">🔍 Chờ xác nhận</span>
                                 {% endif %}
+                                {% if order.status == 'cancelled' and order.refund %}
+                                  {% if order.refund.status == 'pending' %}
+                                  <span class="badge-pending-refund">Chờ hoàn tiền</span>
+                                  {% elif order.refund.status == 'completed' %}
+                                  <span class="badge-refunded">
+<svg width="14" height="14" viewBox="0 0 16 16">
+<path fill="currentColor" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.5 5.5L7 11 4.5 8.5l1.41-1.41L7 8.17l3.09-3.08L11.5 6.5z"/>
+</svg>
+Đã hoàn tiền
+</span>
+                                  {% endif %}
+                                {% endif %}
                             </div>
                             <div class="history-item-date">{{ order.created_at|date:"d/m/Y H:i" }}</div>
                         </div>
@@ -566,22 +626,44 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                         </div>
                     </div>
                     <div class="detail-header-pills">
-                        <span class="status-pill {{ s }}">
-                            <span class="status-dot {{ s }}"></span>
-                            {% if s == 'pending'   %}Chờ xác nhận
-                            {% elif s == 'confirmed' %}Đã xác nhận
-                            {% elif s == 'shipping'  %}Đang giao hàng
-                            {% elif s == 'delivered' %}Đã giao hàng
-                            {% elif s == 'cancelled' %}Đã hủy
+                        {% if s == 'cancelled' %}
+                            <span class="badge-cancelled">
+<svg width="14" height="14" viewBox="0 0 16 16">
+<path fill="currentColor" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3 9.59L9.59 11 8 9.41 6.41 11 5 9.59 6.59 8 5 6.41 6.41 5 8 6.59 9.59 5 11 6.41 9.41 8 11 9.59z"/>
+</svg>
+Đã hủy
+</span>
+                            {% if o.refund %}
+                                {% if o.refund.status == 'completed' %}
+                                <span class="badge-refunded">
+<svg width="14" height="14" viewBox="0 0 16 16">
+<path fill="currentColor" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.5 5.5L7 11 4.5 8.5l1.41-1.41L7 8.17l3.09-3.08L11.5 6.5z"/>
+</svg>
+Đã hoàn tiền
+</span>
+                                {% elif o.refund.status == 'pending' %}
+                                <span class="badge-pending-refund">⏳ Chờ hoàn tiền</span>
+                                {% elif o.refund.status == 'rejected' %}
+                                <span class="badge-cancelled">❌ Hoàn tiền bị từ chối</span>
+                                {% endif %}
                             {% endif %}
-                        </span>
-                        {% if o.payment == 'bank' %}
-                        <span class="pay-status-pill {{ o.payment_status }}">
-                            {% if o.payment_status == 'pending' %}⏳ Chưa thanh toán
-                            {% elif o.payment_status == 'waiting_confirm' %}🔍 Chờ xác nhận TT
-                            {% elif o.payment_status == 'paid' %}✅ Đã thanh toán
+                        {% else %}
+                            <span class="status-pill {{ s }}">
+                                <span class="status-dot {{ s }}"></span>
+                                {% if s == 'pending'   %}Chờ xác nhận
+                                {% elif s == 'confirmed' %}Đã xác nhận
+                                {% elif s == 'shipping'  %}Đang giao hàng
+                                {% elif s == 'delivered' %}Đã giao hàng
+                                {% endif %}
+                            </span>
+                            {% if o.payment == 'bank' and o.payment_status != 'refunded' %}
+                            <span class="pay-status-pill {{ o.payment_status }}">
+                                {% if o.payment_status == 'pending' %}⏳ Chưa thanh toán
+                                {% elif o.payment_status == 'waiting_confirm' %}🔍 Chờ xác nhận TT
+                                {% elif o.payment_status == 'paid' %}✅ Đã thanh toán
+                                {% endif %}
+                            </span>
                             {% endif %}
-                        </span>
                         {% endif %}
                     </div>
                 </div>
@@ -653,7 +735,19 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                         </div>
                         <div class="cancel-notice-text">
                             <strong>Đơn hàng đã bị hủy</strong>
+                            {% if o.refund %}
+                              {% if o.refund.status == 'pending' %}
+                              <span>💳 Yêu cầu hoàn tiền đang chờ xử lý — hoàn trong <strong>1–7 ngày làm việc</strong>.</span>
+                              {% elif o.refund.status == 'processing' %}
+                              <span>⏳ Đang xử lý hoàn tiền vào tài khoản <strong>{{ o.refund.bank_account }}</strong>.</span>
+                              {% elif o.refund.status == 'completed' %}
+                              <span style="color:#09904a;"> Đã hoàn tiền thành công vào tài khoản <strong>{{ o.refund.bank_account }}</strong>.</span>
+                              {% else %}
+                              <span>Liên hệ hotline <strong>0123.456.789</strong> nếu cần hỗ trợ.</span>
+                              {% endif %}
+                            {% else %}
                             <span>Liên hệ hotline <strong>0123.456.789</strong> nếu cần hỗ trợ.</span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -782,7 +876,8 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                         Về trang chủ
                     </a>
                     {% if o.payment == 'bank' and o.payment_status == 'pending' %}
-                    <a href="{% url 'qr_payment' o.id %}" class="btn-pay-qr">
+                    {# Chưa chuyển khoản: hiện cả nút thanh toán lẫn nút hủy #}
+                    <a href="{% url 'qr_payment' o.id %}" class="btn-pay-qr" style="flex:1;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                             <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="#fff" stroke-width="2"/>
                             <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="#fff" stroke-width="2"/>
@@ -791,14 +886,26 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                         </svg>
                         Thanh toán ngay
                     </a>
-                    {% elif s == 'pending' %}
-                    <form method="post" action="{% url 'cancel_order' o.id %}" id="cancelForm">
-                        {% csrf_token %}
-                        <button type="button" class="btn-action-cancel" onclick="showCancelModal()">
-                            <i data-lucide="x"></i>
-                            Hủy đơn hàng
-                        </button>
-                    </form>
+                    {% elif o.status == 'pending' and o.payment_status == 'paid' or o.status == 'pending' and o.payment_status == 'waiting_confirm' %}
+                    {# Đã chuyển khoản hoặc đã thanh toán → hủy sẽ dẫn đến form hoàn tiền #}
+                    <button type="button" class="btn-action-cancel btn-refund-cancel"
+                            onclick="showCancelModal({{ o.id }}, true)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Hủy & Hoàn tiền
+                    </button>
+                    {% elif o.status == 'pending' %}
+                    {# COD hoặc bank chưa đặt cọc: hủy thẳng #}
+                    <button type="button" class="btn-action-cancel"
+                            onclick="showCancelModal({{ o.id }}, false)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M15 9l-6 6M9 9l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                        </svg>
+                        Hủy đơn
+                    </button>
                     {% elif s != 'cancelled' %}
                     <button class="btn-action-cancel disabled" disabled title="Đơn hàng đã xác nhận, không thể hủy">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -823,24 +930,115 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 <!-- CANCEL CONFIRM MODAL -->
 <div class="cancel-modal-ov" id="cancelModalOv" onclick="if(event.target===this)closeCancelModal()">
   <div class="cancel-modal">
-    <div class="cancel-modal-icon">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+
+    <!-- Icon vùng — đổi màu theo loại -->
+    <div class="cancel-modal-icon" id="cancelModalIcon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" id="cancelModalIconSvg">
         <circle cx="12" cy="12" r="9" stroke="#e60023" stroke-width="2"/>
         <path d="M15 9l-6 6M9 9l6 6" stroke="#e60023" stroke-width="2.2" stroke-linecap="round"/>
       </svg>
     </div>
-    <h3>Hủy đơn hàng?</h3>
-    <p>Đơn hàng sẽ bị hủy và không thể khôi phục.<br>Bạn có chắc chắn muốn tiếp tục không?</p>
+
+    <h3 id="cancelModalTitle">Hủy đơn hàng?</h3>
+    <p id="cancelModalDesc">Đơn hàng sẽ bị hủy và không thể khôi phục.<br>Bạn có chắc chắn muốn tiếp tục không?</p>
+
+    <!-- Tag hoàn tiền (ẩn mặc định) -->
+    <div id="cancelRefundNote" style="display:none;
+         background:linear-gradient(135deg,#fff8e6,#fff3d4);
+         border:1.5px solid #ffd87a; border-radius:12px;
+         padding:12px 16px; margin-bottom:18px; text-align:left;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="#e07800" stroke-width="2"/>
+          <path d="M12 8v4M12 16h.01" stroke="#e07800" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <strong style="font-size:12px;color:#a05a00;font-weight:800;">Đơn hàng đã được thanh toán</strong>
+      </div>
+      <p style="font-size:12px;color:#7a4800;margin:0;line-height:1.5;">
+        Bạn sẽ được chuyển đến trang nhập thông tin ngân hàng để yêu cầu hoàn tiền. Tiền hoàn trong <strong>1–7 ngày làm việc</strong>.
+      </p>
+    </div>
+
     <div class="cancel-modal-btns">
       <button class="btn-back" onclick="closeCancelModal()">Giữ đơn hàng</button>
-      <button class="btn-confirm-cancel" onclick="document.getElementById('cancelForm').submit()">Xác nhận hủy</button>
+      <button class="btn-confirm-cancel" id="btnConfirmCancel" onclick="submitCancelForm()">Xác nhận hủy</button>
     </div>
   </div>
 </div>
 
+<!-- Hidden forms để POST cancel -->
+<div id="cancelForms" style="display:none;">
+  {% for o_item in orders %}
+  {% if o_item.status == 'pending' %}
+  <form method="POST" action="{% url 'cancel_order' o_item.id %}" id="cancelForm_{{ o_item.id }}">
+    {% csrf_token %}
+  </form>
+  {% endif %}
+  {% endfor %}
+</div>
+
 <script>
-function showCancelModal() { document.getElementById('cancelModalOv').classList.add('active'); }
-function closeCancelModal() { document.getElementById('cancelModalOv').classList.remove('active'); }
+var _cancelOrderId  = null;
+var _cancelIsRefund = false;
+
+function showCancelModal(orderId, isRefund) {
+  _cancelOrderId  = orderId;
+  _cancelIsRefund = isRefund;
+
+  var title    = document.getElementById('cancelModalTitle');
+  var desc     = document.getElementById('cancelModalDesc');
+  var note     = document.getElementById('cancelRefundNote');
+  var icon     = document.getElementById('cancelModalIcon');
+  var btnConfirm = document.getElementById('btnConfirmCancel');
+
+  if (isRefund) {
+    title.textContent = 'Hủy & Yêu cầu hoàn tiền?';
+    desc.innerHTML    = 'Đơn hàng sẽ bị hủy và bạn sẽ được yêu cầu hoàn tiền.<br>Tiếp tục để điền thông tin ngân hàng.';
+    note.style.display = 'block';
+    icon.style.background = '#fff8e6';
+    icon.querySelector('circle').setAttribute('stroke', '#e07800');
+    icon.querySelectorAll('path').forEach(function(p){ p.setAttribute('stroke','#e07800'); });
+    btnConfirm.style.background = 'linear-gradient(135deg,#f39200,#e07800)';
+    btnConfirm.textContent = 'Tiếp tục hoàn tiền →';
+  } else {
+    title.textContent = 'Hủy đơn hàng?';
+    desc.innerHTML    = 'Đơn hàng sẽ bị hủy và không thể khôi phục.<br>Bạn có chắc chắn muốn tiếp tục không?';
+    note.style.display = 'none';
+    icon.style.background = '#fff0f1';
+    icon.querySelector('circle').setAttribute('stroke', '#e60023');
+    icon.querySelectorAll('path').forEach(function(p){ p.setAttribute('stroke','#e60023'); });
+    btnConfirm.style.background = '#e60023';
+    btnConfirm.textContent = 'Xác nhận hủy';
+  }
+
+  document.getElementById('cancelModalOv').classList.add('active');
+}
+
+function closeCancelModal() {
+  document.getElementById('cancelModalOv').classList.remove('active');
+}
+
+function submitCancelForm() {
+  if (!_cancelOrderId) return;
+  var form = document.getElementById('cancelForm_' + _cancelOrderId);
+  if (form) {
+    form.submit();
+  } else {
+    // Fallback: tạo form động
+    var f = document.createElement('form');
+    f.method = 'POST';
+    f.action = '/orders/' + _cancelOrderId + '/cancel/';
+    var csrfValue = (document.getElementById('globalCsrfToken') || {}).value
+                 || ((document.querySelector('[name=csrfmiddlewaretoken]') || {}).value);
+    if (csrfValue) {
+      var inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = 'csrfmiddlewaretoken'; inp.value = csrfValue;
+      f.appendChild(inp);
+    }
+    document.body.appendChild(f);
+    f.submit();
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const progressEl = document.getElementById('timelineProgress');

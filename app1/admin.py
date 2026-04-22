@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 import json
 import datetime
 
-from .models import Brand, Watch, WatchImage, WatchDescImage, BrandShowcase, Review, Cart, CartItem, Profile
+from .models import Brand, Watch, WatchImage, WatchDescImage, BrandShowcase, Review, Cart, CartItem, Profile,Refund
 from .models import Order, OrderItem, Notification, create_notification
 
 
@@ -359,6 +359,7 @@ class OrderAdmin(admin.ModelAdmin):
             'pending':         ('#f39200', '⏳ Chờ TT'),
             'waiting_confirm': ('#1565c0', '🔍 Chờ xác nhận'),
             'paid':            ('#1a9e3f', '✅ Đã TT'),
+            'refunded':        ('#7c3aed', '↩️ Đã hoàn tiền'),
         }
         color, label = cfg.get(obj.payment_status, ('#888', obj.payment_status))
         return format_html(
@@ -562,6 +563,120 @@ def revenue_view(request):
     return TemplateResponse(request, "admin/revenue.html", context)
 
 
+@admin.register(Refund)
+class RefundAdmin(admin.ModelAdmin):
+
+    list_display  = (
+        'order_link', 'user', 'bank_name', 'bank_account',
+        'account_holder', 'status_badge', 'status', 'created_at',
+    )
+    list_filter   = ('status', 'created_at')
+    search_fields = ('order__id', 'user__username', 'user__email',
+                     'bank_name', 'bank_account')
+    ordering      = ('-created_at',)
+    list_editable = ('status',)
+
+    readonly_fields = (
+        'order', 'user', 'bank_name', 'bank_account',
+        'account_holder', 'reason', 'created_at',
+    )
+
+    fieldsets = (
+        ('📋 Thông tin đơn hàng', {
+            'fields': ('order', 'user', 'created_at'),
+        }),
+        ('🏦 Thông tin ngân hàng', {
+            'fields': ('bank_name', 'bank_account', 'account_holder'),
+        }),
+        ('📝 Lý do yêu cầu', {
+            'fields': ('reason',),
+        }),
+        ('⚙️ Xử lý hoàn tiền', {
+            'fields': ('status', 'completed_at'),
+            'description': (
+                '⚠️ Đổi <strong>Trạng thái</strong> thành <strong>completed</strong> '
+                'rồi nhấn Lưu → hệ thống tự gửi thông báo cho khách.'
+            ),
+        }),
+    )
+
+    actions = ['mark_as_completed']
+
+    @admin.action(description='✅ Đánh dấu hoàn tiền thành công')
+    def mark_as_completed(self, request, queryset):
+        done = 0
+        for refund in queryset.filter(status='pending'):
+            refund.status = 'completed'
+            refund.completed_at = timezone.now()
+            refund.save(update_fields=['status', 'completed_at'])
+
+            # Cập nhật payment_status của đơn hàng để hiển thị đúng bên ngoài
+            Order.objects.filter(pk=refund.order.pk).update(payment_status='refunded')
+
+            create_notification(
+                user=refund.user,
+                notif_type='general',
+                title=f'Hoàn tiền đơn #{refund.order.id} thành công ✅',
+                message=(
+                    f'Đơn hàng #{refund.order.id} đã được hoàn tiền thành công. '
+                    'Tiền sẽ về tài khoản của bạn trong 24h.'
+                ),
+                order=refund.order,
+            )
+            done += 1
+        self.message_user(request, f'✅ {done} yêu cầu đã được xác nhận hoàn tiền.')
+
+    def save_model(self, request, obj, form, change):
+        # Lấy trạng thái cũ từ DB
+        try:
+            old_status = Refund.objects.get(pk=obj.pk).status
+        except Refund.DoesNotExist:
+            old_status = None
+
+        just_completed = (old_status != 'completed' and obj.status == 'completed')
+
+        # Tự set completed_at khi chuyển sang completed
+        if just_completed:
+            obj.completed_at = timezone.now()
+
+        # Luôn save refund trước
+        obj.save()
+
+        # Khi vừa completed: cập nhật order + gửi thông báo
+        if just_completed:
+            # Cập nhật payment_status của đơn hàng để hiển thị đúng bên ngoài
+            Order.objects.filter(pk=obj.order.pk).update(payment_status='refunded')
+
+            create_notification(
+                user=obj.user,
+                notif_type='general',
+                title=f'Hoàn tiền đơn #{obj.order.id} thành công ✅',
+                message=(
+                    f'Đơn hàng #{obj.order.id} đã được hoàn tiền thành công. '
+                    'Tiền sẽ về tài khoản của bạn trong 24h.'
+                ),
+                order=obj.order,
+            )
+            self.message_user(request, '✅ Đã xác nhận hoàn tiền và gửi thông báo cho khách.')
+
+    @admin.display(description='Đơn hàng', ordering='order__id')
+    def order_link(self, obj):
+        url = f'/admin/app1/order/{obj.order.id}/change/'
+        return format_html('<a href="{}">Đơn #{}</a>', url, obj.order.id)
+
+    @admin.display(description='Trạng thái')
+    def status_badge(self, obj):
+        if obj.status == 'pending':
+            color, label = '#f97316', '⏳ Chờ xử lý'
+        else:
+            color, label = '#22c55e', '✅ Đã hoàn tiền'
+        return format_html(
+            '<span style="color:{};font-weight:700;">{}</span>',
+            color, label,
+        )
+
+
+# ── Thêm URL doanh thu vào admin site (đặt sau tất cả register) ───
 def get_admin_urls(urls):
     def get_urls():
         my_urls = [
@@ -569,6 +684,5 @@ def get_admin_urls(urls):
         ]
         return my_urls + urls
     return get_urls
-
 
 admin.site.get_urls = get_admin_urls(admin.site.get_urls())

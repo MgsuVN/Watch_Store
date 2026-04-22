@@ -1,6 +1,6 @@
 ﻿from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, BrandShowcase, Review, Order, OrderItem, Notification, create_notification, Profile, Wishlist
+from .models import Watch, Brand, Cart, CartItem, WatchImage, WatchDescImage, BrandShowcase, Review, Order, OrderItem, Notification, create_notification, Profile, Wishlist, Refund
 from .forms import WatchForm, ProfileForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -10,6 +10,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
+from django.utils import timezone
 
 def home(request):
     brands = Brand.objects.all()
@@ -386,7 +387,6 @@ def update_cart_item(request, item_id):
 
 # ===== ĐƠN HÀNG =====
 @login_required
-@login_required
 def orders_view(request):
     orders = Order.objects.filter(user=request.user).prefetch_related('items').order_by('-created_at')
     latest_order = orders.first()
@@ -394,15 +394,6 @@ def orders_view(request):
         'orders': orders,
         'latest_order': latest_order,
     })
-
-@login_required
-@require_POST
-def cancel_order(request, order_id):
-    order = get_object_or_404(Order, id=order_id, user=request.user)
-    if order.status == 'pending':
-        order.status = 'cancelled'
-        order.save()
-    return redirect('orders')
 
 @login_required
 def order_detail_view(request, order_id):
@@ -515,6 +506,8 @@ def chatbot_view(request):
             pre_max = int(m.group(1)) * 1_000_000
             break
     if pre_max:
+        watch_list = [w for w in watch_list if w.sale_price <= pre_max]
+        watch_map  = {w.id: w for w in watch_list}
         filtered_lines = [l for l in products_text.split('\n') if l.strip()]
         import re as _re3
         def get_price(line):
@@ -830,3 +823,127 @@ def save_user_profile(sender, instance, **kwargs):
     """Đảm bảo Profile luôn được save khi User save."""
     if hasattr(instance, 'app1_profile'):
         instance.app1_profile.save()
+# ── Helper ────────────────────────────────────────────────────
+ 
+def _validate_refund_eligible(order, user):
+    """
+    Trả về (ok: bool, error_msg: str | None).
+    Kiểm tra đơn có đủ điều kiện hoàn tiền không.
+    """
+    if order.user != user:
+        return False, 'Bạn không có quyền thao tác với đơn hàng này.'
+    if order.payment_status not in ('paid', 'waiting_confirm'):
+        return False, 'Chỉ có thể hoàn tiền cho đơn đã thanh toán hoặc đang chờ xác nhận thanh toán.'
+    if order.status == 'cancelled':
+        return False, 'Đơn hàng đã bị hủy trước đó.'
+    if Refund.objects.filter(order=order).exists():
+        return False, 'Yêu cầu hoàn tiền cho đơn hàng này đã tồn tại.'
+    return True, None
+ 
+ 
+# ── View 1: Trang hủy đơn (kèm form hoàn tiền nếu đã TT) ─────
+ 
+@login_required
+@require_POST
+def cancel_order(request, order_id):
+    """
+    Hủy đơn hàng.
+    - Nếu chưa thanh toán → hủy ngay, redirect orders.
+    - Nếu đã thanh toán   → redirect sang trang nhập thông tin hoàn tiền.
+    """
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+ 
+    if order.status != 'pending':
+        messages.error(request, 'Chỉ có thể hủy đơn hàng đang chờ xác nhận.')
+        return redirect('orders')
+ 
+    if order.payment_status in ('paid', 'waiting_confirm'):
+        # Đã thanh toán hoặc đã chuyển khoản chờ xác nhận → chuyển sang form hoàn tiền
+        return redirect('submit_refund_form', order_id=order.id)
+ 
+    # Chưa thanh toán → hủy ngay
+    order.status = 'cancelled'
+    order.save(update_fields=['status', 'updated_at'])
+    create_notification(
+        user=request.user,
+        notif_type='order_cancelled',
+        title=f'Đơn hàng #{order.id} đã được hủy',
+        message='Đơn hàng của bạn đã được hủy thành công.',
+        order=order,
+    )
+    messages.success(request, f'Đơn hàng #{order.id} đã được hủy thành công.')
+    return redirect('orders')
+ 
+ 
+# ── View 2: Form & xử lý hoàn tiền ───────────────────────────
+ 
+@login_required
+def submit_refund_form(request, order_id):
+    """
+    GET  → hiển thị form nhập thông tin ngân hàng để hoàn tiền.
+    POST → tạo Refund, hủy đơn, hiển thị thông báo.
+    """
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+ 
+    ok, err = _validate_refund_eligible(order, request.user)
+    if not ok:
+        messages.error(request, err)
+        return redirect('orders')
+ 
+    if request.method == 'POST':
+        bank_name      = request.POST.get('bank_name', '').strip()
+        bank_account   = request.POST.get('bank_account', '').strip()
+        account_holder = request.POST.get('account_holder', '').strip()
+        reason         = request.POST.get('reason', '').strip()
+ 
+        errors = []
+        if not bank_name:
+            errors.append('Vui lòng nhập tên ngân hàng.')
+        if not bank_account:
+            errors.append('Vui lòng nhập số tài khoản.')
+        if not account_holder:
+            errors.append('Vui lòng nhập tên chủ tài khoản.')
+        if not reason:
+            errors.append('Vui lòng nhập lý do hoàn tiền.')
+ 
+        if errors:
+            for e in errors:
+                messages.error(request, e)
+            return render(request, 'refund_form.html', {'order': order})
+ 
+        # Hủy đơn hàng
+        order.status = 'cancelled'
+        order.save(update_fields=['status', 'updated_at'])
+ 
+        # Tạo yêu cầu hoàn tiền
+        Refund.objects.create(
+            order=order,
+            user=request.user,
+            bank_name=bank_name,
+            bank_account=bank_account,
+            account_holder=account_holder,
+            reason=reason,
+            status='pending',
+        )
+ 
+        # Thông báo cho user
+        create_notification(
+            user=request.user,
+            notif_type='order_cancelled',
+            title=f'Đơn hàng #{order.id} đã bị hủy – Yêu cầu hoàn tiền đã được gửi',
+            message=(
+                f'Đơn hàng #{order.id} đã được hủy. '
+                'Tiền sẽ được hoàn trong 24h – 7 ngày làm việc '
+                f'vào tài khoản {bank_account} ({bank_name}).'
+            ),
+            order=order,
+        )
+ 
+        messages.success(
+            request,
+            f'✅ Đơn hàng #{order.id} đã được hủy. Yêu cầu hoàn tiền đang chờ xét duyệt — '
+            'tiền sẽ về tài khoản trong 24h – 7 ngày làm việc.'
+        )
+        return redirect('orders')
+ 
+    return render(request, 'refund_form.html', {'order': order})

@@ -26,7 +26,10 @@ urlpatterns = [
     path('orders/', views.orders_view, name='orders'),
     path('orders/<int:order_id>/', views.order_detail_view, name='order_detail'),
     path('orders/success/<int:order_id>/', views.order_success_view, name='order_success'),
-    path('orders/<int:order_id>/cancel/', views.cancel_order, name='cancel_order'),
+    # Hủy đơn (POST) – tự động redirect sang refund form nếu đã thanh toán
+    path('orders/<int:order_id>/cancel/', views.cancel_order,        name='cancel_order'),
+    # Form nhập thông tin hoàn tiền (GET + POST)
+    path('refund/<int:order_id>/submit/', views.submit_refund_form,  name='submit_refund_form'),
     # Yêu thích
     path('wishlist/', views.wishlist_view, name='wishlist'),
     path('wishlist/toggle/<int:watch_id>/', views.wishlist_toggle, name='wishlist_toggle'),

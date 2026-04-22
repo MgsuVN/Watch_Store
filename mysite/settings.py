@@ -141,7 +141,7 @@ ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 # === CÀI ĐẶT MỚI CHO ALLAUTH (phiên bản mới) ===
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}  # Cho phép đăng nhập bằng cả username và email
 ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']  # email tùy chọn, username và password bắt buộc
-
+ACCOUNT_LOGOUT_ON_GET = True
 # === CÁC CÀI ĐẶT CŨ (COMMENT HOẶC XÓA) ===
 # ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # Đã được thay thế bởi ACCOUNT_LOGIN_METHODS
 # ACCOUNT_EMAIL_REQUIRED = False                  # Đã được thay thế bởi ACCOUNT_SIGNUP_FIELDS
@@ -177,6 +177,7 @@ JAZZMIN_SETTINGS = {
         "app1.Profile": "fas fa-user",
         "app1.Notification": "fas fa-bell",
         "app1.Cart": "fas fa-cart-plus",
+        "app1.Refund": "fas fa-undo-alt",
 
         # Django mặc định
         "auth.User": "fas fa-users",
@@ -192,4 +193,5 @@ JAZZMIN_SETTINGS = {
             "icon": "fas fa-chart-line",
         }]
     }
+
 }

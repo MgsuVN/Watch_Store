@@ -586,7 +586,7 @@
             </div>
             <div class="modal-footer border-0 justify-content-center gap-2">
                 <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy</button>
-                <form method="post" action="{% url 'account_logout' %}">
+                <form method="post" action="{% url 'account_logout' %}" id="logoutForm">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger rounded-pill px-4">Đăng xuất</button>
                 </form>
@@ -798,6 +798,19 @@
         {% endif %}
     });
 })();
+</script>
+
+<!-- ===== LOGOUT CSRF FIX ===== -->
+<script>
+(function () {
+    function getCookie(name) {
+        for (var c of document.cookie.split(';')) {
+            c = c.trim();
+            if (c.startsWith(name + '=')) return decodeURIComponent(c.slice(name.length + 1));
+        }
+        return null;
+    }
+)();
 </script>
 
 <!-- ===== STICKY NAVBAR SCROLL ===== -->
