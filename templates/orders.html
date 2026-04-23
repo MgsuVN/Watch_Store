@@ -589,13 +589,15 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                                 {% if order.status == 'cancelled' and order.refund %}
                                   {% if order.refund.status == 'pending' %}
                                   <span class="badge-pending-refund">Chờ hoàn tiền</span>
-                                  {% elif order.refund.status == 'completed' %}
+                                  {% elif order.refund.status == 'approved' %}
                                   <span class="badge-refunded">
 <svg width="14" height="14" viewBox="0 0 16 16">
 <path fill="currentColor" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.5 5.5L7 11 4.5 8.5l1.41-1.41L7 8.17l3.09-3.08L11.5 6.5z"/>
 </svg>
 Đã hoàn tiền
 </span>
+                                  {% elif order.refund.status == 'rejected' %}
+                                  <span class="badge-cancelled">❌ Bị từ chối</span>
                                   {% endif %}
                                 {% endif %}
                             </div>
@@ -634,7 +636,7 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 Đã hủy
 </span>
                             {% if o.refund %}
-                                {% if o.refund.status == 'completed' %}
+                                {% if o.refund.status == 'approved' %}
                                 <span class="badge-refunded">
 <svg width="14" height="14" viewBox="0 0 16 16">
 <path fill="currentColor" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.5 5.5L7 11 4.5 8.5l1.41-1.41L7 8.17l3.09-3.08L11.5 6.5z"/>
@@ -740,8 +742,10 @@ svg { stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
                               <span>💳 Yêu cầu hoàn tiền đang chờ xử lý — hoàn trong <strong>1–7 ngày làm việc</strong>.</span>
                               {% elif o.refund.status == 'processing' %}
                               <span>⏳ Đang xử lý hoàn tiền vào tài khoản <strong>{{ o.refund.bank_account }}</strong>.</span>
-                              {% elif o.refund.status == 'completed' %}
+                              {% elif o.refund.status == 'approved' %}
                               <span style="color:#09904a;"> Đã hoàn tiền thành công vào tài khoản <strong>{{ o.refund.bank_account }}</strong>.</span>
+                              {% elif o.refund.status == 'rejected' %}
+                              <span style="color:#cc1a28;">❌ Yêu cầu hoàn tiền đã bị từ chối. Liên hệ hotline <strong>0123.456.789</strong> để được hỗ trợ.</span>
                               {% else %}
                               <span>Liên hệ hotline <strong>0123.456.789</strong> nếu cần hỗ trợ.</span>
                               {% endif %}

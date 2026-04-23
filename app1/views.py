@@ -836,7 +836,10 @@ def _validate_refund_eligible(order, user):
         return False, 'Chỉ có thể hoàn tiền cho đơn đã thanh toán hoặc đang chờ xác nhận thanh toán.'
     if order.status == 'cancelled':
         return False, 'Đơn hàng đã bị hủy trước đó.'
-    if Refund.objects.filter(order=order).exists():
+    existing = Refund.objects.filter(order=order).first()
+    if existing:
+        if existing.status == 'rejected':
+            return False, 'Yêu cầu hoàn tiền cho đơn hàng này đã bị từ chối.'
         return False, 'Yêu cầu hoàn tiền cho đơn hàng này đã tồn tại.'
     return True, None
  

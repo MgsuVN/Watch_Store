@@ -606,11 +606,10 @@ class RefundAdmin(admin.ModelAdmin):
     def mark_as_completed(self, request, queryset):
         done = 0
         for refund in queryset.filter(status='pending'):
-            refund.status = 'completed'
+            refund.status = 'approved'
             refund.completed_at = timezone.now()
             refund.save(update_fields=['status', 'completed_at'])
 
-            # Cập nhật payment_status của đơn hàng để hiển thị đúng bên ngoài
             Order.objects.filter(pk=refund.order.pk).update(payment_status='refunded')
 
             create_notification(
@@ -633,20 +632,19 @@ class RefundAdmin(admin.ModelAdmin):
         except Refund.DoesNotExist:
             old_status = None
 
-        just_completed = (old_status != 'completed' and obj.status == 'completed')
+        just_approved = (old_status != 'approved' and obj.status == 'approved')
+        just_rejected = (old_status != 'rejected' and obj.status == 'rejected')
 
-        # Tự set completed_at khi chuyển sang completed
-        if just_completed:
+        # Tự set completed_at khi chuyển sang approved
+        if just_approved:
             obj.completed_at = timezone.now()
 
         # Luôn save refund trước
         obj.save()
 
-        # Khi vừa completed: cập nhật order + gửi thông báo
-        if just_completed:
-            # Cập nhật payment_status của đơn hàng để hiển thị đúng bên ngoài
+        # Khi vừa approved: cập nhật order + gửi thông báo
+        if just_approved:
             Order.objects.filter(pk=obj.order.pk).update(payment_status='refunded')
-
             create_notification(
                 user=obj.user,
                 notif_type='general',
@@ -659,6 +657,17 @@ class RefundAdmin(admin.ModelAdmin):
             )
             self.message_user(request, '✅ Đã xác nhận hoàn tiền và gửi thông báo cho khách.')
 
+        # Khi vừa rejected: gửi thông báo từ chối
+        if just_rejected:
+            create_notification(
+                user=obj.user,
+                notif_type='general',
+                title=f'Yêu cầu hoàn tiền đơn #{obj.order.id} bị từ chối ❌',
+                message=f'Yêu cầu hoàn tiền cho đơn #{obj.order.id} đã bị từ chối.',
+                order=obj.order,
+            )
+            self.message_user(request, '❌ Đã từ chối hoàn tiền và gửi thông báo cho khách.')
+
     @admin.display(description='Đơn hàng', ordering='order__id')
     def order_link(self, obj):
         url = f'/admin/app1/order/{obj.order.id}/change/'
@@ -668,8 +677,10 @@ class RefundAdmin(admin.ModelAdmin):
     def status_badge(self, obj):
         if obj.status == 'pending':
             color, label = '#f97316', '⏳ Chờ xử lý'
-        else:
+        elif obj.status == 'approved':
             color, label = '#22c55e', '✅ Đã hoàn tiền'
+        else:  # rejected
+            color, label = '#ef4444', '❌ Từ chối hoàn tiền'
         return format_html(
             '<span style="color:{};font-weight:700;">{}</span>',
             color, label,

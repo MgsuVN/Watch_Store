@@ -372,8 +372,9 @@ class Wishlist(models.Model):
         return f"{self.user.username} ❤ {self.watch.name}"
 class Refund(models.Model):
     STATUS_CHOICES = [
-        ('pending',   '⏳ Chờ xử lý'),
-        ('completed', '✅ Đã hoàn tiền'),
+        ('pending',  'Chờ xử lý'),
+        ('approved', 'Đã hoàn tiền'),
+        ('rejected', 'Từ chối hoàn tiền'),
     ]
 
     order          = models.OneToOneField(
